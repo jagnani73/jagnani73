@@ -7,10 +7,42 @@
 
   html,
   body {
-    @apply m-0 p-0 bg-eerie-black;
+    @apply m-0 p-0 bg-eerie-black text-cultured font-sans-serif;
   }
 
   * {
-    @apply box-border text-cultured font-sans-serif;
+    @apply box-border transition-all;
+  }
+
+  h1 {
+    @apply text-4xl font-bold;
+  }
+
+  h2 {
+    @apply text-4xl;
+  }
+
+  h3 {
+    @apply text-3xl;
+  }
+
+  h4 {
+    @apply text-2xl;
+  }
+
+  h5 {
+    @apply text-xl;
+  }
+
+  h6 {
+    @apply text-lg;
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+
+  .section-container {
+    @apply w-10/12 mx-auto my-32;
   }
 }
