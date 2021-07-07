@@ -4,6 +4,7 @@ const IndexPage = () => {
   return (
     <>
       <IndexComponents.Home />
+      <IndexComponents.About />
     </>
   );
 };
