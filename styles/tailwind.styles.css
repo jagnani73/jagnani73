@@ -54,6 +54,10 @@
     @apply flex justify-center items-center;
   }
 
+  .tag {
+    @apply text-xs font-bold bg-steel-blue px-2 py-1 rounded-md text-center;
+  }
+
   .medium-widget {
     @apply mt-0 w-full;
   }
