@@ -15,6 +15,7 @@ module.exports = {
         cultured: "#FAFAFA",
         "steel-blue": "#4688B4",
         "light-green": "#7AE485",
+        "middle-red": "#E28B6F",
       },
       height: {
         "fit-content": "fit-content",

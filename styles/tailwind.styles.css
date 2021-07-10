@@ -42,7 +42,51 @@
     @apply w-10/12 mx-auto my-56;
   }
 
+  a,
+  input,
+  textarea,
+  select,
+  button {
+    @apply outline-none focus:outline-none;
+  }
+
   .flex-center {
     @apply flex justify-center items-center;
+  }
+
+  .medium-widget {
+    @apply mt-0 w-full;
+  }
+
+  .medium-widget-article__row {
+    @apply grid grid-cols-2 w-full;
+  }
+
+  .medium-widget-article__item {
+    @apply w-10/12 mx-auto mt-20;
+  }
+
+  .medium-widget-article__column {
+    @apply h-full flex flex-col;
+  }
+
+  .medium-widget-article__image {
+    @apply w-full;
+  }
+
+  .medium-widget-article__content {
+    @apply h-full flex flex-col;
+  }
+
+  .medium-widget-article__title {
+    @apply text-xl font-bold mt-2;
+  }
+
+  .medium-widget-article__info {
+    @apply mt-2 h-full flex items-end;
+  }
+
+  .medium-widget-article__date {
+    @apply text-sm font-bold;
   }
 }
