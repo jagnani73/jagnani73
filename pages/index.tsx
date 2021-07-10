@@ -5,6 +5,8 @@ const IndexPage = () => {
     <>
       <IndexComponents.Home />
       <IndexComponents.About />
+      <IndexComponents.Stack />
+      <IndexComponents.Work />
     </>
   );
 };
