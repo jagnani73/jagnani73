@@ -9,15 +9,19 @@ const Experience = ({ primary, ...experience }: ExperienceProp) => {
     <article>
       <img src={experience.logo} alt={experience.org} className="w-24" />
 
-      <h5 className="mt-2">{experience.org}</h5>
-      {!primary && <span>{experience.tag}</span>}
+      <h5 className="mt-2 flex items-center">
+        {experience.org}
+        {!primary && <span className="tag ml-4">{experience.tag}</span>}
+      </h5>
 
-      <h6 className="font-bold">
+      <h6 className="font-bold flex justify-between">
         {experience.designation}
-        {!primary && <span>{experience.duration}</span>}
+        {!primary && (
+          <span className="text-base font-normal">{experience.duration}</span>
+        )}
       </h6>
 
-      {!primary && <p>{experience.description}</p>}
+      {!primary && <p className="mt-2">{experience.description}</p>}
     </article>
   );
 };
