@@ -1,35 +1,35 @@
 import { ExperienceProps, ProjectProps } from "./interfaces";
-import * as Icons from "./icons";
+import * as Logos from "./logos";
 
 export const tags: string[] = ["web developer", "something", "else"];
 
 export const stack: {
   name: string;
-  icon: JSX.Element;
+  logo: JSX.Element;
 }[] = [
-  { name: "bootstrap", icon: <Icons.BootstrapIcon /> },
-  { name: "c", icon: <Icons.CIcon /> },
-  { name: "c++", icon: <Icons.CPPIcon /> },
-  { name: "css", icon: <Icons.CSSIcon /> },
-  { name: "express", icon: <Icons.ExpressIcon /> },
-  { name: "figma", icon: <Icons.FigmaIcon /> },
-  { name: "gatsby", icon: <Icons.GatsbyIcon /> },
-  { name: "html", icon: <Icons.HTMLIcon /> },
-  { name: "illustrator", icon: <Icons.IllustratorIcon /> },
-  { name: "javascript", icon: <Icons.JavascriptIcon /> },
-  { name: "linux", icon: <Icons.LinuxIcon /> },
-  { name: "mongo", icon: <Icons.MongoIcon /> },
-  { name: "next", icon: <Icons.NextIcon /> },
-  { name: "node", icon: <Icons.NodeIcon /> },
-  { name: "nuxt", icon: <Icons.NuxtIcon /> },
-  { name: "photoshop", icon: <Icons.PhotoshopIcon /> },
-  { name: "preact", icon: <Icons.PreactIcon /> },
-  { name: "react", icon: <Icons.ReactIcon /> },
-  { name: "redux", icon: <Icons.ReduxIcon /> },
-  { name: "sass", icon: <Icons.SassIcon /> },
-  // { name: "tailwind", icon: <Icons.TailwindIcon /> },
-  { name: "typescript", icon: <Icons.TypescriptIcon /> },
-  { name: "vue", icon: <Icons.VueIcon /> },
+  { name: "bootstrap", logo: <Logos.BootstrapLogo /> },
+  { name: "c", logo: <Logos.CLogo /> },
+  { name: "c++", logo: <Logos.CPPLogo /> },
+  { name: "css", logo: <Logos.CSSLogo /> },
+  { name: "express", logo: <Logos.ExpressLogo /> },
+  { name: "figma", logo: <Logos.FigmaLogo /> },
+  { name: "gatsby", logo: <Logos.GatsbyLogo /> },
+  { name: "html", logo: <Logos.HTMLLogo /> },
+  { name: "illustrator", logo: <Logos.IllustratorLogo /> },
+  { name: "javascript", logo: <Logos.JavascriptLogo /> },
+  { name: "linux", logo: <Logos.LinuxLogo /> },
+  { name: "mongo", logo: <Logos.MongoLogo /> },
+  { name: "next", logo: <Logos.NextLogo /> },
+  { name: "node", logo: <Logos.NodeLogo /> },
+  { name: "nuxt", logo: <Logos.NuxtLogo /> },
+  { name: "photoshop", logo: <Logos.PhotoshopLogo /> },
+  { name: "preact", logo: <Logos.PreactLogo /> },
+  { name: "react", logo: <Logos.ReactLogo /> },
+  { name: "redux", logo: <Logos.ReduxLogo /> },
+  { name: "sass", logo: <Logos.SassLogo /> },
+  // { name: "tailwind", logo: <Logos.TailwindLogo /> },
+  { name: "typescript", logo: <Logos.TypescriptLogo /> },
+  { name: "vue", logo: <Logos.VueLogo /> },
 ];
 
 export const experiences: ExperienceProps[] = [

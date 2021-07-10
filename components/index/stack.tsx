@@ -20,7 +20,7 @@ const Stack = () => {
               key={tech.name}
               className="flex flex-col items-stretch text-center mx-10"
             >
-              <figure className="w-24 mt-auto mx-auto">{tech.icon}</figure>
+              <figure className="w-24 mt-auto mx-auto">{tech.logo}</figure>
 
               <p className="uppercase font-extrabold text-xs mt-auto pt-4">
                 {tech.name}
