@@ -32,9 +32,9 @@ const Projects = () => {
       </form>
 
       <div className="grid grid-cols-2">
-        {projects.map((experience) => (
+        {projects.map((project) => (
           <div className="w-10/12 mx-auto mt-20">
-            <Project primary {...experience} />
+            <Project primary {...project} />
           </div>
         ))}
       </div>
