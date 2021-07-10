@@ -8,6 +8,7 @@ const IndexPage = () => {
       <IndexComponents.Stack />
       <IndexComponents.Work />
       <IndexComponents.Projects />
+      {/* <IndexComponents.Contact /> */}
     </>
   );
 };
