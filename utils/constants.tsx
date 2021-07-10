@@ -1,4 +1,4 @@
-import { ExperienceProps } from "./interfaces";
+import { ExperienceProps, ProjectProps } from "./interfaces";
 import * as Icons from "./icons";
 
 export const tags: string[] = ["web developer", "something", "else"];
@@ -119,5 +119,53 @@ export const experiences: ExperienceProps[] = [
       "Adipisicing eiusmod aliqua ipsum aliquip ipsum enim proident ad deserunt.",
     duration: "March 2020 - Present",
     tag: "Campus Club",
+  },
+];
+
+export const projects: ProjectProps[] = [
+  {
+    name: "GCSRM Landing",
+    preview: "/projects/gcsrm-landing.png",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    links: ["link1", "link2"],
+    stack: ["one", "two"],
+    tag: "web",
+  },
+  {
+    name: "GCSRM Landing",
+    preview: "/projects/gcsrm-landing.png",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    links: ["link1", "link2"],
+    stack: ["one", "two"],
+    tag: "web",
+  },
+  {
+    name: "GCSRM Landing third",
+    preview: "/projects/gcsrm-landing.png",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    links: ["link1", "link2"],
+    stack: ["one", "two"],
+    tag: "web",
+  },
+  {
+    name: "GCSRM Landing",
+    preview: "/projects/gcsrm-landing.png",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    links: ["link1", "link2"],
+    stack: ["one", "two"],
+    tag: "web",
+  },
+  {
+    name: "GCSRM Landing",
+    preview: "/projects/gcsrm-landing.png",
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+    links: ["link1", "link2"],
+    stack: ["one", "two"],
+    tag: "web",
   },
 ];

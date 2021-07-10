@@ -16,6 +16,12 @@ module.exports = {
         "steel-blue": "#4688B4",
         "light-green": "#7AE485",
       },
+      height: {
+        "fit-content": "fit-content",
+      },
+      width: {
+        "fit-content": "fit-content",
+      },
     },
   },
   variants: {
