@@ -1,3 +1,4 @@
+export { default as BootstrapIcon } from "./bootstrap";
 export { default as CIcon } from "./c";
 export { default as CPPIcon } from "./cpp";
 export { default as CSSIcon } from "./css";
@@ -16,5 +17,7 @@ export { default as PhotoshopIcon } from "./photoshop";
 export { default as PreactIcon } from "./preact";
 export { default as ReactIcon } from "./react";
 export { default as ReduxIcon } from "./redux";
+export { default as SassIcon } from "./sass";
+export { default as TailwindIcon } from "./tailwind";
 export { default as TypescriptIcon } from "./typescript";
 export { default as VueIcon } from "./vue";

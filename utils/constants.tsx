@@ -7,6 +7,7 @@ export const stack: {
   name: string;
   icon: JSX.Element;
 }[] = [
+  { name: "bootstrap", icon: <Icons.BootstrapIcon /> },
   { name: "c", icon: <Icons.CIcon /> },
   { name: "c++", icon: <Icons.CPPIcon /> },
   { name: "css", icon: <Icons.CSSIcon /> },
@@ -25,6 +26,8 @@ export const stack: {
   { name: "preact", icon: <Icons.PreactIcon /> },
   { name: "react", icon: <Icons.ReactIcon /> },
   { name: "redux", icon: <Icons.ReduxIcon /> },
+  { name: "sass", icon: <Icons.SassIcon /> },
+  // { name: "tailwind", icon: <Icons.TailwindIcon /> },
   { name: "typescript", icon: <Icons.TypescriptIcon /> },
   { name: "vue", icon: <Icons.VueIcon /> },
 ];
