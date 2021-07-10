@@ -4,7 +4,7 @@ import { stack } from "../../utils/constants";
 
 const Stack = () => {
   return (
-    <section className="section-container">
+    <section>
       <h1>Stack</h1>
       <h3>Some random line for spacing</h3>
 

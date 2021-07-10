@@ -5,7 +5,7 @@ import { experiences } from "../../utils/constants";
 
 const Work = () => {
   return (
-    <section className="section-container">
+    <section>
       <h1>Work Experience</h1>
       <h3>Some random line for spacing</h3>
 
@@ -26,7 +26,7 @@ const Work = () => {
         ))}
       </div>
 
-      <p className="text-right mt-8">
+      <p className="text-right mt-8 text-2xl">
         A line here for{" "}
         <Link href="/work-experience">
           <a target="_blank" rel="noopener noreferrer" className="font-bold">

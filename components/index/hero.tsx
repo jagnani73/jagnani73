@@ -2,7 +2,7 @@ import { tags } from "../../utils/constants";
 
 const Hero = () => {
   return (
-    <section className="w-full h-screen flex text-center">
+    <section className="w-full h-screen flex text-center mt-0">
       <div className="w-1/2 flex-center flex-col">
         <div className="w-6/12 mt-48">
           <h2>My name is</h2>

@@ -5,7 +5,7 @@ import { projects } from "../../utils/constants";
 
 const Projects = () => {
   return (
-    <section className="section-container">
+    <section>
       <h1>Projects</h1>
       <h3>Some random line for spacing</h3>
 
@@ -24,7 +24,7 @@ const Projects = () => {
               <Project primary {...experience} />
             </div>
           ))}
-          <p className="w-10/12 mx-auto text-3xl text-right mt-32">
+          <p className="w-10/12 mx-auto text-2xl text-right mt-32">
             A line here for{" "}
             <Link href="/work-experience">
               <a
