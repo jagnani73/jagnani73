@@ -19,6 +19,9 @@ const BlogPage = () => {
           }}
         />
       </Head>
+
+      {/* //* INFO: classes for purge-prevention */}
+      <span className="hidden medium-widget medium-widget-article__row medium-widget-article__item medium-widget-article__column medium-widget-article__image medium-widget-article__content medium-widget-article__title medium-widget-article__info medium-widget-article__date" />
       <BlogComponents.Blog />
     </>
   );
