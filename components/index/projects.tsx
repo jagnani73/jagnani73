@@ -5,7 +5,7 @@ import { projects } from "../../utils/constants";
 
 const Projects = () => {
   return (
-    <section>
+    <section className="section-container">
       <h1>Projects</h1>
       <h3>Some random line for spacing</h3>
 

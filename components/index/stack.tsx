@@ -4,7 +4,7 @@ import { stack } from "../../utils/constants";
 
 const Stack = () => {
   return (
-    <section>
+    <section className="section-container">
       <h1>Stack</h1>
       <h3>Some random line for spacing</h3>
 
@@ -14,7 +14,7 @@ const Stack = () => {
         pauseOnHover
         className="mt-20 transform-gpu"
       >
-        <div className="flex transform-gpu w-full">
+        <div className="flex transform-gpu">
           {stack.map((tech) => (
             <div
               key={tech.name}

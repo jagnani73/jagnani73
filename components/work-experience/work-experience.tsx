@@ -3,7 +3,7 @@ import { experiences } from "../../utils/constants";
 
 const Projects = () => {
   return (
-    <section>
+    <section className="section-container">
       <h1>Work</h1>
       <h3>Some random line for spacing</h3>
 

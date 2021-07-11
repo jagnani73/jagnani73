@@ -38,10 +38,6 @@
     @apply text-lg;
   }
 
-  section {
-    @apply w-10/12 mx-auto my-56;
-  }
-
   a,
   input,
   textarea,
@@ -52,6 +48,10 @@
 
   .flex-center {
     @apply flex justify-center items-center;
+  }
+
+  .section-container {
+    @apply w-10/12 mx-auto my-56;
   }
 
   .tag {

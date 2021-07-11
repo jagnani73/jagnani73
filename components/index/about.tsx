@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <section>
+    <section className="section-container">
       <h1>About Me</h1>
       <h3>Some random line for spacing</h3>
 

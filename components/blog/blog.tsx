@@ -14,7 +14,7 @@ const Blog = () => {
   }, []);
 
   return (
-    <section>
+    <section className="section-container">
       <h1>Blog</h1>
       <h3>Some random line for spacing</h3>
 

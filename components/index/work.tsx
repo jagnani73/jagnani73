@@ -5,7 +5,7 @@ import { experiences } from "../../utils/constants";
 
 const Work = () => {
   return (
-    <section>
+    <section className="section-container">
       <h1>Work Experience</h1>
       <h3>Some random line for spacing</h3>
 
