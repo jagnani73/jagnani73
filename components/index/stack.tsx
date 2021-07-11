@@ -14,7 +14,7 @@ const Stack = () => {
         pauseOnHover
         className="mt-20 transform-gpu"
       >
-        <div className="flex transform-gpu">
+        <div className="flex transform-gpu w-full">
           {stack.map((tech) => (
             <div
               key={tech.name}
