@@ -29,6 +29,8 @@ export const onError: ErrorHandler<NextApiRequest, NextApiResponse> = (
     });
   } else {
     console.log(err);
-    throw errors.INTERNAL_SERVER_ERROR;
+    res
+      .status(errors.INTERNAL_SERVER_ERROR.httpStatus)
+      .json({ success: false, message: errors.INTERNAL_SERVER_ERROR.message });
   }
 };
