@@ -22,7 +22,7 @@ const Experiences = ({ experiences }: ExperiencesProps) => {
 
       <div className="grid grid-cols-3">
         {experiences?.map((experience) => (
-          <div className="w-10/12 mx-auto mt-20">
+          <div key={experience._id} className="w-10/12 mx-auto mt-20">
             <Experience primary={false} {...experience} />
           </div>
         ))}
