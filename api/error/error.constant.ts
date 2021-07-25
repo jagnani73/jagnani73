@@ -11,4 +11,8 @@ export const errors: Record<string, { httpStatus: number; message: string }> = {
     httpStatus: 400,
     message: "invalid query params",
   },
+  PROJECT_NOT_FOUND: {
+    httpStatus: 404,
+    message: "no project with the given slug found",
+  },
 };

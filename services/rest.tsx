@@ -16,3 +16,27 @@ export const getProjects = async (): Promise<ProjectProps[] | false> => {
     return false;
   }
 };
+
+export const getProjectsSlugs = async (): Promise<string[] | false> => {
+  try {
+    return await (
+      await instance.get("/projects/slugs")
+    ).data.slugs;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+export const getProject = async (
+  slug: string
+): Promise<ProjectProps | false> => {
+  try {
+    return await (
+      await instance.get(`/projects/${slug}`)
+    ).data.project;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
