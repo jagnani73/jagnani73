@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
 
 import { onError, onNoMatch } from "../../api/error/error.controller";
-import { experienceRouter } from "../../api/experience/experience.routes";
+import { experiencesRouter } from "../../api/experiences/experiences.routes";
 
 const rootRouter = nc<NextApiRequest, NextApiResponse>({
   onNoMatch,
@@ -16,6 +16,6 @@ const indexRouter = nc<NextApiRequest, NextApiResponse>({
 
 rootRouter.use("/api/v1", indexRouter);
 
-indexRouter.use("/experience", experienceRouter);
+indexRouter.use("/experiences", experiencesRouter);
 
 export default rootRouter;
