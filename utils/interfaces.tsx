@@ -2,12 +2,15 @@ interface MongoDBDefaults {
   _id?: string;
 }
 
+export interface ExperienceProps extends MongoDBDefaults {
   logo: string;
   org: string;
   designation: string;
   tag: string;
   description: string;
   duration: string;
+  slug: string;
+  featured: boolean;
 }
 
 export interface ProjectProps extends MongoDBDefaults {

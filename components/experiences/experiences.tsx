@@ -1,7 +1,11 @@
+import { ExperienceProps } from "../../utils/interfaces";
 import { Experience } from "../shared";
-import { experiences } from "../../utils/constants";
 
-const Experiences = () => {
+interface ExperiencesProps {
+  experiences: ExperienceProps[];
+}
+
+const Experiences = ({ experiences }: ExperiencesProps) => {
   return (
     <section className="section-container">
       <h1>Work</h1>
@@ -17,7 +21,7 @@ const Experiences = () => {
       </p>
 
       <div className="grid grid-cols-3">
-        {experiences.map((experience) => (
+        {experiences?.map((experience) => (
           <div className="w-10/12 mx-auto mt-20">
             <Experience primary={false} {...experience} />
           </div>

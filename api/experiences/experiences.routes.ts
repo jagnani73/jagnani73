@@ -44,13 +44,13 @@ const getExperiences = async (
       const data = await fetchExperiences(+limit, parsedFeatured);
       res.json({
         success: true,
-        projects: data,
+        experiences: data,
       });
     } else if (!limit && !featured) {
       const data = await fetchExperiences();
       res.json({
         success: true,
-        projects: data,
+        experiences: data,
       });
     } else {
       throw errors.INVALID_QUERY_PARAMS;

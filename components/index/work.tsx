@@ -28,10 +28,8 @@ const Work = () => {
 
       <p className="text-right mt-8 text-2xl">
         A line here for{" "}
-        <Link href="/work-experience">
-          <a target="_blank" rel="noopener noreferrer" className="font-bold">
-            all work ex
-          </a>
+        <Link href="/experiences">
+          <a className="font-bold">all work ex</a>
         </Link>{" "}
         redirect
       </p>

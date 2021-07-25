@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-import { ProjectProps } from "../utils/interfaces";
+import { ProjectProps, ExperienceProps } from "../utils/interfaces";
 
 const instance: AxiosInstance = axios.create({
   baseURL: `${process.env.NEXT_APP_API_BASE_URL}/api/v1`,
@@ -35,6 +35,17 @@ export const getProject = async (
     return await (
       await instance.get(`/projects/${slug}`)
     ).data.project;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+export const getExperiences = async (): Promise<ExperienceProps[] | false> => {
+  try {
+    return await (
+      await instance.get("/experiences")
+    ).data.experiences;
   } catch (error) {
     console.log(error);
     return false;
