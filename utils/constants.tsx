@@ -30,3 +30,14 @@ export const stack: {
   { name: "typescript", logo: <Logos.TypescriptLogo /> },
   { name: "vue", logo: <Logos.VueLogo /> },
 ];
+
+export const navbarRoutes: { href: string; name: string; scroll?: boolean }[] =
+  [
+    { href: "/", name: "home" },
+    { href: "/", name: "about", scroll: true },
+    { href: "/", name: "experiences" },
+    { href: "/", name: "stack" },
+    { href: "/", name: "projects" },
+    { href: "/", name: "contact" },
+    { href: "/", name: "blog" },
+  ];

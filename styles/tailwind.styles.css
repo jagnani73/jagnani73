@@ -51,7 +51,7 @@
   }
 
   .section-container {
-    @apply w-10/12 mx-auto my-56;
+    @apply w-10/12 mx-auto mt-40;
   }
 
   .tag {
