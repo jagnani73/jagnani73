@@ -1,7 +1,7 @@
 import { Experience } from "../shared";
 import { experiences } from "../../utils/constants";
 
-const Projects = () => {
+const Experiences = () => {
   return (
     <section className="section-container">
       <h1>Work</h1>
@@ -27,4 +27,4 @@ const Projects = () => {
   );
 };
 
-export default Projects;
+export default Experiences;
