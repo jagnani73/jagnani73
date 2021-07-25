@@ -17,8 +17,8 @@ const Project = ({ primary, ...project }: ProjectProp) => {
 
         <div>
           {primary
-            ? project.stack.map((tech) => <span>{tech}</span>)
-            : project.links.map((link) => (
+            ? project.stack?.map((tech) => <span>{tech}</span>)
+            : project.links?.map((link) => (
                 <a href={link} target="_blank" rel="noopener noreferrer">
                   Link
                 </a>
@@ -32,7 +32,7 @@ const Project = ({ primary, ...project }: ProjectProp) => {
 
           <div>
             Built using:{" "}
-            {project.stack.map((tech) => (
+            {project.stack?.map((tech) => (
               <span>{tech}</span>
             ))}
           </div>

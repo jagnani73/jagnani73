@@ -1,4 +1,4 @@
-import { ExperienceProps, ProjectProps } from "./interfaces";
+import { ExperienceProps } from "./interfaces";
 import * as Logos from "./logos";
 
 export const tags: string[] = ["web developer", "something", "else"];
@@ -170,5 +170,6 @@ export const projects: ProjectProps[] = [
     links: ["link1", "link2"],
     stack: ["one", "two"],
     tag: "web",
+    slug: "gcsrm",
   },
 ];

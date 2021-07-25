@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10.2.3",
+    "axios": "^0.21.1",
     "mongodb": "^3.6.10",
     "next": "10.0.5",
     "next-connect": "^0.10.1",

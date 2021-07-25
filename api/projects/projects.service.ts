@@ -12,7 +12,15 @@ export const fetchProjects = async (
   if (limit && featured !== null)
     return await (await getDb())
       .collection("projects")
-      .find({ featured }, { limit })
+      .find<ProjectType>({ featured }, { limit })
+      .toArray();
+  else
+    return await (await getDb())
+      .collection("projects")
+      .find<ProjectType>({}, {})
+      .toArray();
+};
+
       .toArray();
   else return await (await getDb()).collection("projects").find().toArray();
 };

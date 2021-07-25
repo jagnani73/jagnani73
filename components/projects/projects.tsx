@@ -1,8 +1,14 @@
+import Link from "next/link";
+
+import { ProjectProps } from "../../utils/interfaces";
 import { SearchIcon } from "../../utils/icons";
 import { Project } from "../shared";
-import { projects } from "../../utils/constants";
 
-const Projects = () => {
+interface ProjectsProps {
+  projects: ProjectProps[];
+}
+
+const Projects = ({ projects }: ProjectsProps) => {
   return (
     <section className="section-container">
       <h1>My Projects</h1>
@@ -33,9 +39,11 @@ const Projects = () => {
 
       <div className="grid grid-cols-2">
         {projects.map((project) => (
-          <div className="w-10/12 mx-auto mt-20">
-            <Project primary {...project} />
-          </div>
+          <Link key={project._id} href={`projects/${project.slug}`}>
+            <a className="w-10/12 mx-auto mt-20">
+              <Project primary {...project} />
+            </a>
+          </Link>
         ))}
       </div>
     </section>

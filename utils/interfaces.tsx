@@ -1,4 +1,7 @@
-export interface ExperienceProps {
+interface MongoDBDefaults {
+  _id?: string;
+}
+
   logo: string;
   org: string;
   designation: string;
@@ -7,11 +10,13 @@ export interface ExperienceProps {
   duration: string;
 }
 
-export interface ProjectProps {
+export interface ProjectProps extends MongoDBDefaults {
   preview: string;
   name: string;
   description: string;
   tag: string;
   stack: string[];
   links: string[];
+  slug: string;
+  featured: boolean;
 }
