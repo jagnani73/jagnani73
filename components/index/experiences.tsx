@@ -1,9 +1,13 @@
 import Link from "next/link";
 
+import { ExperienceProps } from "../../utils/interfaces";
 import { Experience } from "../shared";
-import { experiences } from "../../utils/constants";
 
-const Work = () => {
+interface ExperiencesComponentProps {
+  experiences: ExperienceProps[];
+}
+
+const Experiences = ({ experiences }: ExperiencesComponentProps) => {
   return (
     <section className="section-container">
       <h1>Work Experience</h1>
@@ -19,8 +23,8 @@ const Work = () => {
       </p>
 
       <div className="grid grid-cols-3 mt-20">
-        {experiences.slice(0, 3).map((experience) => (
-          <div className="w-10/12 mx-auto">
+        {experiences?.map((experience) => (
+          <div key={experience._id} className="w-10/12 mx-auto">
             <Experience primary {...experience} />
           </div>
         ))}
@@ -37,4 +41,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default Experiences;

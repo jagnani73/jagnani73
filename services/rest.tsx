@@ -6,10 +6,16 @@ const instance: AxiosInstance = axios.create({
   baseURL: `${process.env.NEXT_APP_API_BASE_URL}/api/v1`,
 });
 
-export const getProjects = async (): Promise<ProjectProps[] | false> => {
+export const getProjects = async (
+  limit?: number,
+  featured?: boolean
+): Promise<ProjectProps[] | false> => {
   try {
+    const query = `?limit=${limit}&featured=${featured}`;
     return await (
-      await instance.get("/projects")
+      await instance.get(
+        `/projects${limit && featured !== (null || undefined) ? query : ""}`
+      )
     ).data.projects;
   } catch (error) {
     console.log(error);
@@ -41,10 +47,16 @@ export const getProject = async (
   }
 };
 
-export const getExperiences = async (): Promise<ExperienceProps[] | false> => {
+export const getExperiences = async (
+  limit?: number,
+  featured?: boolean
+): Promise<ExperienceProps[] | false> => {
   try {
+    const query = `?limit=${limit}&featured=${featured}`;
     return await (
-      await instance.get("/experiences")
+      await instance.get(
+        `/experiences${limit && featured !== (null || undefined) ? query : ""}`
+      )
     ).data.experiences;
   } catch (error) {
     console.log(error);
