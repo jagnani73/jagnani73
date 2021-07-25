@@ -19,20 +19,8 @@ export const validateQuery = (
     _res: NextApiResponse,
     next: NextHandler
   ) => {
-    let data: any;
-    switch (location) {
-      case "query":
-        data = req.query;
-        break;
-      case "body":
-        data = req.body;
-        break;
-      case "headers":
-        data = req.headers;
-        break;
-    }
     try {
-      await schema.validate(data, { abortEarly: false });
+      await schema.validate(req[location], { abortEarly: false });
       next();
     } catch (err) {
       next({ httpStatus: 400, message: err.errors.join(". ") });
