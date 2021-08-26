@@ -5,6 +5,7 @@ interface MongoDBDefaults {
 export interface ExperienceProps extends MongoDBDefaults {
   logo: string;
   org: string;
+  url?: string;
   designation: string;
   tag: string;
   description: string;

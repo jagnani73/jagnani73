@@ -6,6 +6,7 @@ export const ExperienceSchema = yup
   .object({
     logo: yup.string().trim().required().url(),
     org: yup.string().trim().required(),
+    url: yup.string().trim().url(),
     designation: yup.string().trim().required(),
     tag: yup.string().trim().required(),
     description: yup.string().trim().required(),

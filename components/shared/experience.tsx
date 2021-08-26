@@ -10,7 +10,14 @@ const Experience = ({ primary, ...experience }: ExperienceProp) => {
       <img src={experience.logo} alt={experience.org} className="w-24" />
 
       <h5 className="mt-2 flex items-center">
-        {experience.org}
+        {experience.url ? (
+          <a href={experience.url} target="_blank" rel="noopener noreferrer">
+            {experience.org}
+          </a>
+        ) : (
+          experience.org
+        )}
+
         {!primary && <span className="tag ml-4">{experience.tag}</span>}
       </h5>
 
