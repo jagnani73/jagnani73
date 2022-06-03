@@ -1,4 +1,4 @@
-export default () => (
+const Redux = () => (
   <svg
     className="w-full h-full"
     viewBox="0 0 256 244"
@@ -15,3 +15,5 @@ export default () => (
     </g>
   </svg>
 );
+
+export default Redux;

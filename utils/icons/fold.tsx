@@ -1,4 +1,4 @@
-export default () => (
+const Fold = () => (
   <svg
     stroke="currentColor"
     fill="currentColor"
@@ -13,3 +13,5 @@ export default () => (
     </g>
   </svg>
 );
+
+export default Fold;

@@ -1,4 +1,4 @@
-export default () => (
+const Next = () => (
   <svg
     className="w-full h-full"
     viewBox="0 0 207 124"
@@ -24,3 +24,5 @@ export default () => (
     </g>
   </svg>
 );
+
+export default Next;

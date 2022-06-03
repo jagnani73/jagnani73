@@ -1,4 +1,4 @@
-export default () => (
+const Preact = () => (
   <svg
     className="w-full h-full"
     viewBox="0 0 256 296"
@@ -27,3 +27,5 @@ export default () => (
     </g>
   </svg>
 );
+
+export default Preact;

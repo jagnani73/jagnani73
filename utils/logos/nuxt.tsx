@@ -1,4 +1,4 @@
-export default () => (
+const Nuxt = () => (
   <svg
     className="w-full h-full"
     viewBox="0 0 256 189"
@@ -23,3 +23,5 @@ export default () => (
     </g>
   </svg>
 );
+
+export default Nuxt;

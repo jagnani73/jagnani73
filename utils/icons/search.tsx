@@ -1,4 +1,4 @@
-export default () => (
+const Search = () => (
   <svg
     stroke="currentColor"
     fill="currentColor"
@@ -13,3 +13,5 @@ export default () => (
     />
   </svg>
 );
+
+export default Search;

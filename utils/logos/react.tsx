@@ -1,4 +1,4 @@
-export default () => (
+const React = () => (
   <svg
     className="w-full h-full"
     xmlns="http://www.w3.org/2000/svg"
@@ -11,3 +11,5 @@ export default () => (
     </g>
   </svg>
 );
+
+export default React;

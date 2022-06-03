@@ -1,4 +1,4 @@
-export default () => (
+const Tailwind = () => (
   <svg xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
     <defs>
       <linearGradient
@@ -20,3 +20,5 @@ export default () => (
     />
   </svg>
 );
+
+export default Tailwind;
