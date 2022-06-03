@@ -10,31 +10,24 @@ const Project: React.FC<ProjectProp> = ({ primary, ...project }) => {
       <div className="flex items-center justify-between mt-4 w-full">
         <h3 className="flex items-center gap-x-4 font-bold w-full">
           {project.name}
-
-          <span className={`tag${primary ? " ml-auto" : ""}`}>
-            {project.tag}
-          </span>
+          <span className="tag">{project.tag}</span>
         </h3>
 
-        {!primary && (
-          <div>
-            {project.links?.map(({ name, url }) => (
-              <a
-                key={url}
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={toTitleCase(name)}
-                className="w-10 flex"
-              >
-                <LinkIcon name={name} />
-              </a>
-            ))}
-          </div>
-        )}
+        <div>
+          {project.links?.map(({ name, url }) => (
+            <a
+              key={url}
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={toTitleCase(name)}
+              className="w-10 flex"
+            >
+              <LinkIcon name={name} />
+            </a>
+          ))}
+        </div>
       </div>
-
-      {primary && <p className="truncate mt-2">{project.description}</p>}
 
       {!primary && (
         <>
