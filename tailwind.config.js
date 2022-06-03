@@ -25,12 +25,17 @@ module.exports = {
       },
     },
   },
-  variants: {
-    extend: {
-      translate: ["group-hover"],
-      textColor: ["group-hover"],
-      margin: ["last"],
-    },
-  },
+  variants: {},
+  safelist: [
+    "medium-widget",
+    "medium-widget-article__row",
+    "medium-widget-article__item",
+    "medium-widget-article__column",
+    "medium-widget-article__image",
+    "medium-widget-article__content",
+    "medium-widget-article__title",
+    "medium-widget-article__info",
+    "medium-widget-article__date",
+  ],
   plugins: [],
 };
