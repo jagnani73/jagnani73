@@ -1,6 +1,6 @@
 import Marquee from "react-easy-marquee";
 
-import { stack } from "../../utils/constants";
+import { STACK } from "../../utils/constants/home-constants";
 
 const Stack: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const Stack: React.FC = () => {
         className="mt-20 transform-gpu"
       >
         <div className="flex transform-gpu">
-          {stack.map((tech) => (
+          {STACK.map((tech) => (
             <div
               key={tech.name}
               className="flex flex-col items-stretch text-center mx-10"

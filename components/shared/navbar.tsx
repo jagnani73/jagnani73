@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { navbarRoutes } from "../../utils/constants";
+import { navbarRoutes } from "../../utils/constants/shared-constants";
 import { FoldIcon } from "../../utils/icons";
 
 const Navbar: React.FC = () => {

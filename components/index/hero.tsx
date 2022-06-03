@@ -1,4 +1,4 @@
-import { tags } from "../../utils/constants";
+import { tags } from "../../utils/constants/home-constants";
 
 const Hero: React.FC = () => {
   return (

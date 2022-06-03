@@ -5,7 +5,7 @@ import { IndexPageProps } from "../utils/interfaces/home-interfaces";
 import { getExperiences, getProjects } from "../utils/services/rest";
 import { Home, About, Stack, Experiences, Projects } from "../components/index";
 
-const IndexPage: NextPage<IndexPageProps> = ({ experiences, projects }) => {
+const HomePage: NextPage<IndexPageProps> = ({ experiences, projects }) => {
   return (
     <>
       <Script
@@ -23,7 +23,7 @@ const IndexPage: NextPage<IndexPageProps> = ({ experiences, projects }) => {
   );
 };
 
-export default IndexPage;
+export default HomePage;
 
 export const getStaticProps = async (): Promise<
   GetStaticPropsResult<IndexPageProps>
