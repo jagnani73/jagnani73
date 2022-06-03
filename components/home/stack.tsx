@@ -4,7 +4,7 @@ import { STACK } from "../../utils/constants/home-constants";
 
 const Stack: React.FC = () => {
   return (
-    <section className="section-container">
+    <section className="section-container" id="stack">
       <h1>Stack</h1>
       <h3>Some random line for spacing</h3>
 

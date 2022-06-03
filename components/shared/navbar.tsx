@@ -26,15 +26,15 @@ const Navbar: React.FC = () => {
     <>
       <nav className="fixed w-full h-28 b g-blue-100 bg-transparent z-50 flex justify-evenly items-center py-4">
         <figure>
-          <div className="w-20 h-20 bg-white"></div>
+          <div className="w-20 h-20 bg-white" />
         </figure>
 
         {!navButton ? (
           <ul className="flex text-white w-3/4 justify-between">
-            {navbarRoutes.map((route) => (
-              <li key={route.name}>
-                <Link href={route.href}>
-                  <a className="uppercase text-sm">{route.name}</a>
+            {navbarRoutes.map(({ href, name }) => (
+              <li key={name}>
+                <Link href={href}>
+                  <a className="uppercase text-sm">{name}</a>
                 </Link>
               </li>
             ))}

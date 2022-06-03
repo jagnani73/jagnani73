@@ -1,13 +1,22 @@
-export const navbarRoutes: { href: string; name: string; scroll?: boolean }[] =
-  [
-    { href: "/", name: "home" },
-    { href: "/", name: "about", scroll: true },
-    { href: "/", name: "experiences" },
-    { href: "/", name: "stack" },
-    { href: "/", name: "projects" },
-    { href: "/", name: "contact" },
-    { href: "/", name: "blog" },
-  ];
+export enum ROUTES {
+  HOME = "/",
+  ABOUT_ID = "/#about",
+  EXPERIENCES = "/experiences",
+  STACK_ID = "/#stack",
+  PROJECTS = "/projects",
+  CONTACT = "/contact",
+  BLOG = "/blog",
+}
+
+export const navbarRoutes: { href: ROUTES; name: string }[] = [
+  { href: ROUTES.HOME, name: "home" },
+  { href: ROUTES.ABOUT_ID, name: "about" },
+  { href: ROUTES.EXPERIENCES, name: "experiences" },
+  { href: ROUTES.STACK_ID, name: "stack" },
+  { href: ROUTES.PROJECTS, name: "projects" },
+  { href: ROUTES.CONTACT, name: "contact" },
+  { href: ROUTES.BLOG, name: "blog" },
+];
 
 export enum Environments {
   development = "development",

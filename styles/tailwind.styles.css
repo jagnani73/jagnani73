@@ -7,7 +7,7 @@
 
   html,
   body {
-    @apply m-0 p-0 bg-eerie-black text-cultured font-sans-serif;
+    @apply m-0 p-0 bg-eerie-black text-cultured font-sans-serif scroll-smooth;
   }
 
   * {

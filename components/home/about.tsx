@@ -1,6 +1,6 @@
 const About: React.FC = () => {
   return (
-    <section className="section-container">
+    <section className="section-container" id="about">
       <h1>About Me</h1>
       <h3>Some random line for spacing</h3>
 
