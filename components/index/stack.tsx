@@ -9,7 +9,7 @@ const Stack = () => {
       <h3>Some random line for spacing</h3>
 
       <Marquee
-        duration={50 * 1000}
+        duration={50 * 500}
         height="150px"
         pauseOnHover
         className="mt-20 transform-gpu"

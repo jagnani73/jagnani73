@@ -29,6 +29,7 @@ module.exports = {
     extend: {
       translate: ["group-hover"],
       textColor: ["group-hover"],
+      margin: ["last"],
     },
   },
   plugins: [],
