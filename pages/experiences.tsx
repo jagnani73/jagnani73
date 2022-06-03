@@ -1,7 +1,7 @@
 import { NextPage, GetStaticPropsResult } from "next";
 
 import { ExperiencesPageProps } from "../utils/interfaces/experiences-interface";
-import { getExperiences } from "../services/rest";
+import { getExperiences } from "../utils/services/rest";
 import { Experiences } from "../components/experiences";
 
 const ExperiencesPage: NextPage<ExperiencesPageProps> = ({ experiences }) => {

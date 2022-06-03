@@ -26,7 +26,7 @@ export const stack: {
   { name: "react", logo: <Logos.ReactLogo /> },
   { name: "redux", logo: <Logos.ReduxLogo /> },
   { name: "sass", logo: <Logos.SassLogo /> },
-  // { name: "tailwind", logo: <Logos.TailwindLogo /> },
+  { name: "tailwind css", logo: <Logos.TailwindLogo /> },
   { name: "typescript", logo: <Logos.TypescriptLogo /> },
   { name: "vue", logo: <Logos.VueLogo /> },
 ];

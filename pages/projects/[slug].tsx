@@ -5,7 +5,7 @@ import {
 } from "next";
 
 import { ProjectPageProps } from "../../utils/interfaces/projects-interface";
-import { getProjectsSlugs, getProject } from "../../services/rest";
+import { getProjectsSlugs, getProject } from "../../utils/services/rest";
 import * as ProjectComponents from "../../components/projects/project";
 
 const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => {

@@ -1,9 +1,8 @@
 import axios, { AxiosInstance } from "axios";
 
-import { ProjectProps, ExperienceProps } from "../utils/interfaces";
+import { ProjectProps, ExperienceProps } from "../interfaces/shared-interfaces";
 
 const instance: AxiosInstance = axios.create({
-  baseURL: `${process.env.NEXT_APP_API_BASE_URL}/api/v1`,
 });
 
 export const getProjects = async (

@@ -1,7 +1,7 @@
 import { GetStaticPropsResult } from "next";
 
 import { ProjectsPageProps } from "../../utils/interfaces/projects-interface";
-import { getProjects } from "../../services/rest";
+import { getProjects } from "../../utils/services/rest";
 import * as ProjectsComponents from "../../components/projects";
 
 const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {

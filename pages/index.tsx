@@ -2,7 +2,7 @@ import { NextPage, GetStaticPropsResult } from "next";
 import Script from "next/script";
 
 import { IndexPageProps } from "../utils/interfaces/home-interfaces";
-import { getExperiences, getProjects } from "../services/rest";
+import { getExperiences, getProjects } from "../utils/services/rest";
 import { Home, About, Stack, Experiences, Projects } from "../components/index";
 
 const IndexPage: NextPage<IndexPageProps> = ({ experiences, projects }) => {
