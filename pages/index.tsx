@@ -3,7 +3,7 @@ import Script from "next/script";
 
 import { IndexPageProps } from "../utils/interfaces/home-interfaces";
 import { getExperiences, getProjects } from "../utils/services/rest";
-import { Home, About, Stack, Experiences, Projects } from "../components/index";
+import { Home, About, Stack, Experiences, Projects } from "../components/home";
 
 const HomePage: NextPage<IndexPageProps> = ({ experiences, projects }) => {
   return (
