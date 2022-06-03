@@ -1,6 +1,6 @@
 import { tags } from "../../utils/constants";
 
-const Hero = () => {
+const Hero: React.FC = () => {
   return (
     <section className="h-screen flex text-center">
       <div className="w-1/2 flex-center flex-col">

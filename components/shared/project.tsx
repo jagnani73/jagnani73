@@ -1,10 +1,6 @@
-import { ProjectProps } from "../../utils/interfaces";
+import { ProjectProp } from "../../utils/interfaces/shared-interfaces";
 
-interface ProjectProp extends ProjectProps {
-  primary: boolean;
-}
-
-const Project = ({ primary, ...project }: ProjectProp) => {
+const Project: React.FC<ProjectProp> = ({ primary, ...project }) => {
   return (
     <article>
       <img src={project.preview} alt={project.name} className="w-full" />

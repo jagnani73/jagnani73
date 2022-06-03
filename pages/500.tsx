@@ -1,6 +1,7 @@
+import { NextPage } from "next";
 import { Player } from "@lottiefiles/react-lottie-player";
 
-const ServerError = () => {
+const ServerError: NextPage = () => {
   return (
     <Player
       background="transparent"

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Blog = () => {
+const Blog: React.FC = () => {
   const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {

@@ -1,14 +1,10 @@
 import Link from "next/link";
 
-import { ProjectProps } from "../../utils/interfaces";
+import { ProjectsProps } from "../../utils/interfaces/shared-interfaces";
 import { SearchIcon } from "../../utils/icons";
 import { Project } from "../shared";
 
-interface ProjectsProps {
-  projects: ProjectProps[];
-}
-
-const Projects = ({ projects }: ProjectsProps) => {
+const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   return (
     <section className="section-container">
       <h1>My Projects</h1>

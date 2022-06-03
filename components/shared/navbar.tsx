@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/dist/client/router";
+import { useRouter } from "next/router";
 
 import { navbarRoutes } from "../../utils/constants";
 import { FoldIcon } from "../../utils/icons";
 
-const Navbar = () => {
+const Navbar: React.FC = () => {
   const router = useRouter();
   const [navButton, setNavButton] = useState<boolean>(false);
   const [dropMenu, setDropMenu] = useState<boolean>(false);

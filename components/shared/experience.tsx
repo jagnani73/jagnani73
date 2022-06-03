@@ -1,10 +1,6 @@
-import { ExperienceProps } from "../../utils/interfaces";
+import { ExperienceProp } from "../../utils/interfaces/shared-interfaces";
 
-interface ExperienceProp extends ExperienceProps {
-  primary: boolean;
-}
-
-const Experience = ({ primary, ...experience }: ExperienceProp) => {
+const Experience: React.FC<ExperienceProp> = ({ primary, ...experience }) => {
   return (
     <article>
       <img src={experience.logo} alt={experience.org} className="w-24" />

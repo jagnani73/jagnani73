@@ -2,7 +2,7 @@ import Marquee from "react-easy-marquee";
 
 import { stack } from "../../utils/constants";
 
-const Stack = () => {
+const Stack: React.FC = () => {
   return (
     <section className="section-container">
       <h1>Stack</h1>

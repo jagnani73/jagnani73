@@ -1,13 +1,9 @@
 import Link from "next/link";
 
-import { ExperienceProps } from "../../utils/interfaces";
+import { ExperiencesProps } from "../../utils/interfaces/shared-interfaces";
 import { Experience } from "../shared";
 
-interface ExperiencesComponentProps {
-  experiences: ExperienceProps[];
-}
-
-const Experiences = ({ experiences }: ExperiencesComponentProps) => {
+const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
   return (
     <section className="section-container">
       <h1>Work Experience</h1>

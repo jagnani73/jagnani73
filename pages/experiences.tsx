@@ -1,17 +1,13 @@
-import { GetStaticPropsResult } from "next";
+import { NextPage, GetStaticPropsResult } from "next";
 
-import { ExperienceProps } from "../utils/interfaces";
+import { ExperiencesPageProps } from "../utils/interfaces/experiences-interface";
 import { getExperiences } from "../services/rest";
-import * as ExperiencesComponents from "../components/experiences";
+import { Experiences } from "../components/experiences";
 
-interface ExperiencesPageProps {
-  experiences: ExperienceProps[];
-}
-
-const ExperiencesPage = ({ experiences }: ExperiencesPageProps) => {
+const ExperiencesPage: NextPage<ExperiencesPageProps> = ({ experiences }) => {
   return (
     <>
-      <ExperiencesComponents.Experiences experiences={experiences} />
+      <Experiences experiences={experiences} />
     </>
   );
 };

@@ -1,7 +1,7 @@
-import { ProjectProps } from "../../../utils/interfaces";
+import { ProjectProps } from "../../../utils/interfaces/shared-interfaces";
 import { Project } from "../../shared";
 
-const ProjectComponent = ({ ...project }: ProjectProps) => {
+const ProjectComponent: React.FC<ProjectProps> = ({ ...project }) => {
   return <Project primary={false} {...project} />;
 };
 

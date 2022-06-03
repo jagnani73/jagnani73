@@ -1,4 +1,4 @@
-const About = () => {
+const About: React.FC = () => {
   return (
     <section className="section-container">
       <h1>About Me</h1>

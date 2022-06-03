@@ -1,8 +1,9 @@
+import { NextPage } from "next";
 import Script from "next/script";
 
-import * as BlogComponents from "../components/blog";
+import { Blog } from "../components/blog";
 
-const BlogPage = () => {
+const BlogPage: NextPage = () => {
   return (
     <>
       <Script src="https://medium-widget.pixelpoint.io/widget.js" />
@@ -18,7 +19,7 @@ const BlogPage = () => {
         }}
       />
 
-      <BlogComponents.Blog />
+      <Blog />
     </>
   );
 };

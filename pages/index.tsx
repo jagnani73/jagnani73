@@ -1,32 +1,24 @@
-import { GetStaticPropsResult } from "next";
-import Head from "next/head";
+import { NextPage, GetStaticPropsResult } from "next";
+import Script from "next/script";
 
-import { ExperienceProps, ProjectProps } from "../utils/interfaces";
+import { IndexPageProps } from "../utils/interfaces/home-interfaces";
 import { getExperiences, getProjects } from "../services/rest";
-import * as IndexComponents from "../components/index";
+import { Home, About, Stack, Experiences, Projects } from "../components/index";
 
-interface IndexPageProps {
-  experiences: ExperienceProps[];
-  projects: ProjectProps[];
-}
-
-const IndexPage = ({ experiences, projects }: IndexPageProps) => {
+const IndexPage: NextPage<IndexPageProps> = ({ experiences, projects }) => {
   return (
     <>
-      <Head>
-        <script
-          type="text/javascript"
-          src="https://assets.calendly.com/assets/external/widget.js"
-          async
-        />
-      </Head>
+      <Script
+        type="text/javascript"
+        src="https://assets.calendly.com/assets/external/widget.js"
+        async
+      />
 
-      <IndexComponents.Home />
-      <IndexComponents.About />
-      <IndexComponents.Stack />
-      <IndexComponents.Experiences experiences={experiences} />
-      <IndexComponents.Projects projects={projects} />
-      {/* <IndexComponents.Contact /> */}
+      <Home />
+      <About />
+      <Stack />
+      <Experiences experiences={experiences} />
+      <Projects projects={projects} />
     </>
   );
 };
@@ -39,12 +31,21 @@ export const getStaticProps = async (): Promise<
   try {
     const experiences = await getExperiences(3, true);
     const projects = await getProjects(4, true);
-    return {
-      props: {
-        experiences: experiences as ExperienceProps[],
-        projects: projects as ProjectProps[],
-      },
-    };
+    if (experiences && projects)
+      return {
+        props: {
+          experiences: experiences,
+          projects: projects,
+        },
+      };
+    else {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/500",
+        },
+      };
+    }
   } catch (error) {
     return {
       redirect: {

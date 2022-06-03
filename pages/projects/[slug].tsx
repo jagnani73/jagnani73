@@ -4,15 +4,11 @@ import {
   GetStaticPathsResult,
 } from "next";
 
-import { ProjectProps } from "../../utils/interfaces";
+import { ProjectPageProps } from "../../utils/interfaces/projects-interface";
 import { getProjectsSlugs, getProject } from "../../services/rest";
 import * as ProjectComponents from "../../components/projects/project";
 
-interface ProjectPageProps {
-  project: ProjectProps;
-}
-
-const ProjectPage = ({ project }: ProjectPageProps) => {
+const ProjectPage: React.FC<ProjectPageProps> = ({ project }) => {
   return (
     <>
       <ProjectComponents.Project {...project} />
