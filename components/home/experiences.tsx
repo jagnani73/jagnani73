@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { ROUTES } from "../../utils/constants/shared-constants";
 import { ExperiencesProps } from "../../utils/interfaces/shared-interfaces";
 import { Experience } from "../shared";
 
@@ -28,7 +29,7 @@ const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
 
       <p className="text-right mt-8 text-2xl">
         A line here for{" "}
-        <Link href="/experiences">
+        <Link href={ROUTES.EXPERIENCES}>
           <a className="font-bold">all work ex</a>
         </Link>{" "}
         redirect

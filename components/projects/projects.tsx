@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ProjectsProps } from "../../utils/interfaces/shared-interfaces";
 import { SearchIcon } from "../../utils/icons";
 import { Project } from "../shared";
+import { ROUTES } from "../../utils/constants/shared-constants";
 
 const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   return (
@@ -35,7 +36,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
 
       <div className="grid grid-cols-2 gap-x-10 gap-y-8">
         {projects.map((project) => (
-          <Link key={project._id} href={`projects/${project.slug}`}>
+          <Link key={project._id} href={`${ROUTES.PROJECTS}/${project.slug}`}>
             <a className="w-full mx-auto mt-20">
               <Project primary {...project} />
             </a>
