@@ -1,27 +1,41 @@
-import { NextPage } from "next";
-import Script from "next/script";
+import { NextPage, GetStaticPropsResult } from "next";
 
 import { Blog } from "../components/blog";
+import { getBlogs } from "../utils/services/rest";
+import { BlogPageProps } from "../utils/interfaces/blog-interfaces";
 
-const BlogPage: NextPage = () => {
+const BlogPage: NextPage<BlogPageProps> = ({ articles }) => {
   return (
     <>
-      <Script src="https://medium-widget.pixelpoint.io/widget.js" />
-      <Script
-        dangerouslySetInnerHTML={{
-          __html: `function getBlog() {
-                      MediumWidget.Init({
-                        renderTo: '#medium-widget', params: {
-                          "resource":"https://medium.com/@jagnani73", "postsPerLine":5, "limit":10, "picture":"big", "fields":["description","publishAt"], "ratio":"landscape"
-                        }
-                      });
-                    }`,
-        }}
-      />
-
-      <Blog />
+      <Blog articles={articles} />
     </>
   );
 };
 
 export default BlogPage;
+
+export const getStaticProps = async (): Promise<
+  GetStaticPropsResult<BlogPageProps>
+> => {
+  try {
+    const articles = await getBlogs();
+    if (articles) {
+      return {
+        props: {
+          articles,
+        },
+      };
+    } else {
+      return {
+        notFound: true,
+      };
+    }
+  } catch (error) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/500",
+      },
+    };
+  }
+};

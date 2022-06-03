@@ -2,14 +2,8 @@ import { NextPage, GetStaticPropsResult } from "next";
 
 import { IndexPageProps } from "../utils/interfaces/home-interfaces";
 import { getExperiences, getProjects } from "../utils/services/rest";
-import {
-  Home,
-  About,
-  Stack,
-  Experiences,
-  Projects,
-  Contact,
-} from "../components/home";
+import { Home, About, Stack, Experiences, Projects } from "../components/home";
+import { Contact } from "../components/shared";
 
 const HomePage: NextPage<IndexPageProps> = ({ experiences, projects }) => {
   return (

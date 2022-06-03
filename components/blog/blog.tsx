@@ -1,18 +1,7 @@
-import { useEffect, useState } from "react";
+import { BlogProps } from "../../utils/interfaces/blog-interfaces";
+import { Article } from ".";
 
-const Blog: React.FC = () => {
-  const [error, setError] = useState<boolean>(false);
-
-  useEffect(() => {
-    try {
-      var widget = document.getElementById("medium-widget");
-      if (!!widget) window["getBlog"]();
-    } catch (err) {
-      console.log(err);
-      setError(true);
-    }
-  }, []);
-
+const Blog: React.FC<BlogProps> = ({ articles }) => {
   return (
     <section className="section-container">
       <h1>Blog</h1>
@@ -27,13 +16,11 @@ const Blog: React.FC = () => {
         essentially unchanged.
       </p>
 
-      <div id="medium-widget" />
-
-      {error && (
-        <div className="mt-40 text-center text-middle-red font-bold">
-          <h5>Error fetching blog details!</h5>
-        </div>
-      )}
+      <div className="grid grid-cols-1 max-w-7xl mx-auto mt-16">
+        {articles.map((article) => (
+          <Article key={article.pubDate} {...article} />
+        ))}
+      </div>
     </section>
   );
 };
