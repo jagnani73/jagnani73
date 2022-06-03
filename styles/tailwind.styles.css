@@ -55,7 +55,7 @@
   }
 
   .tag {
-    @apply text-xs font-bold bg-steel-blue px-2 py-1 rounded-md text-center;
+    @apply text-xs font-bold bg-steel-blue px-2 py-1 rounded-sm text-center;
   }
 
   .medium-widget {

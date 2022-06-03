@@ -1,3 +1,5 @@
+import { LINKS_NAMES, STACK_NAMES } from "../constants/shared-constants";
+
 export interface MongoDBDefaults {
   _id?: string;
 }
@@ -27,8 +29,8 @@ export interface ProjectProps extends MongoDBDefaults {
   name: string;
   description: string;
   tag: string;
-  stack: string[];
-  links: string[];
+  stack: STACK_NAMES[];
+  links: { name: LINKS_NAMES; url: string }[];
   slug: string;
   featured: boolean;
 }

@@ -14,7 +14,7 @@ export enum Environments {
   production = "production",
 }
 
-export enum STACK_ICONS {
+export enum STACK_NAMES {
   BOOTSTRAP = "bootstrap",
   C = "c",
   CPP = "c",
@@ -38,4 +38,9 @@ export enum STACK_ICONS {
   TAILWIND_CSS = "tailwind css",
   TYPESCRIPT = "typescript",
   VUE = "vue",
+}
+
+export enum LINKS_NAMES {
+  GITHUB = "github",
+  NPM = "npm",
 }

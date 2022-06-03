@@ -16,7 +16,7 @@ const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
         essentially unchanged.
       </p>
 
-      <div className="grid grid-cols-3">
+      <div className="grid grid-cols-2 gap-x-20 gap-y-8">
         {experiences?.map((experience) => (
           <div key={experience._id} className="w-10/12 mx-auto mt-20">
             <Experience primary={false} {...experience} />

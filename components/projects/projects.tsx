@@ -33,10 +33,10 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
         </span>
       </form>
 
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 gap-x-10 gap-y-8">
         {projects.map((project) => (
           <Link key={project._id} href={`projects/${project.slug}`}>
-            <a className="w-10/12 mx-auto mt-20">
+            <a className="w-full mx-auto mt-20">
               <Project primary {...project} />
             </a>
           </Link>

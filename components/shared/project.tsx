@@ -1,36 +1,54 @@
+import { toTitleCase } from "../../utils/functions";
 import { ProjectProp } from "../../utils/interfaces/shared-interfaces";
+import { StackIcon, LinkIcon } from "./";
 
 const Project: React.FC<ProjectProp> = ({ primary, ...project }) => {
   return (
     <article>
       <img src={project.preview} alt={project.name} className="w-full" />
 
-      <div className="flex justify-between">
-        <h4 className="font-bold mt-2">
+      <div className="flex items-center justify-between mt-4 w-full">
+        <h3 className="flex items-center gap-x-4 font-bold w-full">
           {project.name}
-          {<span className="text-xs font-bold">{project.tag}</span>}
-        </h4>
 
-        <div>
-          {primary
-            ? project.stack?.map((tech) => <span>{tech}</span>)
-            : project.links?.map((link) => (
-                <a href={link} target="_blank" rel="noopener noreferrer">
-                  Link
-                </a>
-              ))}
-        </div>
+          <span className={`tag${primary ? " ml-auto" : ""}`}>
+            {project.tag}
+          </span>
+        </h3>
+
+        {!primary && (
+          <div>
+            {project.links?.map(({ name, url }) => (
+              <a
+                key={url}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={toTitleCase(name)}
+                className="w-10 flex"
+              >
+                <LinkIcon name={name} />
+              </a>
+            ))}
+          </div>
+        )}
       </div>
+
+      {primary && <p className="truncate mt-2">{project.description}</p>}
 
       {!primary && (
         <>
-          <p>{project.description}</p>
+          <p className="mt-8 text-justify">{project.description}</p>
 
-          <div>
+          <div className="flex mt-8 items-center gap-x-6 text-xl">
             Built using:{" "}
-            {project.stack?.map((tech) => (
-              <span>{tech}</span>
-            ))}
+            <div className="flex items-center gap-x-6">
+              {project.stack?.map((tech) => (
+                <span key={tech} className="w-12" title={toTitleCase(tech)}>
+                  <StackIcon name={tech} />
+                </span>
+              ))}
+            </div>
           </div>
         </>
       )}
