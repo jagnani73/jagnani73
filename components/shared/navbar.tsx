@@ -48,23 +48,26 @@ const Navbar: React.FC = () => {
             >
               <button
                 className={`${
-                  dropMenu ? "" : "rotate-180"
-                } transform w-10 block duration-500`}
+                  dropMenu ? "" : "rotate-180 "
+                }transform w-10 block duration-500`}
                 onClick={() => setDropMenu(!dropMenu)}
               >
                 <FoldIcon />
               </button>
-              {dropMenu && (
-                <ul className="absolute top-full right-0 bg-steel-blue rounded-md rounded-tr-none">
-                  {navbarRoutes.map((route) => (
-                    <li key={route.name} className="mr-2 ml-6 my-4">
-                      <Link href={route.href}>
-                        <a className="uppercase text-sm">{route.name}</a>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
+
+              <ul
+                className={`${
+                  dropMenu ? "max-h-screen" : "max-h-0"
+                } absolute z-50 duration-500 overflow-hidden transition-all top-full right-0 bg-steel-blue rounded-md rounded-tr-none`}
+              >
+                {navbarRoutes.map((route) => (
+                  <li key={route.name} className="m-4">
+                    <Link href={route.href}>
+                      <a className="uppercase text-sm">{route.name}</a>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         )}
