@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { navbarRoutes } from "../../utils/constants/shared-constants";
+import { NAVBAR_ROUTES } from "../../utils/constants/shared-constants";
 import { FoldIcon } from "../../utils/icons";
 
 const Navbar: React.FC = () => {
@@ -31,7 +31,7 @@ const Navbar: React.FC = () => {
 
         {!navButton ? (
           <ul className="flex text-white w-3/4 justify-between">
-            {navbarRoutes.map(({ href, name }) => (
+            {NAVBAR_ROUTES.map(({ href, name }) => (
               <li key={name}>
                 <Link href={href}>
                   <a className="uppercase text-sm">{name}</a>
@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
                   dropMenu ? "max-h-screen" : "max-h-0"
                 } absolute z-50 duration-500 overflow-hidden transition-all top-full right-0 bg-steel-blue rounded-md rounded-tr-none`}
               >
-                {navbarRoutes.map((route) => (
+                {NAVBAR_ROUTES.map((route) => (
                   <li key={route.name} className="m-4">
                     <Link href={route.href}>
                       <a className="uppercase text-sm">{route.name}</a>

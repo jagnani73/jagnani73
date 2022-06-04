@@ -1,26 +1,8 @@
-interface MongoDBDefaults {
-  _id?: string;
-}
+import { ENVIRONMENTS } from "./constants/shared-constants";
 
-export interface ExperienceProps extends MongoDBDefaults {
-  logo: string;
-  org: string;
-  url?: string;
-  designation: string;
-  tag: string;
-  description: string;
-  duration: string;
-  slug: string;
-  featured: boolean;
-}
-
-export interface ProjectProps extends MongoDBDefaults {
-  preview: string;
-  name: string;
-  description: string;
-  tag: string;
-  stack: string[];
-  links: string[];
-  slug: string;
-  featured: boolean;
+export interface EnvironmentClass {
+  active_env: ENVIRONMENTS;
+  activeStage: () => ENVIRONMENTS;
+  isDevelopment: () => boolean;
+  isProduction: () => boolean;
 }

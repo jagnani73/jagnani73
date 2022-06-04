@@ -8,7 +8,7 @@ export enum ROUTES {
   BLOG = "/blog",
 }
 
-export const navbarRoutes: { href: ROUTES; name: string }[] = [
+export const NAVBAR_ROUTES: { href: ROUTES; name: string }[] = [
   { href: ROUTES.HOME, name: "home" },
   { href: ROUTES.ABOUT_ID, name: "about" },
   { href: ROUTES.EXPERIENCES, name: "experiences" },
@@ -18,7 +18,7 @@ export const navbarRoutes: { href: ROUTES; name: string }[] = [
   { href: ROUTES.BLOG, name: "blog" },
 ];
 
-export enum Environments {
+export enum ENVIRONMENTS {
   development = "development",
   production = "production",
 }

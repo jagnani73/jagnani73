@@ -1,8 +1,13 @@
 import axios, { AxiosInstance } from "axios";
 
 import { ProjectProps, ExperienceProps } from "../interfaces/shared-interfaces";
+import { Environment } from "../environment";
+import { ArticleProps } from "../interfaces/blog-interfaces";
 
 const instance: AxiosInstance = axios.create({
+  baseURL: `${
+    Environment.isDevelopment() ? process.env.NEXT_APP_API_BASE_URL : ""
+  }/api/v1`,
 });
 
 export const getProjects = async (
@@ -57,6 +62,19 @@ export const getExperiences = async (
         `/experiences${limit && featured !== (null || undefined) ? query : ""}`
       )
     ).data.experiences;
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};
+
+export const getBlogs = async (): Promise<ArticleProps[] | false> => {
+  try {
+    return await (
+      await axios.get(
+        "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@jagnani73"
+      )
+    ).data.items;
   } catch (error) {
     console.log(error);
     return false;
