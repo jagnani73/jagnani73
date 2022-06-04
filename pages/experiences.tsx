@@ -32,10 +32,7 @@ export const getStaticProps = async (): Promise<
     }
   } catch (error) {
     return {
-      redirect: {
-        permanent: false,
-        destination: "/500",
-      },
+      notFound: true,
     };
   }
 };

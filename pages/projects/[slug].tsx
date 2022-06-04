@@ -20,26 +20,29 @@ export default ProjectPage;
 
 export const getStaticPaths = async (): Promise<GetStaticPathsResult> => {
   try {
-    const slugs = await getProjectsSlugs();
+    // const slugs = await getProjectsSlugs();
+    const slugs = ["gcsrm"];
 
     if (slugs) {
       const paths = slugs.map((slug) => ({
         params: { slug },
       }));
-      return { paths, fallback: "blocking" };
+      console.log(paths);
+
+      return { paths, fallback: false };
     } else {
-      return { paths: [], fallback: "blocking" };
+      return { paths: [], fallback: false };
     }
   } catch (error) {
     console.log(error);
   }
 };
 
-export const getStaticProps = async (
-  ctx: GetStaticPropsContext
-): Promise<GetStaticPropsResult<ProjectPageProps>> => {
+export const getStaticProps = async ({
+  params: { slug },
+}: GetStaticPropsContext): Promise<GetStaticPropsResult<ProjectPageProps>> => {
   try {
-    const { slug } = ctx.params;
+    console.log(`Building slug: ${slug}`);
     const project = await getProject(slug as string);
     if (project) {
       return {
@@ -54,10 +57,7 @@ export const getStaticProps = async (
     }
   } catch (error) {
     return {
-      redirect: {
-        permanent: false,
-        destination: "/500",
-      },
+      notFound: true,
     };
   }
 };
