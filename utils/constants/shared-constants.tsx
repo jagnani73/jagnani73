@@ -6,6 +6,8 @@ export enum ROUTES {
   PROJECTS = "/projects",
   CONTACT = "/contact",
   BLOG = "/blog",
+  NOT_FOUND = "/404",
+  ISR = "/500",
 }
 
 export const NAVBAR_ROUTES: { href: ROUTES; name: string }[] = [
@@ -17,11 +19,6 @@ export const NAVBAR_ROUTES: { href: ROUTES; name: string }[] = [
   { href: ROUTES.CONTACT, name: "contact" },
   { href: ROUTES.BLOG, name: "blog" },
 ];
-
-export enum ENVIRONMENTS {
-  development = "development",
-  production = "production",
-}
 
 export enum STACK_NAMES {
   BOOTSTRAP = "bootstrap",

@@ -29,8 +29,8 @@ export const getStaticProps = async (): Promise<
     if (experiences && projects)
       return {
         props: {
-          experiences: experiences,
-          projects: projects,
+          experiences,
+          projects,
         },
       };
     else {

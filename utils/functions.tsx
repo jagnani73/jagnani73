@@ -20,9 +20,3 @@ export const monthParser = (month: number): string => {
   ];
   return months[month - 1];
 };
-
-export function staticImplements<T>() {
-  return <U extends T>(constructor: U) => {
-    constructor;
-  };
-}
