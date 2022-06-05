@@ -25,7 +25,9 @@ const Article: React.FC<ArticleProps> = ({
     medium_image.children[0].children[0].classList.add("mx-auto");
     medium_image.children[0].children[0].classList.add("w-full");
     medium_image.children[0].children[0].classList.add("mb-4");
-    medium_snippet.classList.add("text-2xl");
+    medium_snippet.classList.add("text-xl");
+    medium_snippet.classList.add("font-semibold");
+    medium_snippet.classList.add("lg:text-2xl");
     medium_link.children[0].classList.add("hidden");
   }, []);
 
@@ -33,10 +35,10 @@ const Article: React.FC<ArticleProps> = ({
     <article>
       <div dangerouslySetInnerHTML={{ __html: content }} />
 
-      <div className="flex justify-between capitalize mt-2">
-        <p className="">{categories.join(", ")}</p>
+      <div className="flex flex-col lg:flex-row justify-between capitalize mt-2">
+        <p>{categories.join(", ")}</p>
 
-        <p className="tag">
+        <p className="tag mt-2">
           {monthParser(new Date(pubDate).getUTCMonth())},{" "}
           {new Date(pubDate).getFullYear()}
         </p>

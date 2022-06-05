@@ -3,7 +3,11 @@ import { ExperienceProp } from "../../utils/interfaces/shared-interfaces";
 const Experience: React.FC<ExperienceProp> = ({ primary, ...experience }) => {
   return (
     <article>
-      <img src={experience.logo} alt={experience.org} className="w-24" />
+      <img
+        src={experience.logo}
+        alt={experience.org}
+        className="w-16 lg:w-24"
+      />
 
       <h5 className="mt-2 flex justify-between items-center">
         {experience.url ? (
@@ -17,7 +21,7 @@ const Experience: React.FC<ExperienceProp> = ({ primary, ...experience }) => {
         {!primary && <span className="tag">{experience.tag}</span>}
       </h5>
 
-      <h6 className="font-bold flex justify-between mt-1">
+      <h6 className="font-bold flex flex-col lg:flex-row justify-between mt-1">
         {experience.designation}
         {!primary && (
           <span className="text-base font-normal">{experience.duration}</span>

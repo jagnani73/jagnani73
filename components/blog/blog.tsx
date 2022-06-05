@@ -3,11 +3,11 @@ import { Article } from ".";
 
 const Blog: React.FC<BlogProps> = ({ articles }) => {
   return (
-    <section className="section-container">
+    <section className="section-container mt-48">
       <h1>Blog</h1>
       <h3>Some random line for spacing</h3>
 
-      <p className="w-11/12 mt-20">
+      <p className="lg:w-11/12 mt-10 md:mt-20">
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type and

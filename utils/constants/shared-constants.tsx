@@ -13,8 +13,8 @@ export enum ROUTES {
 export const NAVBAR_ROUTES: { href: ROUTES; name: string }[] = [
   { href: ROUTES.HOME, name: "home" },
   { href: ROUTES.ABOUT_ID, name: "about" },
-  { href: ROUTES.EXPERIENCES, name: "experiences" },
   { href: ROUTES.STACK_ID, name: "stack" },
+  { href: ROUTES.EXPERIENCES, name: "experiences" },
   { href: ROUTES.PROJECTS, name: "projects" },
   { href: ROUTES.CONTACT, name: "contact" },
   { href: ROUTES.BLOG, name: "blog" },

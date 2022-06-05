@@ -1,17 +1,16 @@
 import Link from "next/link";
 
 import { ProjectsProps } from "../../utils/interfaces/shared-interfaces";
-import { SearchIcon } from "../../utils/icons";
 import { Project } from "../shared";
 import { ROUTES } from "../../utils/constants/shared-constants";
 
 const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   return (
-    <section className="section-container">
+    <section className="section-container mt-48">
       <h1>My Projects</h1>
       <h3>Some random line for spacing</h3>
 
-      <p className="w-11/12 mt-20">
+      <p className="lg:w-11/12 mt-10 lg:mt-20">
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type and
@@ -20,24 +19,10 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
         essentially unchanged.
       </p>
 
-      <form
-        onSubmit={(e) => e.preventDefault()}
-        className="relative text-lg mt-20 w-4/12"
-      >
-        <input
-          type="text"
-          placeholder="Filter here related text"
-          className="w-full pl-12 pr-4 py-4 bg-transparent border-b-2"
-        />
-        <span className="absolute top-0 bottom-0 left-0 w-8 z-10">
-          <SearchIcon />
-        </span>
-      </form>
-
-      <div className="grid grid-cols-2 gap-x-10 gap-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-8">
         {projects.map((project) => (
           <Link key={project._id} href={`${ROUTES.PROJECTS}/${project.slug}`}>
-            <a className="w-full mx-auto mt-20">
+            <a className="w-full mx-auto mt-10 md:mt-20">
               <Project primary {...project} />
             </a>
           </Link>

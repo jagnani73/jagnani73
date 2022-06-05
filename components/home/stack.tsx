@@ -12,7 +12,8 @@ const Stack: React.FC = () => {
         duration={50 * 500}
         height="150px"
         pauseOnHover
-        className="mt-20 transform-gpu"
+        className="mt-10 lg:mt-20 transform-gpu"
+        reverse
       >
         <div className="flex transform-gpu">
           {STACK.map((tech) => (
@@ -20,7 +21,9 @@ const Stack: React.FC = () => {
               key={tech.name}
               className="flex flex-col items-stretch text-center mx-10"
             >
-              <figure className="w-24 mt-auto mx-auto">{tech.logo}</figure>
+              <figure className="w-16 lg:w-24 mt-auto mx-auto">
+                {tech.logo}
+              </figure>
 
               <p className="uppercase font-extrabold text-xs mt-auto pt-4">
                 {tech.name}
@@ -43,7 +46,7 @@ const Stack: React.FC = () => {
         redirect
       </p>
 
-      <p className="w-11/12 mt-20">
+      <p className="lg:w-11/12 mt-10 lg:mt-20">
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type and

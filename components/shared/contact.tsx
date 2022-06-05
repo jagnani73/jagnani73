@@ -10,6 +10,7 @@ export const Contact: React.FC = () => {
         url="https://calendly.com/jagnani73/natter"
         styles={{
           minHeight: "content-fit",
+          marginTop: "2.5rem",
           height: "756px",
         }}
       />

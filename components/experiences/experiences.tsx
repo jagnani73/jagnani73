@@ -3,11 +3,11 @@ import { Experience } from "../shared";
 
 const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
   return (
-    <section className="section-container">
+    <section className="section-container mt-48">
       <h1>Work</h1>
       <h3>Some random line for spacing</h3>
 
-      <p className="w-11/12 mt-20">
+      <p className="w-full lg:w-11/12 mt-10 lg:mt-20">
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type and
@@ -16,9 +16,9 @@ const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
         essentially unchanged.
       </p>
 
-      <div className="grid grid-cols-2 gap-x-20 gap-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-8">
         {experiences?.map((experience) => (
-          <div key={experience._id} className="w-10/12 mx-auto mt-20">
+          <div key={experience._id} className="w-10/12 mx-auto mt-10 lg:mt-20">
             <Experience primary={false} {...experience} />
           </div>
         ))}

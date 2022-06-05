@@ -11,11 +11,13 @@ const Navbar: React.FC = () => {
   const [dropMenu, setDropMenu] = useState<boolean>(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > (router.asPath === "/" ? 150 : 50))
-        setNavButton(true);
-      else setNavButton(false);
-    });
+    if (window.innerWidth <= 1024) setNavButton(true);
+    else
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > (router.asPath === "/" ? 150 : 50))
+          setNavButton(true);
+        else setNavButton(false);
+      });
 
     return () => {
       window.removeEventListener("scroll", () => {});
@@ -24,7 +26,7 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav className="fixed w-full h-28 b g-blue-100 bg-transparent z-50 flex justify-evenly items-center py-4">
+      <nav className="fixed w-full h-28 b md g-blue-100 bg-transparent z-50 flex justify-evenly items-center py-4">
         <figure>
           <div className="w-20 h-20 bg-white" />
         </figure>
@@ -63,7 +65,12 @@ const Navbar: React.FC = () => {
                 {NAVBAR_ROUTES.map((route) => (
                   <li key={route.name} className="m-4">
                     <Link href={route.href}>
-                      <a className="uppercase text-sm">{route.name}</a>
+                      <a
+                        className="uppercase text-sm"
+                        onClick={() => setDropMenu(false)}
+                      >
+                        {route.name}
+                      </a>
                     </Link>
                   </li>
                 ))}

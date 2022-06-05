@@ -21,7 +21,7 @@ const Project: React.FC<ProjectProp> = ({ primary, ...project }) => {
               target="_blank"
               rel="noopener noreferrer"
               title={toTitleCase(name)}
-              className="w-10 flex"
+              className="w-6 md:w-8 lg:w-10 flex"
             >
               <LinkIcon name={name} />
             </a>

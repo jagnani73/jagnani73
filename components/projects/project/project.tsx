@@ -3,7 +3,7 @@ import { Project } from "../../shared";
 
 const ProjectComponent: React.FC<ProjectProps> = ({ ...project }) => {
   return (
-    <section className="my-28 px-72">
+    <section className="section-container mt-48">
       <Project primary={false} {...project} />
     </section>
   );
