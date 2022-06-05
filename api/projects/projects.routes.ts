@@ -4,12 +4,7 @@ import nc, { NextHandler } from "next-connect";
 import { errors } from "../error/error.constant";
 import { onError, onNoMatch } from "../error/error.controller";
 import { validateQuery } from "../middlewares/validate-query.middleware";
-import {
-  addProject,
-  fetchProjects,
-  fetchProject,
-  fetchProjectsSlugs,
-} from "./projects.service";
+import { addProject, fetchProjects, fetchProject } from "./projects.service";
 import { ProjectSchema, ProjectsQuery } from "./projects.schema";
 
 export const projectsRouter = nc<NextApiRequest, NextApiResponse>({
@@ -87,23 +82,6 @@ const getProject = async (
   }
 };
 
-const getSlugs = async (
-  _req: NextApiRequest,
-  res: NextApiResponse,
-  next: NextHandler
-) => {
-  try {
-    const data = await fetchProjectsSlugs();
-    res.json({
-      success: true,
-      slugs: data,
-    });
-  } catch (err) {
-    next(err);
-  }
-};
-
-projectsRouter.get("/slugs", getSlugs);
 projectsRouter.get("/:slug", getProject);
 projectsRouter.get("", validateQuery("query", ProjectsQuery), getProjects);
 

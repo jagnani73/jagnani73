@@ -1,4 +1,4 @@
-import { GetStaticPropsResult } from "next";
+import { GetServerSideProps } from "next";
 
 import { ProjectsPageProps } from "../../utils/interfaces/projects-interface";
 import { getProjects } from "../../utils/services/rest";
@@ -14,9 +14,9 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
 
 export default ProjectsPage;
 
-export const getStaticProps = async (): Promise<
-  GetStaticPropsResult<ProjectsPageProps>
-> => {
+export const getServerSideProps: GetServerSideProps<
+  ProjectsPageProps
+> = async () => {
   try {
     const projects = await getProjects();
     if (projects) {
@@ -31,6 +31,8 @@ export const getStaticProps = async (): Promise<
       };
     }
   } catch (error) {
+    console.dir(error);
+
     return {
       notFound: true,
     };

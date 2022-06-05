@@ -3,7 +3,9 @@ import axios, { AxiosInstance } from "axios";
 import { ProjectProps, ExperienceProps } from "../interfaces/shared-interfaces";
 import { ArticleProps } from "../interfaces/blog-interfaces";
 
-const instance: AxiosInstance = axios.create();
+const instance: AxiosInstance = axios.create({
+  baseURL: `${process.env.NEXT_APP_API_BASE_URL}/api/v1`,
+});
 
 export const getProjects = async (
   limit?: number,
@@ -17,15 +19,9 @@ export const getProjects = async (
   ).data.projects;
 };
 
-export const getProjectsSlugs = async (): Promise<string[]> => {
-  return await (
-    await instance.get("/api/v1/projects/slugs")
-  ).data.slugs;
-};
-
 export const getProject = async (slug: string): Promise<ProjectProps> => {
   return await (
-    await instance.get(`/api/v1/projects/${slug}`)
+    await instance.get(`/projects/${slug}`)
   ).data.project;
 };
 
@@ -36,9 +32,7 @@ export const getExperiences = async (
   const query = `?limit=${limit}&featured=${featured}`;
   return await (
     await instance.get(
-      `/api/v1/experiences${
-        limit && featured !== (null || undefined) ? query : ""
-      }`
+      `/experiences${limit && featured !== (null || undefined) ? query : ""}`
     )
   ).data.experiences;
 };

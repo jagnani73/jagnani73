@@ -1,4 +1,4 @@
-import { NextPage, GetStaticPropsResult } from "next";
+import { NextPage, GetServerSideProps } from "next";
 
 import { IndexPageProps } from "../utils/interfaces/home-interfaces";
 import { getExperiences, getProjects } from "../utils/services/rest";
@@ -20,9 +20,9 @@ const HomePage: NextPage<IndexPageProps> = ({ experiences, projects }) => {
 
 export default HomePage;
 
-export const getStaticProps = async (): Promise<
-  GetStaticPropsResult<IndexPageProps>
-> => {
+export const getServerSideProps: GetServerSideProps<
+  IndexPageProps
+> = async () => {
   try {
     const experiences = await getExperiences(4, true);
     const projects = await getProjects(4, true);
@@ -39,6 +39,8 @@ export const getStaticProps = async (): Promise<
       };
     }
   } catch (error) {
+    console.dir(error);
+
     return {
       notFound: true,
     };

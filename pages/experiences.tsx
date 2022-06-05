@@ -1,4 +1,4 @@
-import { NextPage, GetStaticPropsResult } from "next";
+import { NextPage, GetServerSideProps } from "next";
 
 import { ExperiencesPageProps } from "../utils/interfaces/experiences-interface";
 import { getExperiences } from "../utils/services/rest";
@@ -14,9 +14,9 @@ const ExperiencesPage: NextPage<ExperiencesPageProps> = ({ experiences }) => {
 
 export default ExperiencesPage;
 
-export const getStaticProps = async (): Promise<
-  GetStaticPropsResult<ExperiencesPageProps>
-> => {
+export const getServerSideProps: GetServerSideProps<
+  ExperiencesPageProps
+> = async () => {
   try {
     const experiences = await getExperiences();
     if (experiences) {
@@ -31,6 +31,8 @@ export const getStaticProps = async (): Promise<
       };
     }
   } catch (error) {
+    console.dir(error);
+
     return {
       notFound: true,
     };

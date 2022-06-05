@@ -1,4 +1,4 @@
-import { NextPage, GetStaticPropsResult } from "next";
+import { NextPage, GetServerSideProps } from "next";
 
 import { Blog } from "../components/blog";
 import { getBlogs } from "../utils/services/rest";
@@ -14,9 +14,9 @@ const BlogPage: NextPage<BlogPageProps> = ({ articles }) => {
 
 export default BlogPage;
 
-export const getStaticProps = async (): Promise<
-  GetStaticPropsResult<BlogPageProps>
-> => {
+export const getServerSideProps: GetServerSideProps<
+  BlogPageProps
+> = async () => {
   try {
     const articles = await getBlogs();
     if (articles) {
