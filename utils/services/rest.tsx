@@ -4,9 +4,7 @@ import { ProjectProps, ExperienceProps } from "../interfaces/shared-interfaces";
 import { ArticleProps } from "../interfaces/blog-interfaces";
 
 const instance: AxiosInstance = axios.create({
-  baseURL: `${
-    process.env.NEXT_APP_API_BASE_URL ? process.env.NEXT_APP_API_BASE_URL : ""
-  }/api/v1`,
+  baseURL: `${process.env.NEXT_APP_API_BASE_URL}/api/v1`,
 });
 
 export const getProjects = async (
