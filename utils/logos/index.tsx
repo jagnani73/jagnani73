@@ -1,5 +1,4 @@
 export { default as BootstrapLogo } from "./bootstrap";
-export { default as BrowserLogo } from "./browser";
 export { default as CLogo } from "./c";
 export { default as CPPLogo } from "./cpp";
 export { default as CSSLogo } from "./css";
@@ -8,9 +7,12 @@ export { default as FigmaLogo } from "./figma";
 export { default as GatsbyLogo } from "./gatsby";
 export { default as GitHubLogo } from "./github";
 export { default as HTMLLogo } from "./html";
+export { default as InstagramLogo } from "./instagram";
 export { default as IllustratorLogo } from "./illustrator";
 export { default as JavascriptLogo } from "./javascript";
+export { default as LinkedInLogo } from "./linkedin";
 export { default as LinuxLogo } from "./linux";
+export { default as MediumLogo } from "./medium";
 export { default as MongoLogo } from "./mongo";
 export { default as NextLogo } from "./next";
 export { default as NodeLogo } from "./node";

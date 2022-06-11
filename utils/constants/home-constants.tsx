@@ -39,7 +39,7 @@ export const STACK: {
   { name: STACK_NAMES.FIGMA, logo: <FigmaLogo /> },
   { name: STACK_NAMES.GATSBY, logo: <GatsbyLogo /> },
   { name: STACK_NAMES.HTML, logo: <HTMLLogo /> },
-  { name: STACK_NAMES.HTML, logo: <IllustratorLogo /> },
+  { name: STACK_NAMES.ILLUSTRATOR, logo: <IllustratorLogo /> },
   { name: STACK_NAMES.JAVASCRIPT, logo: <JavascriptLogo /> },
   { name: STACK_NAMES.LINUX, logo: <LinuxLogo /> },
   { name: STACK_NAMES.MONGODB, logo: <MongoLogo /> },

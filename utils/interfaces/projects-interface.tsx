@@ -1,4 +1,8 @@
-import { LINKS_NAMES, STACK_NAMES } from "../constants/shared-constants";
+import {
+  LINKS_NAMES,
+  SOCIALS_NAMES,
+  STACK_NAMES,
+} from "../constants/shared-constants";
 import { ProjectProps } from "./shared-interfaces";
 
 export interface ProjectsPageProps {
@@ -15,4 +19,8 @@ export interface StackIconProps {
 
 export interface LinkIconProps {
   name: LINKS_NAMES;
+}
+
+export interface SocialIconProps {
+  name: SOCIALS_NAMES;
 }

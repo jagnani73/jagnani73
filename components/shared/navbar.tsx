@@ -6,7 +6,8 @@ import { NAVBAR_ROUTES } from "../../utils/constants/shared-constants";
 import { FoldIcon } from "../../utils/icons";
 
 const Navbar: React.FC = () => {
-  const router = useRouter();
+  const { asPath } = useRouter();
+
   const [navButton, setNavButton] = useState<boolean>(false);
   const [dropMenu, setDropMenu] = useState<boolean>(false);
 
@@ -14,12 +15,21 @@ const Navbar: React.FC = () => {
     if (window.innerWidth <= 1024) setNavButton(true);
     else
       window.addEventListener("scroll", () => {
-        if (window.scrollY > (router.asPath === "/" ? 150 : 50))
-          setNavButton(true);
+        if (window.scrollY > (asPath === "/" ? 150 : 50)) setNavButton(true);
         else setNavButton(false);
       });
 
+    window.addEventListener("resize", () => {
+      if (window.innerWidth <= 1024) setNavButton(true);
+      else
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > (asPath === "/" ? 150 : 50)) setNavButton(true);
+          else setNavButton(false);
+        });
+    });
+
     return () => {
+      window.removeEventListener("resize", () => {});
       window.removeEventListener("scroll", () => {});
     };
   }, []);
@@ -33,10 +43,16 @@ const Navbar: React.FC = () => {
 
         {!navButton ? (
           <ul className="flex text-white w-3/4 justify-between">
-            {NAVBAR_ROUTES.map(({ href, name }) => (
+            {NAVBAR_ROUTES.map(({ href, name, external }) => (
               <li key={name}>
                 <Link href={href}>
-                  <a className="uppercase text-sm">{name}</a>
+                  <a
+                    className="uppercase text-sm"
+                    rel="noopener noreferrer"
+                    target={external ? "_blank" : ""}
+                  >
+                    {name}
+                  </a>
                 </Link>
               </li>
             ))}

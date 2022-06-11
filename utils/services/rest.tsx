@@ -13,9 +13,7 @@ export const getProjects = async (
 ): Promise<ProjectProps[]> => {
   const query = `?limit=${limit}&featured=${featured}`;
   return await (
-    await instance.get(
-      `/projects${limit && featured !== (null || undefined) ? query : ""}`
-    )
+    await instance.get(`/projects${limit && featured ? query : ""}`)
   ).data.projects;
 };
 
@@ -31,9 +29,7 @@ export const getExperiences = async (
 ): Promise<ExperienceProps[]> => {
   const query = `?limit=${limit}&featured=${featured}`;
   return await (
-    await instance.get(
-      `/experiences${limit && featured !== (null || undefined) ? query : ""}`
-    )
+    await instance.get(`/experiences${limit && featured ? query : ""}`)
   ).data.experiences;
 };
 

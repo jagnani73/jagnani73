@@ -44,7 +44,7 @@ const StackIcon: React.FC<StackIconProps> = ({ name }) => {
       return <GatsbyLogo />;
     case STACK_NAMES.HTML:
       return <HTMLLogo />;
-    case STACK_NAMES.HTML:
+    case STACK_NAMES.ILLUSTRATOR:
       return <IllustratorLogo />;
     case STACK_NAMES.JAVASCRIPT:
       return <JavascriptLogo />;
