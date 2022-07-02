@@ -3,14 +3,14 @@ import {
   SOCIALS_NAMES,
   STACK_NAMES,
 } from "../constants/shared-constants";
-import { ProjectProps } from "./shared-interfaces";
+import { ProjectType } from "./shared-interfaces";
 
 export interface ProjectsPageProps {
-  projects: ProjectProps[];
+  projects: ProjectType[];
 }
 
 export interface ProjectPageProps {
-  project: ProjectProps;
+  project: ProjectType;
 }
 
 export interface StackIconProps {

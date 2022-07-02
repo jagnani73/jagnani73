@@ -1,7 +1,7 @@
-import { ProjectProps } from "../../../utils/interfaces/shared-interfaces";
+import { ProjectType } from "../../../utils/interfaces/shared-interfaces";
 import { Project } from "../../shared";
 
-const ProjectComponent: React.FC<ProjectProps> = ({ ...project }) => {
+const ProjectComponent: React.FC<ProjectType> = ({ ...project }) => {
   return (
     <section className="section-container mt-48">
       <Project primary={false} {...project} />

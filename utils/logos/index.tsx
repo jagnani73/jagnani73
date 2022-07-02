@@ -1,4 +1,5 @@
 export { default as BootstrapLogo } from "./bootstrap";
+export { default as BrowserLogo } from "./browser";
 export { default as CLogo } from "./c";
 export { default as CPPLogo } from "./cpp";
 export { default as CSSLogo } from "./css";

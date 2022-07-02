@@ -51,7 +51,7 @@
   }
 
   .section-container {
-    @apply w-10/12 mx-auto mt-20 lg:mt-40;
+    @apply px-10 lg:px-0 w-full lg:w-10/12 mx-auto mt-20 lg:mt-40;
   }
 
   .tag {

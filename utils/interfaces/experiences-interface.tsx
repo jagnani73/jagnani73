@@ -1,5 +1,5 @@
-import { ExperienceProps } from "./shared-interfaces";
+import { ExperienceType } from "./shared-interfaces";
 
 export interface ExperiencesPageProps {
-  experiences: ExperienceProps[];
+  experiences: ExperienceType[];
 }

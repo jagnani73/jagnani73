@@ -90,14 +90,14 @@ export const FOOTER_ROUTES: FooterRoutes[] = [
 
 export const SOCIALS_ROUTES: SocialsRoutes[] = [
   {
-    href: "https://www.instagram.com/jagnani73/",
-    external: true,
-    icon: SOCIALS_NAMES.INSTAGRAM,
-  },
-  {
     href: "https://github.com/jagnani73/",
     external: true,
     icon: SOCIALS_NAMES.GITHUB,
+  },
+  {
+    href: "https://www.instagram.com/jagnani73/",
+    external: true,
+    icon: SOCIALS_NAMES.INSTAGRAM,
   },
   {
     href: "mailto:yashjagnani73@gmail.com",

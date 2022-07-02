@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-import { ProjectProps, ExperienceProps } from "../interfaces/shared-interfaces";
+import { ProjectType, ExperienceType } from "../interfaces/shared-interfaces";
 import { ArticleProps } from "../interfaces/blog-interfaces";
 
 const instance: AxiosInstance = axios.create({
@@ -10,14 +10,14 @@ const instance: AxiosInstance = axios.create({
 export const getProjects = async (
   limit?: number,
   featured?: boolean
-): Promise<ProjectProps[]> => {
+): Promise<ProjectType[]> => {
   const query = `?limit=${limit}&featured=${featured}`;
   return await (
     await instance.get(`/projects${limit && featured ? query : ""}`)
   ).data.projects;
 };
 
-export const getProject = async (slug: string): Promise<ProjectProps> => {
+export const getProject = async (slug: string): Promise<ProjectType> => {
   return await (
     await instance.get(`/projects/${slug}`)
   ).data.project;
@@ -26,7 +26,7 @@ export const getProject = async (slug: string): Promise<ProjectProps> => {
 export const getExperiences = async (
   limit?: number,
   featured?: boolean
-): Promise<ExperienceProps[]> => {
+): Promise<ExperienceType[]> => {
   const query = `?limit=${limit}&featured=${featured}`;
   return await (
     await instance.get(`/experiences${limit && featured ? query : ""}`)

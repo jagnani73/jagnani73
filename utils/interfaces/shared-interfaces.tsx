@@ -26,7 +26,7 @@ export interface MongoDBDefaults {
   _id?: string;
 }
 
-export interface ExperienceProps extends MongoDBDefaults {
+export interface ExperienceType extends MongoDBDefaults {
   logo: string;
   org: string;
   url?: string;
@@ -38,15 +38,15 @@ export interface ExperienceProps extends MongoDBDefaults {
   featured: boolean;
 }
 
-export interface ExperienceProp extends ExperienceProps {
+export interface ExperienceProps extends ExperienceType {
   primary: boolean;
 }
 
 export interface ExperiencesProps {
-  experiences: ExperienceProps[];
+  experiences: ExperienceType[];
 }
 
-export interface ProjectProps extends MongoDBDefaults {
+export interface ProjectType extends MongoDBDefaults {
   preview: string;
   name: string;
   description: string;
@@ -57,10 +57,10 @@ export interface ProjectProps extends MongoDBDefaults {
   featured: boolean;
 }
 
-export interface ProjectProp extends ProjectProps {
+export interface ProjectProps extends ProjectType {
   primary: boolean;
 }
 
 export interface ProjectsProps {
-  projects: ProjectProps[];
+  projects: ProjectType[];
 }
