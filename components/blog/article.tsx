@@ -11,28 +11,31 @@ const Article: React.FC<ArticleProps> = ({
   categories,
 }) => {
   useEffect(() => {
-    const medium_image =
-      document.getElementsByClassName("medium-feed-image")[0];
+    const medium_image = document.getElementsByClassName("medium-feed-image");
     const medium_snippet = document.getElementsByClassName(
       "medium-feed-snippet"
-    )[0];
-    const medium_link = document.getElementsByClassName("medium-feed-link")[0];
-
-    medium_image.children[0].children[0].setAttribute(
-      "alt",
-      `${title} by ${author}`
     );
-    medium_image.children[0].children[0].classList.add("mx-auto");
-    medium_image.children[0].children[0].classList.add("w-full");
-    medium_image.children[0].children[0].classList.add("mb-4");
-    medium_snippet.classList.add("text-xl");
-    medium_snippet.classList.add("font-semibold");
-    medium_snippet.classList.add("lg:text-2xl");
-    medium_link.children[0].classList.add("hidden");
+    const medium_link = document.getElementsByClassName("medium-feed-link");
+
+    for (var i = 0; i < medium_image.length; i++) {
+      medium_image[i].children[0].children[0].classList.add("mx-auto");
+      medium_image[i].children[0].children[0].classList.add("w-full");
+      medium_image[i].children[0].children[0].classList.add("mb-4");
+      medium_image[i].children[0].children[0].setAttribute(
+        "alt",
+        `${title} by ${author}`
+      );
+
+      medium_snippet[i].classList.add("text-xl");
+      medium_snippet[i].classList.add("font-semibold");
+      medium_snippet[i].classList.add("lg:text-2xl");
+
+      medium_link[i].children[0].classList.add("hidden");
+    }
   }, []);
 
   return (
-    <article>
+    <article className="mb-12">
       <div dangerouslySetInnerHTML={{ __html: content }} />
 
       <div className="flex flex-col lg:flex-row justify-between capitalize mt-2">

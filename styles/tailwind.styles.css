@@ -55,42 +55,6 @@
   }
 
   .tag {
-    @apply text-xs font-bold bg-steel-blue w-fit px-2 py-1 rounded-sm text-center;
-  }
-
-  .medium-widget {
-    @apply mt-0 w-full;
-  }
-
-  .medium-widget-article__row {
-    @apply grid grid-cols-2 w-full;
-  }
-
-  .medium-widget-article__item {
-    @apply w-10/12 mx-auto mt-20;
-  }
-
-  .medium-widget-article__column {
-    @apply h-full flex flex-col;
-  }
-
-  .medium-widget-article__image {
-    @apply w-full;
-  }
-
-  .medium-widget-article__content {
-    @apply h-full flex flex-col;
-  }
-
-  .medium-widget-article__title {
-    @apply text-xl font-bold mt-2;
-  }
-
-  .medium-widget-article__info {
-    @apply mt-2 h-full flex items-end;
-  }
-
-  .medium-widget-article__date {
-    @apply text-sm font-bold;
+    @apply flex-center m-auto text-xs font-bold bg-steel-blue w-fit px-2 py-1 rounded-sm text-center;
   }
 }
