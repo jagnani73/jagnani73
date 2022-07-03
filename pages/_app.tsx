@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { AppProps } from "next/app";
 import Head from "next/head";
+import Script from "next/script";
 
 import "../styles/tailwind.styles.css";
 import { Navbar, Footer } from "../components/shared";
@@ -23,6 +24,20 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <Head>
         <title>Yashvardhan Jagnani</title>
       </Head>
+
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-CY9KEWMBRR"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-CY9KEWMBRR');
+        `}
+      </Script>
 
       {loading && (
         <div className="w-full h-screen fixed flex-center top-0 left-0 bg-jet bg-opacity-50">
