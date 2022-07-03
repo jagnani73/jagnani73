@@ -37,9 +37,11 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav className="fixed w-full h-28 b md g-blue-100 bg-transparent z-50 flex justify-evenly items-center py-4">
-        <figure>
-          <div className="w-20 h-20 bg-white" />
-        </figure>
+        <img
+          src="/logo.png"
+          alt="jagnani73.com | Yashvardhan Jagnani"
+          className="w-36"
+        />
 
         {!navButton ? (
           <ul className="flex text-white w-3/4 justify-between">

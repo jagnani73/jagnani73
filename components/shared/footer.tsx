@@ -38,7 +38,11 @@ const Footer: React.FC = () => {
               <h3 className="font-bold mt-4 lg:mt-0 whitespace-nowrap">
                 Yashvardhan Jagnani
               </h3>
-              <figure className="w-16 h-16 rounded-full bg-white"></figure>
+              <img
+                src="/logo.png"
+                alt="jagnani73.com | Yashvardhan Jagnani"
+                className="w-28"
+              />
             </div>
 
             <div className="flex gap-x-4 mt-auto pt-8 lg:pt-2 justify-between max-w-xs lg:max-w-none">

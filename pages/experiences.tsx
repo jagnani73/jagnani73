@@ -1,4 +1,5 @@
 import { NextPage, GetServerSideProps } from "next";
+import Head from "next/head";
 
 import { ExperiencesPageProps } from "../utils/interfaces/experiences-interface";
 import { getExperiences } from "../utils/services/rest";
@@ -7,6 +8,10 @@ import { Experiences } from "../components/experiences";
 const ExperiencesPage: NextPage<ExperiencesPageProps> = ({ experiences }) => {
   return (
     <>
+      <Head>
+        <title>Experiences | Yashvardhan Jagnani</title>
+      </Head>
+
       <Experiences experiences={experiences} />
     </>
   );

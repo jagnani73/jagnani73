@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import Head from "next/head";
 
 import { ProjectsPageProps } from "../../utils/interfaces/projects-interface";
 import { getProjects } from "../../utils/services/rest";
@@ -7,6 +8,10 @@ import { Projects } from "../../components/projects";
 const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
   return (
     <>
+      <Head>
+        <title>Projects | Yashvardhan Jagnani</title>
+      </Head>
+
       <Projects projects={projects} />
     </>
   );
