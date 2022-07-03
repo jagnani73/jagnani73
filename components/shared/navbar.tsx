@@ -47,7 +47,9 @@ const Navbar: React.FC = () => {
               <li key={name}>
                 <Link href={href}>
                   <a
-                    className="uppercase text-sm"
+                    className={`${
+                      asPath === href ? "font-semibold " : ""
+                    }uppercase text-sm`}
                     rel="noopener noreferrer"
                     target={external ? "_blank" : ""}
                   >
@@ -78,14 +80,18 @@ const Navbar: React.FC = () => {
                   dropMenu ? "max-h-screen" : "max-h-0"
                 } absolute z-50 duration-500 overflow-hidden transition-all top-full right-0 bg-steel-blue rounded-md rounded-tr-none`}
               >
-                {NAVBAR_ROUTES.map((route) => (
-                  <li key={route.name} className="m-4">
-                    <Link href={route.href}>
+                {NAVBAR_ROUTES.map(({ href, name, external }) => (
+                  <li key={name} className="m-4">
+                    <Link href={href}>
                       <a
-                        className="uppercase text-sm"
+                        className={`${
+                          asPath === href ? "font-semibold " : ""
+                        }uppercase text-sm`}
                         onClick={() => setDropMenu(false)}
+                        rel="noopener noreferrer"
+                        target={external ? "_blank" : ""}
                       >
-                        {route.name}
+                        {name}
                       </a>
                     </Link>
                   </li>
