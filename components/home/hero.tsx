@@ -18,11 +18,11 @@ const Hero: React.FC = () => {
       );
       (cssVariables as HTMLElement).style.setProperty(
         "--color-calendar-graph-day-L1-bg",
-        "#045e2e"
+        "#2d925c"
       );
       (cssVariables as HTMLElement).style.setProperty(
         "--color-calendar-graph-day-L2-bg",
-        "#14882d"
+        "#1b6b2c"
       );
       (cssVariables as HTMLElement).style.setProperty(
         "--color-calendar-graph-day-L3-bg",
@@ -30,7 +30,7 @@ const Hero: React.FC = () => {
       );
       (cssVariables as HTMLElement).style.setProperty(
         "--color-calendar-graph-day-L4-bg",
-        "#13ff3a"
+        "#2bc945"
       );
 
       const _ = document.getElementsByClassName(
@@ -71,8 +71,8 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      <div className="w-full lg:w-1/2 lg:bg-steel-blue flex-center flex-col lg:pt-52">
-        <p className="w-10/12 lg:w-6/12 mx-auto">
+      <div className="w-full lg:w-1/2 lg:bg-steel-blue flex-center flex-col lg:pt-40">
+        <p className="w-10/12 lg:w-9/12 mx-auto">
           He is a Computer Science Engineering student (class of 2023) from
           SRMIST, Chennai, India. Doing a specialization in Cybersecurity, his
           interest peeked in software development back in his fresher year of

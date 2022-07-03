@@ -10,10 +10,6 @@
     @apply m-0 p-0 bg-eerie-black text-cultured font-sans-serif scroll-smooth;
   }
 
-  * {
-    @apply box-border transition-all duration-300;
-  }
-
   h1 {
     @apply text-2xl md:text-3xl lg:text-4xl font-bold;
   }
@@ -55,7 +51,7 @@
   }
 
   .tag {
-    @apply flex-center m-auto text-xs font-bold bg-steel-blue w-fit px-2 py-1 rounded-sm text-center;
+    @apply text-xs font-bold bg-steel-blue w-fit px-2 py-1 rounded-sm text-center;
   }
 
   ::-webkit-scrollbar {
