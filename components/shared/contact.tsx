@@ -2,9 +2,9 @@ import { InlineWidget } from "react-calendly";
 
 export const Contact: React.FC = () => {
   return (
-    <section className="section-container">
+    <section className="section-container mt-48">
       <h1>Lets Jabber</h1>
-      <h3>Some random line for spacing</h3>
+      <h3>All awkwardness aside</h3>
 
       <InlineWidget
         url="https://calendly.com/jagnani73/natter"

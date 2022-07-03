@@ -6,8 +6,7 @@ const Stack: React.FC = () => {
   return (
     <section className="section-container" id="stack">
       <h1>Stack</h1>
-      <h3>Some random line for spacing</h3>
-
+      <h3>Social skills separate</h3>
       <Marquee
         duration={50 * 500}
         height="150px"
@@ -33,26 +32,21 @@ const Stack: React.FC = () => {
         </div>
       </Marquee>
 
-      <p className="text-right mt-8">
-        A line here for{" "}
-        <a
-          href=""
-          target="_blank"
-          rel="noopener noreferrer"
-          className="font-bold"
-        >
-          marquee
-        </a>{" "}
-        redirect
-      </p>
+      <a
+        href="https://www.npmjs.com/package/react-easy-marquee"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-right mt-8 lg:text-2xl block w-fit ml-auto"
+      >
+        Checkout this <span className="font-bold">marquee</span> built by him!
+      </a>
 
       <p className="lg:w-11/12 mt-10 lg:mt-20">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged.
+        These are the technologies with which he has the expertise that ranges
+        from intermediate to advanced. He consistently wants to understand new
+        technologies and feels that a person should have a basic idea of
+        whatever it may encounter but should have proficiency over least one
+        thing.
       </p>
     </section>
   );
