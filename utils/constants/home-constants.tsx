@@ -25,8 +25,6 @@ import {
 } from "../logos";
 import { STACK_NAMES } from "./shared-constants";
 
-export const tags: string[] = ["web developer", "something", "else"];
-
 export const STACK: {
   name: STACK_NAMES;
   logo: JSX.Element;

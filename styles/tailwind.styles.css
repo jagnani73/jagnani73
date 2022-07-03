@@ -57,4 +57,24 @@
   .tag {
     @apply flex-center m-auto text-xs font-bold bg-steel-blue w-fit px-2 py-1 rounded-sm text-center;
   }
+
+  ::-webkit-scrollbar {
+    @apply w-0.5 h-0.5;
+  }
+  ::-webkit-scrollbar-button {
+    @apply w-0 h-0;
+  }
+  ::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-thumb:active,
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-cultured border-none;
+  }
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-track:hover,
+  ::-webkit-scrollbar-track:active {
+    @apply bg-jet border-none;
+  }
+  ::-webkit-scrollbar-corner {
+    background: transparent;
+  }
 }
