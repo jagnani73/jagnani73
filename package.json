@@ -17,6 +17,7 @@
     "react-calendly": "^4.0.1",
     "react-dom": "^18.1.0",
     "react-easy-marquee": "^1.2.4",
+    "react-responsive-carousel": "^3.2.23",
     "yup": "^0.32.9"
   },
   "devDependencies": {

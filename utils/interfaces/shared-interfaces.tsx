@@ -48,6 +48,7 @@ export interface ExperiencesProps {
 
 export interface ProjectType extends MongoDBDefaults {
   preview: string;
+  images?: string[];
   name: string;
   description: string;
   tag: string;

@@ -8,7 +8,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   return (
     <section className="section-container">
       <h1>Projects</h1>
-      <h3>Some random line for spacing</h3>
+      <h3>A showcase for ideas</h3>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:mt-20">
         <div className="mx-auto grid grid-rows-2 h-fit-content">
@@ -29,15 +29,14 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
               </a>
             </Link>
           ))}
-          <p className="w-10/12 mx-auto lg:text-2xl text-right mt-10 lg:mt-32">
-            A line here for{" "}
-            <Link href={ROUTES.PROJECTS}>
-              <a className="font-bold">all projects</a>
-            </Link>{" "}
-            redirect
-          </p>
         </div>
       </div>
+
+      <Link href={ROUTES.PROJECTS}>
+        <a className="text-right lg:mt-8 lg:text-2xl block w-fit ml-auto">
+          See all of his <span className="font-bold">projects</span>
+        </a>
+      </Link>
     </section>
   );
 };

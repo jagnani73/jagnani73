@@ -22,7 +22,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-8">
         {projects.map((project) => (
           <Link key={project._id} href={`${ROUTES.PROJECTS}/${project.slug}`}>
-            <a className="w-full mx-auto mt-10 md:mt-20">
+            <a className="md:w-10/12 mx-auto mt-10 md:mt-20">
               <Project primary {...project} />
             </a>
           </Link>
