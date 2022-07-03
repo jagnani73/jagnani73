@@ -9,10 +9,18 @@ export const fetchExperiences = async (
   limit?: number,
   featured?: boolean
 ): Promise<ExperienceType[]> => {
-  if (limit && featured !== null)
-    return await (await getDb())
+  let experiences: ExperienceType[] = [];
+
+  if (!!limit && !!featured)
+    experiences = await (await getDb())
       .collection("experiences")
-      .find({ featured }, { limit })
+      .find<ExperienceType>({ featured }, { limit })
       .toArray();
-  else return await (await getDb()).collection("experiences").find().toArray();
+  else
+    experiences = await (await getDb())
+      .collection("experiences")
+      .find<ExperienceType>({}, {})
+      .toArray();
+
+  return experiences.reverse();
 };

@@ -1,6 +1,6 @@
-import { ExperienceProp } from "../../utils/interfaces/shared-interfaces";
+import { ExperienceProps } from "../../utils/interfaces/shared-interfaces";
 
-const Experience: React.FC<ExperienceProp> = ({ primary, ...experience }) => {
+const Experience: React.FC<ExperienceProps> = ({ primary, ...experience }) => {
   return (
     <article>
       <img
@@ -9,22 +9,26 @@ const Experience: React.FC<ExperienceProp> = ({ primary, ...experience }) => {
         className="w-16 lg:w-24"
       />
 
-      <h5 className="mt-2 flex justify-between items-center">
+      <h5 className="mt-2 flex justify-between flex-wrap items-center whitespace-nowrap">
         {experience.url ? (
           <a href={experience.url} target="_blank" rel="noopener noreferrer">
             {experience.org}
           </a>
         ) : (
-          experience.org
+          <span>{experience.org}</span>
         )}
 
-        {!primary && <span className="tag">{experience.tag}</span>}
+        {!primary && (
+          <span className="tag whitespace-nowrap">{experience.tag}</span>
+        )}
       </h5>
 
-      <h6 className="font-bold flex flex-col lg:flex-row justify-between mt-1">
-        {experience.designation}
+      <h6 className="font-bold flex flex-col lg:flex-row flex-wrap gap-x-1 items-start justify-between mt-1">
+        <span className="whitespace-nowrap">{experience.designation}</span>
         {!primary && (
-          <span className="text-base font-normal">{experience.duration}</span>
+          <span className="text-base font-normal whitespace-nowrap">
+            {experience.duration}
+          </span>
         )}
       </h6>
 
