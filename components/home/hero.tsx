@@ -78,7 +78,12 @@ const Hero: React.FC = () => {
           interest peeked in software development back in his fresher year of
           college. He ever since has been passionate about ideating solutions
           using software development. He has an inclination towards Frontend
-          Development, specially ReactJS.
+          Development, specially ReactJS. Yashvardhan has laid the foundation
+          for many communities as well projects. He strives for a pursuit that
+          reciprocates in-depth knowledge for his diligent work towards adding
+          value to his professional as well as personal aspects. An amalgamation
+          of interpersonal and technical skill set with a belief in continuous
+          learning.
         </p>
 
         <div className="mx-auto w-11/12 mt-8">

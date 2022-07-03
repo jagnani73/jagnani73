@@ -7,16 +7,18 @@ import { ROUTES } from "../../utils/constants/shared-constants";
 const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   return (
     <section className="section-container mt-48">
-      <h1>My Projects</h1>
-      <h3>Some random line for spacing</h3>
+      <h1>Projects</h1>
+      <h3>A showcase for ideas</h3>
 
       <p className="lg:w-11/12 mt-10 lg:mt-20">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged.
+        A journey of all his creations. He has mentored and guided many projects
+        during his term in the communities he has been a part of. Yashvardhan
+        has laid the foundation code in many internships, including standard
+        boilerplate and developer contribution guide. He has been an avid
+        contributor to the Open Source Community, participated in numerous
+        hackathons and continues to do so. This page is a representation of his
+        works. Every line of code found here was typed with passion, following
+        the best of conventional practices he knew at the moment.
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-8">
