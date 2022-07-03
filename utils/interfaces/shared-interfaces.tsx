@@ -6,7 +6,7 @@ import {
 } from "../constants/shared-constants";
 
 export interface NavbarRoutes {
-  href: ROUTES;
+  href: ROUTES | string;
   name: string;
   external: boolean;
 }

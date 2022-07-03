@@ -73,17 +73,31 @@ export const FOOTER_ROUTES: FooterRoutes[] = [
       { href: ROUTES.EXPERIENCES, name: "Experiences", external: false },
       { href: ROUTES.PROJECTS, name: "Projects", external: false },
       { href: ROUTES.CONTACT, name: "Contact", external: false },
-      { href: ROUTES.BLOG, name: "Blog", external: false },
     ],
   },
   {
-    title: "Sitemap",
+    title: "Featured Projects",
     routes: [
-      { href: ROUTES.HOME, name: "Home", external: false },
-      { href: ROUTES.EXPERIENCES, name: "Experiences", external: false },
-      { href: ROUTES.PROJECTS, name: "Projects", external: false },
-      { href: ROUTES.CONTACT, name: "Contact", external: false },
-      { href: ROUTES.BLOG, name: "Blog", external: false },
+      {
+        href: `${ROUTES.PROJECTS}/react-easy-marquee`,
+        name: "react-easy-marquee",
+        external: false,
+      },
+      {
+        href: `${ROUTES.PROJECTS}/hospitatva`,
+        name: "Hospitatva",
+        external: false,
+      },
+      {
+        href: `${ROUTES.PROJECTS}/shikshak`,
+        name: "Shikshak",
+        external: false,
+      },
+      {
+        href: `${ROUTES.PROJECTS}/contracts`,
+        name: "Contracts",
+        external: false,
+      },
     ],
   },
 ];
