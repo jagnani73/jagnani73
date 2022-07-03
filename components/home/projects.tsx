@@ -33,7 +33,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
       </div>
 
       <Link href={ROUTES.PROJECTS}>
-        <a className="text-right lg:mt-8 lg:text-2xl block w-fit ml-auto">
+        <a className="mt-8 text-xl lg:text-2xl block w-fit lg:ml-auto">
           See all of his <span className="font-bold">projects</span>
         </a>
       </Link>

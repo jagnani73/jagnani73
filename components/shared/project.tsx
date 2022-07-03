@@ -34,7 +34,7 @@ const Project: React.FC<ProjectProps> = ({ primary, ...project }) => {
       )}
 
       <div className="flex flex-wrap items-center justify-between mt-4 w-full">
-        <h3 className="flex items-center gap-x-4 font-bold mb-2">
+        <h3 className="flex flex-wrap items-center gap-x-4 font-bold mb-2">
           {project.name}
           <span className="tag">{project.tag}</span>
         </h3>

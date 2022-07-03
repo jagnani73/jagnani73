@@ -9,7 +9,7 @@ const Experience: React.FC<ExperienceProps> = ({ primary, ...experience }) => {
         className="w-16 lg:w-24"
       />
 
-      <h5 className="mt-2 flex justify-between flex-wrap items-center whitespace-nowrap">
+      <h5 className="mt-2 flex justify-between flex-wrap items-center">
         {experience.url ? (
           <a href={experience.url} target="_blank" rel="noopener noreferrer">
             {experience.org}

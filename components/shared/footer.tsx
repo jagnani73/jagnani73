@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <p className="lg:text-center font-medium mt-16 flex items-center justify-center">
+        <p className="lg:text-center font-medium mt-16 flex flex-wrap items-center justify-center">
           Developed by
           <span className="mx-1 font-bold relative after:absolute after:w-full after:bottom-0 after:h-0.5 after:bg-steel-blue after:left-0">
             Yashvardhan Jagnani

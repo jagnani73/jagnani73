@@ -19,16 +19,16 @@ const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
         new experience.
       </p>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 mt-20">
+      <div className="grid grid-cols-1 xl:grid-cols-3 mt-8 lg:mt-20">
         {experiences?.map((experience) => (
-          <div key={experience._id} className="w-full mb-12">
+          <div key={experience._id} className="w-full mb-12 last:mb-0">
             <Experience primary {...experience} />
           </div>
         ))}
       </div>
 
       <Link href={ROUTES.EXPERIENCES}>
-        <a className="text-right lg:mt-8 lg:text-2xl block w-fit ml-auto">
+        <a className="mt-8 text-xl lg:text-2xl block w-fit lg:ml-auto">
           See all of his <span className="font-bold">experiences</span>
         </a>
       </Link>
