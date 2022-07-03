@@ -1,26 +1,25 @@
+import { useEffect } from "react";
 import { NextPage } from "next";
-import { Player } from "@lottiefiles/react-lottie-player";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 import { ROUTES } from "../utils/constants/shared-constants";
 
 const ServerError: NextPage = () => {
-  return (
-    <section className="section-container">
-      <Player
-        background="transparent"
-        speed={1}
-        className="w-full md:w-1/4"
-        loop
-        autoplay
-        src="/lottie/500.json"
-      />
+  const { push } = useRouter();
 
-      <p className="text-center text-2xl">Uh oh! Somethings wrong.</p>
+  useEffect(() => {
+    setTimeout(() => push(ROUTES.HOME), 5000);
+  }, []);
+
+  return (
+    <section className="section-container text-center pt-40 pb-60">
+      <h1>5 · O · O</h1>
+      <h3>Looks like there was a downsizing</h3>
 
       <Link href={ROUTES.HOME}>
-        <a className="justify-center flex mt-4 underline text-lg">
-          Lets take you back home
+        <a className="justify-center flex font-semibold text-2xl">
+          here is a Home
         </a>
       </Link>
     </section>
