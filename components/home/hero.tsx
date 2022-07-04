@@ -49,7 +49,7 @@ const Hero: React.FC = () => {
   return (
     <section className="lg:h-screen flex flex-wrap text-center">
       <div className="w-full lg:w-1/2 flex-center flex-col">
-        <div className="lg:w-6/12 mt-40 lg:mt-20">
+        <div className="lg:w-6/12 mt-28 lg:mt-20">
           <img
             className="w-80 mx-auto"
             src="https://github.com/jagnani73.png"

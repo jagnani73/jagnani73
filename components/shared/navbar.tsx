@@ -8,39 +8,52 @@ import { FoldIcon } from "../../utils/icons";
 const Navbar: React.FC = () => {
   const { asPath } = useRouter();
 
-  const [navButton, setNavButton] = useState<boolean>(false);
+  const [navButton, setNavButton] = useState<boolean>(true);
+  const [navButtonVisible, setNavButtonVisible] = useState<boolean>(true);
   const [dropMenu, setDropMenu] = useState<boolean>(false);
+  const [scrollY, setScrollY] = useState<number>(0);
 
   useEffect(() => {
     if (window.innerWidth <= 1024) setNavButton(true);
-    else
+    else {
+      setNavButton(false);
       window.addEventListener("scroll", () => {
         if (window.scrollY > (asPath === "/" ? 150 : 50)) setNavButton(true);
         else setNavButton(false);
       });
-
-    window.addEventListener("resize", () => {
-      if (window.innerWidth <= 1024) setNavButton(true);
-      else
-        window.addEventListener("scroll", () => {
-          if (window.scrollY > (asPath === "/" ? 150 : 50)) setNavButton(true);
-          else setNavButton(false);
-        });
-    });
+    }
 
     return () => {
-      window.removeEventListener("resize", () => {});
       window.removeEventListener("scroll", () => {});
     };
   }, []);
 
+  useEffect(() => {
+    if (window.innerWidth <= 1024) {
+      window.addEventListener("scroll", () => {
+        if (window.scrollY >= scrollY) setNavButtonVisible(false);
+        else setNavButtonVisible(true);
+
+        setScrollY(window.scrollY);
+      });
+
+      return () => {
+        window.removeEventListener("scroll", () => {});
+      };
+    }
+  }, [scrollY]);
+
   return (
     <>
-      <nav className="fixed w-full h-28 b md g-blue-100 bg-transparent z-50 flex justify-evenly items-center py-4">
+      <nav
+        className={`${
+          navButtonVisible ? "top-0" : "-top-full"
+        } fixed transition-all duration-300 w-full left-0 h-28 bg-transparent z-50 flex justify-evenly items-center px-4 py-4`}
+      >
         <img
           src="/logo.png"
-          alt="jagnani73.com | Yashvardhan Jagnani"
-          className="w-36"
+          alt="Yashvardhan Jagnani | jagnani73.com"
+          className="w-20 lg:w-36"
         />
 
         {!navButton ? (

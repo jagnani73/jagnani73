@@ -3,7 +3,7 @@ import { Experience } from "../shared";
 
 const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
   return (
-    <section className="section-container mt-48">
+    <section className="section-container mt-28 lg:mt-48">
       <h1>Experiences</h1>
       <h3>His source of knowledge, besides the internet</h3>
 

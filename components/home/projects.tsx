@@ -14,7 +14,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
         <div className="mx-auto grid grid-rows-2 h-fit">
           {projects?.slice(0, 2).map((project) => (
             <Link key={project._id} href={`${ROUTES.PROJECTS}/${project.slug}`}>
-              <a className="w-10/12 mx-auto mt-10 lg:mt-20">
+              <a className="lg:w-10/12 mx-auto mt-10">
                 <Project primary {...project} />
               </a>
             </Link>
@@ -24,7 +24,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
         <div className="mx-auto grid grid-rows-2 h-fit-content lg:-mt-52">
           {projects?.slice(2, 4).map((project) => (
             <Link key={project._id} href={`${ROUTES.PROJECTS}/${project.slug}`}>
-              <a className="w-10/12 mx-auto mt-20">
+              <a className="lg:w-10/12 mx-auto mt-20">
                 <Project primary {...project} />
               </a>
             </Link>

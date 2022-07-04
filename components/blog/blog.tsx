@@ -3,7 +3,7 @@ import { Article } from ".";
 
 const Blog: React.FC<BlogProps> = ({ articles }) => {
   return (
-    <section className="section-container mt-48">
+    <section className="section-container mt-28 lg:mt-48">
       <h1>Blog</h1>
       <h3>Quality over quantity</h3>
 

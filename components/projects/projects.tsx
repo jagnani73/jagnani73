@@ -6,7 +6,7 @@ import { ROUTES } from "../../utils/constants/shared-constants";
 
 const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   return (
-    <section className="section-container mt-48">
+    <section className="section-container mt-28 lg:mt-48">
       <h1>Projects</h1>
       <h3>A showcase for ideas</h3>
 
