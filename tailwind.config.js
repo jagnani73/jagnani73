@@ -17,12 +17,6 @@ module.exports = {
         "light-green": "#7AE485",
         "middle-red": "#E28B6F",
       },
-      height: {
-        "fit-content": "fit-content",
-      },
-      width: {
-        "fit-content": "fit-content",
-      },
       maxWidth: {
         1: "0.25rem",
         2: "0.5rem",
@@ -83,16 +77,6 @@ module.exports = {
     },
   },
   variants: {},
-  safelist: [
-    "medium-widget",
-    "medium-widget-article__row",
-    "medium-widget-article__item",
-    "medium-widget-article__column",
-    "medium-widget-article__image",
-    "medium-widget-article__content",
-    "medium-widget-article__title",
-    "medium-widget-article__info",
-    "medium-widget-article__date",
-  ],
+  safelist: [],
   plugins: [],
 };

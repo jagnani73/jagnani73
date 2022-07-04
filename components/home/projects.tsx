@@ -11,7 +11,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
       <h3>A showcase for ideas</h3>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:mt-20">
-        <div className="mx-auto grid grid-rows-2 h-fit-content">
+        <div className="mx-auto grid grid-rows-2 h-fit">
           {projects?.slice(0, 2).map((project) => (
             <Link key={project._id} href={`${ROUTES.PROJECTS}/${project.slug}`}>
               <a className="w-10/12 mx-auto mt-10 lg:mt-20">

@@ -64,7 +64,7 @@ const Navbar: React.FC = () => {
         ) : (
           <div className="w-3/4 text-right">
             <div
-              className="relative w-fit-content ml-auto"
+              className="relative w-fit ml-auto"
               onMouseEnter={() => setDropMenu(true)}
               onMouseLeave={() => setDropMenu(false)}
             >
