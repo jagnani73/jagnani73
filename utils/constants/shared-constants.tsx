@@ -6,9 +6,7 @@ import {
 
 export enum ROUTES {
   HOME = "/",
-  ABOUT_ID = "/#about",
   EXPERIENCES = "/experiences",
-  STACK_ID = "/#stack",
   PROJECTS = "/projects",
   CONTACT = "/contact",
   BLOG = "/blog",
@@ -58,8 +56,6 @@ export enum SOCIALS_NAMES {
 
 export const NAVBAR_ROUTES: NavbarRoutes[] = [
   { href: ROUTES.HOME, name: "Home", external: false },
-  { href: ROUTES.ABOUT_ID, name: "About", external: false },
-  { href: ROUTES.STACK_ID, name: "Stack", external: false },
   { href: ROUTES.EXPERIENCES, name: "Experiences", external: false },
   { href: ROUTES.PROJECTS, name: "Projects", external: false },
   { href: ROUTES.CONTACT, name: "Contact", external: false },

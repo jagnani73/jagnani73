@@ -1,6 +1,6 @@
 const About: React.FC = () => {
   return (
-    <section className="section-container" id="about">
+    <section className="section-container">
       <h1>About</h1>
       <h3>A sarcastic insult is not insulting</h3>
 
@@ -21,10 +21,10 @@ const About: React.FC = () => {
           src="https://spotify-recently-played-readme.vercel.app/api?user=6o2i4ysx7nesg69llfcreqqt5&unique=true"
         />
 
-        <iframe
+        {/* <iframe
           className="mt-10 md:mt-0 md:w-8/12 h-96"
           src="https://stellarium-web.org/"
-        />
+        /> */}
       </div>
     </section>
   );
