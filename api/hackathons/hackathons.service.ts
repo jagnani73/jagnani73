@@ -6,12 +6,10 @@ export const addHackathon = async (body: HackathonType): Promise<void> => {
 };
 
 export const fetchHackathons = async (): Promise<HackathonType[]> => {
-  let hackathons: HackathonType[] = [];
-
-  hackathons = await (await getDb())
-    .collection("hackathons")
-    .find<HackathonType>({}, {})
-    .toArray();
-
-  return hackathons.reverse();
+  return (
+    await (await getDb())
+      .collection("hackathons")
+      .find<HackathonType>({}, {})
+      .toArray()
+  ).reverse();
 };

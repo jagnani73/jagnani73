@@ -9,20 +9,20 @@ export const fetchProjects = async (
   limit?: number,
   featured?: boolean
 ): Promise<ProjectType[]> => {
-  let projects: ProjectType[] = [];
-
   if (!!limit && !!featured)
-    projects = await (await getDb())
-      .collection("projects")
-      .find<ProjectType>({ featured }, { limit })
-      .toArray();
+    return (
+      await (await getDb())
+        .collection("projects")
+        .find<ProjectType>({ featured }, { limit })
+        .toArray()
+    ).reverse();
   else
-    projects = await (await getDb())
-      .collection("projects")
-      .find<ProjectType>({}, {})
-      .toArray();
-
-  return projects.reverse();
+    return (
+      await (await getDb())
+        .collection("projects")
+        .find<ProjectType>({}, {})
+        .toArray()
+    ).reverse();
 };
 
 export const fetchProject = async (slug: string): Promise<ProjectType> => {

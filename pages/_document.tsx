@@ -31,10 +31,6 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#232323" />
           <meta name="theme-color" content="#232323" />
 
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width"
-          />
           <meta charSet="utf-8" />
           <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
           <meta httpEquiv="content-language" content="en" />
