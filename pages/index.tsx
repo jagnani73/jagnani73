@@ -9,6 +9,7 @@ import {
   Experiences,
   Projects,
   Hackathons,
+  Certifications,
 } from "../components/home";
 import { Contact } from "../components/shared";
 
@@ -16,6 +17,7 @@ const HomePage: NextPage<HomePageProps> = ({
   experiences,
   projects,
   hackathons,
+  certifications,
 }) => {
   return (
     <>
@@ -25,6 +27,7 @@ const HomePage: NextPage<HomePageProps> = ({
       <Experiences experiences={experiences} />
       <Hackathons hackathons={hackathons} />
       <Projects projects={projects} />
+      <Certifications certifications={certifications} />
       <Contact />
     </>
   );

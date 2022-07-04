@@ -26,8 +26,19 @@ export interface HackathonsProps {
   hackathons: HackathonProps[];
 }
 
+export interface CertificationProps extends MongoDBDefaults {
+  name: string;
+  organization: string;
+  validity: string;
+}
+
+export interface CertificationsProps {
+  certifications: CertificationProps[];
+}
+
 export interface HomePageProps {
   experiences: ExperienceType[];
   projects: ProjectType[];
   hackathons: HackathonProps[];
+  certifications: CertificationProps[];
 }
