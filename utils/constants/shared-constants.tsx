@@ -19,7 +19,7 @@ export enum ROUTES {
 export enum STACK_NAMES {
   BOOTSTRAP = "bootstrap",
   C = "c",
-  CPP = "c",
+  CPP = "c++",
   CSS = "css",
   EXPRESS = "express",
   FIGMA = "figma",
