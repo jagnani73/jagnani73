@@ -1,11 +1,11 @@
 import { NextPage, GetServerSideProps } from "next";
 
-import { IndexPageProps } from "../utils/interfaces/home-interfaces";
-import { getExperiences, getProjects } from "../utils/services/rest";
+import { HomePageProps } from "../utils/interfaces/home-interfaces";
+import { getHome } from "../utils/services/rest";
 import { Home, About, Stack, Experiences, Projects } from "../components/home";
 import { Contact } from "../components/shared";
 
-const HomePage: NextPage<IndexPageProps> = ({ experiences, projects }) => {
+const HomePage: NextPage<HomePageProps> = ({ experiences, projects }) => {
   return (
     <>
       <Home />
@@ -21,23 +21,17 @@ const HomePage: NextPage<IndexPageProps> = ({ experiences, projects }) => {
 export default HomePage;
 
 export const getServerSideProps: GetServerSideProps<
-  IndexPageProps
+  HomePageProps
 > = async () => {
   try {
-    const experiences = await getExperiences(4, true);
-    const projects = await getProjects(4, true);
-    if (experiences && projects)
-      return {
-        props: {
-          experiences,
-          projects,
-        },
-      };
-    else {
-      return {
-        notFound: true,
-      };
-    }
+    const { experiences, projects } = await getHome();
+
+    return {
+      props: {
+        experiences,
+        projects,
+      },
+    };
   } catch (error) {
     console.dir(error);
 

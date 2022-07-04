@@ -1,6 +1,6 @@
 import { ExperienceType, ProjectType } from "./shared-interfaces";
 
-export interface IndexPageProps {
+export interface HomePageProps {
   experiences: ExperienceType[];
   projects: ProjectType[];
 }

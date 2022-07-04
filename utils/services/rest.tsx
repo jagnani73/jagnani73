@@ -2,6 +2,7 @@ import axios, { AxiosInstance } from "axios";
 
 import { ProjectType, ExperienceType } from "../interfaces/shared-interfaces";
 import { ArticleProps } from "../interfaces/blog-interfaces";
+import { HomePageProps } from "../interfaces/home-interfaces";
 
 const instance: AxiosInstance = axios.create({
   baseURL: `${process.env.NEXT_APP_API_BASE_URL}/api/v1`,
@@ -33,8 +34,8 @@ export const getBlogs = async (): Promise<ArticleProps[]> => {
   ).data.items;
 };
 
-export const getHomePageData = async (): Promise<{}> => {
+export const getHome = async (): Promise<HomePageProps> => {
   return await (
-    await instance.get("/experiences")
+    await instance.get("/home")
   ).data;
 };

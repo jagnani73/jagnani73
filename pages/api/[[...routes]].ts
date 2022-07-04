@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
 
 import { onError, onNoMatch } from "../../api/error/error.controller";
+import { homeRouter } from "../../api/home/home.routes";
 import { experiencesRouter } from "../../api/experiences/experiences.routes";
 import { projectsRouter } from "../../api/projects/projects.routes";
 
@@ -17,6 +18,7 @@ const indexRouter = nc<NextApiRequest, NextApiResponse>({
 
 rootRouter.use("/api/v1", indexRouter);
 
+indexRouter.use("/home", homeRouter);
 indexRouter.use("/experiences", experiencesRouter);
 indexRouter.use("/projects", projectsRouter);
 
