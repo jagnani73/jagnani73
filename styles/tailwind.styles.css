@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700;800;900&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap");
 
   html,
   body {
@@ -23,7 +23,7 @@
   }
 
   h4 {
-    @apply text-2xl;
+    @apply text-lg md:text-xl lg:text-2xl;
   }
 
   h5 {

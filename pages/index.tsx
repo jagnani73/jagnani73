@@ -2,16 +2,28 @@ import { NextPage, GetServerSideProps } from "next";
 
 import { HomePageProps } from "../utils/interfaces/home-interfaces";
 import { getHome } from "../utils/services/rest";
-import { Home, About, Stack, Experiences, Projects } from "../components/home";
+import {
+  Home,
+  About,
+  Stack,
+  Experiences,
+  Projects,
+  Hackathons,
+} from "../components/home";
 import { Contact } from "../components/shared";
 
-const HomePage: NextPage<HomePageProps> = ({ experiences, projects }) => {
+const HomePage: NextPage<HomePageProps> = ({
+  experiences,
+  projects,
+  hackathons,
+}) => {
   return (
     <>
       <Home />
       <About />
       <Stack />
       <Experiences experiences={experiences} />
+      <Hackathons hackathons={hackathons} />
       <Projects projects={projects} />
       <Contact />
     </>
@@ -24,13 +36,10 @@ export const getServerSideProps: GetServerSideProps<
   HomePageProps
 > = async () => {
   try {
-    const { experiences, projects } = await getHome();
+    const data = await getHome();
 
     return {
-      props: {
-        experiences,
-        projects,
-      },
+      props: { ...data },
     };
   } catch (error) {
     console.dir(error);
