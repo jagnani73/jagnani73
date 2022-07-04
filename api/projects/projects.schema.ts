@@ -1,7 +1,5 @@
 import * as yup from "yup";
 
-import { routesQuery } from "../utils/default-query";
-
 export const ProjectSchema = yup
   .object({
     preview: yup.string().trim().required().url(),
@@ -18,12 +16,3 @@ export const ProjectSchema = yup
   .required();
 
 export interface ProjectType extends yup.InferType<typeof ProjectSchema> {}
-
-export const ProjectsQuery = routesQuery
-  .shape({
-    limit: yup.string(),
-    featured: yup.string(),
-  })
-  .strict()
-  .noUnknown(true)
-  .required();

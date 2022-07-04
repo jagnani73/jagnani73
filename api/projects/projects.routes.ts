@@ -5,7 +5,7 @@ import { errors } from "../error/error.constant";
 import { onError, onNoMatch } from "../error/error.controller";
 import { validateQuery } from "../middlewares/validate-query.middleware";
 import { addProject, fetchProjects, fetchProject } from "./projects.service";
-import { ProjectSchema, ProjectsQuery } from "./projects.schema";
+import { ProjectSchema } from "./projects.schema";
 
 export const projectsRouter = nc<NextApiRequest, NextApiResponse>({
   onError,
@@ -27,35 +27,16 @@ const postProject = async (
 };
 
 const getProjects = async (
-  req: NextApiRequest,
+  _req: NextApiRequest,
   res: NextApiResponse,
   next: NextHandler
 ) => {
   try {
-    const { limit, featured } = req.query;
-
-    if (limit && featured) {
-      const parsedFeatured: boolean | null =
-        featured === "true" ? true : featured === "false" ? false : null;
-
-      if (isNaN(+limit) || parsedFeatured === null || +limit < 1) {
-        throw errors.INVALID_QUERY_PARAMS;
-      }
-
-      const data = await fetchProjects(+limit, parsedFeatured);
-      res.json({
-        success: true,
-        projects: data,
-      });
-    } else if (!limit && !featured) {
-      const data = await fetchProjects();
-      res.json({
-        success: true,
-        projects: data,
-      });
-    } else {
-      throw errors.INVALID_QUERY_PARAMS;
-    }
+    const projects = await fetchProjects();
+    res.json({
+      success: true,
+      projects,
+    });
   } catch (err) {
     next(err);
   }
@@ -83,7 +64,7 @@ const getProject = async (
 };
 
 projectsRouter.get("/:slug", getProject);
-projectsRouter.get("", validateQuery("query", ProjectsQuery), getProjects);
+projectsRouter.get("/", getProjects);
 
 if (process.env.NODE_ENV !== "production")
   projectsRouter.post("", validateQuery("body", ProjectSchema), postProject);

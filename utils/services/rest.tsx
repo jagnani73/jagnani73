@@ -7,13 +7,9 @@ const instance: AxiosInstance = axios.create({
   baseURL: `${process.env.NEXT_APP_API_BASE_URL}/api/v1`,
 });
 
-export const getProjects = async (
-  limit?: number,
-  featured?: boolean
-): Promise<ProjectType[]> => {
-  const query = `?limit=${limit}&featured=${featured}`;
+export const getProjects = async (): Promise<ProjectType[]> => {
   return await (
-    await instance.get(`/projects${limit && featured ? query : ""}`)
+    await instance.get("/projects")
   ).data.projects;
 };
 
@@ -23,13 +19,9 @@ export const getProject = async (slug: string): Promise<ProjectType> => {
   ).data.project;
 };
 
-export const getExperiences = async (
-  limit?: number,
-  featured?: boolean
-): Promise<ExperienceType[]> => {
-  const query = `?limit=${limit}&featured=${featured}`;
+export const getExperiences = async (): Promise<ExperienceType[]> => {
   return await (
-    await instance.get(`/experiences${limit && featured ? query : ""}`)
+    await instance.get("/experiences")
   ).data.experiences;
 };
 
@@ -39,4 +31,10 @@ export const getBlogs = async (): Promise<ArticleProps[]> => {
       "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@jagnani73"
     )
   ).data.items;
+};
+
+export const getHomePageData = async (): Promise<{}> => {
+  return await (
+    await instance.get("/experiences")
+  ).data;
 };
