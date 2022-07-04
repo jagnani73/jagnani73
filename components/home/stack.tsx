@@ -42,11 +42,9 @@ const Stack: React.FC = () => {
       </a>
 
       <p className="lg:w-11/12 mt-10 lg:mt-20">
-        These are the technologies with which he has the expertise that ranges
-        from intermediate to advanced. He consistently wants to understand new
-        technologies and feels that a person should have a basic idea of
-        whatever it may encounter but should have proficiency over least one
-        thing.
+        These are the technologies with which he has an expertise that ranges
+        from intermediate to advanced. He consistently tries to understand new
+        technologies and aims at mastering them.
       </p>
     </section>
   );

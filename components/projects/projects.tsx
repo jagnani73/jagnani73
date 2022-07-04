@@ -13,12 +13,13 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
       <p className="lg:w-11/12 mt-10 lg:mt-20">
         A journey of all his creations. He has mentored and guided many projects
         during his term in the communities he has been a part of. Yashvardhan
-        has laid the foundation code in many internships, including standard
-        boilerplate and developer contribution guide. He has been an avid
+        has laid the foundational code in many internships, including standard
+        boilerplate and the developer contribution guide. He has been an avid
         contributor to the Open Source Community, participated in numerous
         hackathons and continues to do so. This page is a representation of his
-        works. Every line of code found here was typed with passion, following
-        the best of conventional practices he knew at the moment.
+        works. Every Line of Code of his is typed with passion regardless of the
+        semicolon pain, following the best conventional practices he knew at the
+        moment.
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-8">

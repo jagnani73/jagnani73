@@ -8,11 +8,11 @@ const About: React.FC = () => {
         A good listener who is confident in his decisions, open to constructive
         criticism and tries to include people as much as possible. He loves
         listening to songs; you can find him vibing almost anytime. He has
-        attached his recently played as proof. He loves astrology and cosmology
-        (PS, you can also have an excellent time discussing conspiracy theories
-        with him :P). He is a part of many fandoms like Marvel or Brooklyn
-        Nine-Nine. He is very sarcastic and often confuses people with it. He
-        also appreciates psychology and loves philosophizing.
+        attached his recently played as proof. He loves astrology and cosmology.
+        One can have an excellent time discussing conspiracy theories with him.
+        Yashvardhan is a part of many fandoms like Marvel or Brooklyn Nine-Nine.
+        He is very sarcastic and often confuses people with it. He also
+        appreciates psychology and loves philosophizing.
       </p>
 
       <div className="flex flex-col md:flex-row mt-12 gap-x-4 overflow-hidden">

@@ -73,17 +73,17 @@ const Hero: React.FC = () => {
 
       <div className="w-full lg:w-1/2 lg:bg-steel-blue flex-center flex-col lg:pt-40">
         <p className="w-10/12 lg:w-9/12 mx-auto">
-          He is a Computer Science Engineering student (class of 2023) from
-          SRMIST, Chennai, India. Doing a specialization in Cybersecurity, his
-          interest peeked in software development back in his fresher year of
-          college. He ever since has been passionate about ideating solutions
-          using software development. He has an inclination towards Frontend
-          Development, specially ReactJS. Yashvardhan has laid the foundation
-          for many communities as well projects. He strives for a pursuit that
-          reciprocates in-depth knowledge for his diligent work towards adding
-          value to his professional as well as personal aspects. An amalgamation
-          of interpersonal and technical skill set with a belief in continuous
-          learning.
+          He is a Computer Science Engineering student graduating from the class
+          of 2023 from SRMIST, Chennai, India. Doing a specialization in
+          Cybersecurity, his interest peeked in software development back in his
+          fresher year of college. Ever since, he has been passionate about
+          ideating solutions using software development. He inclines towards
+          Frontend Development, especially ReactJS. Yashvardhan has laid the
+          foundation for many communities and projects. He strives for a pursuit
+          that reciprocates in-depth knowledge for his diligent work towards
+          adding value to his professional as well as personal aspects—an
+          amalgamation of interpersonal and technical skill sets with a belief
+          in continuous learning.
         </p>
 
         <div className="mx-auto w-11/12 mt-8">
