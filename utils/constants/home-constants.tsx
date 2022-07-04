@@ -1,3 +1,4 @@
+import { StackType } from "../interfaces/home-interfaces";
 import {
   BootstrapLogo,
   CLogo,
@@ -25,10 +26,7 @@ import {
 } from "../logos";
 import { STACK_NAMES } from "./shared-constants";
 
-export const STACK: {
-  name: STACK_NAMES;
-  logo: JSX.Element;
-}[] = [
+export const STACK: StackType[] = [
   { name: STACK_NAMES.BOOTSTRAP, logo: <BootstrapLogo /> },
   { name: STACK_NAMES.C, logo: <CLogo /> },
   { name: STACK_NAMES.CPP, logo: <CPPLogo /> },
