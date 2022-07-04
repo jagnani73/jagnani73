@@ -35,13 +35,13 @@ const Footer: React.FC = () => {
 
           <div className="w-full flex flex-col">
             <div className="flex flex-col-reverse lg:flex-row lg:items-center lg:flex-wrap-reverse lg:justify-between">
-              <h3 className="font-bold mt-4 lg:mt-0 whitespace-nowrap">
+              <h3 className="font-bold mt-4 pt-2 lg:mt-0 whitespace-nowrap">
                 Yashvardhan Jagnani
               </h3>
               <img
-                src="/logo.png"
+                src="/logo-alt.svg"
                 alt="jagnani73.com | Yashvardhan Jagnani"
-                className="w-28"
+                className="w-16"
               />
             </div>
 
@@ -61,13 +61,13 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <p className="lg:text-center font-medium mt-16 flex flex-wrap items-center justify-center">
+        <p className="lg:text-center mt-16 flex flex-wrap items-center justify-center">
           Developed by
           <span className="mx-1 font-bold relative after:absolute after:w-full after:bottom-0 after:h-0.5 after:bg-steel-blue after:left-0">
             Yashvardhan Jagnani
           </span>
           on
-          <span className="w-6 mb-1 mx-1">
+          <span className="w-6 mb-1 ml-1 mr-2">
             <CoffeeIcon />
           </span>
           and

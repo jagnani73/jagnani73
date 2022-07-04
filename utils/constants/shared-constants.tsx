@@ -53,6 +53,7 @@ export enum SOCIALS_NAMES {
   MAIL = "mail",
   MEDIUM = "medium",
   LINKEDIN = "linkedin",
+  TWITTER = "twitter",
 }
 
 export const NAVBAR_ROUTES: NavbarRoutes[] = [
@@ -109,23 +110,23 @@ export const SOCIALS_ROUTES: SocialsRoutes[] = [
     icon: SOCIALS_NAMES.GITHUB,
   },
   {
+    href: "https://twitter.com/jagnani73/",
+    external: true,
+    icon: SOCIALS_NAMES.TWITTER,
+  },
+  {
     href: "https://www.instagram.com/jagnani73/",
     external: true,
     icon: SOCIALS_NAMES.INSTAGRAM,
   },
   {
-    href: "mailto:yashjagnani73@gmail.com",
-    external: true,
-    icon: SOCIALS_NAMES.MAIL,
-  },
-  {
-    href: "https://medium.com/@jagnani73",
-    external: true,
-    icon: SOCIALS_NAMES.MEDIUM,
-  },
-  {
     href: "https://www.linkedin.com/in/yashvardhan-jagnani/",
     external: true,
     icon: SOCIALS_NAMES.LINKEDIN,
+  },
+  {
+    href: "mailto:yashjagnani73@gmail.com",
+    external: true,
+    icon: SOCIALS_NAMES.MAIL,
   },
 ];

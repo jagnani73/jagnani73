@@ -48,12 +48,12 @@ const Navbar: React.FC = () => {
       <nav
         className={`${
           navButtonVisible ? "top-0" : "-top-full"
-        } fixed transition-all duration-300 w-full left-0 h-28 bg-transparent z-50 flex justify-evenly items-center px-4 py-4`}
+        } fixed transition-all duration-750 w-full left-0 h-28 bg-transparent z-50 flex justify-evenly items-center px-4 py-4`}
       >
         <img
-          src="/logo.png"
+          src="/logo.svg"
           alt="Yashvardhan Jagnani | jagnani73.com"
-          className="w-20 lg:w-36"
+          className="w-12 lg:w-20"
         />
 
         {!navButton ? (

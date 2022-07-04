@@ -6,6 +6,7 @@ import {
   InstagramLogo,
   LinkedInLogo,
   MediumLogo,
+  TwitterLogo,
 } from "../../utils/logos";
 
 const SocialIcon: React.FC<SocialIconProps> = ({ name }) => {
@@ -20,6 +21,8 @@ const SocialIcon: React.FC<SocialIconProps> = ({ name }) => {
       return <MediumLogo />;
     case SOCIALS_NAMES.LINKEDIN:
       return <LinkedInLogo />;
+    case SOCIALS_NAMES.TWITTER:
+      return <TwitterLogo />;
     default:
       return <></>;
   }

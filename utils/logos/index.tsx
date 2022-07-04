@@ -25,5 +25,6 @@ export { default as ReactLogo } from "./react";
 export { default as ReduxLogo } from "./redux";
 export { default as SassLogo } from "./sass";
 export { default as TailwindLogo } from "./tailwind";
+export { default as TwitterLogo } from "./twitter";
 export { default as TypescriptLogo } from "./typescript";
 export { default as VueLogo } from "./vue";
