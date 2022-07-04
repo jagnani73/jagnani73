@@ -43,14 +43,14 @@ class MyDocument extends Document {
           <meta name="author" content="Yashvardhan Jagnani" />
           <meta
             name="description"
-            content=" He is a Computer Science Engineering student graduating from the class of 2023 from SRMIST, Chennai, India. Doing a specialization in Cybersecurity, his interest peeked in software development back in his fresher year of college. Ever since, he has been passionate about ideating solutions using software development. He inclines towards Frontend Development, especially ReactJS. Yashvardhan has laid the foundation for many communities and projects. He strives for a pursuit that reciprocates in-depth knowledge for his diligent work towards adding value to his professional as well as personal aspects—an amalgamation of interpersonal and technical skill sets with a belief in continuous learning."
+            content="A software developer who is a Computer Science Engineering student with specialization in Cybersecurity, class of 2023."
           />
           <meta name="image" content="/site/og-image.png" />
 
           <meta itemProp="name" content="Yashvardhan Jagnani" />
           <meta
             itemProp="description"
-            content=" He is a Computer Science Engineering student graduating from the class of 2023 from SRMIST, Chennai, India. Doing a specialization in Cybersecurity, his interest peeked in software development back in his fresher year of college. Ever since, he has been passionate about ideating solutions using software development. He inclines towards Frontend Development, especially ReactJS. Yashvardhan has laid the foundation for many communities and projects. He strives for a pursuit that reciprocates in-depth knowledge for his diligent work towards adding value to his professional as well as personal aspects—an amalgamation of interpersonal and technical skill sets with a belief in continuous learning."
+            content="A software developer who is a Computer Science Engineering student with specialization in Cybersecurity, class of 2023."
           />
           <meta itemProp="image" content="/site/og-image.png" />
 
@@ -58,7 +58,7 @@ class MyDocument extends Document {
           <meta name="twitter:title" content="Yashvardhan Jagnani" />
           <meta
             name="twitter:description"
-            content=" He is a Computer Science Engineering student graduating from the class of 2023 from SRMIST, Chennai, India. Doing a specialization in Cybersecurity, his interest peeked in software development back in his fresher year of college. Ever since, he has been passionate about ideating solutions using software development. He inclines towards Frontend Development, especially ReactJS. Yashvardhan has laid the foundation for many communities and projects. He strives for a pursuit that reciprocates in-depth knowledge for his diligent work towards adding value to his professional as well as personal aspects—an amalgamation of interpersonal and technical skill sets with a belief in continuous learning."
+            content="A software developer who is a Computer Science Engineering student with specialization in Cybersecurity, class of 2023."
           />
           <meta name="twitter:site" content="@jagnani73" />
           <meta name="twitter:creator" content="@jagnani73" />
@@ -67,7 +67,7 @@ class MyDocument extends Document {
           <meta name="og:title" content="Yashvardhan Jagnani" />
           <meta
             name="og:description"
-            content=" He is a Computer Science Engineering student graduating from the class of 2023 from SRMIST, Chennai, India. Doing a specialization in Cybersecurity, his interest peeked in software development back in his fresher year of college. Ever since, he has been passionate about ideating solutions using software development. He inclines towards Frontend Development, especially ReactJS. Yashvardhan has laid the foundation for many communities and projects. He strives for a pursuit that reciprocates in-depth knowledge for his diligent work towards adding value to his professional as well as personal aspects—an amalgamation of interpersonal and technical skill sets with a belief in continuous learning."
+            content="A software developer who is a Computer Science Engineering student with specialization in Cybersecurity, class of 2023."
           />
           <meta name="og:image" content="/site/og-image.png" />
           <meta name="og:url" content="https://jagnani73.com" />
