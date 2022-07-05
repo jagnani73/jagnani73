@@ -36,9 +36,20 @@ export interface CertificationsProps {
   certifications: CertificationProps[];
 }
 
+export interface ResumeProps extends MongoDBDefaults {
+  preview: string;
+  resume: string;
+  date: string;
+}
+
+export interface ResumesProps {
+  resumes: ResumeProps[];
+}
+
 export interface HomePageProps {
   experiences: ExperienceType[];
   projects: ProjectType[];
   hackathons: HackathonProps[];
   certifications: CertificationProps[];
+  resumes: ResumeProps[];
 }

@@ -7,6 +7,7 @@ import { experiencesRouter } from "../../api/experiences/experiences.routes";
 import { projectsRouter } from "../../api/projects/projects.routes";
 import { hackathonsRouter } from "../../api/hackathons/hackathons.routes";
 import { certificationsRouter } from "../../api/certifications/certifications.routes";
+import { resumesRouter } from "../../api/resumes/resumes.routes";
 
 const rootRouter = nc<NextApiRequest, NextApiResponse>({
   onNoMatch,
@@ -23,6 +24,7 @@ rootRouter.use("/api/v1", indexRouter);
 indexRouter.use("/home", homeRouter);
 indexRouter.use("/hackathons", hackathonsRouter);
 indexRouter.use("/certifications", certificationsRouter);
+indexRouter.use("/resumes", resumesRouter);
 indexRouter.use("/experiences", experiencesRouter);
 indexRouter.use("/projects", projectsRouter);
 

@@ -10,6 +10,7 @@ import {
   Projects,
   Hackathons,
   Certifications,
+  Resumes,
 } from "../components/home";
 import { Contact } from "../components/shared";
 
@@ -18,6 +19,7 @@ const HomePage: NextPage<HomePageProps> = ({
   projects,
   hackathons,
   certifications,
+  resumes,
 }) => {
   return (
     <>
@@ -28,6 +30,7 @@ const HomePage: NextPage<HomePageProps> = ({
       <Hackathons hackathons={hackathons} />
       <Projects projects={projects} />
       <Certifications certifications={certifications} />
+      <Resumes resumes={resumes} />
       <Contact />
     </>
   );
