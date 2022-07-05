@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
       <nav
         className={`${
           navButtonVisible ? "top-0" : "-top-full"
-        } fixed transition-all duration-750 w-full left-0 h-28 bg-transparent z-50 flex justify-evenly items-center px-4 py-4`}
+        } fixed transition-all duration-750 w-full left-0 h-28 bg-transparent z-40 flex justify-evenly items-center px-4 py-4`}
       >
         <img
           src="/logo.svg"
@@ -93,7 +93,7 @@ const Navbar: React.FC = () => {
               <ul
                 className={`${
                   dropMenu ? "max-h-screen" : "max-h-0"
-                } absolute z-50 duration-500 overflow-hidden transition-all top-full right-0 bg-steel-blue rounded-md rounded-tr-none`}
+                } absolute z-40 duration-500 overflow-hidden transition-all top-full right-0 bg-steel-blue rounded-md rounded-tr-none`}
               >
                 {NAVBAR_ROUTES.map(({ href, name, external }) => (
                   <li key={name} className="m-4">

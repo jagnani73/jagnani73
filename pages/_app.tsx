@@ -40,7 +40,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       </Script>
 
       {loading && (
-        <div className="w-full h-screen fixed flex-center top-0 left-0 bg-jet bg-opacity-50">
+        <div className="w-full h-screen z-50 fixed flex-center top-0 left-0 bg-jet bg-opacity-50">
           <object
             type="image/svg+xml"
             data="/loader.svg"
