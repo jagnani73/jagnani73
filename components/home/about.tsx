@@ -1,3 +1,5 @@
+import { HamburgerIcon } from "../../utils/icons";
+
 const About: React.FC = () => {
   return (
     <section className="section-container">
@@ -25,6 +27,17 @@ const About: React.FC = () => {
           className="mt-10 md:mt-0 md:w-8/12 h-96"
           src="https://stellarium-web.org/"
         />
+      </div>
+
+      <div className="md:text-right mt-2">
+        <p className="flex md:justify-end items-center">
+          Click on the{" "}
+          <span className="w-4 mx-1 text-red-50">
+            <HamburgerIcon />
+          </span>{" "}
+          to explore the universe.
+        </p>
+        Best viewed on a bigger screen.
       </div>
     </section>
   );

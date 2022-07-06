@@ -48,7 +48,7 @@ const Navbar: React.FC = () => {
       <nav
         className={`${
           navButtonVisible ? "top-0" : "-top-full"
-        } fixed transition-all duration-750 w-full left-0 h-28 bg-transparent z-40 flex justify-evenly items-center px-4 py-4`}
+        } fixed transition-all duration-1000 w-full left-0 h-28 bg-eerie-black lg:bg-transparent z-40 flex justify-evenly items-center p-4`}
       >
         <img
           src="/logo.svg"
