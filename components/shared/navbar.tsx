@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { NAVBAR_ROUTES } from "../../utils/constants/shared-constants";
+import { NAVBAR_ROUTES, ROUTES } from "../../utils/constants/shared-constants";
 import { FoldIcon } from "../../utils/icons";
 
 const Navbar: React.FC = () => {
@@ -46,15 +46,21 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav
-        className={`${
-          navButtonVisible ? "top-0" : "-top-full"
-        } fixed transition-all duration-1000 w-full left-0 h-28 bg-eerie-black lg:bg-transparent z-40 flex justify-evenly items-center p-4`}
+        className={`fixed transition-all duration-500 w-full left-0 z-40 flex justify-evenly items-center p-4 ${
+          navButtonVisible
+            ? `top-0${navButton ? " bg-eerie-black" : ""}`
+            : "-top-full"
+        }`}
       >
-        <img
-          src="/logo.svg"
-          alt="Yashvardhan Jagnani | jagnani73.com"
-          className="w-12 lg:w-20"
-        />
+        <Link href={ROUTES.HOME}>
+          <a>
+            <img
+              src="/logo.svg"
+              alt="Yashvardhan Jagnani | jagnani73.com"
+              className="w-12 lg:w-20"
+            />
+          </a>
+        </Link>
 
         {!navButton ? (
           <ul className="flex text-white w-3/4 justify-between">
