@@ -12,8 +12,8 @@ const Resumes: React.FC<ResumesProps> = ({ resumes }) => {
 
       <p className="lg:w-11/12 mt-10 lg:mt-20">
         These resumes are a journey of evolution. They mark milestones and major
-        upgrades my professional life encountered. Click on the preview image to
-        check it out!
+        upgrades his professional life encountered. Click on the preview image
+        to check it out!
       </p>
 
       <header className="bg-jet flex items-center gap-x-16 justify-between p-4 my-8 overflow-auto">
