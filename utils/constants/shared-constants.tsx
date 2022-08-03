@@ -76,7 +76,7 @@ export const FOOTER_ROUTES: FooterRoutes[] = [
     title: "Featured Projects",
     routes: [
       {
-        href: `${ROUTES.PROJECTS}/react-easy-marquee`,
+        href: `${ROUTES.PROJECTS}/marquee`,
         name: "react-easy-marquee",
         external: false,
       },
