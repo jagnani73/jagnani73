@@ -38,10 +38,10 @@ const Footer: React.FC = () => {
               <h3 className="font-bold mt-4 pt-2 lg:mt-0 whitespace-nowrap">
                 Yashvardhan Jagnani
               </h3>
-              <img
-                src="/logo-alt.svg"
-                alt="jagnani73.com | Yashvardhan Jagnani"
-                className="w-16"
+              <object
+                type="image/svg+xml"
+                data="/loader.svg"
+                className="w-28"
               />
             </div>
 
