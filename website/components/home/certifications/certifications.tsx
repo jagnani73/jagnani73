@@ -1,4 +1,4 @@
-import { CertificationsProps } from "../../../utils/interfaces/home-interfaces";
+import type { CertificationsProps } from "../../../utils/interfaces/home-interfaces";
 import { Certification } from "./";
 
 const Certifications: React.FC<CertificationsProps> = ({ certifications }) => {

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
+import type { ExperiencesProps } from "../../utils/interfaces/shared-interfaces";
 import { ROUTES } from "../../utils/constants/shared-constants";
-import { ExperiencesProps } from "../../utils/interfaces/shared-interfaces";
 import { Experience } from "../shared";
 
 const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {

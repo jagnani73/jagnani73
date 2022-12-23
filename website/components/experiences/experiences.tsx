@@ -1,4 +1,4 @@
-import { ExperiencesProps } from "../../utils/interfaces/shared-interfaces";
+import type { ExperiencesProps } from "../../utils/interfaces/shared-interfaces";
 import { Experience } from "../shared";
 
 const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {

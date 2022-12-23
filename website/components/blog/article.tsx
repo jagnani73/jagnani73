@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
+import type { ArticleProps } from "../../utils/interfaces/blog-interfaces";
 import { monthParser } from "../../utils/functions";
-import { ArticleProps } from "../../utils/interfaces/blog-interfaces";
 
 const Article: React.FC<ArticleProps> = ({
   title,
@@ -32,6 +32,8 @@ const Article: React.FC<ArticleProps> = ({
 
       medium_link[i].children[0].classList.add("hidden");
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,4 +1,6 @@
-import { ExperienceProps } from "../../utils/interfaces/shared-interfaces";
+/* eslint-disable @next/next/no-img-element */
+
+import type { ExperienceProps } from "../../utils/interfaces/shared-interfaces";
 
 const Experience: React.FC<ExperienceProps> = ({ primary, ...experience }) => {
   return (

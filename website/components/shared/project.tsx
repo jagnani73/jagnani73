@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
+
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
+import type { ProjectProps } from "../../utils/interfaces/shared-interfaces";
 import { toTitleCase } from "../../utils/functions";
-import { ProjectProps } from "../../utils/interfaces/shared-interfaces";
 import { StackIcon, LinkIcon } from "./";
 
 const Project: React.FC<ProjectProps> = ({ primary, ...project }) => {

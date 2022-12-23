@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { ResumesProps } from "../../utils/interfaces/home-interfaces";
+import type { ResumesProps } from "../../utils/interfaces/home-interfaces";
 
 const Resumes: React.FC<ResumesProps> = ({ resumes }) => {
   const [activeResume, setActiveResume] = useState<number>(0);

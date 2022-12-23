@@ -6,12 +6,3 @@ export const addCertification = async (
 ): Promise<void> => {
   await (await getDb()).collection("certifications").insertOne(body);
 };
-
-export const fetchCertifications = async (): Promise<CertificationType[]> => {
-  return (
-    await (await getDb())
-      .collection("certifications")
-      .find<CertificationType>({}, {})
-      .toArray()
-  ).reverse();
-};

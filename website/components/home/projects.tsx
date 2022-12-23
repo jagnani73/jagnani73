@@ -1,7 +1,7 @@
 import Link from "next/link";
 
+import type { ProjectsProps } from "../../utils/interfaces/shared-interfaces";
 import { ROUTES } from "../../utils/constants/shared-constants";
-import { ProjectsProps } from "../../utils/interfaces/shared-interfaces";
 import { Project } from "../shared";
 
 const Projects: React.FC<ProjectsProps> = ({ projects }) => {

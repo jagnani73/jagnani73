@@ -1,11 +1,12 @@
-import { GetServerSideProps } from "next";
+import { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 
-import { ProjectsPageProps } from "../../utils/interfaces/projects-interface";
-import { getProjects } from "../../utils/services/rest";
+import type { ProjectsPageProps } from "../../utils/interfaces/projects-interface";
+import type { ProjectType } from "../../utils/interfaces/shared-interfaces";
 import { Projects } from "../../components/projects";
+import { getDb } from "../../api/services/mongodb.service";
 
-const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
+const ProjectsPage: NextPage<ProjectsPageProps> = ({ projects }) => {
   return (
     <>
       <Head>
@@ -19,16 +20,25 @@ const ProjectsPage: React.FC<ProjectsPageProps> = ({ projects }) => {
 
 export default ProjectsPage;
 
-export const getServerSideProps: GetServerSideProps<
-  ProjectsPageProps
-> = async () => {
+export const getStaticProps: GetStaticProps<ProjectsPageProps> = async () => {
   try {
-    const projects = await getProjects();
+    const projects = JSON.parse(
+      JSON.stringify(
+        (
+          await (await getDb())
+            .collection("projects")
+            .find<ProjectType>({}, {})
+            .toArray()
+        ).reverse()
+      )
+    );
+
     if (projects) {
       return {
         props: {
           projects,
         },
+        revalidate: 1 * 60 * 60 * 24 * 7,
       };
     } else {
       return {

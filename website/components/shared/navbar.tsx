@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -26,7 +28,7 @@ const Navbar: React.FC = () => {
     return () => {
       window.removeEventListener("scroll", () => {});
     };
-  }, []);
+  }, [asPath]);
 
   useEffect(() => {
     if (window.innerWidth <= 1024) {

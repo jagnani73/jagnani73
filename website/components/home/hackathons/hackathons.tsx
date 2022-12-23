@@ -1,4 +1,4 @@
-import { HackathonsProps } from "../../../utils/interfaces/home-interfaces";
+import type { HackathonsProps } from "../../../utils/interfaces/home-interfaces";
 import { Hackathon } from "./";
 
 const Hackathons: React.FC<HackathonsProps> = ({ hackathons }) => {

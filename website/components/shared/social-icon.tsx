@@ -1,5 +1,5 @@
+import type { SocialIconProps } from "../../utils/interfaces/projects-interface";
 import { SOCIALS_NAMES } from "../../utils/constants/shared-constants";
-import { SocialIconProps } from "../../utils/interfaces/projects-interface";
 import { MailIcon } from "../../utils/icons";
 import {
   GitHubLogo,

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { ProjectsProps } from "../../utils/interfaces/shared-interfaces";
+import type { ProjectsProps } from "../../utils/interfaces/shared-interfaces";
 import { Project } from "../shared";
 import { ROUTES } from "../../utils/constants/shared-constants";
 

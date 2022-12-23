@@ -17,6 +17,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     events.on("routeChangeComplete", () => setLoading(false));
     events.on("routeChangeError", () => setLoading(false));
     setLoading(false);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

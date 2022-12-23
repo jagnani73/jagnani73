@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+
 import { useEffect } from "react";
 import GitHubCalendar from "github-calendar";
 import "github-calendar/dist/github-calendar-responsive.css";

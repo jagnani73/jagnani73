@@ -1,9 +1,10 @@
-import { NextPage, GetServerSideProps } from "next";
+import { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 
-import { ExperiencesPageProps } from "../utils/interfaces/experiences-interface";
-import { getExperiences } from "../utils/services/rest";
+import type { ExperiencesPageProps } from "../utils/interfaces/experiences-interface";
+import type { ExperienceType } from "../utils/interfaces/shared-interfaces";
 import { Experiences } from "../components/experiences";
+import { getDb } from "../api/services/mongodb.service";
 
 const ExperiencesPage: NextPage<ExperiencesPageProps> = ({ experiences }) => {
   return (
@@ -19,16 +20,27 @@ const ExperiencesPage: NextPage<ExperiencesPageProps> = ({ experiences }) => {
 
 export default ExperiencesPage;
 
-export const getServerSideProps: GetServerSideProps<
+export const getStaticProps: GetStaticProps<
   ExperiencesPageProps
 > = async () => {
   try {
-    const experiences = await getExperiences();
+    const experiences = JSON.parse(
+      JSON.stringify(
+        (
+          await (await getDb())
+            .collection("experiences")
+            .find<ExperienceType>({}, {})
+            .toArray()
+        ).reverse()
+      )
+    );
+
     if (experiences) {
       return {
         props: {
           experiences,
         },
+        revalidate: 1 * 60 * 60 * 24 * 7,
       };
     } else {
       return {

@@ -1,4 +1,4 @@
-import { BlogProps } from "../../utils/interfaces/blog-interfaces";
+import type { BlogProps } from "../../utils/interfaces/blog-interfaces";
 import { Article } from ".";
 
 const Blog: React.FC<BlogProps> = ({ articles }) => {

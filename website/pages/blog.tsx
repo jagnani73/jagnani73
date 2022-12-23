@@ -1,9 +1,8 @@
 import { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 
+import type { BlogPageProps } from "../utils/interfaces/blog-interfaces";
 import { Blog } from "../components/blog";
-import { getBlogs } from "../utils/services/rest";
-import { BlogPageProps } from "../utils/interfaces/blog-interfaces";
 
 const BlogPage: NextPage<BlogPageProps> = ({ articles }) => {
   return (
@@ -21,7 +20,12 @@ export default BlogPage;
 
 export const getStaticProps: GetStaticProps<BlogPageProps> = async () => {
   try {
-    const articles = await getBlogs();
+    const { items: articles } = await (
+      await fetch(
+        "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@jagnani73"
+      )
+    ).json();
+
     if (articles) {
       return {
         revalidate: 1 * 60 * 60 * 24 * 7 * 4,

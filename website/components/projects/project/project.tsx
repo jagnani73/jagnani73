@@ -1,4 +1,4 @@
-import { ProjectType } from "../../../utils/interfaces/shared-interfaces";
+import type { ProjectType } from "../../../utils/interfaces/shared-interfaces";
 import { Project } from "../../shared";
 
 const ProjectComponent: React.FC<ProjectType> = ({ ...project }) => {

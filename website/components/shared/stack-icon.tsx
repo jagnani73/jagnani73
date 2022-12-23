@@ -1,5 +1,5 @@
+import type { StackIconProps } from "../../utils/interfaces/projects-interface";
 import { STACK_NAMES } from "../../utils/constants/shared-constants";
-import { StackIconProps } from "../../utils/interfaces/projects-interface";
 import {
   BootstrapLogo,
   CLogo,

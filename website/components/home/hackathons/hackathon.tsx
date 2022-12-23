@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { ROUTES } from "../../../utils/constants/shared-constants";
 
-import { HackathonProps } from "../../../utils/interfaces/home-interfaces";
+import type { HackathonProps } from "../../../utils/interfaces/home-interfaces";
+import { ROUTES } from "../../../utils/constants/shared-constants";
 
 const Hackathon: React.FC<HackathonProps> = (hackathon) => {
   return (

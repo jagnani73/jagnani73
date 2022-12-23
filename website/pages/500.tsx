@@ -10,6 +10,8 @@ const ServerError: NextPage = () => {
 
   useEffect(() => {
     setTimeout(() => push(ROUTES.HOME), 5000);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

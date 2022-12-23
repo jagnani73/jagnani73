@@ -1,5 +1,5 @@
+import type { LinkIconProps } from "../../utils/interfaces/projects-interface";
 import { LINKS_NAMES } from "../../utils/constants/shared-constants";
-import { LinkIconProps } from "../../utils/interfaces/projects-interface";
 import { BrowserLogo, GitHubLogo, NPMLogo } from "../../utils/logos";
 
 const LinkIcon: React.FC<LinkIconProps> = ({ name }) => {
