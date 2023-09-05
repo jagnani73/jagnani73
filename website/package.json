@@ -8,7 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "github-calendar": "^2.2.9",
     "mongodb": "^3.6.10",
     "next": "^12.1.6",
     "next-connect": "^0.12.2",
@@ -16,7 +15,9 @@
     "react-calendly": "^4.0.1",
     "react-dom": "^18.1.0",
     "react-easy-marquee": "^1.2.4",
+    "react-github-calendar": "^4.0.1",
     "react-responsive-carousel": "^3.2.23",
+    "react-tooltip": "^5.21.1",
     "yup": "^0.32.9"
   },
   "devDependencies": {
