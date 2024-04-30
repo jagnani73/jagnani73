@@ -9,7 +9,6 @@ export enum ROUTES {
   EXPERIENCES = "/experiences",
   PROJECTS = "/projects",
   CONTACT = "/contact",
-  BLOG = "/blog",
   NOT_FOUND = "/404",
   ISR = "/500",
 }
@@ -59,7 +58,6 @@ export const NAVBAR_ROUTES: NavbarRoutes[] = [
   { href: ROUTES.EXPERIENCES, name: "Experiences", external: false },
   { href: ROUTES.PROJECTS, name: "Projects", external: false },
   { href: ROUTES.CONTACT, name: "Contact", external: false },
-  { href: ROUTES.BLOG, name: "Blog", external: false },
 ];
 
 export const FOOTER_ROUTES: FooterRoutes[] = [
