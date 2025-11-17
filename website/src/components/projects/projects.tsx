@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import type { ProjectsProps } from "../../utils/interfaces/shared-interfaces";
-import { Project } from "../shared";
-import { ROUTES } from "../../utils/constants/shared-constants";
+import type { ProjectsProps } from "@/utils/types/projects.types";
+import { Project } from "@/components/shared";
+import { ROUTES } from "@/utils/constants/shared-constants";
 
-const Projects: React.FC<ProjectsProps> = ({ projects }) => {
+export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   return (
     <section className="px-10 lg:px-0 w-full lg:w-10/12 mx-auto mt-28 lg:mt-48">
       <h1>Projects</h1>
@@ -25,7 +25,7 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
       <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-8">
         {projects.map((project) => (
           <Link
-            key={project._id}
+            key={project.slug}
             href={`${ROUTES.PROJECTS}/${project.slug}`}
             className="md:w-10/12 mx-auto mt-10 md:mt-20"
           >
@@ -36,6 +36,3 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
     </section>
   );
 };
-
-export default Projects;
-

@@ -1,5 +1,5 @@
-import type { StackIconProps } from "../../utils/interfaces/projects-interface";
-import { STACK_NAMES } from "../../utils/constants/shared-constants";
+import type { StackIconProps } from "@/utils/types/projects.types";
+import { STACK_NAMES } from "@/utils/constants/shared-constants";
 import {
   BootstrapLogo,
   CLogo,
@@ -24,9 +24,9 @@ import {
   TailwindLogo,
   TypescriptLogo,
   VueLogo,
-} from "../../utils/logos";
+} from "@/utils/logos";
 
-const StackIcon: React.FC<StackIconProps> = ({ name }) => {
+export const StackIcon: React.FC<StackIconProps> = ({ name }) => {
   switch (name) {
     case STACK_NAMES.BOOTSTRAP:
       return <BootstrapLogo />;
@@ -78,6 +78,3 @@ const StackIcon: React.FC<StackIconProps> = ({ name }) => {
       return <></>;
   }
 };
-
-export default StackIcon;
-

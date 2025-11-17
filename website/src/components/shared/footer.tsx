@@ -1,15 +1,15 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import SocialIcon from "./social-icon";
-import { CoffeeIcon } from "../../utils/icons";
+import { SocialIcon } from ".";
+import { CoffeeIcon } from "@/utils/icons";
 import {
   FOOTER_ROUTES,
   SOCIALS_ROUTES,
-} from "../../utils/constants/shared-constants";
-import { NextLogo } from "../../utils/logos";
+} from "@/utils/constants/shared-constants";
+import { NextLogo } from "@/utils/logos";
 
-const Footer: React.FC = () => {
+export const Footer: React.FC = () => {
   return (
     <footer className="bg-jet mt-8">
       <div className="w-full p-10 pb-4 lg:w-10/12 mx-auto">
@@ -82,6 +82,3 @@ const Footer: React.FC = () => {
     </footer>
   );
 };
-
-export default Footer;
-

@@ -1,6 +1,6 @@
-import { HamburgerIcon } from "../../utils/icons";
+import { HamburgerIcon } from "@/utils/icons";
 
-const About: React.FC = () => {
+export const About: React.FC = () => {
   return (
     <section className="px-10 lg:px-0 w-full lg:w-10/12 mx-auto mt-20 lg:mt-40">
       <h1>About</h1>
@@ -42,6 +42,3 @@ const About: React.FC = () => {
     </section>
   );
 };
-
-export default About;
-

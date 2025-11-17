@@ -1,16 +1,13 @@
 import { STACK_NAMES } from "../constants/shared-constants";
-import {
-  ExperienceType,
-  MongoDBDefaults,
-  ProjectType,
-} from "./shared-interfaces";
+import { ExperienceType } from "./experiences.types";
+import { ProjectType } from "./projects.types";
 
 export interface StackType {
   name: STACK_NAMES;
-  logo: JSX.Element;
+  logo: React.ReactNode;
 }
 
-export interface HackathonProps extends MongoDBDefaults {
+export interface HackathonType {
   name: string;
   organizer: string;
   award: string;
@@ -23,34 +20,33 @@ export interface HackathonProps extends MongoDBDefaults {
 }
 
 export interface HackathonsProps {
-  hackathons: HackathonProps[];
+  hackathons: HackathonType[];
 }
 
-export interface CertificationProps extends MongoDBDefaults {
+export interface CertificationType {
   name: string;
   organization: string;
   validity: string;
 }
 
 export interface CertificationsProps {
-  certifications: CertificationProps[];
+  certifications: CertificationType[];
 }
 
-export interface ResumeProps extends MongoDBDefaults {
+export interface ResumeType {
   preview: string;
   resume: string;
   date: string;
 }
 
 export interface ResumesProps {
-  resumes: ResumeProps[];
+  resumes: ResumeType[];
 }
 
 export interface HomePageProps {
   experiences: ExperienceType[];
   projects: ProjectType[];
-  hackathons: HackathonProps[];
-  certifications: CertificationProps[];
-  resumes: ResumeProps[];
+  hackathons: HackathonType[];
+  certifications: CertificationType[];
+  resumes: ResumeType[];
 }
-

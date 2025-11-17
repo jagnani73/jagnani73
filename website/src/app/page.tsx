@@ -1,3 +1,4 @@
+import { NextPage } from "next";
 import {
   Hero,
   About,
@@ -7,14 +8,19 @@ import {
   Hackathons,
   Certifications,
   Resumes,
-} from "../components/home";
-import { Contact } from "../components/shared";
-import { experiences, projects, hackathons, certifications, resumes } from "../../data";
+} from "@/components/home";
+import { Contact } from "@/components/shared";
+import {
+  experiences,
+  projects,
+  hackathons,
+  certifications,
+  resumes,
+} from "@/utils/constants/data";
 
-export default function HomePage() {
-  // Filter featured items
-  const featuredExperiences = experiences.filter(exp => exp.featured).reverse().slice(0, 3);
-  const featuredProjects = projects.filter(proj => proj.featured).reverse().slice(0, 4);
+const HomePage: NextPage = () => {
+  const featuredExperiences = experiences.slice(0, 3);
+  const featuredProjects = projects.slice(0, 4);
 
   return (
     <>
@@ -22,11 +28,13 @@ export default function HomePage() {
       <About />
       <Stack />
       <Experiences experiences={featuredExperiences} />
-      <Hackathons hackathons={hackathons.reverse()} />
+      <Hackathons hackathons={hackathons} />
       <Projects projects={featuredProjects} />
-      <Certifications certifications={certifications.reverse()} />
-      <Resumes resumes={resumes.reverse()} />
+      <Certifications certifications={certifications} />
+      <Resumes resumes={resumes} />
       <Contact />
     </>
   );
-}
+};
+
+export default HomePage;

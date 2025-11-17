@@ -1,3 +1,2 @@
-export { default as Projects } from "./projects";
-export { default as ProjectComponent } from "./project";
-
+export { Projects } from "./projects";
+export { Project } from "./project";

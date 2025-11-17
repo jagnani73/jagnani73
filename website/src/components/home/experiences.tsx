@@ -1,10 +1,9 @@
 import Link from "next/link";
+import { ROUTES } from "@/utils/constants/shared-constants";
+import { Experience } from "@/components/shared";
+import type { ExperiencesProps } from "@/utils/types/experiences.types";
 
-import type { ExperiencesProps } from "../../utils/interfaces/shared-interfaces";
-import { ROUTES } from "../../utils/constants/shared-constants";
-import { Experience } from "../shared";
-
-const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
+export const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
   return (
     <section className="px-10 lg:px-0 w-full lg:w-10/12 mx-auto mt-20 lg:mt-40">
       <h1>Experiences</h1>
@@ -22,8 +21,8 @@ const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
 
       <div className="grid grid-cols-1 xl:grid-cols-3 mt-8 lg:mt-20">
         {experiences?.map((experience) => (
-          <div key={experience._id} className="w-full mb-12 last:mb-0">
-            <Experience primary {...experience} />
+          <div key={experience.org} className="w-full mb-12 last:mb-0">
+            <Experience primary={false} experience={experience} />
           </div>
         ))}
       </div>
@@ -37,6 +36,3 @@ const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
     </section>
   );
 };
-
-export default Experiences;
-

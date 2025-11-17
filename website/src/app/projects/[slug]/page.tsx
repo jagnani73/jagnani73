@@ -1,16 +1,14 @@
-import type { Metadata } from "next";
+import type { Metadata, NextPage } from "next";
 import { notFound } from "next/navigation";
-import { ProjectComponent } from "../../../components/projects";
-import { projects } from "../../../../data";
+import { ProjectComponent } from "@/components/projects";
+import { projects } from "@/utils/constants/data";
 
-// Generate static params for all projects
 export async function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
   }));
 }
 
-// Generate metadata for each project
 export async function generateMetadata({
   params,
 }: {
@@ -35,7 +33,11 @@ export async function generateMetadata({
   };
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
+const ProjectPage: NextPage<{
+  params: {
+    slug: string;
+  };
+}> = ({ params }) => {
   const project = projects.find((p) => p.slug === params.slug);
 
   if (!project) {
@@ -43,5 +45,6 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   }
 
   return <ProjectComponent {...project} />;
-}
+};
 
+export default ProjectPage;

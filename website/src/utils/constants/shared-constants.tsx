@@ -1,8 +1,8 @@
-import {
+import type {
   FooterRoutes,
   NavbarRoutes,
   SocialsRoutes,
-} from "../interfaces/shared-interfaces";
+} from "@/utils/types/shared.types";
 
 export enum ROUTES {
   HOME = "/",
@@ -123,4 +123,3 @@ export const SOCIALS_ROUTES: SocialsRoutes[] = [
     icon: SOCIALS_NAMES.MAIL,
   },
 ];
-
