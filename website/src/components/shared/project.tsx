@@ -7,7 +7,6 @@ import { Carousel } from "react-responsive-carousel";
 import type { ProjectProps } from "@/utils/types/projects.types";
 import { toTitleCase } from "@/utils/functions";
 import { StackIcon, LinkIcon } from ".";
-import Link from "next/link";
 
 export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
   const images = [project.preview, ...(project.images || [])];
@@ -55,16 +54,26 @@ export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
 
         <div className="flex gap-x-4">
           {project.links?.map(({ name, url }) => (
-            <Link
+            <div
               key={url}
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
+              role="link"
+              tabIndex={0}
               title={toTitleCase(name)}
-              className="w-6 md:w-8 lg:w-10 flex"
+              className="w-6 md:w-8 lg:w-10 flex cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                window.open(url, "_blank", "noopener,noreferrer");
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  window.open(url, "_blank", "noopener,noreferrer");
+                }
+              }}
             >
               <LinkIcon name={name} />
-            </Link>
+            </div>
           ))}
         </div>
       </div>

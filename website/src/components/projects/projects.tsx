@@ -29,7 +29,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
             href={`${ROUTES.PROJECTS}/${project.slug}`}
             className="md:w-10/12 mx-auto mt-10 md:mt-20"
           >
-            <Project primary {...project} />
+            <Project primary={false} project={project} />
           </Link>
         ))}
       </div>

@@ -41,6 +41,7 @@ export enum STACK_NAMES {
 export enum LINKS_NAMES {
   GITHUB = "github",
   NPM = "npm",
+  WEBSITE = "website",
 }
 
 export enum SOCIALS_NAMES {
