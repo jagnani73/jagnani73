@@ -25,7 +25,7 @@ export const Experience: React.FC<ExperienceProps> = ({
         )}
 
         {!primary && (
-          <span className="text-xs font-bold bg-steel-blue w-fit px-2 py-1 rounded-sm text-center whitespace-nowrap">
+          <span className="text-xs font-bold bg-steel-blue w-fit px-2 py-1 rounded-sm text-center whitespace-nowrap capitalize">
             {experience.tag}
           </span>
         )}
