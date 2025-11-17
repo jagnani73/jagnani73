@@ -656,6 +656,68 @@ export const projects: ProjectType[] = [
 
 export const hackathons: HackathonType[] = [
   {
+    name: "ETHGlobal New Delhi 2025",
+    organizer: "ETHGlobal",
+    award: "Best use of Fluence Virtual Servers - Track Prize",
+    location: "New Delhi",
+    duration: "September 2025",
+    project: {
+      name: "flux",
+      slug: "flux",
+    },
+  },
+  {
+    name: "ETHGlobal Prague 2025",
+    organizer: "ETHGlobal",
+    award: "Blockscout Protocol Pool Prize - Track Prize",
+    location: "Prague",
+    duration: "May 2025",
+    project: {
+      name: "daoscape",
+      slug: "daoscape",
+    },
+  },
+  {
+    name: "ETHOnline 2024",
+    organizer: "ETHGlobal",
+    award: "Sign Protocol Pool Prize - Track Prize",
+    location: "Online",
+    duration: "September 2024",
+    project: {
+      name: "dewls",
+      slug: "dewls",
+    },
+  },
+  {
+    name: "Unfold 2023",
+    organizer: "CoinDCX",
+    award: "Best use of Router - Track Prize",
+    location: "Online",
+    duration: "November 2023",
+    project: {
+      name: "lenden",
+      slug: "lenden",
+    },
+  },
+  {
+    name: "MOZOHACK 4.0",
+    organizer: "SRMZKILLA",
+    award: "Mentor",
+    location: "Online",
+    duration: "February 2023",
+  },
+  {
+    name: "Participation",
+    organizer: "Unknown",
+    award: "Participation",
+    location: "Online",
+    duration: "February 2022",
+    project: {
+      name: "delinzk",
+      slug: "delinzk",
+    },
+  },
+  {
     name: "HackRx 3.0",
     organizer: "Bajaj Finserv",
     award: "Dark Horse - Power & Pace",
@@ -750,7 +812,7 @@ export const certifications: CertificationType[] = [
   {
     name: "AWS Certified Cloud Practioner",
     organization: "Amazon Web Services",
-    validity: "September 2021 - September 2024",
+    validity: "September 2021 - 2024",
   },
   {
     name: "Fundamentals of Red Hat Enterprise Linux",
