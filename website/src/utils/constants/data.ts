@@ -12,7 +12,7 @@ export const experiences: ExperienceType[] = [
     logo: "https://res.cloudinary.com/jagnani73/image/upload/v1714483586/jagnani73/experiences/covalent_klcbpk.png",
     description:
       "CovalentHQ is a blockchain data provider offering comprehensive and transparent access to blockchain data in a unified API. I was given the ownership of a range of open-source products called GoldRush as a way of increasing the API consumption. GoldRush includes a GoldRush Decoder, which is expandable for contributors to add decoders that convert raw log events to structured, human-readable data. GoldRush also includes a GoldRush Kit which is a 'Smart Component' UI library for plug-n-play visualized data of over 200 chains.",
-    designation: "Software Engineer",
+    designation: "Product Engineer",
     duration: "June 2023 - Present",
     org: "CovalentHQ",
     slug: "covalent",
@@ -57,7 +57,7 @@ export const experiences: ExperienceType[] = [
     org: "wealth42",
     url: "https://wealth42.com",
     designation: "Software Development Intern",
-    tag: "intership",
+    tag: "internship",
     description:
       "wealth42 was a delightful experience. It is a FinTech firm. I was the lead developer in over three projects, including the main website. I gained insights on class-based architectural systems, form implementation of directed graphs, and mail scraping. The main website was live and released features rolling. This made me develop things on a direct user feedback system. We had implemented our tracking that enhanced this aspect.",
     duration: "August 2021 - December 2021",
