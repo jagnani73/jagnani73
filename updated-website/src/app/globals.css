@@ -1,26 +1,157 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Custom Colors */
+  --color-eerie-black: #232323;
+  --color-jet: #323232;
+  --color-cultured: #FAFAFA;
+  --color-steel-blue: #4688B4;
+  --color-light-green: #7AE485;
+  --color-middle-red: #E28B6F;
+  
+  /* Font */
+  --font-sans: var(--font-nunito-sans);
+  
+  /* Extended Max Width */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-5: 1.25rem;
+  --spacing-6: 1.5rem;
+  --spacing-7: 1.75rem;
+  --spacing-8: 2rem;
+  --spacing-10: 2.5rem;
+  --spacing-12: 3rem;
+  --spacing-14: 3.5rem;
+  --spacing-16: 4rem;
+  --spacing-18: 4.5rem;
+  --spacing-20: 5rem;
+  --spacing-22: 5.5rem;
+  --spacing-24: 6rem;
+  --spacing-26: 6.5rem;
+  --spacing-28: 7rem;
+  --spacing-30: 7.5rem;
+  --spacing-32: 8rem;
+  --spacing-64: 16rem;
+  --spacing-xs: 20rem;
+  --spacing-sm: 24rem;
+  --spacing-md: 28rem;
+  --spacing-lg: 32rem;
+  --spacing-xl: 36rem;
+  --spacing-2xl: 42rem;
+  --spacing-3xl: 48rem;
+  --spacing-4xl: 56rem;
+  --spacing-5xl: 64rem;
+  --spacing-6xl: 72rem;
+  --spacing-7xl: 80rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-eerie-black);
+  color: var(--color-cultured);
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1.125rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 1.875rem;
+  }
+  h2 {
+    font-size: 1.875rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  h4 {
+    font-size: 1.25rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+  h2 {
+    font-size: 2.25rem;
+  }
+  h3 {
+    font-size: 1.875rem;
+  }
+  h4 {
+    font-size: 1.5rem;
+  }
+}
+
+a,
+input,
+textarea,
+select,
+button {
+  outline: none;
+}
+
+a:focus,
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+  outline: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 0.125rem;
+  height: 0.125rem;
+}
+
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb:active,
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-cultured);
+  border: none;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-track:hover,
+::-webkit-scrollbar-track:active {
+  background: var(--color-jet);
+  border: none;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
