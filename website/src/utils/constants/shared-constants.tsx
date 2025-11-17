@@ -1,8 +1,4 @@
-import type {
-  FooterRoutes,
-  NavbarRoutes,
-  SocialsRoutes,
-} from "@/utils/types/shared.types";
+import type { SocialsRoutes } from "@/utils/types/shared.types";
 
 export enum ROUTES {
   HOME = "/",
@@ -52,50 +48,6 @@ export enum SOCIALS_NAMES {
   LINKEDIN = "linkedin",
   TWITTER = "twitter",
 }
-
-export const NAVBAR_ROUTES: NavbarRoutes[] = [
-  { href: ROUTES.HOME, name: "Home", external: false },
-  { href: ROUTES.EXPERIENCES, name: "Experiences", external: false },
-  { href: ROUTES.PROJECTS, name: "Projects", external: false },
-  { href: ROUTES.CONTACT, name: "Contact", external: false },
-];
-
-export const FOOTER_ROUTES: FooterRoutes[] = [
-  {
-    title: "Sitemap",
-    routes: [
-      { href: ROUTES.HOME, name: "Home", external: false },
-      { href: ROUTES.EXPERIENCES, name: "Experiences", external: false },
-      { href: ROUTES.PROJECTS, name: "Projects", external: false },
-      { href: ROUTES.CONTACT, name: "Contact", external: false },
-    ],
-  },
-  {
-    title: "Featured Projects",
-    routes: [
-      {
-        href: `${ROUTES.PROJECTS}/marquee`,
-        name: "react-easy-marquee",
-        external: false,
-      },
-      {
-        href: `${ROUTES.PROJECTS}/hospitatva`,
-        name: "Hospitatva",
-        external: false,
-      },
-      {
-        href: `${ROUTES.PROJECTS}/shikshak`,
-        name: "Shikshak",
-        external: false,
-      },
-      {
-        href: `${ROUTES.PROJECTS}/contracts`,
-        name: "Contracts",
-        external: false,
-      },
-    ],
-  },
-];
 
 export const SOCIALS_ROUTES: SocialsRoutes[] = [
   {

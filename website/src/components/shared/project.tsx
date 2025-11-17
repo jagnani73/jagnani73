@@ -19,6 +19,7 @@ export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
           infiniteLoop
           interval={5000}
           showStatus={false}
+          showThumbs={false}
           showArrows={false}
           swipeable
           emulateTouch

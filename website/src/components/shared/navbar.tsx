@@ -1,14 +1,37 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-
-import { NAVBAR_ROUTES, ROUTES } from "@/utils/constants/shared-constants";
+import { ROUTES } from "@/utils/constants/shared-constants";
+import type { NavbarRoutes } from "@/utils/types/shared.types";
 import { FoldIcon } from "@/utils/icons";
 
 export const Navbar: React.FC = () => {
+  const NAVBAR_ROUTES: NavbarRoutes[] = [
+    {
+      href: ROUTES.HOME,
+      name: "Home",
+      external: false,
+    },
+    {
+      href: ROUTES.EXPERIENCES,
+      name: "Experiences",
+      external: false,
+    },
+    {
+      href: ROUTES.PROJECTS,
+      name: "Projects",
+      external: false,
+    },
+    {
+      href: ROUTES.CONTACT,
+      name: "Contact",
+      external: false,
+    },
+  ];
+
   const pathname = usePathname();
 
   const [navButton, setNavButton] = useState<boolean>(true);
@@ -16,33 +39,56 @@ export const Navbar: React.FC = () => {
   const [dropMenu, setDropMenu] = useState<boolean>(false);
   const [scrollY, setScrollY] = useState<number>(0);
 
+  const scrollHandlerRef = useRef<(() => void) | null>(null);
+  const scrollVisibilityHandlerRef = useRef<(() => void) | null>(null);
+
   useEffect(() => {
-    if (window.innerWidth <= 1024) {
-      setNavButton(true);
-    } else {
-      setNavButton(false);
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > (pathname === "/" ? 150 : 50)) setNavButton(true);
-        else setNavButton(false);
-      });
-    }
+    const handleScroll = () => {
+      if (window.scrollY > (pathname === "/" ? 150 : 50)) {
+        setNavButton(true);
+      } else {
+        setNavButton(false);
+      }
+    };
+
+    queueMicrotask(() => {
+      if (window.innerWidth <= 1024) {
+        setNavButton(true);
+      } else {
+        setNavButton(false);
+        scrollHandlerRef.current = handleScroll;
+        window.addEventListener("scroll", handleScroll);
+      }
+    });
 
     return () => {
-      window.removeEventListener("scroll", () => {});
+      if (scrollHandlerRef.current) {
+        window.removeEventListener("scroll", scrollHandlerRef.current);
+        scrollHandlerRef.current = null;
+      }
     };
   }, [pathname]);
 
   useEffect(() => {
-    if (window.innerWidth <= 1024) {
-      window.addEventListener("scroll", () => {
-        if (window.scrollY >= scrollY) setNavButtonVisible(false);
-        else setNavButtonVisible(true);
+    const handleScrollVisibility = () => {
+      if (window.scrollY >= scrollY) setNavButtonVisible(false);
+      else setNavButtonVisible(true);
 
-        setScrollY(window.scrollY);
-      });
+      setScrollY(window.scrollY);
+    };
+
+    if (window.innerWidth <= 1024) {
+      scrollVisibilityHandlerRef.current = handleScrollVisibility;
+      window.addEventListener("scroll", handleScrollVisibility);
 
       return () => {
-        window.removeEventListener("scroll", () => {});
+        if (scrollVisibilityHandlerRef.current) {
+          window.removeEventListener(
+            "scroll",
+            scrollVisibilityHandlerRef.current
+          );
+          scrollVisibilityHandlerRef.current = null;
+        }
       };
     }
   }, [scrollY]);
