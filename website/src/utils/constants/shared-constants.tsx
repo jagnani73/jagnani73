@@ -1,10 +1,7 @@
-import type { SocialsRoutes } from "@/utils/types/shared.types";
-
 export enum ROUTES {
   HOME = "/",
   EXPERIENCES = "/experiences",
   PROJECTS = "/projects",
-  CONTACT = "/contact",
   NOT_FOUND = "/404",
 }
 
@@ -48,31 +45,3 @@ export enum SOCIALS_NAMES {
   LINKEDIN = "linkedin",
   TWITTER = "twitter",
 }
-
-export const SOCIALS_ROUTES: SocialsRoutes[] = [
-  {
-    href: "https://github.com/jagnani73/",
-    external: true,
-    icon: SOCIALS_NAMES.GITHUB,
-  },
-  {
-    href: "https://twitter.com/jagnani73/",
-    external: true,
-    icon: SOCIALS_NAMES.TWITTER,
-  },
-  {
-    href: "https://www.instagram.com/jagnani73/",
-    external: true,
-    icon: SOCIALS_NAMES.INSTAGRAM,
-  },
-  {
-    href: "https://www.linkedin.com/in/yashvardhan-jagnani/",
-    external: true,
-    icon: SOCIALS_NAMES.LINKEDIN,
-  },
-  {
-    href: "mailto:yashjagnani73@gmail.com",
-    external: true,
-    icon: SOCIALS_NAMES.MAIL,
-  },
-];

@@ -49,21 +49,20 @@ export const Hero: React.FC = () => {
           in continuous learning.
         </p>
 
-        <div className="mx-auto w-11/12 mt-8 overflow-x-auto">
-          <div className="mx-auto min-w-[844px]">
-            <Tooltip id="react-tooltip" />
-            <GitHubCalendar
-              username="jagnani73"
-              colorScheme="dark"
-              fontSize={12}
-              renderBlock={(block, activity) =>
-                cloneElement(block, {
-                  "data-tooltip-id": "react-tooltip",
-                  "data-tooltip-html": `${activity.count} activities on ${activity.date}`,
-                })
-              }
-            />
-          </div>
+        <div className="mx-auto mt-8 overflow-x-auto">
+          <Tooltip id="react-tooltip" />
+
+          <GitHubCalendar
+            username="jagnani73"
+            colorScheme="dark"
+            fontSize={12}
+            renderBlock={(block, activity) =>
+              cloneElement(block, {
+                "data-tooltip-id": "react-tooltip",
+                "data-tooltip-html": `${activity.count} activities on ${activity.date}`,
+              })
+            }
+          />
         </div>
       </div>
     </section>

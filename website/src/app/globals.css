@@ -4,14 +4,14 @@
   /* Custom Colors */
   --color-eerie-black: #232323;
   --color-jet: #323232;
-  --color-cultured: #FAFAFA;
-  --color-steel-blue: #4688B4;
-  --color-light-green: #7AE485;
-  --color-middle-red: #E28B6F;
-  
+  --color-cultured: #fafafa;
+  --color-steel-blue: #4688b4;
+  --color-light-green: #7ae485;
+  --color-middle-red: #e28b6f;
+
   /* Font */
   --font-sans: var(--font-nunito-sans);
-  
+
   /* Extended Max Width */
   --spacing-1: 0.25rem;
   --spacing-2: 0.5rem;
