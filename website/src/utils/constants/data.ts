@@ -294,6 +294,364 @@ export const projects: ProjectType[] = [
       "https://res.cloudinary.com/jagnani73/image/upload/v1714473655/jagnani73/projects/githubsrm/Screenshot_from_2022-07-03_00-08-58_ucfgvx.png",
     ],
   },
+  {
+    slug: "soulless-citadel",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473774/jagnani73/projects/soulless-citadel/Screenshot_from_2022-07-03_03-10-37_lbh90h.png",
+    name: "The Soulless Citadel",
+    tag: "website",
+    description:
+      "The Soulless Citadel was a client-based project created during my tenure in Quinence. The project serves as an NFT Marketplace on the Zilliqa blockchain. I developed the website's initial versions. I got an insight into RPC calls, wallet authentication and, in general, what a blockchain is during this project.",
+    links: [
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://soullesscitadel.com/",
+      },
+    ],
+    stack: [STACK_NAMES.NEXT, STACK_NAMES.TAILWIND_CSS, STACK_NAMES.TYPESCRIPT],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473765/jagnani73/projects/soulless-citadel/Screenshot_from_2022-07-03_03-11-00_hnikmb.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473768/jagnani73/projects/soulless-citadel/Screenshot_from_2022-07-03_03-12-06_ydadq7.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473771/jagnani73/projects/soulless-citadel/Screenshot_from_2022-07-03_03-12-30_cagse6.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473780/jagnani73/projects/soulless-citadel/Screenshot_from_2022-07-03_03-11-13_igmule.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473777/jagnani73/projects/soulless-citadel/Screenshot_from_2022-07-03_03-11-42_mtxhzk.png",
+    ],
+  },
+  {
+    slug: "wealth42",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473680/jagnani73/projects/wealth42/Screenshot_from_2022-07-03_03-01-26_ryqnkd.png",
+    name: "wealth42",
+    tag: "website",
+    description:
+      "wealth42 is a fintech company. The project initially started as an outsourced project given to SRMKZILLA. I was working on their landing application as a mentor for the recruits. Eventually, I got hired as a Software Development Intern in wealth42 and continued laying the foundation of this application. I implemented class-based directed graph forms and complex validation states in the project, optimising it for the end-user. I also created a custom user tracking system for the project.",
+    links: [
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://wealth42.com/",
+      },
+    ],
+    stack: [
+      STACK_NAMES.NODE,
+      STACK_NAMES.NEXT,
+      STACK_NAMES.TAILWIND_CSS,
+      STACK_NAMES.TYPESCRIPT,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473672/jagnani73/projects/wealth42/Screenshot_from_2022-07-03_03-01-38_fomvhg.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473680/jagnani73/projects/wealth42/Screenshot_from_2022-07-03_03-03-23_jqqmqw.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473675/jagnani73/projects/wealth42/Screenshot_from_2022-07-03_03-03-44_r0v9mc.png",
+    ],
+  },
+  {
+    slug: "stories",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473752/jagnani73/projects/stories/1_1_rnugym.png",
+    name: "Stories",
+    tag: "website",
+    description:
+      "Stories is a mental health aid hack. It enables a user to choose its 'worries' and connect and chat with people of the same concerns for random advice seeking or release of frustration. The messages are protected with a censor layer in case of a toxic message. I developed its complete frontend, including the SocketIO-based chat application and admin panel.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/stories",
+      },
+    ],
+    stack: [
+      STACK_NAMES.REACT,
+      STACK_NAMES.TAILWIND_CSS,
+      STACK_NAMES.TYPESCRIPT,
+      STACK_NAMES.NODE,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473758/jagnani73/projects/stories/2_1_wwqysl.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473761/jagnani73/projects/stories/3_1_xlmyej.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473755/jagnani73/projects/stories/4_1_ylfthn.png",
+    ],
+  },
+  {
+    slug: "fren",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473741/jagnani73/projects/fren/screenshot-client_1_ftnrvo.png",
+    name: "Fren",
+    tag: "website",
+    description:
+      "Fren is a hack that aims to bridge the gap between a therapist and their client. It is a note-taking application for journals and diary entries. The notes taken in it by a client are not shown to the therapist; instead, an analysis of the note, usage of words and terminologies and more. I built its complete frontend, including the therapist panel.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/fren",
+      },
+    ],
+    stack: [
+      STACK_NAMES.REACT,
+      STACK_NAMES.TAILWIND_CSS,
+      STACK_NAMES.TYPESCRIPT,
+      STACK_NAMES.NODE,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473737/jagnani73/projects/fren/screenshot-therapist_1_xy2335.png",
+    ],
+  },
+  {
+    slug: "bharat-beacon",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473617/jagnani73/projects/bharat-beacon/image_i4bbih.png",
+    name: "Bharat Beacon",
+    tag: "website",
+    description:
+      "BharatBeacon is a hack that was created for disaster management. It covers preemptive measures, mid-crisis solutions and post-crisis optimization. It is an IoT solution with a portal that is the Governments end. It showed the location of the distress calls on a map with information. I worked on the Government portal using MapBox APIs and HTTP Polling.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/BharatBeacon",
+      },
+    ],
+    stack: [
+      STACK_NAMES.HTML,
+      STACK_NAMES.CSS,
+      STACK_NAMES.JAVASCRIPT,
+      STACK_NAMES.NODE,
+    ],
+  },
+  {
+    slug: "aaruush-links",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473734/jagnani73/projects/aaruush-links/Screenshot_from_2022-07-03_03-48-15_q2grbw.png",
+    name: "AARUUSH Links",
+    tag: "website",
+    description:
+      "AARUUSH is an annual student-led Techno-Management fest held in SRMIST. The fest has numerous events, workshops, competitions, etc., conducted across the year via all domains. AARUUSH Links was a project aiming at a cumulation for all the digital presence of these links. It also has an admin panel to add a category-specific event. I created the whole frontend of this project, including the admin panel which opens with an easter egg.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/aaruush-links",
+      },
+    ],
+    stack: [STACK_NAMES.REACT, STACK_NAMES.NODE, STACK_NAMES.BOOTSTRAP],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473731/jagnani73/projects/aaruush-links/Screenshot_from_2022-07-03_03-51-34_uxyjk0.png",
+    ],
+  },
+  {
+    slug: "ossmosis",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473727/jagnani73/projects/ossmosis/Screenshot_from_2022-07-03_02-53-55_plyc7y.png",
+    name: "OSSmosis",
+    tag: "microsite",
+    description:
+      "OSSmosis was the first event conducted by GitHub Community SRM. It was an event that provided a platform for the participants to showcase their Open Source Software. The event required a Description, Rules, and Criteria section and a registration portal. The project taught me VueJS. The deployment was fully static as the project was a microsite.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/ossmosis",
+      },
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://ossmosis.jagnani73.com/",
+      },
+    ],
+    stack: [STACK_NAMES.VUE, STACK_NAMES.TAILWIND_CSS],
+  },
+  {
+    slug: "frame-fantasy",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473620/jagnani73/projects/frame-fantasy/Screenshot_from_2022-07-03_02-08-32_asnuhj.png",
+    name: "Frame Fantasy",
+    tag: "website",
+    description:
+      "Frame Fantasy is a client freelance project. It is a gallery website for a professional photographer. The requirements stated a gallery page for all the types of photos there are along with contact details for the first version. I used Cloudinary as an images CMS for the same. The second version will include a backend with notifying services for the Contact Me page.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/frame-fantasy",
+      },
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://framefantasy.co.in/",
+      },
+    ],
+    stack: [STACK_NAMES.NEXT, STACK_NAMES.TAILWIND_CSS, STACK_NAMES.TYPESCRIPT],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473824/jagnani73/projects/frame-fantasy/Screenshot_from_2022-07-03_02-08-56_lmmccy.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473824/jagnani73/projects/frame-fantasy/Screenshot_from_2022-07-03_02-08-56_lmmccy.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473826/jagnani73/projects/frame-fantasy/Screenshot_from_2022-07-03_02-10-12_n1b7xh.png",
+    ],
+  },
+  {
+    slug: "sarthaka",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473637/jagnani73/projects/sarthaka/Screenshot_from_2022-07-03_02-44-20_mtlumg.png",
+    name: "Sarthaka Foundation",
+    tag: "website",
+    description:
+      "Sarthaka Foundation is an NGO. They wanted a presentation of all their work and events, and drives. This project was one of my first with NextJS, TypeScript and TailwindCSS. The requirements desired a complex paywall as well. I learned a lot of new things creating this project.",
+    links: [
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://sarthakafoundation.ngo",
+      },
+    ],
+    stack: [
+      STACK_NAMES.NODE,
+      STACK_NAMES.NEXT,
+      STACK_NAMES.TAILWIND_CSS,
+      STACK_NAMES.TYPESCRIPT,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473638/jagnani73/projects/sarthaka/Screenshot_from_2022-07-03_02-44-32_rwzvsa.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473640/jagnani73/projects/sarthaka/Screenshot_from_2022-07-03_02-45-03_omntoy.png",
+    ],
+  },
+  {
+    slug: "aashma",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473830/jagnani73/projects/aashma/Screenshot_from_2022-07-03_02-25-20_shgcnb.png",
+    name: "Aashma Foundation",
+    tag: "website",
+    description:
+      "Aashma Foundation is an NGO that needed a landing website. Data Science Community SRM was in charge of that. I, under the community, laid the foundation for the static site. Their requirements were minimal, only a static page displaying a gallery and details to accept donations. Based on the requirements, I chose the vanilla stack.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/Aashma-Foundation",
+      },
+    ],
+    stack: [
+      STACK_NAMES.HTML,
+      STACK_NAMES.CSS,
+      STACK_NAMES.JAVASCRIPT,
+      STACK_NAMES.BOOTSTRAP,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473818/jagnani73/projects/aashma/Screenshot_from_2022-07-03_02-25-52_egtlwx.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473816/jagnani73/projects/aashma/Screenshot_from_2022-07-03_02-25-58_xzdgwb.png",
+    ],
+  },
+  {
+    slug: "kz-links",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473668/jagnani73/projects/kz-links/Screenshot_from_2022-07-03_01-30-02_iqiehy.png",
+    name: "KZ Links",
+    tag: "website",
+    description:
+      "KZ Links was a pure linktree adaption. It extended another project of SRMKZILLA, a URL shortener that also gave tracking statistics. It envisioned a highly customizable profile page. I was a mentor for this project. I taught and guided the recruits on how to use NextJS.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/kz-links",
+      },
+    ],
+    stack: [
+      STACK_NAMES.NEXT,
+      STACK_NAMES.NODE,
+      STACK_NAMES.TAILWIND_CSS,
+      STACK_NAMES.TYPESCRIPT,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473665/jagnani73/projects/kz-links/Screenshot_from_2022-07-03_01-23-40_a4jjod.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473661/jagnani73/projects/kz-links/Screenshot_from_2022-07-03_01-24-26_c0x4oj.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473659/jagnani73/projects/kz-links/Screenshot_from_2022-07-03_01-23-26_bief8w.png",
+    ],
+  },
+  {
+    slug: "doc-gen",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473792/jagnani73/projects/doc-gen/preview_1_kqzvim.png",
+    name: "DocGen",
+    tag: "website",
+    description:
+      "DocGen was a simple hack created under Data Science Community SRM. Its purpose is to generate images with customisable cursive text to create a 'fake assignment'. My role in the project was to guide and mentor the recruits. I, myself, got an insight on PreactJS in doing so.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/docgen",
+      },
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "http://docgen.jagnani73.com/",
+      },
+    ],
+    stack: [STACK_NAMES.PREACT, STACK_NAMES.JAVASCRIPT],
+  },
+  {
+    slug: "morelinks",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473631/jagnani73/projects/morelinks/Screenshot_from_2022-07-03_02-34-07_l0oai2.png",
+    name: "Morelinks",
+    tag: "microsite",
+    description:
+      "MoreLinks was a brainchild of the Data Science Community SRM. It was simply a Linktree adaptation with more. MoreLinks had a preview of the community's latest buzz, including their tweets, posts, blogs and more. The website was completely static, wherein I taught and mentored the recruits on the vanilla stack.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/morelinks",
+      },
+    ],
+    stack: [
+      STACK_NAMES.HTML,
+      STACK_NAMES.CSS,
+      STACK_NAMES.JAVASCRIPT,
+      STACK_NAMES.BOOTSTRAP,
+    ],
+  },
+  {
+    slug: "dscommunity",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473746/jagnani73/projects/dscommunity/Screenshot_from_2022-07-03_02-36-57_af4bix.png",
+    name: "Data Science Community",
+    tag: "website",
+    description:
+      "Data Science Community SRM was a new community in SRMIST. This website was the first instalment of their online presence. I was the only web developer in the community. This project was a public face of the community. It first was built entirely on the vanilla stack, during which I started learning ReactJS. Then migrated the whole website on ReactJS. I then eventually added a backend serving along with a NodeMailer-backed Contact-Us form.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/Data-Science-Community-SRM/Data-Science-Community-Website",
+      },
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://www.dscommunity.in/",
+      },
+    ],
+    stack: [STACK_NAMES.REACT, STACK_NAMES.BOOTSTRAP, STACK_NAMES.NODE],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473742/jagnani73/projects/dscommunity/Screenshot_from_2022-07-03_02-37-19_wwy3lr.png",
+    ],
+  },
+  {
+    slug: "iei",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473799/jagnani73/projects/iei/Screenshot_from_2022-07-03_04-13-51_mdjwqb.png",
+    name: "IEI",
+    tag: "website",
+    description:
+      "Institution of Engineers (India) or IEI of the Tamil Nadu branch had commissioned their website project to SRMKZILLA during my time there. The website was supposed to be a static frontend website for the first version. The data for the People and the Events pages was to be admin panel powered. This project was a great starter project for the full-stack recruits. I was a lead developer for the frontend (complete version 1 and partial version 2). Once the base was developed, the project was handed off to the recruits, with the original developers as mentors.",
+    links: [],
+    stack: [STACK_NAMES.NEXT, STACK_NAMES.TAILWIND_CSS, STACK_NAMES.TYPESCRIPT],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473795/jagnani73/projects/iei/Screenshot_from_2022-07-03_04-14-03_auz3xj.png",
+    ],
+  },
+  {
+    slug: "srmkzilla-hacktoberfest-21",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714473749/jagnani73/projects/srmkzilla-hacktoberfest-2021/Screenshot_from_2022-07-03_04-28-16_u1xurs.png",
+    name: "SRMKZILLA Hacktoberfest 2021",
+    tag: "microsite",
+    description:
+      "Hacktoberfest, the annual celebration of Open Source Software, is a month-long event organized by DigitalOcean. In support of Hacktoberfest, communities all around the world host mini-events that utilize an official branding kit given by provided by DigitalOcean. SRMKZILLA, in my tenure there, also hosted a mini-event. This project was a microsite developed as the information as well as registration portal. A TypeForm handled the registration form. The microsite is entirely static and built on the vanilla stack.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/srmkzilla-hacktoberfest-2021",
+      },
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://srmkzilla-hacktoberfest-2021.jagnani73.com",
+      },
+    ],
+    stack: [STACK_NAMES.HTML, STACK_NAMES.CSS, STACK_NAMES.JAVASCRIPT],
+  },
 ];
 
 export const hackathons: HackathonType[] = [

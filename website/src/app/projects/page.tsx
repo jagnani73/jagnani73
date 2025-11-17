@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const ProjectsPage: NextPage = () => {
-  return <Projects projects={projects.reverse()} />;
+  return <Projects projects={projects} />;
 };
 
 export default ProjectsPage;

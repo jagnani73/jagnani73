@@ -3,13 +3,64 @@ import Image from "next/image";
 
 import { SocialIcon } from ".";
 import { CoffeeIcon } from "@/utils/icons";
-import {
-  FOOTER_ROUTES,
-  SOCIALS_ROUTES,
-} from "@/utils/constants/shared-constants";
+import { ROUTES, SOCIALS_ROUTES } from "@/utils/constants/shared-constants";
 import { NextLogo } from "@/utils/logos";
+import type { FooterRoutes } from "@/utils/types/shared.types";
 
 export const Footer: React.FC = () => {
+  const FOOTER_ROUTES: FooterRoutes[] = [
+    {
+      title: "Sitemap",
+      routes: [
+        {
+          href: ROUTES.HOME,
+          name: "Home",
+          external: false,
+        },
+        {
+          href: ROUTES.EXPERIENCES,
+          name: "Experiences",
+          external: false,
+        },
+        {
+          href: ROUTES.PROJECTS,
+          name: "Projects",
+          external: false,
+        },
+        {
+          href: ROUTES.CONTACT,
+          name: "Contact",
+          external: false,
+        },
+      ],
+    },
+    {
+      title: "Featured Projects",
+      routes: [
+        {
+          href: `${ROUTES.PROJECTS}/marquee`,
+          name: "react-easy-marquee",
+          external: false,
+        },
+        {
+          href: `${ROUTES.PROJECTS}/hospitatva`,
+          name: "Hospitatva",
+          external: false,
+        },
+        {
+          href: `${ROUTES.PROJECTS}/shikshak`,
+          name: "Shikshak",
+          external: false,
+        },
+        {
+          href: `${ROUTES.PROJECTS}/contracts`,
+          name: "Contracts",
+          external: false,
+        },
+      ],
+    },
+  ];
+
   return (
     <footer className="bg-jet mt-8">
       <div className="w-full p-10 pb-4 lg:w-10/12 mx-auto">

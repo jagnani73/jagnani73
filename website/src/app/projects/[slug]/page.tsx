@@ -12,9 +12,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const project = projects.find((p) => p.slug === params.slug);
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
     return {
@@ -34,17 +35,23 @@ export async function generateMetadata({
 }
 
 const ProjectPage: NextPage<{
-  params: {
+  params: Promise<{
     slug: string;
-  };
-}> = ({ params }) => {
-  const project = projects.find((p) => p.slug === params.slug);
+  }>;
+}> = async ({ params }) => {
+  const { slug } = await params;
+
+  const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
     notFound();
   }
 
-  return <Project primary={false} project={project} />;
+  return (
+    <section className="px-10 lg:px-0 w-full lg:w-10/12 mx-auto mt-48">
+      <Project primary={false} project={project} />
+    </section>
+  );
 };
 
 export default ProjectPage;
