@@ -1,6 +1,6 @@
 import type { Metadata, NextPage } from "next";
 import { notFound } from "next/navigation";
-import { ProjectComponent } from "@/components/projects";
+import { Project } from "@/components/shared";
 import { projects } from "@/utils/constants/data";
 
 export async function generateStaticParams() {
@@ -44,7 +44,7 @@ const ProjectPage: NextPage<{
     notFound();
   }
 
-  return <ProjectComponent {...project} />;
+  return <Project primary={false} project={project} />;
 };
 
 export default ProjectPage;

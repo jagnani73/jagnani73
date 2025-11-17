@@ -83,9 +83,11 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout: NextPage<{
+const RootLayout = ({
+  children,
+}: Readonly<{
   children: React.ReactNode;
-}> = ({ children }) => {
+}>) => {
   return (
     <html lang="en" className={nunitoSans.variable}>
       <head>
