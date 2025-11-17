@@ -1,7 +1,10 @@
 import Image from "next/image";
-import type { ExperienceProps } from "../../utils/interfaces/shared-interfaces";
+import type { ExperienceProps } from "@/utils/types/experiences.types";
 
-const Experience: React.FC<ExperienceProps> = ({ primary, ...experience }) => {
+export const Experience: React.FC<ExperienceProps> = ({
+  primary,
+  experience,
+}) => {
   return (
     <article>
       <Image
@@ -41,6 +44,3 @@ const Experience: React.FC<ExperienceProps> = ({ primary, ...experience }) => {
     </article>
   );
 };
-
-export default Experience;
-

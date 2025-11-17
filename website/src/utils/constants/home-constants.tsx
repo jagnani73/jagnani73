@@ -1,4 +1,4 @@
-import { StackType } from "../interfaces/home-interfaces";
+import type { StackType } from "@/utils/types/home.types";
 import {
   BootstrapLogo,
   CLogo,
@@ -51,4 +51,3 @@ export const STACK: StackType[] = [
   { name: STACK_NAMES.TYPESCRIPT, logo: <TypescriptLogo /> },
   { name: STACK_NAMES.VUE, logo: <VueLogo /> },
 ];
-

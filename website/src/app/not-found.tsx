@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { ROUTES } from "../utils/constants/shared-constants";
+import { NextPage } from "next";
 
-export default function NotFound() {
+const NotFound: NextPage = () => {
   const router = useRouter();
 
   useEffect(() => {
@@ -19,10 +20,14 @@ export default function NotFound() {
       <h1>4 · O · 4</h1>
       <h3>Looks like you are living the nomad life</h3>
 
-      <Link href={ROUTES.HOME} className="justify-center flex font-semibold text-2xl">
+      <Link
+        href={ROUTES.HOME}
+        className="justify-center flex font-semibold text-2xl"
+      >
         here is a Home
       </Link>
     </section>
   );
-}
+};
 
+export default NotFound;

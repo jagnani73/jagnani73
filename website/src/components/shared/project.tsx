@@ -4,13 +4,13 @@ import Image from "next/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 
-import type { ProjectProps } from "../../utils/interfaces/shared-interfaces";
-import { toTitleCase } from "../../utils/functions";
-import StackIcon from "./stack-icon";
-import LinkIcon from "./link-icon";
+import type { ProjectProps } from "@/utils/types/projects.types";
+import { toTitleCase } from "@/utils/functions";
+import { StackIcon, LinkIcon } from ".";
+import Link from "next/link";
 
-const Project: React.FC<ProjectProps> = ({ primary, ...project }) => {
-  const images = [project.preview, ...(project.images ? project.images : [])];
+export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
+  const images = [project.preview, ...(project.images || [])];
 
   return (
     <article>
@@ -55,7 +55,7 @@ const Project: React.FC<ProjectProps> = ({ primary, ...project }) => {
 
         <div className="flex gap-x-4">
           {project.links?.map(({ name, url }) => (
-            <a
+            <Link
               key={url}
               href={url}
               target="_blank"
@@ -64,7 +64,7 @@ const Project: React.FC<ProjectProps> = ({ primary, ...project }) => {
               className="w-6 md:w-8 lg:w-10 flex"
             >
               <LinkIcon name={name} />
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -90,4 +90,3 @@ const Project: React.FC<ProjectProps> = ({ primary, ...project }) => {
 };
 
 export default Project;
-

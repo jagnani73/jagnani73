@@ -5,7 +5,7 @@ import { Tooltip } from "react-tooltip";
 import GitHubCalendar from "react-github-calendar";
 import Image from "next/image";
 
-const Hero: React.FC = () => {
+export const Hero: React.FC = () => {
   return (
     <section className="lg:h-screen flex flex-wrap text-center">
       <div className="w-full lg:w-1/2 flex justify-center items-center flex-col">
@@ -69,6 +69,3 @@ const Hero: React.FC = () => {
     </section>
   );
 };
-
-export default Hero;
-

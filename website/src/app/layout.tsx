@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, NextPage } from "next";
 import Script from "next/script";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
-import { Navbar, Footer } from "../components/shared";
+import { Navbar, Footer } from "@/components/shared";
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
@@ -13,13 +13,22 @@ const nunitoSans = Nunito_Sans({
 
 export const metadata: Metadata = {
   title: "Yashvardhan Jagnani",
-  description: "A software developer who is a Computer Science Engineering student with specialization in Cybersecurity, class of 2023.",
+  description:
+    "A software developer who is a Computer Science Engineering student with specialization in Cybersecurity, class of 2023.",
   authors: [{ name: "Yashvardhan Jagnani" }],
-  keywords: ["Yashvardhan Jagnani", "jagnani73", "software developer", "full-stack", "react", "nextjs"],
+  keywords: [
+    "Yashvardhan Jagnani",
+    "jagnani73",
+    "software developer",
+    "full-stack",
+    "react",
+    "nextjs",
+  ],
   metadataBase: new URL("https://jagnani73.com"),
   openGraph: {
     title: "Yashvardhan Jagnani",
-    description: "A software developer who is a Computer Science Engineering student with specialization in Cybersecurity, class of 2023.",
+    description:
+      "A software developer who is a Computer Science Engineering student with specialization in Cybersecurity, class of 2023.",
     url: "https://jagnani73.com",
     siteName: "Yashvardhan Jagnani",
     images: [
@@ -36,17 +45,30 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary",
     title: "Yashvardhan Jagnani",
-    description: "A software developer who is a Computer Science Engineering student with specialization in Cybersecurity, class of 2023.",
+    description:
+      "A software developer who is a Computer Science Engineering student with specialization in Cybersecurity, class of 2023.",
     creator: "@jagnani73",
     images: ["/site/og-image.png"],
   },
   icons: {
     icon: [
-      { url: "/site/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      { url: "/site/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      {
+        url: "/site/favicon-32x32.png",
+        sizes: "32x32",
+        type: "image/png",
+      },
+      {
+        url: "/site/favicon-16x16.png",
+        sizes: "16x16",
+        type: "image/png",
+      },
     ],
     apple: [
-      { url: "/site/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      {
+        url: "/site/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
     ],
     other: [
       {
@@ -61,11 +83,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+const RootLayout: NextPage<{
   children: React.ReactNode;
-}>) {
+}> = ({ children }) => {
   return (
     <html lang="en" className={nunitoSans.variable}>
       <head>
@@ -94,4 +114,6 @@ export default function RootLayout({
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

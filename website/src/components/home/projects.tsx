@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import type { ProjectsProps } from "../../utils/interfaces/shared-interfaces";
-import { ROUTES } from "../../utils/constants/shared-constants";
-import { Project } from "../shared";
+import { ROUTES } from "@/utils/constants/shared-constants";
+import { Project } from "@/components/shared";
+import type { ProjectsProps } from "@/utils/types/projects.types";
 
-const Projects: React.FC<ProjectsProps> = ({ projects }) => {
+export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   return (
     <section className="px-10 lg:px-0 w-full lg:w-10/12 mx-auto mt-20 lg:mt-40">
       <h1>Projects</h1>
@@ -14,11 +14,11 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
         <div className="mx-auto grid grid-rows-2 h-fit">
           {projects?.slice(0, 2).map((project) => (
             <Link
-              key={project._id}
+              key={project.slug}
               href={`${ROUTES.PROJECTS}/${project.slug}`}
               className="lg:w-10/12 mx-auto mt-10"
             >
-              <Project primary {...project} />
+              <Project primary={false} project={project} />
             </Link>
           ))}
         </div>
@@ -26,11 +26,11 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
         <div className="mx-auto grid grid-rows-2 h-fit-content lg:-mt-52">
           {projects?.slice(2, 4).map((project) => (
             <Link
-              key={project._id}
+              key={project.slug}
               href={`${ROUTES.PROJECTS}/${project.slug}`}
               className="lg:w-10/12 mx-auto mt-20"
             >
-              <Project primary {...project} />
+              <Project primary={false} project={project} />
             </Link>
           ))}
         </div>
@@ -45,6 +45,3 @@ const Projects: React.FC<ProjectsProps> = ({ projects }) => {
     </section>
   );
 };
-
-export default Projects;
-

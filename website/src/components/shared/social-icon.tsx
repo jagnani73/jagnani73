@@ -1,15 +1,15 @@
-import type { SocialIconProps } from "../../utils/interfaces/projects-interface";
-import { SOCIALS_NAMES } from "../../utils/constants/shared-constants";
-import { MailIcon } from "../../utils/icons";
+import type { SocialIconProps } from "@/utils/types/projects.types";
+import { SOCIALS_NAMES } from "@/utils/constants/shared-constants";
+import { MailIcon } from "@/utils/icons";
 import {
   GitHubLogo,
   InstagramLogo,
   LinkedInLogo,
   MediumLogo,
   TwitterLogo,
-} from "../../utils/logos";
+} from "@/utils/logos";
 
-const SocialIcon: React.FC<SocialIconProps> = ({ name }) => {
+export const SocialIcon: React.FC<SocialIconProps> = ({ name }) => {
   switch (name) {
     case SOCIALS_NAMES.INSTAGRAM:
       return <InstagramLogo />;
@@ -27,6 +27,3 @@ const SocialIcon: React.FC<SocialIconProps> = ({ name }) => {
       return <></>;
   }
 };
-
-export default SocialIcon;
-

@@ -2,9 +2,9 @@
 
 import Marquee from "react-easy-marquee";
 
-import { STACK } from "../../utils/constants/home-constants";
+import { STACK } from "@/utils/constants/home-constants";
 
-const Stack: React.FC = () => {
+export const Stack: React.FC = () => {
   return (
     <section className="px-10 lg:px-0 w-full lg:w-10/12 mx-auto mt-20 lg:mt-40">
       <h1>Stack</h1>
@@ -51,6 +51,3 @@ const Stack: React.FC = () => {
     </section>
   );
 };
-
-export default Stack;
-

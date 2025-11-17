@@ -1,8 +1,8 @@
-import type { LinkIconProps } from "../../utils/interfaces/projects-interface";
+import type { LinkIconProps } from "@/utils/types/projects.types";
 import { LINKS_NAMES } from "../../utils/constants/shared-constants";
-import { BrowserLogo, GitHubLogo, NPMLogo } from "../../utils/logos";
+import { BrowserLogo, GitHubLogo, NPMLogo } from "@/utils/logos";
 
-const LinkIcon: React.FC<LinkIconProps> = ({ name }) => {
+export const LinkIcon: React.FC<LinkIconProps> = ({ name }) => {
   switch (name) {
     case LINKS_NAMES.GITHUB:
       return <GitHubLogo />;
@@ -12,6 +12,3 @@ const LinkIcon: React.FC<LinkIconProps> = ({ name }) => {
       return <BrowserLogo />;
   }
 };
-
-export default LinkIcon;
-

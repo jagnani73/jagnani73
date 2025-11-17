@@ -5,10 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
-import { NAVBAR_ROUTES, ROUTES } from "../../utils/constants/shared-constants";
-import { FoldIcon } from "../../utils/icons";
+import { NAVBAR_ROUTES, ROUTES } from "@/utils/constants/shared-constants";
+import { FoldIcon } from "@/utils/icons";
 
-const Navbar: React.FC = () => {
+export const Navbar: React.FC = () => {
   const pathname = usePathname();
 
   const [navButton, setNavButton] = useState<boolean>(true);
@@ -17,8 +17,9 @@ const Navbar: React.FC = () => {
   const [scrollY, setScrollY] = useState<number>(0);
 
   useEffect(() => {
-    if (window.innerWidth <= 1024) setNavButton(true);
-    else {
+    if (window.innerWidth <= 1024) {
+      setNavButton(true);
+    } else {
       setNavButton(false);
       window.addEventListener("scroll", () => {
         if (window.scrollY > (pathname === "/" ? 150 : 50)) setNavButton(true);
@@ -126,6 +127,3 @@ const Navbar: React.FC = () => {
     </>
   );
 };
-
-export default Navbar;
-

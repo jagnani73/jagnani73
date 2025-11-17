@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 
-import type { ResumesProps } from "../../utils/interfaces/home-interfaces";
+import type { ResumesProps } from "@/utils/types/home.types";
 
-const Resumes: React.FC<ResumesProps> = ({ resumes }) => {
+export const Resumes: React.FC<ResumesProps> = ({ resumes }) => {
   const [activeResume, setActiveResume] = useState<number>(0);
 
   return (
@@ -44,6 +44,3 @@ const Resumes: React.FC<ResumesProps> = ({ resumes }) => {
     </section>
   );
 };
-
-export default Resumes;
-
