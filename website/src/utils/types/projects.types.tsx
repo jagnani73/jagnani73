@@ -5,14 +5,17 @@ import {
 } from "../constants/shared-constants";
 
 export interface ProjectType {
+  slug: string;
   preview: string;
   images?: string[];
   name: string;
   description: string;
   tag: string;
   stack: STACK_NAMES[];
-  links: { name: LINKS_NAMES; url: string }[];
-  slug: string;
+  links: {
+    name: LINKS_NAMES;
+    url: string;
+  }[];
 }
 
 export interface ProjectsProps {

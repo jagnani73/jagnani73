@@ -227,11 +227,16 @@ export const projects: ProjectType[] = [
       "Shikshak is a hack that enables remote online education by minimising the data consumed exponentially. I built its frontend, which has two ends, a Teacher and a Student. I also implemented its WebRTC-based exchange of data.",
     links: [
       {
-        name: "github",
+        name: LINKS_NAMES.GITHUB,
         url: "https://github.com/jagnani73/shikshak",
       },
     ],
-    stack: ["react", "tailwind css", "typescript", "node"],
+    stack: [
+      STACK_NAMES.REACT,
+      STACK_NAMES.TAILWIND_CSS,
+      STACK_NAMES.TYPESCRIPT,
+      STACK_NAMES.NODE,
+    ],
     images: [
       "https://res.cloudinary.com/jagnani73/image/upload/v1714473789/jagnani73/projects/shikshak/screenshot-calibrate_1_kaglgd.png",
       "https://res.cloudinary.com/jagnani73/image/upload/v1714473783/jagnani73/projects/shikshak/screenshot-preview_1_lsp63m.png",
@@ -247,11 +252,16 @@ export const projects: ProjectType[] = [
       "Contracts is a blockchain-based expense-splitter application. In it, a user can create an account to login to our web app. Once a user is logged in, he can add expenses, edit expenses, settle expenses, or delete transactions. All this is stored in logs so that a user is aware of deletions or edits made to a transaction. I created its complete frontend utilising blockchain-based authentication.",
     links: [
       {
-        name: "github",
+        name: LINKS_NAMES.GITHUB,
         url: "https://github.com/jagnani73/contracts",
       },
     ],
-    stack: ["node", "next", "tailwind css", "typescript"],
+    stack: [
+      STACK_NAMES.NODE,
+      STACK_NAMES.NEXT,
+      STACK_NAMES.TAILWIND_CSS,
+      STACK_NAMES.TYPESCRIPT,
+    ],
     images: [
       "https://res.cloudinary.com/jagnani73/image/upload/v1714473805/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-45-39_lskus9.png",
       "https://res.cloudinary.com/jagnani73/image/upload/v1714473807/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-46-25_hpuchh.png",
@@ -268,11 +278,16 @@ export const projects: ProjectType[] = [
       "GitHub Community SRM is a student-led community aimed at unifying all the projects and papers made in SRMIST under the banner of the SRM-IST-KTR GitHub Organisation. Its main website serves as a portal for the same. Students and Teachers can register themselves here under various projects. These registrations interact directly with GitHub APIs, creating the repositories, adding or removing people and more. I built the frontend of the registration portal.",
     links: [
       {
-        name: "github",
+        name: LINKS_NAMES.GITHUB,
         url: "https://github.com/jagnani73/githubsrm",
       },
     ],
-    stack: ["node", "next", "tailwind css", "typescript"],
+    stack: [
+      STACK_NAMES.NODE,
+      STACK_NAMES.NEXT,
+      STACK_NAMES.TAILWIND_CSS,
+      STACK_NAMES.TYPESCRIPT,
+    ],
     images: [
       "https://res.cloudinary.com/jagnani73/image/upload/v1714473649/jagnani73/projects/githubsrm/Screenshot_from_2022-07-03_00-08-44_ry5x2x.png",
       "https://res.cloudinary.com/jagnani73/image/upload/v1714473653/jagnani73/projects/githubsrm/Screenshot_from_2022-07-03_00-08-03_iy2rwn.png",

@@ -22,7 +22,7 @@ export const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
       <div className="grid grid-cols-1 xl:grid-cols-3 mt-8 lg:mt-20">
         {experiences?.map((experience) => (
           <div key={experience.org} className="w-full mb-12 last:mb-0">
-            <Experience primary={false} experience={experience} />
+            <Experience primary={true} experience={experience} />
           </div>
         ))}
       </div>
