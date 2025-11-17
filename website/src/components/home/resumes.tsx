@@ -18,12 +18,12 @@ export const Resumes: React.FC<ResumesProps> = ({ resumes }) => {
         to check it out!
       </p>
 
-      <header className="bg-jet flex items-center gap-x-16 justify-between p-4 my-8 overflow-auto">
+      <header className="flex items-center gap-x-16 justify-between p-4 my-8 overflow-auto">
         {resumes.map(({ date }, i) => (
           <button
             key={date}
             onClick={() => setActiveResume(i)}
-            className={`whitespace-nowrap ${
+            className={`whitespace-nowrap cursor-pointer ${
               activeResume === i ? " font-bold" : ""
             }`}
           >

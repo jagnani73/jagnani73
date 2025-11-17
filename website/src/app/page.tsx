@@ -9,7 +9,6 @@ import {
   Certifications,
   Resumes,
 } from "@/components/home";
-import { Contact } from "@/components/shared";
 import {
   experiences,
   projects,
@@ -32,7 +31,6 @@ const HomePage: NextPage = () => {
       <Projects projects={featuredProjects} />
       <Certifications certifications={certifications} />
       <Resumes resumes={resumes} />
-      <Contact />
     </>
   );
 };

@@ -15,7 +15,7 @@ export const Certifications: React.FC<CertificationsProps> = ({
 
             <h6 className="mt-2">{certification.organization}</h6>
 
-            <p className="text-sm">({certification.validity})</p>
+            <p className="text-sm">{certification.validity}</p>
           </article>
         ))}
       </div>

@@ -3,7 +3,6 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import { ROUTES } from "@/utils/constants/shared-constants";
 import type { NavbarRoutes } from "@/utils/types/shared.types";
 import { FoldIcon } from "@/utils/icons";
@@ -23,11 +22,6 @@ export const Navbar: React.FC = () => {
     {
       href: ROUTES.PROJECTS,
       name: "Projects",
-      external: false,
-    },
-    {
-      href: ROUTES.CONTACT,
-      name: "Contact",
       external: false,
     },
   ];
@@ -96,22 +90,12 @@ export const Navbar: React.FC = () => {
   return (
     <>
       <nav
-        className={`fixed transition-all duration-500 w-full left-0 z-40 flex justify-evenly items-center p-4 ${
+        className={`fixed transition-all py-6 duration-500 w-full left-0 z-40 flex justify-evenly items-center px-4 ${
           navButtonVisible
             ? `top-0${navButton ? " bg-eerie-black" : ""}`
             : "-top-full"
         }`}
       >
-        <Link href={ROUTES.HOME}>
-          <Image
-            src="/logo.svg"
-            alt="Yashvardhan Jagnani | jagnani73.com"
-            width={80}
-            height={80}
-            className="w-12 lg:w-20"
-          />
-        </Link>
-
         {!navButton ? (
           <ul className="flex text-white w-3/4 justify-between">
             {NAVBAR_ROUTES.map(({ href, name, external }) => (
