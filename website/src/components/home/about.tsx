@@ -4,17 +4,15 @@ export const About: React.FC = () => {
   return (
     <section className="px-10 lg:px-0 w-full lg:w-10/12 mx-auto mt-20 lg:mt-40">
       <h1>About</h1>
-      <h3>A sarcastic insult is not insulting</h3>
+      <h3>Beyond the code</h3>
 
       <p className="lg:w-11/12 mt-10 lg:mt-20">
-        A good listener who is confident in his decisions, open to constructive
-        criticism and tries to include people as much as possible. He loves
-        listening to songs; you can find him vibing almost anytime. He has
-        attached his recently played as proof. He loves astrology and cosmology.
-        One can have an excellent time discussing conspiracy theories with him.
-        Yashvardhan is a part of many fandoms like Marvel or Brooklyn Nine-Nine.
-        He is very sarcastic and often confuses people with it. He also
-        appreciates psychology and loves philosophizing.
+        I&apos;m a collaborative team member who values clear communication and
+        constructive feedback. Outside of coding, I enjoy music, space, and good
+        conversations. I maintain an active listening history on Spotify and
+        follow developments in astronomy and cosmology. I also appreciate
+        well-written shows and thoughtful discussions about psychology and
+        philosophy.
       </p>
 
       <div className="flex flex-col md:flex-row mt-12 gap-x-4 overflow-hidden">
@@ -31,13 +29,13 @@ export const About: React.FC = () => {
 
       <div className="md:text-right mt-2">
         <p className="flex md:justify-end items-center">
-          Click on the{" "}
+          Use the{" "}
           <span className="w-4 mx-1 text-red-50">
             <HamburgerIcon />
           </span>{" "}
-          to explore the universe.
+          menu to navigate the star map.
         </p>
-        Best viewed on a bigger screen.
+        Best viewed on larger screens.
       </div>
     </section>
   );

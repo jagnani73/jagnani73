@@ -8,7 +8,7 @@ export const Stack: React.FC = () => {
   return (
     <section className="px-10 lg:px-0 w-full lg:w-10/12 mx-auto mt-20 lg:mt-40">
       <h1>Stack</h1>
-      <h3>Social skills separate</h3>
+      <h3>Tools of the trade</h3>
       <Marquee
         duration={50 * 500}
         height="150px"
@@ -40,13 +40,14 @@ export const Stack: React.FC = () => {
         rel="noopener noreferrer"
         className="mt-8 lg:text-2xl block w-fit lg:ml-auto"
       >
-        Checkout this <span className="font-bold">marquee</span> built by him!
+        Check out this <span className="font-bold">marquee</span> component I
+        built
       </a>
 
       <p className="lg:w-11/12 mt-10 lg:mt-20">
-        These are the technologies with which he has an expertise that ranges
-        from intermediate to advanced. He consistently tries to understand new
-        technologies and aims at mastering them.
+        These are the technologies I work with regularly, ranging from
+        intermediate to advanced proficiency. I&apos;m always exploring new
+        tools and frameworks to expand my skill set.
       </p>
     </section>
   );

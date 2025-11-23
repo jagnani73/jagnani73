@@ -27,26 +27,21 @@ export const Hero: React.FC = () => {
           <h6>Full-stack | Cloud | DevOps</h6>
 
           <p className="my-10 lg:mb-0">
-            I like to refer to myself in the third person.
-            <br />
-            It makes him feel extramundane.
+            Software engineer focused on building things that work.
           </p>
         </div>
       </div>
 
       <div className="w-full lg:w-1/2 lg:bg-steel-blue flex justify-center items-center flex-col lg:pt-20">
         <p className="w-10/12 lg:w-9/12 mx-auto">
-          He is a Computer Science Engineering student who graduated from the
-          class of 2023 from SRMIST, Chennai, India. Doing a specialization in
-          Cybersecurity, his interest peeked in software development back in his
-          fresher year of college. Ever since, he has been passionate about
-          ideating solutions using software development. He inclines towards
-          Frontend Development, especially ReactJS. Yashvardhan has laid the
-          foundation for many communities and projects. He strives for a pursuit
-          that reciprocates in-depth knowledge for his diligent work towards
-          adding value to his professional as well as personal aspects—an
-          amalgamation of interpersonal and technical skill sets with a belief
-          in continuous learning.
+          I&apos;m a Computer Science Engineering graduate from SRMIST, Chennai,
+          India (class of 2023), with a specialization in Cybersecurity. My
+          interest in software development started early in college and has
+          grown into a career focused on building practical solutions. I
+          primarily work with ReactJS and full-stack technologies, having
+          founded several communities and projects along the way. I value
+          continuous learning and the balance between technical depth and
+          collaborative problem-solving.
         </p>
 
         <div className="mx-auto mt-8 overflow-x-auto">

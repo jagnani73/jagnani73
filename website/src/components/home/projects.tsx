@@ -26,7 +26,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
         href={ROUTES.PROJECTS}
         className="mt-8 text-xl lg:text-2xl block w-fit lg:ml-auto"
       >
-        See all of his <span className="font-bold">projects</span>
+        See all my <span className="font-bold">projects</span>
       </Link>
     </section>
   );
