@@ -96,15 +96,33 @@ export const Navbar: React.FC = () => {
             : "-top-full"
         }`}
       >
-        {!navButton ? (
-          <ul className="flex text-white w-3/4 justify-between">
+        <div
+          className="w-10/12 mx-auto relative mr-auto"
+          onMouseEnter={() => setDropMenu(true)}
+          onMouseLeave={() => setDropMenu(false)}
+        >
+          <button
+            className={`${
+              dropMenu ? "" : "rotate-180 "
+            }transform w-10 block duration-500`}
+            onClick={() => setDropMenu(!dropMenu)}
+          >
+            <FoldIcon />
+          </button>
+
+          <ul
+            className={`${
+              dropMenu ? "max-h-screen" : "max-h-0"
+            } absolute z-40 duration-500 overflow-hidden transition-all top-full left-0 bg-steel-blue rounded-md rounded-tl-none w-32`}
+          >
             {NAVBAR_ROUTES.map(({ href, name, external }) => (
-              <li key={name}>
+              <li key={name} className="m-4">
                 <Link
                   href={href}
                   className={`${
                     pathname === href ? "font-semibold " : ""
-                  }uppercase text-sm`}
+                  }uppercase text-sm hover:underline transition-all duration-500`}
+                  onClick={() => setDropMenu(false)}
                   rel="noopener noreferrer"
                   target={external ? "_blank" : ""}
                 >
@@ -113,46 +131,8 @@ export const Navbar: React.FC = () => {
               </li>
             ))}
           </ul>
-        ) : (
-          <div className="w-3/4 text-right">
-            <div
-              className="relative w-fit ml-auto"
-              onMouseEnter={() => setDropMenu(true)}
-              onMouseLeave={() => setDropMenu(false)}
-            >
-              <button
-                className={`${
-                  dropMenu ? "" : "rotate-180 "
-                }transform w-10 block duration-500`}
-                onClick={() => setDropMenu(!dropMenu)}
-              >
-                <FoldIcon />
-              </button>
-
-              <ul
-                className={`${
-                  dropMenu ? "max-h-screen" : "max-h-0"
-                } absolute z-40 duration-500 overflow-hidden transition-all top-full right-0 bg-steel-blue rounded-md rounded-tr-none`}
-              >
-                {NAVBAR_ROUTES.map(({ href, name, external }) => (
-                  <li key={name} className="m-4">
-                    <Link
-                      href={href}
-                      className={`${
-                        pathname === href ? "font-semibold " : ""
-                      }uppercase text-sm`}
-                      onClick={() => setDropMenu(false)}
-                      rel="noopener noreferrer"
-                      target={external ? "_blank" : ""}
-                    >
-                      {name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        )}
+        </div>
+        {/* )} */}
       </nav>
     </>
   );
