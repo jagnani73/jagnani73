@@ -12,7 +12,7 @@ export const Resumes: React.FC<ResumesProps> = ({ resumes }) => {
       <h1>Resumes</h1>
       <h3>Speak for themselves</h3>
 
-      <p className="lg:w-11/12 mt-10 lg:mt-20">
+      <p className="lg:w-11/12 mt-10">
         These resumes document my professional journey, marking key milestones
         and growth over time. Click on the preview to view each version.
       </p>

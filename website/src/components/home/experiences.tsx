@@ -9,7 +9,7 @@ export const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
       <h1>Experiences</h1>
       <h3>Where the real learning happens</h3>
 
-      <p className="lg:w-11/12 mt-10 lg:mt-20">
+      <p className="lg:w-11/12 mt-10">
         I believe in balancing theory with practice—understanding enough to make
         things work, then learning by doing. Real-world problems are the best
         teachers, and each project has taught me something new. Software
@@ -18,7 +18,7 @@ export const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
         to building solutions.
       </p>
 
-      <div className="grid grid-cols-1 xl:grid-cols-3 mt-8 lg:mt-20">
+      <div className="grid grid-cols-1 xl:grid-cols-3 mt-8">
         {experiences?.map((experience) => (
           <div key={experience.org} className="w-full mb-12 last:mb-0">
             <Experience primary={true} experience={experience} />

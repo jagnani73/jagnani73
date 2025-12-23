@@ -10,7 +10,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
       <h1>Projects</h1>
       <h3>A showcase for ideas</h3>
 
-      <p className="lg:w-11/12 mt-10 lg:mt-20">
+      <p className="lg:w-11/12 mt-10">
         A journey of all his creations. He has mentored and guided many projects
         during his term in the communities he has been a part of. Yashvardhan
         has laid the foundational code in many internships, including standard

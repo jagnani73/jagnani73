@@ -9,7 +9,7 @@ export const Hero: React.FC = () => {
   return (
     <section className="lg:h-screen flex flex-wrap text-center">
       <div className="w-full lg:w-1/2 flex justify-center items-center flex-col">
-        <div className="lg:w-6/12 mt-28 lg:mt-20">
+        <div className="lg:w-6/12 mt-28">
           <Image
             className="w-80 mx-auto rounded-full"
             src="https://github.com/jagnani73.png"

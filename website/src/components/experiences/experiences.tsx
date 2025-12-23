@@ -7,7 +7,7 @@ export const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
       <h1>Experiences</h1>
       <h3>His source of knowledge, besides the internet</h3>
 
-      <p className="w-full lg:w-11/12 mt-10 lg:mt-20">
+      <p className="w-full lg:w-11/12 mt-10">
         Some people learn by doing, and some understand and then do. Finding
         himself being the amalgamation of the two, Yashvardhan believes in
         knowing just enough so that it is practicable. Besides, nothing can be
@@ -19,7 +19,7 @@ export const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-20 gap-y-8">
         {experiences?.map((experience) => (
-          <div key={experience.org} className="mx-auto mt-10 lg:mt-20">
+          <div key={experience.org} className="mx-auto mt-10">
             <Experience primary={false} experience={experience} />
           </div>
         ))}

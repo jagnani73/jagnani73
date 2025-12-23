@@ -6,7 +6,7 @@ export const About: React.FC = () => {
       <h1>About</h1>
       <h3>Beyond the code</h3>
 
-      <p className="lg:w-11/12 mt-10 lg:mt-20">
+      <p className="lg:w-11/12 mt-10">
         I&apos;m a collaborative team member who values clear communication and
         constructive feedback. Outside of coding, I enjoy music, space, and good
         conversations. I maintain an active listening history on Spotify and

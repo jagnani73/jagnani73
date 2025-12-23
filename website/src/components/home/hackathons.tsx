@@ -8,7 +8,7 @@ export const Hackathons: React.FC<HackathonsProps> = ({ hackathons }) => {
       <h1>Hackathons</h1>
       <h3>Pursuit of perfection</h3>
 
-      <p className="lg:w-11/12 mt-10 lg:mt-20">
+      <p className="lg:w-11/12 mt-10">
         Hackathons offer a unique environment for rapid learning and building.
         They combine the pressure of deadlines with the freedom to experiment,
         making them ideal for picking up new technologies while solving real
@@ -16,7 +16,7 @@ export const Hackathons: React.FC<HackathonsProps> = ({ hackathons }) => {
         source and collaborate with other developers.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8 lg:gap-y-16 mt-8 lg:mt-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8 lg:gap-y-16 mt-8">
         {hackathons.map((hackathon) => (
           <article key={hackathon.name}>
             <h6 className="flex flex-wrap items-center">

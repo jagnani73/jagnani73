@@ -13,7 +13,7 @@ export const Stack: React.FC = () => {
         duration={50 * 500}
         height="150px"
         pauseOnHover
-        className="mt-10 lg:mt-20 transform-gpu"
+        className="mt-10 transform-gpu"
         reverse
       >
         <div className="flex transform-gpu">
@@ -44,7 +44,7 @@ export const Stack: React.FC = () => {
         built
       </a>
 
-      <p className="lg:w-11/12 mt-10 lg:mt-20">
+      <p className="lg:w-11/12 mt-10">
         These are the technologies I work with regularly, ranging from
         intermediate to advanced proficiency. I&apos;m always exploring new
         tools and frameworks to expand my skill set.
