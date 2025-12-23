@@ -839,43 +839,49 @@ export const certifications: CertificationType[] = [
 export const resumes: ResumeType[] = [
   {
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1714476155/jagnani73/resumes/11%20February%202023/preview_20230211_mc0txc.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766508479/jagnani73/resumes/2020251223.png",
+    resume: "https://drive.google.com/uc?id=1GYW7-Crdh_UyvKOuvQaL3kwpEI3_SCOp",
+    date: "23 December 2025",
+  },
+  {
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714476077/jagnani73/resumes/20210206.png",
     resume: "https://drive.google.com/uc?id=14rlW_vq_1UX45zqnyAfPHyJpUSVuzIft",
     date: "11 February 2023",
   },
   {
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1714476099/jagnani73/resumes/08%20July%202022/preview_20220709_dyoelr.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714476099/jagnani73/resumes/20220608.png",
     resume: "https://drive.google.com/uc?id=1WKDcp6zL0sBMxacnGO4p6HsJ8SldjaDe",
     date: "08 July 2022",
   },
   {
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1714476189/jagnani73/resumes/20%20April%202022/preview_2020420_vbcwuh.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714476110/jagnani73/resumes/20210925.png",
     resume: "https://drive.google.com/uc?id=1KZKfxRvsBRcUbAMmhkbIdwP4UovmZh9E",
     date: "20 April 2022",
   },
   {
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1714476110/jagnani73/resumes/25%20September%202021/preview_20211209_sitb6g.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714476133/jagnani73/resumes/20210908.png",
     resume: "https://drive.google.com/uc?id=1axpcLaEEe1iRD0eNrCCUDhMyMKXSyYVF",
     date: "25 September 2021",
   },
   {
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1714476133/jagnani73/resumes/08%20September%202021/preview_20210908_pxaere.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714476155/jagnani73/resumes/20230211.png",
     resume: "https://drive.google.com/uc?id=1vJ7J7FC6ofYA15qHlpG_b-cvtBkSbb0e",
     date: "08 September 2021",
   },
   {
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1714476077/jagnani73/resumes/06%20February%202021/preview_20210206_g9dc90.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714476189/jagnani73/resumes/2020420.png",
     resume: "https://drive.google.com/uc?id=1UB8kkpx5yFxhm-EJojwFXU-omHmlGjQw",
     date: "06 February 2021",
   },
   {
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1714476211/jagnani73/resumes/28%20May%202020/preview_20200528_ba7hzo.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714476211/jagnani73/resumes/20200528.png",
     resume: "https://drive.google.com/uc?id=1UlHEHcW_7nzP8NW61UlvmvPoYtYkscQl",
     date: "28 May 2020",
   },
