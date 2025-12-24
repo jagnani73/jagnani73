@@ -49,7 +49,15 @@ export const Hero: React.FC = () => {
 
           <GitHubCalendar
             username="jagnani73"
-            colorScheme="dark"
+            theme={{
+              dark: [
+                "#161b22", // Level 0: No contributions (dark background)
+                "#1a7f3a", // Level 1: 1-9 contributions (visible green - more visible than default)
+                "#2ea043", // Level 2: 10-19 contributions (medium bright green)
+                "#26a641", // Level 3: 20-29 contributions (bright green)
+                "#39d353", // Level 4: 30+ contributions (very bright green)
+              ],
+            }}
             fontSize={12}
             renderBlock={(block, activity) =>
               cloneElement(block, {

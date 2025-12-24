@@ -1,8 +1,5 @@
-import Link from "next/link";
-
 import type { ProjectsProps } from "@/utils/types/projects.types";
 import { Project } from "@/components/shared";
-import { ROUTES } from "@/utils/constants/shared-constants";
 
 export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   return (
@@ -22,15 +19,9 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
         moment.
       </p>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-8 lg:items-start mt-10 lg:mt-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-20 lg:items-start mt-10 lg:mt-20">
         {projects.map((project) => (
-          <Link
-            key={project.slug}
-            href={`${ROUTES.PROJECTS}/${project.slug}`}
-            className="md:w-10/12 mx-auto h-full flex"
-          >
-            <Project primary={false} project={project} />
-          </Link>
+          <Project key={project.slug} primary={false} project={project} />
         ))}
       </div>
     </section>

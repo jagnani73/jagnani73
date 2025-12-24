@@ -8,46 +8,66 @@ import type { ProjectProps } from "@/utils/types/projects.types";
 import { toTitleCase } from "@/utils/functions";
 import { StackIcon, LinkIcon } from ".";
 import { usePathname } from "next/navigation";
+import { ROUTES } from "@/utils/constants/shared-constants";
+import Link from "next/link";
 
 export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
   const images = [project.preview, ...(project.images || [])];
   const pathname = usePathname();
   const isProjectPage = pathname.includes(project.slug);
 
+  const handleCarouselInteraction = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    // Only stop propagation if clicking on carousel arrow controls
+    if (target.closest(".control-arrow")) {
+      e.stopPropagation();
+    }
+  };
+
   return (
-    <article className="flex flex-col mt-10">
-      <Carousel
-        autoPlay
-        infiniteLoop
-        interval={5000}
-        showStatus={false}
-        showThumbs={false}
-        showArrows={true}
-        swipeable
+    <article className="flex flex-col">
+      <div
+        onClick={handleCarouselInteraction}
+        onMouseDown={handleCarouselInteraction}
         className="w-full h-full"
       >
-        {(primary ? [images[0]] : images).map((image) => (
-          <figure
-            key={image}
-            className={`w-full relative ${!isProjectPage ? "h-96" : "h-2xl"}`}
-          >
-            <Image
-              src={image}
-              alt={project.name}
-              fill
-              className="object-contain object-center"
-            />
-          </figure>
-        ))}
-      </Carousel>
+        <Carousel
+          autoPlay
+          infiniteLoop
+          interval={5000}
+          showStatus={false}
+          showThumbs={false}
+          showArrows={true}
+          swipeable
+          className="w-full h-full"
+        >
+          {(primary ? [images[0]] : images).map((image) => (
+            <figure
+              key={image}
+              className={`w-full relative ${!isProjectPage ? "h-96" : "h-2xl"}`}
+            >
+              <Image
+                src={image}
+                alt={project.name}
+                fill
+                className="object-contain object-center"
+              />
+            </figure>
+          ))}
+        </Carousel>
+      </div>
 
       <div className="flex flex-wrap items-center justify-between mt-4 w-full">
-        <h3 className="flex flex-wrap items-center gap-x-4 font-bold mb-2">
-          {project.name}
-          <span className="text-xs font-bold bg-steel-blue w-fit px-2 py-1 rounded-sm text-center">
-            {project.tag}
-          </span>
-        </h3>
+        <Link key={project.slug} href={`${ROUTES.PROJECTS}/${project.slug}`}>
+          <h3 className="flex flex-wrap items-center gap-x-4 font-bold mb-2 group">
+            <span className="group-hover:text-steel-blue transition-colors duration-300">
+              {project.name}
+            </span>
+            <span className="text-xs font-bold bg-steel-blue w-fit px-2 py-1 rounded-sm text-center">
+              {project.tag}
+            </span>
+          </h3>
+        </Link>
 
         <div className="flex gap-x-4">
           {project.links?.map(({ name, url }) => (
