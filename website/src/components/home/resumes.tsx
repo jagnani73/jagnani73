@@ -13,8 +13,8 @@ export const Resumes: React.FC<ResumesProps> = ({ resumes }) => {
       <h3>Speak for themselves</h3>
 
       <p className="lg:w-11/12 mt-10">
-        These resumes document my professional journey, marking key milestones
-        and growth over time. Click on the preview to view each version.
+        Resume versions over the years. Each one marks a shift in focus or a new
+        thing I learned. Click on the preview to view each version.
       </p>
 
       <header className="flex items-center gap-x-16 justify-between p-4 my-8 overflow-auto">

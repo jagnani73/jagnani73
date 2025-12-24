@@ -11,32 +11,38 @@ const nunitoSans = Nunito_Sans({
   display: "swap",
 });
 
+const metadataTtile = "Yashvardhan Jagnani";
+const metadataDescription =
+  "Blockchain engineer and full-stack developer building decentralized applications and infrastructure. Computer Science graduate from SRMIST, Chennai, specializing in Cybersecurity.";
+
 export const metadata: Metadata = {
-  title: "Yashvardhan Jagnani",
-  description:
-    "A software developer who is a Computer Science Engineering student with specialization in Cybersecurity, class of 2023.",
-  authors: [{ name: "Yashvardhan Jagnani" }],
+  title: metadataTtile,
+  description: metadataDescription,
+  authors: [{ name: metadataTtile }],
   keywords: [
-    "Yashvardhan Jagnani",
+    metadataTtile,
     "jagnani73",
     "software developer",
-    "full-stack",
+    "blockchain engineer",
+    "full-stack developer",
+    "web3 developer",
+    "smart contracts",
+    "decentralized applications",
     "react",
     "nextjs",
   ],
   metadataBase: new URL("https://jagnani73.com"),
   openGraph: {
-    title: "Yashvardhan Jagnani",
-    description:
-      "A software developer who is a Computer Science Engineering student with specialization in Cybersecurity, class of 2023.",
+    title: metadataTtile,
+    description: metadataDescription,
     url: "https://jagnani73.com",
-    siteName: "Yashvardhan Jagnani",
+    siteName: metadataTtile,
     images: [
       {
         url: "/site/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Yashvardhan Jagnani",
+        alt: metadataTtile,
       },
     ],
     locale: "en_US",
@@ -44,9 +50,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Yashvardhan Jagnani",
-    description:
-      "A software developer who is a Computer Science Engineering student with specialization in Cybersecurity, class of 2023.",
+    title: metadataTtile,
+    description: metadataDescription,
     creator: "@jagnani73",
     images: ["/site/og-image.png"],
   },

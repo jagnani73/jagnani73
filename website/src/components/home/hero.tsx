@@ -24,24 +24,21 @@ export const Hero: React.FC = () => {
             <h1>Yashvardhan Jagnani</h1>
           </div>
 
-          <h6>Full-stack | Cloud | DevOps</h6>
+          <h6>Blockchain | Full Stack | Software</h6>
 
-          <p className="my-10 lg:mb-0">
-            Software engineer focused on building things that work.
-          </p>
+          <p className="my-10 lg:mb-0">Building systems that actually work.</p>
         </div>
       </div>
 
       <div className="w-full lg:w-1/2 lg:bg-steel-blue flex justify-center items-center flex-col lg:pt-20">
         <p className="w-10/12 lg:w-9/12 mx-auto">
-          I&apos;m a Computer Science Engineering graduate from SRMIST, Chennai,
-          India (class of 2023), with a specialization in Cybersecurity. My
-          interest in software development started early in college and has
-          grown into a career focused on building practical solutions. I
-          primarily work with ReactJS and full-stack technologies, having
-          founded several communities and projects along the way. I value
-          continuous learning and the balance between technical depth and
-          collaborative problem-solving.
+          Computer Science graduate from SRMIST, Chennai (class of 2023), with a
+          specialization in Cybersecurity. Started coding in college and
+          haven&apos;t stopped since. I work across the stack, but these days
+          I&apos;m focused on blockchain infrastructure and decentralized
+          applications, smart contracts, and building tools that make web3
+          development less painful. The tools change, but the goal stays the
+          same: build things that solve real problems.
         </p>
 
         <div className="mx-auto mt-8 overflow-x-auto">

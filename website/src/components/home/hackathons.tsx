@@ -6,14 +6,14 @@ export const Hackathons: React.FC<HackathonsProps> = ({ hackathons }) => {
   return (
     <section className="px-10 lg:px-0 w-full lg:w-10/12 mx-auto mt-20 lg:mt-40">
       <h1>Hackathons</h1>
-      <h3>Pursuit of perfection</h3>
+      <h3>Learning under pressure</h3>
 
       <p className="lg:w-11/12 mt-10">
-        Hackathons offer a unique environment for rapid learning and building.
-        They combine the pressure of deadlines with the freedom to experiment,
-        making them ideal for picking up new technologies while solving real
-        problems. I've used these events as opportunities to contribute to open
-        source and collaborate with other developers.
+        Hackathons taught me most of what I know about development. The time
+        pressure forces quick decisions and you learn to live with the
+        consequences. It&apos;s also where I met people who actually know what
+        they&apos;re doing. Most of these started as weekend experiments that
+        spiraled into something bigger.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8 lg:gap-y-16 mt-8">

@@ -8,7 +8,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
   return (
     <section className="px-10 lg:px-0 w-full lg:w-10/12 mx-auto mt-20 lg:mt-40">
       <h1>Projects</h1>
-      <h3>A showcase for ideas</h3>
+      <h3>Things I&apos;ve built</h3>
 
       <div className="grid grid-cols-1 lg:grid-cols-2">
         {projects.map((project) => (

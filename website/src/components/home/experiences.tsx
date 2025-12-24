@@ -10,9 +10,9 @@ export const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
       <h3>Where the real learning happens</h3>
 
       <p className="lg:w-11/12 mt-10">
-        I believe in balancing theory with practice—understanding enough to make
-        things work, then learning by doing. Real-world problems are the best
-        teachers, and each project has taught me something new. Software
+        I believe in balancing theory with practice, understanding enough to
+        make things work, then learning by doing. Real-world problems are the
+        best teachers, and each project has taught me something new. Software
         development is constantly evolving, so I focus on practical knowledge
         that I can apply immediately. These experiences have shaped my approach
         to building solutions.

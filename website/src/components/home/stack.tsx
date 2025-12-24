@@ -40,14 +40,16 @@ export const Stack: React.FC = () => {
         rel="noopener noreferrer"
         className="mt-8 lg:text-2xl block w-fit lg:ml-auto"
       >
-        Check out this <span className="font-bold">marquee</span> component I
+        The <span className="font-bold">marquee</span> above is something I
         built
       </a>
 
       <p className="lg:w-11/12 mt-10">
-        These are the technologies I work with regularly, ranging from
-        intermediate to advanced proficiency. I&apos;m always exploring new
-        tools and frameworks to expand my skill set.
+        Tools I use regularly. Some I know well, others I&apos;m still figuring
+        out. I work with both traditional web stacks and blockchain tooling, the
+        space moves fast, so I pick up new things as projects demand them. Most
+        of what I know came from needing to solve a specific problem, not from
+        tutorials.
       </p>
     </section>
   );

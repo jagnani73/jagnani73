@@ -7,12 +7,12 @@ export const About: React.FC = () => {
       <h3>Beyond the code</h3>
 
       <p className="lg:w-11/12 mt-10">
-        I&apos;m a collaborative team member who values clear communication and
-        constructive feedback. Outside of coding, I enjoy music, space, and good
-        conversations. I maintain an active listening history on Spotify and
-        follow developments in astronomy and cosmology. I also appreciate
-        well-written shows and thoughtful discussions about psychology and
-        philosophy.
+        When I&apos;m not debugging code or wrestling with RPC endpoints, I
+        listen to music, read about space, and occasionally have decent
+        conversations. I keep a Spotify history because it&apos;s interesting to
+        see what stuck, and I follow astronomy news because the universe is
+        absurdly large and we&apos;re absurdly small. Sometimes I watch shows
+        that make me think, but mostly I just code.
       </p>
 
       <div className="flex flex-col md:flex-row mt-12 gap-x-4 overflow-hidden">
