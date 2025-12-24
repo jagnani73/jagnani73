@@ -3,30 +3,26 @@
 import { cloneElement } from "react";
 import { Tooltip } from "react-tooltip";
 import GitHubCalendar from "react-github-calendar";
-import Image from "next/image";
 
 export const Hero: React.FC = () => {
   return (
     <section className="lg:h-screen flex flex-wrap text-center">
       <div className="w-full lg:w-1/2 flex justify-center items-center flex-col">
-        <div className="lg:w-6/12 mt-28">
-          <Image
-            className="w-80 mx-auto rounded-full"
-            src="https://github.com/jagnani73.png"
-            alt="Yashvardhan Jagnani @ jagnani73.com"
-            width={320}
-            height={320}
-            priority
+        <div className="lg:w-6/12 mt-20 lg:mt-0">
+          <object
+            type="image/svg+xml"
+            data="/loader.svg"
+            className="w-80 mx-auto"
           />
 
-          <div className="my-8">
+          <div className="mb-4">
             <h2>My name is</h2>
             <h1>Yashvardhan Jagnani</h1>
           </div>
 
           <h6>Blockchain | Full Stack | Software</h6>
 
-          <p className="my-10 lg:mb-0">Building systems that actually work.</p>
+          <p className="my-4 lg:mb-0">Building systems that actually work.</p>
         </div>
       </div>
 
