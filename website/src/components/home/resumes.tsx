@@ -17,7 +17,7 @@ export const Resumes: React.FC<ResumesProps> = ({ resumes }) => {
         thing I learned. Click on the preview to view each version.
       </p>
 
-      <header className="flex items-center justify-between p-4 my-8 overflow-auto">
+      <header className="flex items-center gap-4 justify-between p-4 my-8 overflow-auto">
         {resumes.map(({ date }, i) => (
           <button
             key={date}

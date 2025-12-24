@@ -29,16 +29,16 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className=" mt-8">
+    <footer className="py-4">
       <div className="w-full lg:w-10/12 mx-auto">
-        <div className="grid grid-cols-3 justify-center items-center">
+        <div className="grid grid-cols-1 xl:grid-cols-3 justify-center items-center gap-4">
           <object
             type="image/svg+xml"
             data="/loader.svg"
             className="w-32 mx-auto"
           />
 
-          <h3 className="font-bold whitespace-nowrap text-center">
+          <h3 className="font-bold whitespace-nowrap text-center mx-8">
             Yashvardhan Jagnani
           </h3>
 

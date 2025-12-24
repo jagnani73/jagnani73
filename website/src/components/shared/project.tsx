@@ -16,21 +16,9 @@ export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
   const pathname = usePathname();
   const isProjectPage = pathname.includes(project.slug);
 
-  const handleCarouselInteraction = (e: React.MouseEvent) => {
-    const target = e.target as HTMLElement;
-    // Only stop propagation if clicking on carousel arrow controls
-    if (target.closest(".control-arrow")) {
-      e.stopPropagation();
-    }
-  };
-
   return (
-    <article className="flex flex-col">
-      <div
-        onClick={handleCarouselInteraction}
-        onMouseDown={handleCarouselInteraction}
-        className="w-full h-full"
-      >
+    <article className="flex flex-col w-full">
+      <div className="w-full h-full">
         <Carousel
           autoPlay
           infiniteLoop
@@ -44,7 +32,9 @@ export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
           {(primary ? [images[0]] : images).map((image) => (
             <figure
               key={image}
-              className={`w-full relative ${!isProjectPage ? "h-96" : "h-2xl"}`}
+              className={`w-full relative h-40 md:h-96 ${
+                !isProjectPage ? "xl:h-md" : "xl:h-2xl"
+              }`}
             >
               <Image
                 src={image}
@@ -60,9 +50,7 @@ export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
       <div className="flex flex-wrap items-center justify-between mt-4 w-full">
         <Link key={project.slug} href={`${ROUTES.PROJECTS}/${project.slug}`}>
           <h3 className="flex flex-wrap items-center gap-x-4 font-bold mb-2">
-            <span className="link-hover">
-              {project.name}
-            </span>
+            <span className="link-hover">{project.name}</span>
             <span className="text-xs font-bold bg-steel-blue w-fit px-2 py-1 rounded-sm text-center">
               {project.tag}
             </span>
@@ -71,33 +59,30 @@ export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
 
         <div className="flex gap-x-4">
           {project.links?.map(({ name, url }) => (
-            <div
+            <Link
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
               key={url}
-              role="link"
               tabIndex={0}
               title={toTitleCase(name)}
               className="w-6 md:w-8 lg:w-10 flex cursor-pointer"
-              onClick={(e) => {
-                e.stopPropagation();
-                window.open(url, "_blank", "noopener,noreferrer");
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  e.stopPropagation();
-                  e.preventDefault();
-                  window.open(url, "_blank", "noopener,noreferrer");
-                }
-              }}
             >
               <LinkIcon name={name} />
-            </div>
+            </Link>
           ))}
         </div>
       </div>
 
       {!primary && (
         <div className="flex flex-col grow">
-          <p className="mt-8 text-justify">{project.description}</p>
+          <p
+            className={`mt-8 text-justify ${
+              !isProjectPage ? "line-clamp-3" : ""
+            }`}
+          >
+            {project.description}
+          </p>
 
           <div className="flex mt-8 items-center gap-x-6 text-xl">
             Built using:

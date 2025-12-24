@@ -28,7 +28,7 @@ export const About: React.FC = () => {
       </div>
 
       <div className="md:text-right mt-2">
-        <p className="flex md:justify-end items-center">
+        <p className="flex md:justify-end items-center whitespace-nowrap">
           Use the{" "}
           <span className="w-4 mx-1 text-red-50">
             <HamburgerIcon />

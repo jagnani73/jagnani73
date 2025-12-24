@@ -160,7 +160,6 @@ button:focus {
 .link-hover {
   position: relative;
   transition: color 0.3s ease;
-  display: inline-block;
 }
 
 .link-hover::after {

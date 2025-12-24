@@ -48,7 +48,7 @@ const ProjectPage: NextPage<{
   }
 
   return (
-    <section className="px-10 lg:px-0 w-full lg:w-8/12 mx-auto mt-48">
+    <section className="px-10 lg:px-0 w-full lg:w-10/12 mx-auto mt-28 lg:mt-48">
       <Project primary={false} project={project} />
     </section>
   );

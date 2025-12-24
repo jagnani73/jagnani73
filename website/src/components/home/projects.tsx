@@ -10,15 +10,9 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
       <h1>Projects</h1>
       <h3>Things I&apos;ve built</h3>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
         {projects.map((project) => (
-          <Link
-            key={project.slug}
-            href={`${ROUTES.PROJECTS}/${project.slug}`}
-            className="lg:w-10/12 mx-auto mt-10"
-          >
-            <Project primary={true} project={project} />
-          </Link>
+          <Project key={project.slug} primary={true} project={project} />
         ))}
       </div>
 

@@ -41,7 +41,7 @@ export const Hero: React.FC = () => {
           same: build things that solve real problems.
         </p>
 
-        <div className="mx-auto mt-8 overflow-x-auto">
+        <div className="mx-auto max-w-full px-8 mt-8 overflow-x-auto">
           <Tooltip id="react-tooltip" />
 
           <GitHubCalendar
