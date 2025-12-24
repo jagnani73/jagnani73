@@ -144,6 +144,97 @@ export const experiences: ExperienceType[] = [
 
 export const projects: ProjectType[] = [
   {
+    slug: "goldrush-kit",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766564317/jagnani73/projects/goldrush-kit/81f580da-f9c3-4f15-8faf-ca37eef2fedd.png",
+    name: "GoldRush Kit",
+    tag: "package",
+    description:
+      "GoldRush Kit is a beautifully designed React component library for web3 dApp frontends. Powered by the Covalent API, it provides pre-built components that easily fetch and display data from 100+ blockchains. The library is open-source, customizable, and includes components for token balances, NFT galleries, transaction receipts, and more. Built with React, TypeScript, and TailwindCSS, it offers a complete UI kit for building blockchain applications.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/covalenthq/goldrush-kit",
+      },
+      {
+        name: LINKS_NAMES.NPM,
+        url: "https://www.npmjs.com/package/@covalenthq/goldrush-kit",
+      },
+    ],
+    stack: [
+      STACK_NAMES.REACT,
+      STACK_NAMES.TYPESCRIPT,
+      STACK_NAMES.TAILWIND_CSS,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766564635/jagnani73/projects/goldrush-kit/ac94b6a1-a9c4-42cd-a318-5c80b2549824.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766564330/jagnani73/projects/goldrush-kit/0172911e-a1c9-4796-aea3-05bee4f8d65f.png",
+    ],
+  },
+  {
+    slug: "lenden",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/9a5e12be-9c19-42da-ba67-b47af1f14a18_jvotf8.png",
+    name: "LenDen",
+    tag: "website",
+    description:
+      "LenDen is a cross-chain liquidity platform that enables owners of digital assets, especially those with NFTs or tokens on multiple blockchains, to use their assets to get liquidity cross-chain. The platform provides a seamless, user-friendly interface that makes the borrowing and lending process easier, allowing users to get liquidity in a simple and easy-to-understand way. LenDen also provides users with a cross-chain credibility score which enables them to become trusted users. In case of failure to do loan repayment, the platform either keeps the collateral or auctions it off. Built at Unfold 2023 hackathon, this project won First Place in the Router Protocol track by leveraging Router cross-talk contracts for seamless cross-chain functionality.",
+    links: [
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://devfolio.co/projects/lenden-27ec",
+      },
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/lenden",
+      },
+    ],
+    stack: [
+      STACK_NAMES.NODE,
+      STACK_NAMES.NEXT,
+      STACK_NAMES.TYPESCRIPT,
+      STACK_NAMES.TAILWIND_CSS,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/578f68d4-e848-4a3f-a5c5-b7cc74cf9a88_gg0aqw.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/1d59ea1e-69b3-4cde-9ab9-8fabf58de774_blm70w.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/903d5d31-763d-4c5e-8a60-4593464e465d_eicstt.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/f247c1a5-c4aa-411a-9c74-c1bbd1147bfa_l3bj0r.png",
+    ],
+  },
+  {
+    slug: "delinzk",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/6a559df0-848d-46e9-9b81-a25383c5b89d_npadrq.jpg",
+    name: "deLinZK",
+    tag: "website",
+    description:
+      "deLinZK is a Zero-Knowledge solution providing a platform for organizations and employees to accurately issue Verifiable Credentials which serve as Proof-of-Employment. It provides a comprehensive job board allowing organizations to post jobs, and employees to apply to them. The organizations do not need to spend additional time verifying the work experience of applicants, since all of them are already verified by deLinZK through a ZKP way. Built at ETHforAll hackathon, this project addresses the problem of fake credentials and forged certificates in networking platforms by using Polygon ID for credential verification.",
+    links: [
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://devfolio.co/projects/delinzk-4e9f",
+      },
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/delinzk",
+      },
+    ],
+    stack: [
+      STACK_NAMES.NODE,
+      STACK_NAMES.NEXT,
+      STACK_NAMES.TYPESCRIPT,
+      STACK_NAMES.TAILWIND_CSS,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/70ffc667-d062-4948-97dc-85c438a7ef7d_irclpf.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/91a99762-16bf-4ba8-b12c-35ceaba31927_nixd6w.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/e505aa8f-668a-40a8-822d-3fa261b68ff7_azumdi.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766558075/jagnani73/projects/delinzk/ea9ad5d5-7066-41a4-b44b-bd2814f37f57_hftzqk.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/350ad1c9-a430-42bb-ae52-d28f70b7ae34_to9t6l.png",
+    ],
+  },
+  {
     slug: "nudge-lab",
     preview:
       "https://res.cloudinary.com/jagnani73/image/upload/v1714473693/jagnani73/projects/nudge-lab/preview3_j50aqp.png",
@@ -555,6 +646,104 @@ export const projects: ProjectType[] = [
     ],
   },
   {
+    slug: "walleth",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766562709/jagnani73/projects/walleth/00f4aa4f-b85f-40e6-bab6-64f20cec88ec.png",
+    name: "WALLeth",
+    tag: "website",
+    description:
+      "Walleth is a dummy frontend for an NFT Marketplace WALL.app. Built with Next.js and TypeScript, it provides a modern and responsive interface for showcasing NFT marketplace functionality. The project demonstrates frontend development skills with a focus on creating an intuitive user experience for browsing and interacting with NFTs.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/walleth",
+      },
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://walleth.jagnani73.com/",
+      },
+    ],
+    stack: [STACK_NAMES.NEXT, STACK_NAMES.TYPESCRIPT, STACK_NAMES.TAILWIND_CSS],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766562764/jagnani73/projects/walleth/fcbb47fa-a665-4d36-a3fa-857e0a0a34af.png",
+    ],
+  },
+  {
+    slug: "equivalent",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766562993/jagnani73/projects/equivalent/babf1eaa-feb7-44ab-96f4-63e76a260665.png",
+    name: "Equivalent",
+    tag: "website",
+    description:
+      "Equivalent is a sample block explorer project that demonstrates a new approach to viewing blockchain data. Built with Next.js and powered by Covalent's API, it features human-readable data with no hex codes, keyboard shortcuts for navigation, and multichain support. The project includes wallet balances with NFT rendering, transaction history, asset flows, and transaction decoding for DEX, NFT, and lending protocols.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/equivalent",
+      },
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://equivalent.jagnani73.com/",
+      },
+    ],
+    stack: [STACK_NAMES.NEXT, STACK_NAMES.TYPESCRIPT, STACK_NAMES.TAILWIND_CSS],
+    images: [],
+  },
+  {
+    slug: "typequest",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766563553/jagnani73/projects/typequest/d2b7d0b6-c90f-42c0-bec8-dc40fb47eaa8.png",
+    name: "TypeQuest",
+    tag: "website",
+    description:
+      "TypeQuest is a library wrapper for keybindings on Keypress.JS. It provides a simple and extensible way to handle keyboard shortcuts in React applications. The library includes a shortcut component for easy integration and a singleton for the Keypress.JS listener, exposing native methods for extensibility. Built with TypeScript and Vite, it offers a clean API for managing keyboard interactions.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/typequest",
+      },
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://typequest.jagnani73.com/",
+      },
+    ],
+    stack: [
+      STACK_NAMES.REACT,
+      STACK_NAMES.TYPESCRIPT,
+      STACK_NAMES.TAILWIND_CSS,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766563579/jagnani73/projects/typequest/f7df28d2-297c-4e02-9d5f-5874e8290ec8.png",
+    ],
+  },
+  {
+    slug: "weather-app",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766563799/jagnani73/projects/weather/857be2cf-5456-4092-922e-3afad071ee9c.png",
+    name: "Weather App",
+    tag: "website",
+    description:
+      "Weather App is a web application that provides real-time weather information for locations worldwide. The app displays current weather conditions, forecasts, and other meteorological data in a clean and user-friendly interface. Built with modern web technologies, it demonstrates API integration and responsive design principles.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/weather-app",
+      },
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://weather.jagnani73.com/",
+      },
+    ],
+    stack: [
+      STACK_NAMES.REACT,
+      STACK_NAMES.TYPESCRIPT,
+      STACK_NAMES.TAILWIND_CSS,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766563874/jagnani73/projects/weather/5793ea1f-f521-4b9c-bd8b-7ca7d0ff944f.png",
+    ],
+  },
+  {
     slug: "doc-gen",
     preview:
       "https://res.cloudinary.com/jagnani73/image/upload/v1714473792/jagnani73/projects/doc-gen/preview_1_kqzvim.png",
@@ -669,7 +858,7 @@ export const hackathons: HackathonType[] = [
   {
     name: "ETHGlobal Prague 2025",
     organizer: "ETHGlobal",
-    award: "Blockscout Protocol Pool Prize - Track Prize",
+    award: "BlockScout Protocol Pool Prize - Track Prize",
     location: "Prague",
     duration: "May 2025",
     project: {

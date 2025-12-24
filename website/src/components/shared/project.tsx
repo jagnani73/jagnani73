@@ -12,38 +12,42 @@ export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
   const images = [project.preview, ...(project.images || [])];
 
   return (
-    <article>
-      {images.length > 1 && !primary ? (
-        <Carousel
-          autoPlay
-          infiniteLoop
-          interval={5000}
-          showStatus={false}
-          showThumbs={false}
-          showArrows={false}
-          swipeable
-          emulateTouch
-        >
-          {images.map((image) => (
-            <Image
-              key={image}
-              src={image}
-              alt={project.name}
-              width={800}
-              height={600}
-              className="w-full"
-            />
-          ))}
-        </Carousel>
-      ) : (
-        <Image
-          src={project.preview}
-          alt={project.name}
-          width={800}
-          height={600}
-          className="w-full"
-        />
-      )}
+    <article className="flex flex-col h-full">
+      <div className="w-full aspect-video relative overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-800">
+        {images.length > 1 && !primary ? (
+          <Carousel
+            autoPlay
+            infiniteLoop
+            interval={5000}
+            showStatus={false}
+            showThumbs={false}
+            showArrows={false}
+            swipeable
+            emulateTouch
+            className="h-full"
+          >
+            {images.map((image) => (
+              <div key={image} className="h-full">
+                <Image
+                  src={image}
+                  alt={project.name}
+                  width={800}
+                  height={600}
+                  className="w-full h-full object-contain object-center"
+                />
+              </div>
+            ))}
+          </Carousel>
+        ) : (
+          <Image
+            src={project.preview}
+            alt={project.name}
+            width={800}
+            height={600}
+            className="w-full h-full object-contain object-center"
+          />
+        )}
+      </div>
 
       <div className="flex flex-wrap items-center justify-between mt-4 w-full">
         <h3 className="flex flex-wrap items-center gap-x-4 font-bold mb-2">
@@ -80,7 +84,7 @@ export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
       </div>
 
       {!primary && (
-        <>
+        <div className="flex flex-col grow">
           <p className="mt-8 text-justify">{project.description}</p>
 
           <div className="flex mt-8 items-center gap-x-6 text-xl">
@@ -93,7 +97,7 @@ export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
               ))}
             </div>
           </div>
-        </>
+        </div>
       )}
     </article>
   );

@@ -22,12 +22,12 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
         moment.
       </p>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-10 lg:gap-y-8 lg:items-start mt-10 lg:mt-20">
         {projects.map((project) => (
           <Link
             key={project.slug}
             href={`${ROUTES.PROJECTS}/${project.slug}`}
-            className="md:w-10/12 mx-auto mt-10 md:mt-20"
+            className="md:w-10/12 mx-auto h-full flex"
           >
             <Project primary={false} project={project} />
           </Link>
