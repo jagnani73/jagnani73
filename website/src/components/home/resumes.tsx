@@ -17,13 +17,13 @@ export const Resumes: React.FC<ResumesProps> = ({ resumes }) => {
         thing I learned. Click on the preview to view each version.
       </p>
 
-      <header className="flex items-center gap-x-16 justify-between p-4 my-8 overflow-auto">
+      <header className="flex items-center justify-between p-4 my-8 overflow-auto">
         {resumes.map(({ date }, i) => (
           <button
             key={date}
             onClick={() => setActiveResume(i)}
-            className={`whitespace-nowrap cursor-pointer ${
-              activeResume === i ? " font-bold" : ""
+            className={`whitespace-nowrap cursor-pointer link-hover ${
+              activeResume === i ? " font-bold text-steel-blue" : ""
             }`}
           >
             {date}
