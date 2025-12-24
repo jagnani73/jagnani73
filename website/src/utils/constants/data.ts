@@ -13,7 +13,7 @@ export const experiences: ExperienceType[] = [
     description:
       "CovalentHQ is a blockchain data provider offering comprehensive and transparent access to blockchain data in a unified API. I was given the ownership of a range of open-source products called GoldRush as a way of increasing the API consumption. GoldRush includes a GoldRush Decoder, which is expandable for contributors to add decoders that convert raw log events to structured, human-readable data. GoldRush also includes a GoldRush Kit which is a 'Smart Component' UI library for plug-n-play visualized data of over 200 chains.",
     designation: "Product Engineer",
-    duration: "June 2023 - Present",
+    duration: "June 2023 - December 2025",
     org: "CovalentHQ",
     slug: "covalent",
     tag: "full-time",
