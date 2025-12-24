@@ -144,9 +144,118 @@ export const experiences: ExperienceType[] = [
 
 export const projects: ProjectType[] = [
   {
+    slug: "flux",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766567905/jagnani73/projects/flux/40534ebc-ecbe-4d84-81bc-943dce41227b.png",
+    name: "Flux",
+    tag: "website",
+    description:
+      "Flux is a Web3-native, AI-powered customer support platform designed for the decentralized economy. The platform empowers crypto organizations to deploy intelligent AI agents that resolve user queries with on-chain awareness and verifiable integrity. Flux bridges the gap between Web2 support tools and Web3 needs by creating autonomous, on-chain-aware AI agents that can read block explorers, interpret on-chain actions, and diagnose transaction failures. Built at ETHGlobal New Delhi 2025, this project won the Best use of Fluence Virtual Servers - Track Prize. The platform integrates with ENS for agent identity, Fluence Virtual Servers for decentralized compute, and ASI (Artificial Superintelligence Alliance) for agent architecture, enabling organizations to train agents on documentation, connect on-chain data, and authorize safe actions.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/flux",
+      },
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://flux-support.vercel.app/",
+      },
+    ],
+    stack: [
+      STACK_NAMES.NODE,
+      STACK_NAMES.NEXT,
+      STACK_NAMES.TYPESCRIPT,
+      STACK_NAMES.TAILWIND_CSS,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766567915/jagnani73/projects/flux/f631ab10-eee1-44d7-a70a-dfff0c2f353a.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766568390/jagnani73/projects/flux/a751cb71-afdd-4686-91bf-27dfd1231dec.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766568408/jagnani73/projects/flux/2415a4c8-5508-4e49-b1fd-461240693a30.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766568417/jagnani73/projects/flux/962c2c42-774a-47a5-8a1d-5173d420969d.png",
+    ],
+  },
+  {
+    slug: "daoscape",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766567343/jagnani73/projects/daoscape/46c6a4ff-3e28-494b-ab29-d284403ac1a2.png",
+    name: "DAOScape",
+    tag: "website",
+    description:
+      "DAOScape is a privacy-preserving DAO platform with reputation-based governance using Zero-Knowledge Proofs. The system leverages vlayer's Web Proof technology to enable privacy-preserving verification of social media accounts, email domains, and GitHub contributions, creating a governance mechanism that rewards genuine participation over pure capital holdings. The platform features zero-knowledge identity verification, an advanced multi-dimensional reputation system, sophisticated voting weights that balance reputation, token holdings, and participation rates, and dynamic governance supporting multiple proposal types. Built at ETHGlobal Prague, this project won the Blockscout Big Blockscout Explorer Pool Prize. The platform integrates with vlayer for ZKP verification, Blockscout for contract verification and analytics, and 1inch Protocol for treasury management.",
+    links: [
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://ethglobal.com/showcase/daoscape-g8f8m",
+      },
+    ],
+    stack: [
+      STACK_NAMES.REACT,
+      STACK_NAMES.TYPESCRIPT,
+      STACK_NAMES.TAILWIND_CSS,
+      STACK_NAMES.NODE,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766567356/jagnani73/projects/daoscape/5bf4f732-d1db-4517-9264-4306c07b81a5.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766567369/jagnani73/projects/daoscape/af9a9242-4b91-4e0e-a622-979691b413c7.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766567384/jagnani73/projects/daoscape/1b9d93e3-78d8-4e81-ae62-a54de565cd50.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766567401/jagnani73/projects/daoscape/41b87a86-0e60-407c-8839-9814193a077c.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766567453/jagnani73/projects/daoscape/5c1cb2cf-d35c-443a-a1f3-62b99a292c91.png",
+    ],
+  },
+  {
+    slug: "dewls",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766566622/jagnani73/projects/dewls/2008978b-b933-4627-8a14-24ecc66d65e7.png",
+    name: "Dewls",
+    tag: "website",
+    description:
+      "Dewls is a multi-chain arcade platform that allows users to battle with each other across various games like Rock-Paper-Scissors and Connect 4. The game data is handled on-chain and stored immutably to ensure transparency amongst competitors. Once a winner is decided, they are prompted to sign an attestation to mark their victory into the leaderboard and get a chance to win pool prizes distributed each weekend. This enables users to build a Proof-Of-Victory to showcase their skills. Built at ETHOnline 2024, this project won the Sign Protocol Pool Prize. The platform uses Web3Auth for authentication, Socket.io for real-time game logic, smart contracts deployed on Morph L2, Hedera, and Rootstock, and XMTP for user notifications.",
+    links: [
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://ethglobal.com/showcase/dewls-oyj1w",
+      },
+    ],
+    stack: [
+      STACK_NAMES.NODE,
+      STACK_NAMES.NEXT,
+      STACK_NAMES.TYPESCRIPT,
+      STACK_NAMES.TAILWIND_CSS,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766566655/jagnani73/projects/dewls/daffe5d5-c9af-4149-a6cf-0d2cf6b1c7a5.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766566746/jagnani73/projects/dewls/77c53c0a-d3a9-43fe-8451-e51184bbb6ea.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766566663/jagnani73/projects/dewls/c1db88c1-0e6c-4c33-8056-d3d7a41a96a0.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766566731/jagnani73/projects/dewls/4184e2cb-9978-4ef1-9656-a4d063b87c9b.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766566705/jagnani73/projects/dewls/bf8e57c5-ae68-40fd-a5cc-f70c9b1fd320.png",
+    ],
+  },
+  {
+    slug: "ai-agent-sdk",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766567167/jagnani73/projects/ai-agent-sdk/68955376-450a-4c28-9ed6-3eb4b8f391bf.png",
+    name: "AI Agent SDK",
+    tag: "package",
+    description:
+      "AI Agent SDK is a TypeScript SDK for building autonomous AI agents for the Zero-Employee Enterprise (ZEE). The SDK enables developers to create intelligent, context-aware agents with ease and functionality. It provides a unified interface for LLMs, supports single model inference calls to multi-agent systems with tools, and includes ZEE Workflows for composing agents to solve complex problems. The SDK is designed to be easily composable, extendable, and flexible for advanced use cases, supporting features like agents with system prompts, external tools, and workflow composition.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/covalenthq/ai-agent-sdk",
+      },
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://cxt.build/docs/overview",
+      },
+    ],
+    stack: [STACK_NAMES.TYPESCRIPT, STACK_NAMES.NODE],
+    images: [],
+  },
+  {
     slug: "goldrush-kit",
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1766564317/jagnani73/projects/goldrush-kit/81f580da-f9c3-4f15-8faf-ca37eef2fedd.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766565005/jagnani73/projects/goldrush-kit/e0dd45f7-2dea-49bc-ac33-a7bbfdfeda05.png",
+
     name: "GoldRush Kit",
     tag: "package",
     description:
@@ -167,9 +276,31 @@ export const projects: ProjectType[] = [
       STACK_NAMES.TAILWIND_CSS,
     ],
     images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766564317/jagnani73/projects/goldrush-kit/81f580da-f9c3-4f15-8faf-ca37eef2fedd.png",
       "https://res.cloudinary.com/jagnani73/image/upload/v1766564635/jagnani73/projects/goldrush-kit/ac94b6a1-a9c4-42cd-a318-5c80b2549824.png",
       "https://res.cloudinary.com/jagnani73/image/upload/v1766564330/jagnani73/projects/goldrush-kit/0172911e-a1c9-4796-aea3-05bee4f8d65f.png",
     ],
+  },
+  {
+    slug: "goldrush-decoder",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766564974/jagnani73/projects/goldrush-decoder/8abf9959-854f-41f2-8b9d-55c48e00866c.png",
+    name: "GoldRush Decoder",
+    tag: "website",
+    description:
+      "GoldRush Decoder is a server-side API service that decodes unstructured, raw blockchain event logs into structured, human-readable data. The open-source project supports 200+ chains and provides a simple API endpoint to transform complex blockchain transaction events into meaningful structured data. Built with TypeScript and Node.js, it uses a configurable decoder system that allows contributors to add decoding logic for different protocols and events across multiple blockchains.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/covalenthq/goldrush-decoder",
+      },
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://goldrush-decoder.vercel.app/api/v1/healthcheck",
+      },
+    ],
+    stack: [STACK_NAMES.NODE, STACK_NAMES.TYPESCRIPT],
+    images: [],
   },
   {
     slug: "lenden",
@@ -545,6 +676,31 @@ export const projects: ProjectType[] = [
     stack: [STACK_NAMES.VUE, STACK_NAMES.TAILWIND_CSS],
   },
   {
+    slug: "inforged-noida",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766566175/jagnani73/projects/inforged-noida/b5870129-56aa-4f12-9b0c-b3b11bfa3f16.png",
+    name: "Inforged Noida",
+    tag: "website",
+    description:
+      "Inforged Noida is a web application project. The platform provides a modern interface for information management and display, built with contemporary web technologies to deliver a seamless user experience.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/inforged-noida",
+      },
+      {
+        name: LINKS_NAMES.WEBSITE,
+        url: "https://www.inforgedautosnoida.com/",
+      },
+    ],
+    stack: [STACK_NAMES.NEXT, STACK_NAMES.TYPESCRIPT, STACK_NAMES.TAILWIND_CSS],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766566186/jagnani73/projects/inforged-noida/7bb3a80d-cb51-489d-bd85-d5b867762c33.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766566209/jagnani73/projects/inforged-noida/443a0b0c-362a-4376-a52e-206680380943.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766566236/jagnani73/projects/inforged-noida/0c48b9eb-2486-4ecc-b2e2-9d944246b793.png",
+    ],
+  },
+  {
     slug: "frame-fantasy",
     preview:
       "https://res.cloudinary.com/jagnani73/image/upload/v1714473620/jagnani73/projects/frame-fantasy/Screenshot_from_2022-07-03_02-08-32_asnuhj.png",
@@ -688,6 +844,25 @@ export const projects: ProjectType[] = [
     ],
     stack: [STACK_NAMES.NEXT, STACK_NAMES.TYPESCRIPT, STACK_NAMES.TAILWIND_CSS],
     images: [],
+  },
+  {
+    slug: "nb-extract",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766567668/jagnani73/projects/nb-extract/ca0b8f0a-0c70-4fff-9249-b44a28912fb0.png",
+    name: "NB Extract",
+    tag: "website",
+    description:
+      "NB Extract is a utility tool for extracting and processing data from notebooks. The project provides functionality to parse, extract, and transform notebook content into structured formats, making it easier to work with notebook data programmatically.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/nb-extract",
+      },
+    ],
+    stack: [STACK_NAMES.NODE, STACK_NAMES.TYPESCRIPT, STACK_NAMES.TAILWIND_CSS],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766567681/jagnani73/projects/nb-extract/8e2f25b3-5418-4168-ad53-0c1a22b9b4df.png",
+    ],
   },
   {
     slug: "typequest",
