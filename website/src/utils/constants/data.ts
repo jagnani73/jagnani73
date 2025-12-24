@@ -9,7 +9,7 @@ import type { ProjectType } from "@/utils/types/projects.types";
 
 export const experiences: ExperienceType[] = [
   {
-    logo: "https://res.cloudinary.com/jagnani73/image/upload/v1714483586/jagnani73/experiences/covalent_klcbpk.png",
+    logo: "https://res.cloudinary.com/jagnani73/image/upload/v1766574046/jagnani73/experiences/2597dd2f-481e-4121-a1b7-9d12778ba44f.png",
     description:
       "CovalentHQ is a blockchain data provider offering comprehensive and transparent access to blockchain data in a unified API. I was given the ownership of a range of open-source products called GoldRush as a way of increasing the API consumption. GoldRush includes a GoldRush Decoder, which is expandable for contributors to add decoders that convert raw log events to structured, human-readable data. GoldRush also includes a GoldRush Kit which is a 'Smart Component' UI library for plug-n-play visualized data of over 200 chains.",
     designation: "Product Engineer",
