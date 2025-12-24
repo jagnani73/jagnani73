@@ -1203,13 +1203,13 @@ export const certifications: CertificationType[] = [
 export const resumes: ResumeType[] = [
   {
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1766508479/jagnani73/resumes/2020251223.png",
-    resume: "https://drive.google.com/uc?id=1GYW7-Crdh_UyvKOuvQaL3kwpEI3_SCOp",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1766574863/jagnani73/resumes/20251223.png",
+    resume: "https://drive.google.com/uc?id=1YJsRX456Dhly8PmEZ6YySI707m95xkfh",
     date: "23 December 2025",
   },
   {
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1714476077/jagnani73/resumes/20210206.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714476155/jagnani73/resumes/20230211.png",
     resume: "https://drive.google.com/uc?id=14rlW_vq_1UX45zqnyAfPHyJpUSVuzIft",
     date: "11 February 2023",
   },
@@ -1221,25 +1221,25 @@ export const resumes: ResumeType[] = [
   },
   {
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1714476110/jagnani73/resumes/20210925.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714476189/jagnani73/resumes/20220420.png",
     resume: "https://drive.google.com/uc?id=1KZKfxRvsBRcUbAMmhkbIdwP4UovmZh9E",
     date: "20 April 2022",
   },
   {
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1714476133/jagnani73/resumes/20210908.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714476110/jagnani73/resumes/20210925.png",
     resume: "https://drive.google.com/uc?id=1axpcLaEEe1iRD0eNrCCUDhMyMKXSyYVF",
     date: "25 September 2021",
   },
   {
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1714476155/jagnani73/resumes/20230211.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714476133/jagnani73/resumes/20210908.png",
     resume: "https://drive.google.com/uc?id=1vJ7J7FC6ofYA15qHlpG_b-cvtBkSbb0e",
     date: "08 September 2021",
   },
   {
     preview:
-      "https://res.cloudinary.com/jagnani73/image/upload/v1714476189/jagnani73/resumes/2020420.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1714476077/jagnani73/resumes/20210206.png",
     resume: "https://drive.google.com/uc?id=1UB8kkpx5yFxhm-EJojwFXU-omHmlGjQw",
     date: "06 February 2021",
   },
