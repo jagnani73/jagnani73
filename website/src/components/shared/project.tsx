@@ -59,8 +59,8 @@ export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
 
       <div className="flex flex-wrap items-center justify-between mt-4 w-full">
         <Link key={project.slug} href={`${ROUTES.PROJECTS}/${project.slug}`}>
-          <h3 className="flex flex-wrap items-center gap-x-4 font-bold mb-2 group">
-            <span className="group-hover:text-steel-blue transition-colors duration-300">
+          <h3 className="flex flex-wrap items-center gap-x-4 font-bold mb-2">
+            <span className="link-hover">
               {project.name}
             </span>
             <span className="text-xs font-bold bg-steel-blue w-fit px-2 py-1 rounded-sm text-center">

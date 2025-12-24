@@ -38,7 +38,7 @@ export const Stack: React.FC = () => {
         href="https://www.npmjs.com/package/react-easy-marquee"
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-8 lg:text-2xl block w-fit lg:ml-auto"
+        className="mt-8 lg:text-2xl block w-fit lg:ml-auto link-hover"
       >
         The <span className="font-bold">marquee</span> above is something I
         built

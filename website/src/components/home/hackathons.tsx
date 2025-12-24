@@ -38,7 +38,7 @@ export const Hackathons: React.FC<HackathonsProps> = ({ hackathons }) => {
                 Built{" "}
                 <Link
                   href={`${ROUTES.PROJECTS}/${hackathon.project.slug}`}
-                  className="font-semibold"
+                  className="font-semibold link-hover"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

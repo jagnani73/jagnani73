@@ -155,3 +155,29 @@ button:focus {
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
+
+/* Link Hover Effect */
+.link-hover {
+  position: relative;
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+
+.link-hover::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-steel-blue);
+  transition: width 0.3s ease;
+}
+
+.link-hover:hover {
+  color: var(--color-steel-blue);
+}
+
+.link-hover:hover::after {
+  width: 100%;
+}

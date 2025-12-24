@@ -24,7 +24,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
 
       <Link
         href={ROUTES.PROJECTS}
-        className="mt-8 text-xl lg:text-2xl block w-fit lg:ml-auto"
+        className="mt-8 text-xl lg:text-2xl block w-fit lg:ml-auto link-hover"
       >
         See all my <span className="font-bold">projects</span>
       </Link>

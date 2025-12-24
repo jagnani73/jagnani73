@@ -17,7 +17,12 @@ export const Experience: React.FC<ExperienceProps> = ({
 
       <h5 className="mt-2 flex justify-between flex-wrap items-center">
         {experience.url ? (
-          <a href={experience.url} target="_blank" rel="noopener noreferrer">
+          <a
+            href={experience.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-hover mb-1"
+          >
             {experience.org}
           </a>
         ) : (

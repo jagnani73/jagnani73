@@ -28,7 +28,7 @@ export const Experiences: React.FC<ExperiencesProps> = ({ experiences }) => {
 
       <Link
         href={ROUTES.EXPERIENCES}
-        className="mt-8 text-xl lg:text-2xl block w-fit lg:ml-auto"
+        className="mt-8 text-xl lg:text-2xl block w-fit lg:ml-auto link-hover"
       >
         See all my <span className="font-bold">experiences</span>
       </Link>
