@@ -33,7 +33,7 @@ export const experiences: ExperienceType[] = [
   {
     logo: "https://res.cloudinary.com/jagnani73/image/upload/v1714472672/jagnani73/experiences/quinence_c4lnln.png",
     org: "Quinence",
-    url: "https://www.instagram.com/nwcsrmist/",
+    url: "https://quinence.com/",
     designation: "Software Development Consultant",
     tag: "internship",
     description:
