@@ -82,7 +82,7 @@ export const experiences: ExperienceType[] = [
     tag: "campus club",
     description:
       "GitHub Community SRM is one of my most passionate steps toward OSS. It is an initiative undertaken by a group of students of SRMIST, including myself, with the sole purpose of starting the OSS revolution in SRMIST. We aim to consolidate all the projects and papers created in SRMIST under the banner of the SRMISTKTR GitHub Organisation. I've been an integral part of establishing this community, conducting events, and making the portal to facilitate this.",
-    duration: "May 2021 - Present",
+    duration: "May 2021 - November 2022",
     slug: "gcsrm",
   },
   {
