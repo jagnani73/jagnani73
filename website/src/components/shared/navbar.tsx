@@ -120,8 +120,10 @@ export const Navbar: React.FC = () => {
                 <Link
                   href={href}
                   className={`${
-                    pathname === href ? "font-semibold " : ""
-                  }uppercase text-sm link-hover`}
+                    pathname === href
+                      ? "font-bold border-white"
+                      : "border-steel-blue"
+                  } uppercase text-sm border-b-2 hover:border-white transition-all duration-300`}
                   onClick={() => setDropMenu(false)}
                   rel="noopener noreferrer"
                   target={external ? "_blank" : ""}
