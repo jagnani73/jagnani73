@@ -1,8 +1,9 @@
-import type { Metadata, NextPage } from "next";
+import type { Metadata } from "next";
 import Script from "next/script";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar, Footer } from "@/components/shared";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
@@ -118,6 +119,7 @@ const RootLayout = ({
           <main>{children}</main>
           <Footer />
         </div>
+        <SpeedInsights />
       </body>
     </html>
   );
