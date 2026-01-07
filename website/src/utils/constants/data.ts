@@ -3,6 +3,7 @@ import type { ExperienceType } from "@/utils/types/experiences.types";
 import type {
   CertificationType,
   HackathonType,
+  ResearchPaperType,
   ResumeType,
 } from "@/utils/types/home.types";
 import type { ProjectType } from "@/utils/types/projects.types";
@@ -1261,3 +1262,30 @@ export const resumes: ResumeType[] = [
 
 export const coverLetter: string =
   "https://drive.google.com/file/d/1CDPDs3WtyH9YBoUvPwHuHnHvSiIThK-K/view?usp=drive_link";
+
+export const researchPapers: ResearchPaperType[] = [
+  {
+    title:
+      "Implementing Dead Letter Exchanges in MQTT and Proposing a Broker Failure Algorithm Utilizing Blockchain DNS",
+    date: "May 2023",
+    url: "https://ieeexplore.ieee.org/document/10157491",
+    tags: ["Blockchain", "MQTT", "IoT"],
+    felicitation: "Gold Certificate (SRM Research Day)",
+  },
+  {
+    title:
+      "A Novel Pipeline for Compressing Image Buffers in Remote Education Video Conferencing using Harris Corner Detection and Pixel Map Array",
+    date: "February 2023",
+    url: "https://ieeexplore.ieee.org/document/10179787",
+    tags: ["Image Processing", "Video Compression", "Remote Education"],
+    felicitation: null,
+  },
+  {
+    title:
+      "Improving Fault Tolerance and Tackling Broker Failure in MQTT through Blockchain",
+    date: "January 2023",
+    url: "https://ieeexplore.ieee.org/document/10118032",
+    tags: ["Blockchain", "MQTT", "Fault Tolerance"],
+    felicitation: "Best Conference Paper",
+  },
+];

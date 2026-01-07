@@ -6,3 +6,4 @@ export { Projects } from "./projects";
 export { Resumes } from "./resumes";
 export { Hackathons } from "./hackathons";
 export { Certifications } from "./certifications";
+export { ResearchPapers } from "./research-papers";

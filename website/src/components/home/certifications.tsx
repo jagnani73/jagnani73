@@ -13,9 +13,11 @@ export const Certifications: React.FC<CertificationsProps> = ({
           <article key={certification.name}>
             <h4 className="font-semibold">{certification.name}</h4>
 
-            <h6 className="mt-2">{certification.organization}</h6>
+            <div className="flex flex-col gap-1 mt-auto pt-3">
+              <h6 className="">{certification.organization}</h6>
 
-            <p className="text-sm">{certification.validity}</p>
+              <p className="text-sm">{certification.validity}</p>
+            </div>
           </article>
         ))}
       </div>

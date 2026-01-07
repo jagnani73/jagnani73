@@ -43,10 +43,23 @@ export interface ResumesProps {
   resumes: ResumeType[];
 }
 
+export interface ResearchPaperType {
+  title: string;
+  date: string;
+  url: string;
+  felicitation: string | null;
+  tags: string[];
+}
+
+export interface ResearchPapersProps {
+  researchPapers: ResearchPaperType[];
+}
+
 export interface HomePageProps {
   experiences: ExperienceType[];
   projects: ProjectType[];
   hackathons: HackathonType[];
   certifications: CertificationType[];
   resumes: ResumeType[];
+  researchPapers: ResearchPaperType[];
 }

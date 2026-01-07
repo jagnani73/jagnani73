@@ -8,6 +8,7 @@ import {
   Hackathons,
   Certifications,
   Resumes,
+  ResearchPapers,
 } from "@/components/home";
 import {
   experiences,
@@ -15,6 +16,7 @@ import {
   hackathons,
   certifications,
   resumes,
+  researchPapers,
 } from "@/utils/constants/data";
 
 const HomePage: NextPage = () => {
@@ -30,6 +32,7 @@ const HomePage: NextPage = () => {
       <Hackathons hackathons={hackathons} />
       <Projects projects={featuredProjects} />
       <Certifications certifications={certifications} />
+      <ResearchPapers researchPapers={researchPapers} />
       <Resumes resumes={resumes} />
     </>
   );
