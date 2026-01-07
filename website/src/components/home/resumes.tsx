@@ -3,6 +3,8 @@
 import { useState } from "react";
 
 import type { ResumesProps } from "@/utils/types/home.types";
+import Link from "next/link";
+import { coverLetter } from "@/utils/constants/data";
 
 export const Resumes: React.FC<ResumesProps> = ({ resumes }) => {
   const [activeResume, setActiveResume] = useState<number>(0);
@@ -31,7 +33,7 @@ export const Resumes: React.FC<ResumesProps> = ({ resumes }) => {
         ))}
       </header>
 
-      <a
+      <Link
         href={resumes[activeResume].resume}
         target="_blank"
         rel="noopener noreferrer"
@@ -40,6 +42,17 @@ export const Resumes: React.FC<ResumesProps> = ({ resumes }) => {
           background: `linear-gradient(180deg, #232323a0 0%, #232323 95%), url(${resumes[activeResume].preview}) center / cover no-repeat`,
         }}
       />
+
+      <div className="mt-8 text-center">
+        <Link
+          href={coverLetter}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link-hover text-steel-blue"
+        >
+          View Cover Letter
+        </Link>
+      </div>
     </section>
   );
 };

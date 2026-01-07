@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ExperienceProps } from "@/utils/types/experiences.types";
+import Link from "next/link";
 
 export const Experience: React.FC<ExperienceProps> = ({
   primary,
@@ -17,14 +18,14 @@ export const Experience: React.FC<ExperienceProps> = ({
 
       <h5 className="mt-2 flex justify-between flex-wrap items-center">
         {experience.url ? (
-          <a
+          <Link
             href={experience.url}
             target="_blank"
             rel="noopener noreferrer"
             className="link-hover mb-1"
           >
             {experience.org}
-          </a>
+          </Link>
         ) : (
           <span>{experience.org}</span>
         )}

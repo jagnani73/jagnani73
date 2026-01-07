@@ -3,6 +3,7 @@
 import Marquee from "react-easy-marquee";
 
 import { STACK } from "@/utils/constants/home-constants";
+import Link from "next/link";
 
 export const Stack: React.FC = () => {
   return (
@@ -34,7 +35,7 @@ export const Stack: React.FC = () => {
         </div>
       </Marquee>
 
-      <a
+      <Link
         href="https://www.npmjs.com/package/react-easy-marquee"
         target="_blank"
         rel="noopener noreferrer"
@@ -42,7 +43,7 @@ export const Stack: React.FC = () => {
       >
         The <span className="font-bold">marquee</span> above is something I
         built
-      </a>
+      </Link>
 
       <p className="lg:w-11/12 mt-10">
         Tools I use regularly. Some I know well, others I&apos;m still figuring

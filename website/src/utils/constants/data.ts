@@ -1204,49 +1204,60 @@ export const resumes: ResumeType[] = [
   {
     preview:
       "https://res.cloudinary.com/jagnani73/image/upload/v1766574863/jagnani73/resumes/20251223.png",
-    resume: "https://drive.google.com/uc?id=14uVh_IexRaNTHvknATcCml5j-OIcSdmx",
+    resume:
+      "https://drive.google.com/file/d/14uVh_IexRaNTHvknATcCml5j-OIcSdmx/view?usp=drive_link",
     date: "23 December 2025",
   },
   {
     preview:
       "https://res.cloudinary.com/jagnani73/image/upload/v1714476155/jagnani73/resumes/20230211.png",
-    resume: "https://drive.google.com/uc?id=14rlW_vq_1UX45zqnyAfPHyJpUSVuzIft",
+    resume:
+      "https://drive.google.com/file/d/14rlW_vq_1UX45zqnyAfPHyJpUSVuzIft/view?usp=drive_link",
     date: "11 February 2023",
   },
   {
     preview:
       "https://res.cloudinary.com/jagnani73/image/upload/v1714476099/jagnani73/resumes/20220608.png",
-    resume: "https://drive.google.com/uc?id=1WKDcp6zL0sBMxacnGO4p6HsJ8SldjaDe",
+    resume:
+      "https://drive.google.com/file/d/1WKDcp6zL0sBMxacnGO4p6HsJ8SldjaDe/view?usp=drive_link",
     date: "08 July 2022",
   },
   {
     preview:
       "https://res.cloudinary.com/jagnani73/image/upload/v1714476189/jagnani73/resumes/20220420.png",
-    resume: "https://drive.google.com/uc?id=1KZKfxRvsBRcUbAMmhkbIdwP4UovmZh9E",
+    resume:
+      "https://drive.google.com/file/d/1KZKfxRvsBRcUbAMmhkbIdwP4UovmZh9E/view?usp=drive_link",
     date: "20 April 2022",
   },
   {
     preview:
       "https://res.cloudinary.com/jagnani73/image/upload/v1714476110/jagnani73/resumes/20210925.png",
-    resume: "https://drive.google.com/uc?id=1axpcLaEEe1iRD0eNrCCUDhMyMKXSyYVF",
+    resume:
+      "https://drive.google.com/file/d/1axpcLaEEe1iRD0eNrCCUDhMyMKXSyYVF/view?usp=drive_link",
     date: "25 September 2021",
   },
   {
     preview:
       "https://res.cloudinary.com/jagnani73/image/upload/v1714476133/jagnani73/resumes/20210908.png",
-    resume: "https://drive.google.com/uc?id=1vJ7J7FC6ofYA15qHlpG_b-cvtBkSbb0e",
+    resume:
+      "https://drive.google.com/file/d/1vJ7J7FC6ofYA15qHlpG_b-cvtBkSbb0e/view?usp=drive_link",
     date: "08 September 2021",
   },
   {
     preview:
       "https://res.cloudinary.com/jagnani73/image/upload/v1714476077/jagnani73/resumes/20210206.png",
-    resume: "https://drive.google.com/uc?id=1UB8kkpx5yFxhm-EJojwFXU-omHmlGjQw",
+    resume:
+      "https://drive.google.com/file/d/1UB8kkpx5yFxhm-EJojwFXU-omHmlGjQw/view?usp=drive_link",
     date: "06 February 2021",
   },
   {
     preview:
       "https://res.cloudinary.com/jagnani73/image/upload/v1714476211/jagnani73/resumes/20200528.png",
-    resume: "https://drive.google.com/uc?id=1UlHEHcW_7nzP8NW61UlvmvPoYtYkscQl",
+    resume:
+      "https://drive.google.com/file/d/1UlHEHcW_7nzP8NW61UlvmvPoYtYkscQl/view?usp=drive_link",
     date: "28 May 2020",
   },
 ];
+
+export const coverLetter: string =
+  "https://drive.google.com/file/d/1CDPDs3WtyH9YBoUvPwHuHnHvSiIThK-K/view?usp=drive_link";
