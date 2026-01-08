@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar, Footer } from "@/components/shared";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
@@ -100,20 +100,6 @@ const RootLayout = ({
         <meta name="theme-color" content="#232323" />
       </head>
       <body className={nunitoSans.className}>
-        {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-CY9KEWMBRR"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-CY9KEWMBRR');
-          `}
-        </Script>
-
         <div className="flex flex-col justify-between min-h-screen">
           <Navbar />
           <main>{children}</main>
@@ -121,6 +107,7 @@ const RootLayout = ({
         </div>
         <SpeedInsights />
       </body>
+      <GoogleAnalytics gaId="G-CY9KEWMBRR" />
     </html>
   );
 };
