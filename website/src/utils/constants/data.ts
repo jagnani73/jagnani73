@@ -1206,7 +1206,7 @@ export const resumes: ResumeType[] = [
     preview:
       "https://res.cloudinary.com/jagnani73/image/upload/v1766574863/jagnani73/resumes/20251223.png",
     resume:
-      "https://drive.google.com/file/d/14uVh_IexRaNTHvknATcCml5j-OIcSdmx/view?usp=drive_link",
+      "https://drive.google.com/file/d/1-GoFxR9K2ptGjBmZynk9V_jC6t-bwgDp/view?usp=drive_link",
     date: "23 December 2025",
   },
   {
