@@ -1261,7 +1261,7 @@ export const resumes: ResumeType[] = [
 ];
 
 export const coverLetter: string =
-  "https://drive.google.com/file/d/1CDPDs3WtyH9YBoUvPwHuHnHvSiIThK-K/view?usp=drive_link";
+  "https://drive.google.com/file/d/1Feh-3W3H5yAkAAZYEgDth-TAJXoqGfqs/view?usp=drive_link";
 
 export const researchPapers: ResearchPaperType[] = [
   {
