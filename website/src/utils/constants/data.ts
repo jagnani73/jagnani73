@@ -146,7 +146,8 @@ export const experiences: ExperienceType[] = [
 export const projects: ProjectType[] = [
   {
     slug: "insidepoly",
-    preview: "",
+    preview:
+      "https://res.cloudinary.com/jagnani73/image/upload/v1773432165/jagnani73/projects/insidepoly/d751cba0-010f-47f0-9464-cb961eba2fe6.png",
     name: "InsidePoly",
     tag: "website",
     description:
@@ -164,7 +165,6 @@ export const projects: ProjectType[] = [
       STACK_NAMES.EXPRESS,
     ],
     images: [
-      "https://res.cloudinary.com/jagnani73/image/upload/v1773432165/jagnani73/projects/insidepoly/d751cba0-010f-47f0-9464-cb961eba2fe6.png",
       "https://res.cloudinary.com/jagnani73/image/upload/v1773432208/jagnani73/projects/insidepoly/f41709f3-7501-4726-a3ef-06095736f651.png",
       "https://res.cloudinary.com/jagnani73/image/upload/v1773432230/jagnani73/projects/insidepoly/ccfeab56-87b7-4256-ba6a-b0001932eff9.png",
     ],
