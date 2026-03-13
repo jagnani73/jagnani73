@@ -145,6 +145,31 @@ export const experiences: ExperienceType[] = [
 
 export const projects: ProjectType[] = [
   {
+    slug: "insidepoly",
+    preview: "",
+    name: "InsidePoly",
+    tag: "website",
+    description:
+      "InsidePoly watches every trade on Polymarket in real time and scores each trader 0–100 on how likely they are to be insider trading. It ingests OrderFilled events from The Graph, resolves market metadata and wallet history through Alchemy, and runs five scoring signals (bet concentration, market count, position size, entry timing, wallet age) inside a PostgreSQL function. Suspicious wallets surface on a live Next.js leaderboard with socket.io updates. On the backend, an Express API with Redis-backed job queues handles continuous ingestion, scoring, and RPC backfill.",
+    links: [
+      {
+        name: LINKS_NAMES.GITHUB,
+        url: "https://github.com/jagnani73/insidepoly",
+      },
+    ],
+    stack: [
+      STACK_NAMES.NODE,
+      STACK_NAMES.NEXT,
+      STACK_NAMES.TYPESCRIPT,
+      STACK_NAMES.EXPRESS,
+    ],
+    images: [
+      "https://res.cloudinary.com/jagnani73/image/upload/v1773432165/jagnani73/projects/insidepoly/d751cba0-010f-47f0-9464-cb961eba2fe6.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1773432208/jagnani73/projects/insidepoly/f41709f3-7501-4726-a3ef-06095736f651.png",
+      "https://res.cloudinary.com/jagnani73/image/upload/v1773432230/jagnani73/projects/insidepoly/ccfeab56-87b7-4256-ba6a-b0001932eff9.png",
+    ],
+  },
+  {
     slug: "flux",
     preview:
       "https://res.cloudinary.com/jagnani73/image/upload/v1766567905/jagnani73/projects/flux/40534ebc-ecbe-4d84-81bc-943dce41227b.png",
