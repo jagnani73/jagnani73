@@ -150,8 +150,15 @@ export const projects: ProjectType[] = [
       "https://res.cloudinary.com/jagnani73/image/upload/v1773432165/jagnani73/projects/insidepoly/d751cba0-010f-47f0-9464-cb961eba2fe6.png",
     name: "InsidePoly",
     tag: "website",
-    description:
-      "InsidePoly watches every trade on Polymarket in real time and scores each trader 0–100 on how likely they are to be insider trading. It ingests OrderFilled events from The Graph, resolves market metadata and wallet history through Alchemy, and runs five scoring signals (bet concentration, market count, position size, entry timing, wallet age) inside a PostgreSQL function. Suspicious wallets surface on a live Next.js leaderboard with socket.io updates. On the backend, an Express API with Redis-backed job queues handles continuous ingestion, scoring, and RPC backfill.",
+    description: `InsidePoly is a real-time **insider-trading surveillance tool** for [Polymarket](https://polymarket.com), the world's largest prediction market platform on Polygon. Prediction markets are uniquely vulnerable to information asymmetry: on-chain data is fully public, yet no tooling existed to systematically flag wallets trading with suspiciously prescient timing or concentration. InsidePoly closes that gap by continuously watching every trade and scoring each trader on a 0–100 insider-trading likelihood scale.
+
+The system is a **TypeScript monorepo** with three packages: **common** (shared **Drizzle ORM** schema and types), **backend** (Express API plus scoring engine), and **frontend** (Next.js leaderboard). The data pipeline ingests **OrderFilled** events from the **Polymarket Subgraph** (The Graph), enriches them via **Alchemy RPC** to resolve token/condition IDs and wallet histories, then persists everything to **PostgreSQL (Supabase)**. **Redis** backs the job queues and sync cursors. Live updates push via **socket.io**, and the frontend polls via **React Query** every 30 seconds with WebSocket subscriptions for aggregate tier stats.
+
+I designed and built the entire system end-to-end. The most technically demanding piece was **score_wallets()**, a PL/pgSQL function that computes five behavioral signals in a single pass without round-tripping through the application layer: **bet concentration** (top-market volume share), **market count**, **position size**, **entry timing** (how late in a market's lifecycle a wallet first traded), and **wallet age** (gap between first USDC.e receipt and first trade), each contributing up to 25 points. Wallets scoring 80+ get flagged as suspected insiders on the leaderboard.
+
+- **Stack:** TypeScript, Next.js, Express, PostgreSQL, Redis, Drizzle ORM, socket.io, The Graph, Alchemy, Supabase
+- **Scoring tiers:** Flagged Insider (80–100), Suspicious (60–79), Watchlist (30–59), Normal (0–29)
+- **Pipeline stages:** Subgraph ingestion → enrichment loop → scoring loop → REST + WebSocket broadcast`,
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -176,7 +183,13 @@ export const projects: ProjectType[] = [
     name: "Flux",
     tag: "website",
     description:
-      "Flux is a Web3-native, AI-powered customer support platform designed for the decentralized economy. The platform empowers crypto organizations to deploy intelligent AI agents that resolve user queries with on-chain awareness and verifiable integrity. Flux bridges the gap between Web2 support tools and Web3 needs by creating autonomous, on-chain-aware AI agents that can read block explorers, interpret on-chain actions, and diagnose transaction failures. Built at ETHGlobal New Delhi 2025, this project won the Best use of Fluence Virtual Servers - Track Prize. The platform integrates with ENS for agent identity, Fluence Virtual Servers for decentralized compute, and ASI (Artificial Superintelligence Alliance) for agent architecture, enabling organizations to train agents on documentation, connect on-chain data, and authorize safe actions.",
+      `Crypto organizations have a real mismatch problem: the support tools built for Web2 don't understand transaction failures, wallet states, or protocol interactions. Flux is a **Web3-native, AI-powered customer support platform** that lets any crypto project deploy intelligent support agents with on-chain awareness. These agents can read block explorers, diagnose failed transactions, and execute pre-authorized on-chain actions, all while maintaining verifiable, immutable chat logs.
+
+The architecture splits into three services: a **Python 3.12 agents service** powered by the **ASI (Artificial Superintelligence Alliance) uAgent framework**, a **Node.js/TypeScript API service** handling business logic and data persistence, and a **Next.js/Tailwind CSS frontend** serving both the admin dashboard and the embeddable customer widget. Organizations onboard their knowledge base via PDF and URL indexing, grant agents read-only blockchain API access, and configure budget-capped on-chain action authorizations. **ENS** provides verifiable agent identity, and **Fluence Virtual Servers** supply decentralized compute so the support infrastructure itself is never a centralized point of failure.
+
+I designed and built the full stack end-to-end: from the agent orchestration pipeline that routes user queries through on-chain data lookups to the admin dashboard for knowledge base management and agent deployment. The hardest challenge was coordinating the uAgent framework with live blockchain data fetching at query time. The agent needed to dynamically pull relevant on-chain context (token balances, transaction status, contract state) and synthesize it with indexed documentation to produce accurate responses, without hallucinating protocol-specific details.
+
+Flux was built at **ETHGlobal New Delhi 2025**, where it won the **Best Use of Fluence Virtual Servers** track prize.`,
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -207,7 +220,13 @@ export const projects: ProjectType[] = [
     name: "DAOScape",
     tag: "website",
     description:
-      "DAOScape is a privacy-preserving DAO platform with reputation-based governance using Zero-Knowledge Proofs. The system leverages vlayer's Web Proof technology to enable privacy-preserving verification of social media accounts, email domains, and GitHub contributions, creating a governance mechanism that rewards genuine participation over pure capital holdings. The platform features zero-knowledge identity verification, an advanced multi-dimensional reputation system, sophisticated voting weights that balance reputation, token holdings, and participation rates, and dynamic governance supporting multiple proposal types. Built at ETHGlobal Prague, this project won the Blockscout Big Blockscout Explorer Pool Prize. The platform integrates with vlayer for ZKP verification, Blockscout for contract verification and analytics, and 1inch Protocol for treasury management.",
+      `Most DAOs today have a core governance problem: voting power is proportional to token holdings, which creates plutocracies where a handful of whales drown out genuine contributors. DAOScape replaces pure capital-weighted voting with a **reputation-based system** that rewards real participation: verified social presence, email domain ownership, and open-source contributions, so that influence is earned rather than bought.
+
+The platform runs on a **multi-dimensional reputation engine** powered by **vlayer's Web Proof technology**, which generates **zero-knowledge proofs** for Twitter follows, GitHub activity, and email domains, confirming identity claims cryptographically without exposing raw credentials or requiring API keys. These verified signals feed into a **voting weight formula** where reputation carries the highest exponent, deliberately outweighing token balance. Smart contracts are written in **Solidity with Foundry** and deployed on **Base Sepolia**. **Blockscout** powers on-chain analytics and wallet profiling, and **1inch Protocol** handles DAO treasury management. A **Quests system** lets DAOs define engagement tasks with merit rewards.
+
+I architected the full stack: the **React 18 + TypeScript** frontend with **wagmi v2/viem v2** wallet integration, the **Node.js microservices** backend backed by **Supabase**, and the ZKP-integrated smart contract layer. The hardest challenge was integrating vlayer's Web Proof circuit into the reputation scoring pipeline in a way that remained composable across multiple proof types without leaking user data on-chain.
+
+DAOScape won the **Blockscout Big Blockscout Explorer Pool Prize** at **ETHGlobal Prague 2025**.`,
     links: [
       {
         name: LINKS_NAMES.WEBSITE,
@@ -235,7 +254,13 @@ export const projects: ProjectType[] = [
     name: "Dewls",
     tag: "website",
     description:
-      "Dewls is a multi-chain arcade platform that allows users to battle with each other across various games like Rock-Paper-Scissors and Connect 4. The game data is handled on-chain and stored immutably to ensure transparency amongst competitors. Once a winner is decided, they are prompted to sign an attestation to mark their victory into the leaderboard and get a chance to win pool prizes distributed each weekend. This enables users to build a Proof-Of-Victory to showcase their skills. Built at ETHOnline 2024, this project won the Sign Protocol Pool Prize. The platform uses Web3Auth for authentication, Socket.io for real-time game logic, smart contracts deployed on Morph L2, Hedera, and Rootstock, and XMTP for user notifications.",
+      `Dewls is a blockchain-integrated **arcade wagering platform** where players put real stakes on competitive performance across 1v1 games like Rock-Paper-Scissors and Connect 4. Every match outcome is settled on-chain, and winners earn a **Proof-of-Victory**, a cryptographic attestation signed via **Sign Protocol** that immutably records their result on a global leaderboard. The platform runs on weekly seasons, with a shared prize pool distributed each weekend to the top three performers.
+
+The architecture is deliberately multi-layered. Smart contracts are deployed across **Morph L2**, **Hedera** (using HCSC and HTS), and **Rootstock**, providing cross-chain accessibility and on-chain wager settlement. The real-time game engine runs on **Socket.IO** backed by **Redis** for atomic state management, with all game logic enforced server-side to prevent client manipulation. **Web3Auth** handles authentication for both Web2 and Web3 users, **Supabase** stores season and player data, and **XMTP** delivers in-app notifications, all stitched together in a **Next.js** frontend and **Express** API.
+
+I built the full-stack across frontend, backend, and smart contract layers. The hardest challenge was keeping WebSocket game state and on-chain finality in sync: a player's move had to be cryptographically committed before the next turn could proceed, requiring careful Redis locking and sequenced contract calls. Deploying to Hedera's Smart Contract Service also surfaced undocumented bytecode upload errors that required low-level debugging to resolve.
+
+Dewls won the **Sign Protocol Pool Prize** at **ETHOnline 2024**.`,
     links: [
       {
         name: LINKS_NAMES.WEBSITE,
@@ -263,7 +288,13 @@ export const projects: ProjectType[] = [
     name: "AI Agent SDK",
     tag: "package",
     description:
-      "AI Agent SDK is a TypeScript SDK for building autonomous AI agents for the Zero-Employee Enterprise (ZEE). The SDK enables developers to create intelligent, context-aware agents with ease and functionality. It provides a unified interface for LLMs, supports single model inference calls to multi-agent systems with tools, and includes ZEE Workflows for composing agents to solve complex problems. The SDK is designed to be easily composable, extendable, and flexible for advanced use cases, supporting features like agents with system prompts, external tools, and workflow composition.",
+      `The AI Agent SDK is a TypeScript framework built at Covalent for the **Zero-Employee Enterprise (ZEE)**: a paradigm where autonomous AI agents replace traditional human-staffed workflows, particularly in the Web3 and blockchain data space. The SDK fills a real gap for on-chain developers who need to build AI pipelines that can reason over blockchain data, call external APIs, and chain decisions across multiple models without wiring together fragile bespoke integrations from scratch.
+
+The SDK is organized around four composable primitives: **LLMs** (a unified provider interface supporting OpenAI, Google, and Anthropic), **Agents** (single model instances with system prompts and attached toolkits), **Tools** (external capability extensions), and **ZEE Workflows** (the orchestration layer that routes goals through a hierarchy of Planner and Router agents down to specialized task agents). The multi-agent coordination model is declarative: you define agents and a goal, and the workflow handles turn-taking, context passing, and tool invocation. This architecture scales from a single inference call up to deeply nested agent graphs without changing the composition API.
+
+I built the core SDK package and led several major architectural milestones. I shipped **multimodal support**, integrating Gemini for image analysis alongside text reasoning. I drove the **migration to the Vercel AI SDK** as the underlying model-calling layer, which unified streaming, tool-calling, and provider abstraction under a single interface and resolved a persistent tool-calling bug across providers. I also refactored the ZEE agent assignment model in v0.3.0 and built the **cza** CLI scaffolding tool for bootstrapping new agent projects.
+
+The SDK shipped as open-source MIT on npm under **@covalenthq/ai-agent-sdk**, accumulating **119 GitHub stars**, **56 forks**, and over **2,000 total downloads** since its December 2024 launch.`,
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -285,7 +316,13 @@ export const projects: ProjectType[] = [
     name: "GoldRush Kit",
     tag: "package",
     description:
-      "GoldRush Kit is a beautifully designed React component library for web3 dApp frontends. Powered by the Covalent API, it provides pre-built components that easily fetch and display data from 100+ blockchains. The library is open-source, customizable, and includes components for token balances, NFT galleries, transaction receipts, and more. Built with React, TypeScript, and TailwindCSS, it offers a complete UI kit for building blockchain applications.",
+      `GoldRush Kit is a **plug-n-play React component library** that cuts out the most painful part of building web3 frontends: wiring up blockchain data. Instead of writing custom hooks, parsing raw RPC responses, and manually normalizing data across dozens of chains, you drop in a pre-built component (token balances, NFT galleries, transaction receipts, block explorers), wrap it in a **GoldRushProvider**, and the data fetches itself. The library was built at CovalentHQ to make multi-chain dApp development approachable for any React developer.
+
+Architecturally, the library is built on **React**, **TypeScript**, and **TailwindCSS**, with every component driven by the **GoldRush TypeScript SDK**, Covalent's unified API client that normalizes on-chain data across **200+ blockchains**. Components follow an **atomic design hierarchy** (atoms to molecules to organisms), making them individually consumable or composable into full-page templates. The **theming system** uses a **GoldRushProvider** context that propagates a configurable **theme** object (controlling light/dark mode, primary color, background, foreground, and border radius) down to every component without any CSS overrides. A live **Storybook** environment serves as both documentation and interactive preview.
+
+I owned the library across the **v1.0.x** release cycle, driving it from **v1.0.1** through **v1.0.5**. I shipped state-preserving pagination for block lists, raw transaction log display, in/out direction indicators on transaction lists, and chain-switching in the address activity component. The hardest challenge was getting gas and fee unit formatting precisely right: ETH values, Gwei, and Wei are easy to conflate across different API response shapes, and subtle unit errors at the display layer directly erode user trust in the data.
+
+The library shipped **65 versions** on npm under **@covalenthq/goldrush-kit**, accumulated **105 GitHub stars** and **57 forks**, and spawned four actively maintained official templates.`,
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -314,7 +351,13 @@ export const projects: ProjectType[] = [
     name: "GoldRush Decoder",
     tag: "website",
     description:
-      "GoldRush Decoder is a server-side API service that decodes unstructured, raw blockchain event logs into structured, human-readable data. The open-source project supports 200+ chains and provides a simple API endpoint to transform complex blockchain transaction events into meaningful structured data. Built with TypeScript and Node.js, it uses a configurable decoder system that allows contributors to add decoding logic for different protocols and events across multiple blockchains.",
+      `Every EVM transaction produces a stream of raw event logs: packed hex-encoded data that means nothing without the contract's ABI and the context to decode it. Wallets, block explorers, and analytics platforms all face the same problem: turning opaque **Transfer** topics and data fields into the human-readable story of what actually happened. GoldRush Decoder solves this at the infrastructure level, exposing a single REST endpoint that accepts a chain name and transaction hash and returns an array of fully structured, labelled event objects enriched with token metadata and USD pricing, across 200+ EVM-compatible chains.
+
+The core is a **decoder registry** built around the **GoldRushDecoder** class. At startup, **initDecoder** scans a protocol directory and builds a map of **decoder keys** (strings of the form **protocol-name:EventName**) to handler functions registered via the **.on()** method. Each handler receives the raw log alongside a full transaction object and the Covalent API client, allowing on-the-fly token resolution, price lookups, and logo URL hydration. A **fallback decoder** handles any event that lacks a chain-specific handler, so the API always returns something meaningful even for unknown protocols. Contributors extend the system through a CLI scaffold (**yarn add-config**) that generates the config, decoder, and test file boilerplate for a new protocol in one command.
+
+I built GoldRush Decoder from the ground up at Covalent, owning the decoder engine architecture, the API server, CI/CD pipeline, and the contributor-facing scaffolding tooling. The most demanding work was implementing **batched-parallel log processing**: a transaction can emit dozens of logs from different protocols, and awaiting each decoder serially created unacceptable latency. I redesigned the execution model to fan out decoder invocations in parallel batches while preserving original log sequence order in the response.
+
+The project attracted 9 contributors, accumulated 21 stars and 7 forks on GitHub, and was adopted as a public good within the Covalent GoldRush ecosystem before being archived in August 2025.`,
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -335,7 +378,13 @@ export const projects: ProjectType[] = [
     name: "LenDen",
     tag: "website",
     description:
-      "LenDen is a cross-chain liquidity platform that enables owners of digital assets, especially those with NFTs or tokens on multiple blockchains, to use their assets to get liquidity cross-chain. The platform provides a seamless, user-friendly interface that makes the borrowing and lending process easier, allowing users to get liquidity in a simple and easy-to-understand way. LenDen also provides users with a cross-chain credibility score which enables them to become trusted users. In case of failure to do loan repayment, the platform either keeps the collateral or auctions it off. Built at Unfold 2023 hackathon, this project won First Place in the Router Protocol track by leveraging Router cross-talk contracts for seamless cross-chain functionality.",
+      `LenDen is a decentralized **cross-chain lending and borrowing platform** that addresses DeFi's liquidity fragmentation problem. Token and NFT holders with assets spread across Avalanche, Polygon, and other chains had no unified way to unlock liquidity without selling. LenDen changes that by letting borrowers collateralize assets on one chain and receive loans on another, while lenders earn interest by supplying capital to a multi-chain treasury.
+
+The platform runs on **Router Protocol's cross-talk contracts**, which handle the cross-chain messaging required to coordinate collateral locks and loan disbursements across networks. Borrowers post **NFT or token collateral**, and the system tracks repayment behavior to build a **cross-chain credibility score**, a reputation layer that surfaces trusted users and adjusts risk accordingly. In the event of loan default, the protocol either retains the collateral or routes it through an **on-chain auction mechanism**. The stack combines Solidity smart contracts, **Next.js** for the frontend, **Express/Node.js** for the backend, **Supabase** for off-chain data, and **Push Protocol** for notifications.
+
+I architected and built the full-stack integration: from the smart contract interfaces and cross-talk message routing to the borrower dashboard and credibility scoring logic. The hardest challenge was orchestrating reliable state synchronization across two chains, keeping the collateral lock on the source chain and the loan release on the destination chain atomic and recoverable under failure conditions.
+
+LenDen was built at **Unfold 2023**, where it won **First Place in the Router Protocol track**.`,
     links: [
       {
         name: LINKS_NAMES.WEBSITE,
@@ -366,7 +415,13 @@ export const projects: ProjectType[] = [
     name: "deLinZK",
     tag: "website",
     description:
-      "deLinZK is a Zero-Knowledge solution providing a platform for organizations and employees to accurately issue Verifiable Credentials which serve as Proof-of-Employment. It provides a comprehensive job board allowing organizations to post jobs, and employees to apply to them. The organizations do not need to spend additional time verifying the work experience of applicants, since all of them are already verified by deLinZK through a ZKP way. Built at ETHforAll hackathon, this project addresses the problem of fake credentials and forged certificates in networking platforms by using Polygon ID for credential verification.",
+      `Professional networks like LinkedIn have a trust problem: anyone can list a job title or claim years of experience with no mechanism for verification. Background checks are slow, expensive, and invasive: they harvest personal data and still fail to provide cryptographic guarantees. deLinZK was built to eliminate this entirely by replacing trust-me credentials with mathematically unforgeable ones.
+
+The platform uses **Polygon ID** and the **Iden3 credential framework** to issue **Verifiable Credentials** as **Proof-of-Employment**. When an organization onboards (after admin verification of legitimacy), it can issue a ZK credential to an employee encoding their employment tenure. That credential is stored in the employee's identity wallet, and when they apply to a job on the integrated **job board**, they generate a **Zero-Knowledge Proof** that proves employment without revealing any underlying personal data. **Redis** manages real-time state across the WebSocket and REST layers, while **Supabase** handles persistence and **Next.js** drives the frontend.
+
+I designed and built the full ZK credential issuance and verification flow. Polygon ID imposes a 15-digit integer constraint on credential attributes, which made encoding employment tenure into a single field a real puzzle. I solved it by applying **SHAKE-128 hashing**, converting the output to hexadecimal and then to decimal radix to produce compact 48-bit values that fit within the constraint while remaining uniquely deterministic. I also implemented the privacy-first authentication layer, replacing JWTs entirely with ZK proofs so that user emails are used only for communication, never for identity.
+
+Built at **ETHForAll Online VIII**, deLinZK demonstrates what a credential layer for the professional web could look like when privacy and verifiability are non-negotiable first principles.`,
     links: [
       {
         name: LINKS_NAMES.WEBSITE,
@@ -398,7 +453,13 @@ export const projects: ProjectType[] = [
     name: "NudgeLab",
     tag: "website",
     description:
-      "NudgeLab is a hack which at its core is a no-code, platform independent nudge management service. It is a platform that wraps over the existing architecture of any infrastructure and through an admin panel, creates campaign based and trigger based nudges. A project wherein I worked completely on the backend and no frontend, except debugging. I created a CDN based approach for the campaign nudges and HTTP polling for the trigger based ones.",
+      `Product teams constantly struggle to surface the right guidance to users at the right moment. Onboarding flows, feature announcements, and contextual prompts traditionally require engineering effort every single time. **NudgeLab** is a no-code, platform-independent **nudge management service** that cuts out that bottleneck. It wraps over any existing infrastructure through a lightweight SDK script tag, giving teams a self-serve **admin panel** to design, configure, and deploy in-app nudges without touching the underlying product codebase.
+
+The platform supports two distinct delivery modes. **Campaign-based nudges** are scheduled and distributed via a **CDN-backed delivery architecture**: static nudge configurations are pushed to a CDN edge, and the **Client SDK** fetches them on load, keeping delivery low-latency and scalable with no server roundtrip per user. **Trigger-based nudges** work through **HTTP polling**, where the **Backend SDK** intercepts API calls, injects **event_label** identifiers into a **message queue**, and the client polls for matching nudge responses in real time. Administrators authenticate, create projects, generate SDK scripts, and configure nudges entirely through the dashboard, with no deployments required on the client side.
+
+My work on NudgeLab was entirely backend: I designed and built both SDK layers, the message queue pipeline, the CDN distribution mechanism, and the HTTP polling system for event-driven nudges. The CDN delivery approach required careful thinking around cache invalidation and configuration serialization to make sure nudge updates propagated reliably without stale content reaching end users.
+
+NudgeLab was built at **HackRx 3.0**, Bajaj Finserv's national hackathon, where it won the **Dark Horse** and **Power & Pace** awards.`,
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -421,7 +482,13 @@ export const projects: ProjectType[] = [
     name: "Hospitatva",
     tag: "website",
     description:
-      "Hospitatva is a hack that aims to eradicate scams done by hospitals for their limited and reserved resources. It is a distributed ledger-based blockchain implementation of the rates proposed and charged and the commodity count by hospitals for the treatment and consultancy of patients. I built the logic part of its frontend, gaining knowledge about DIDs, the Web of Trust and wallet authentication.",
+      `During the COVID-19 pandemic, private hospitals across India engaged in rampant price gouging: inflating costs for beds, oxygen, and treatments while opacity around resource availability left patients and families helpless. Hospitatva was built to directly confront this, providing a national information portal that brings full transparency to hospital pricing and commodity availability.
+
+Hospitatva is a **distributed ledger** system built on the **Zilliqa blockchain**, using **Scilla smart contracts** to immutably record the rates hospitals propose and charge, as well as real-time commodity counts. A three-portal architecture serves patients, hospital staff, and government officials: patients can browse hospitals, verify pricing against government benchmarks, and flag anomalies, while officials receive and review those complaints through a supervised legitimacy pipeline. A **30-input ML price prediction model** (scikit-learn / TensorFlow) detects billing anomalies before invoices are finalized.
+
+I built the frontend logic layer, which included integrating **DID-based authentication** via **MagicLink**: a wallet-native sign-in flow grounded in the **Web of Trust** model. The challenge was reasoning about decentralized identity at the application layer. Rather than session cookies or JWTs, authentication state was tied to a user's cryptographic identity, which required rethinking how auth context flowed through the Next.js frontend.
+
+Hospitatva was developed for **Smart India Hackathon Internals 2022** by Team HaanDoobey.`,
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -445,7 +512,13 @@ export const projects: ProjectType[] = [
     name: "react-easy-marquee",
     tag: "package",
     description:
-      " I couldn't find a good react marquee package and thus decided to develop it. react-easy-marquee is a highly customisable `marquee` package for React built using CSS. Renders anything given between the tags, be it an image, text or a custom JSX element! It is a simple plug-and-play package and requires no external dependency.",
+      `I built **react-easy-marquee** after growing frustrated with the marquee packages available in the React ecosystem. Most were too opinionated, relied on JavaScript-driven animation timers, or offered little customization. I wanted something that felt native and flexible, so I built it from scratch: a fully customizable **Marquee** component that accepts any children (plain text, images, or arbitrary JSX elements) and scrolls them in a seamless loop.
+
+The animation is driven entirely by **CSS keyframes**, with zero JavaScript timers or requestAnimationFrame logic. This keeps the component lightweight and performant. The **zero-dependency design** means nothing is pulled in beyond React itself. Key props give fine-grained control: **duration** (loop speed in ms), **axis** (horizontal or vertical scrolling), **reverse** (direction), **pauseOnHover**, **background**, and **height**/**width**, all with sensible defaults for a true plug-and-play experience.
+
+I designed, architected, and maintain the entire package end-to-end: from the CSS animation model that achieves infinite scroll without scroll listeners or interval hacks, to the prop API and the live demo site. One non-trivial challenge was making the loop duration feel consistent regardless of how many or how few children are passed, since the perceived speed changes with content width, a nuance most competing packages ignore entirely.
+
+The package has accumulated over **105,000 total downloads** on npm and continues to see steady weekly adoption.`,
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -472,7 +545,13 @@ export const projects: ProjectType[] = [
     name: "Shikshak",
     tag: "website",
     description:
-      "Shikshak is a hack that enables remote online education by minimising the data consumed exponentially. I built its frontend, which has two ends, a Teacher and a Student. I also implemented its WebRTC-based exchange of data.",
+      `During the COVID-19 pandemic, remote education exposed a painful divide: mainstream video conferencing platforms consumed upwards of 3GB of mobile data per day, putting quality education entirely out of reach for students in rural areas or low-income households.
+
+Shikshak ("teacher" in Hindi) rethinks the online classroom from scratch. Instead of streaming video, the teacher writes on a physical blackboard while a camera feed is processed in real time by an **ML pipeline** (OpenCV, imutils, Canny edge detection) that detects the board's corners, isolates its surface, and converts the content into a **pixel-mapped data array**, achieving roughly an **85% reduction in data consumption** compared to raw video. That compressed array is pushed to students in real time via **Socket.IO**, where the **Canvas API** reconstructs the board on their screen. Alongside this, **WebRTC** handles an audio-only channel so teacher and students stay in live voice contact without the overhead of a video stream.
+
+I built the full **React + TypeScript** frontend, covering both the teacher-side calibration interface (where the board boundary is set before a session) and the student-side canvas that renders the incoming pixel stream. I also implemented the **WebRTC audio integration**: the trickiest part was constraining the peer connection to audio only while keeping it in sync with the Socket.IO data channel.
+
+Shikshak won **First Position at Hack This Fall 2020**.`,
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -497,7 +576,13 @@ export const projects: ProjectType[] = [
     name: "Contracts",
     tag: "website",
     description:
-      "Contracts is a blockchain-based expense-splitter application. In it, a user can create an account to login to our web app. Once a user is logged in, he can add expenses, edit expenses, settle expenses, or delete transactions. All this is stored in logs so that a user is aware of deletions or edits made to a transaction. I created its complete frontend utilising blockchain-based authentication.",
+      `Splitting expenses among friends is easy until someone disputes a transaction or quietly edits a record. Contracts addresses this trust problem by moving the entire expense-splitting workflow onto a blockchain, where the ledger's immutability means no transaction can be altered without a visible, permanent trace.
+
+Built during **Rookie Hacks II 2022**, the app uses **Hedera**-deployed **Solidity smart contracts** as its backbone instead of a traditional database. Users authenticate via **blockchain-based accounts** and can then add, edit, settle, or delete shared expenses. Every mutation (an edit, a deletion, a settlement) is captured in an **immutable audit log**, so all participants always have a transparent, tamper-proof view of the transaction history. The frontend is built with **Next.js** and **Tailwind CSS**, communicating with a **Node.js / TypeScript** backend that interfaces with the on-chain contracts.
+
+I built the complete frontend of the application, including the blockchain authentication flow and the transaction management UI. The most interesting challenge was working with Hedera's nascent tooling: documentation was sparse for what was then a newly-launched platform, which meant a lot of first-principles debugging to get wallet authentication and smart contract calls working together.
+
+Contracts won **Best Blockchain Project Using Hedera** at the hackathon.`,
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -523,7 +608,7 @@ export const projects: ProjectType[] = [
     name: "GitHub Community SRM",
     tag: "website",
     description:
-      "GitHub Community SRM is a student-led community aimed at unifying all the projects and papers made in SRMIST under the banner of the SRM-IST-KTR GitHub Organisation. Its main website serves as a portal for the same. Students and Teachers can register themselves here under various projects. These registrations interact directly with GitHub APIs, creating the repositories, adding or removing people and more. I built the frontend of the registration portal.",
+      "GitHub Community SRM is a student-led open-source community at SRMIST, Chennai, focused on consolidating student and faculty projects under the SRM-IST-KTR **GitHub Organisation**. Its registration portal lets students and teachers enrol under active projects, with each submission wired directly to the **GitHub API**: automatically creating repositories, managing collaborators, and handling access permissions in real time. The portal is built on a **Django** backend and a **Next.js** / **React** frontend, with **Yarn workspaces** managing a monorepo that serves both the landing page and the portal. I built the **frontend of the registration portal**, translating design requirements into a responsive, production-ready interface and connecting it to the backend API endpoints that drive the live GitHub automation.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -549,7 +634,7 @@ export const projects: ProjectType[] = [
     name: "The Soulless Citadel",
     tag: "website",
     description:
-      "The Soulless Citadel was a client-based project created during my tenure in Quinence. The project serves as an NFT Marketplace on the Zilliqa blockchain. I developed the website's initial versions. I got an insight into RPC calls, wallet authentication and, in general, what a blockchain is during this project.",
+      "The Soulless Citadel was a client-based project I worked on during my tenure at Quinence, built for Shibui Labs: a story-driven **NFT** collection and marketplace operating on the **Zilliqa blockchain**. The project centered on a narrative universe of 5,555 unique NFTs, with minting and trading facilitated through **ZIL**-based **wallet authentication** and **smart contract** interactions. I developed the website's initial versions, which involved making **RPC calls** to the Zilliqa network, integrating **blockchain wallet authentication**, and handling on-chain data for asset ownership and metadata. The project gave me hands-on exposure to how decentralized applications communicate with a blockchain, how **gas fees** and **transaction signing** work in practice, and the broader architecture of an **NFT marketplace** from the frontend perspective.",
     links: [
       {
         name: LINKS_NAMES.WEBSITE,
@@ -572,7 +657,7 @@ export const projects: ProjectType[] = [
     name: "wealth42",
     tag: "website",
     description:
-      "wealth42 is a fintech company. The project initially started as an outsourced project given to SRMKZILLA. I was working on their landing application as a mentor for the recruits. Eventually, I got hired as a Software Development Intern in wealth42 and continued laying the foundation of this application. I implemented class-based directed graph forms and complex validation states in the project, optimising it for the end-user. I also created a custom user tracking system for the project.",
+      "wealth42 is a Bengaluru-based fintech platform that uses proprietary **MINT Science** to guide users through personalised financial planning journeys across mutual funds, insurance, loans, and pension products. The project started as an outsourced engagement with SRMKZILLA, where I mentored recruits building the landing application. After being brought on as a **Software Development Intern** directly at wealth42, I continued laying the architectural foundation of that application. The core of my technical work was designing and implementing **class-based directed graph forms**: a structure where each form node holds references to conditional successor nodes, producing non-linear, state-aware onboarding flows with **complex multi-step validation**. I also built a **custom user tracking system** to monitor and analyse end-user behaviour across these flows.",
     links: [
       {
         name: LINKS_NAMES.WEBSITE,
@@ -598,7 +683,7 @@ export const projects: ProjectType[] = [
     name: "Stories",
     tag: "website",
     description:
-      "Stories is a mental health aid hack. It enables a user to choose its 'worries' and connect and chat with people of the same concerns for random advice seeking or release of frustration. The messages are protected with a censor layer in case of a toxic message. I developed its complete frontend, including the SocketIO-based chat application and admin panel.",
+      "Stories is a **mental health aid** web app built for HackCBS 3.0. It lets users select their personal \"worry\" tags and get matched with a peer (either as a *seeker* or a *supporter*) for anonymous, judgment-free conversation. Matching is score-based, pairing users who share the highest number of concern tags. Real-time messaging runs on **Socket.IO**, with chat room state managed in **Redis**. Every outgoing message is run through a **TensorFlow.js** toxicity classifier; messages flagged as harmful are censored before reaching the seeker. Seekers can report abusive supporters, and enough reports triggers an IP and email ban enforced via a **Redis**-backed middleware. I built the complete frontend in **React + TypeScript**, including the tag-selection flow, the live chat window, and the admin panel for user management.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -624,7 +709,7 @@ export const projects: ProjectType[] = [
     name: "Fren",
     tag: "website",
     description:
-      "Fren is a hack that aims to bridge the gap between a therapist and their client. It is a note-taking application for journals and diary entries. The notes taken in it by a client are not shown to the therapist; instead, an analysis of the note, usage of words and terminologies and more. I built its complete frontend, including the therapist panel.",
+      "Fren is a **privacy-first therapy journaling** app built at HackTheMountains 2020, where we won Fourth Position. Clients write diary and journal entries freely, but therapists never see the raw notes. Instead, an **NLP analysis layer** powered by **sentiment analysis** (via a **multi-layer perceptron** classifier), **TF-IDF word analysis**, and **network graph visualisation** of context-related terms surfaces the emotional picture behind the writing. The **MERN** stack handles data logging and timestamped entry storage through a **Node.js/Express** API backed by **MongoDB**, while a **Flask** microservice runs the **Python ML pipeline** using **scikit-learn**, **spaCy**, **NLTK**, and **TextBlob**. I built the complete frontend in **React.js with TypeScript**, including both the client journaling interface and the therapist analytics panel, using **Tailwind CSS**.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -648,7 +733,7 @@ export const projects: ProjectType[] = [
     name: "Bharat Beacon",
     tag: "website",
     description:
-      "BharatBeacon is a hack that was created for disaster management. It covers preemptive measures, mid-crisis solutions and post-crisis optimization. It is an IoT solution with a portal that is the Governments end. It showed the location of the distress calls on a map with information. I worked on the Government portal using MapBox APIs and HTTP Polling.",
+      "**BharatBeacon** was built at **Code2Create 4.0** by **ACM VIT**, where our team won the **Best First Year Team** award. The project tackles **disaster management** across three phases: preemptive risk mitigation, mid-crisis response, and post-crisis recovery. It is an **IoT-driven system** where physical devices transmit distress signals to a centralised platform. I built the **Government Portal**: a real-time dashboard that visualised incoming **distress calls** as pinpoints on an interactive map powered by the **MapBox API**. To keep the interface current without a persistent connection, I implemented **HTTP polling** to continuously fetch the latest device signals and metadata. The portal gave authorities a live, geographic overview of active emergencies.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -669,7 +754,7 @@ export const projects: ProjectType[] = [
     name: "AARUUSH Links",
     tag: "website",
     description:
-      "AARUUSH is an annual student-led Techno-Management fest held in SRMIST. The fest has numerous events, workshops, competitions, etc., conducted across the year via all domains. AARUUSH Links was a project aiming at a cumulation for all the digital presence of these links. It also has an admin panel to add a category-specific event. I created the whole frontend of this project, including the admin panel which opens with an easter egg.",
+      "AARUUSH is an annual student-led **Techno-Management fest** at SRMIST, running events, workshops, and competitions across domains year-round. AARUUSH Links is a **Linktree-style aggregator** built to consolidate all the fest's digital presence into one place, organizing links by category. I built the entire **React** frontend, backed by a **Node.js/Express** REST API with **MongoDB** for persistence, **JWT**-based authentication, and **AWS S3** for media storage, all deployed on an **EC2** instance behind **Nginx**. The highlight is the **admin panel**, which lets authorized users add and manage category-specific event links, and is unlocked through a hidden **easter egg** on the public-facing UI rather than a conventional login route.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -688,7 +773,7 @@ export const projects: ProjectType[] = [
     name: "OSSmosis",
     tag: "microsite",
     description:
-      "OSSmosis was the first event conducted by GitHub Community SRM. It was an event that provided a platform for the participants to showcase their Open Source Software. The event required a Description, Rules, and Criteria section and a registration portal. The project taught me VueJS. The deployment was fully static as the project was a microsite.",
+      "OSSmosis was the first event conducted by **GitHub Community SRM**, a student-led open source initiative at SRMIST, Chennai. I built the official **microsite** for the event: a fully **static deployment** that served as the event portal, covering the event description, rules, judging criteria, and a registration flow for participants to showcase their **open source projects**. The project was built using **Vue.js**, which was my first hands-on experience with the framework; it introduced me to **component-based architecture**, **Vue CLI**, and managing a **Yarn**-based frontend workflow. A lightweight **Python/Django** backend handled form submissions on the server side.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -708,7 +793,7 @@ export const projects: ProjectType[] = [
     name: "Inforged Noida",
     tag: "website",
     description:
-      "Inforged Noida is a web application project. The platform provides a modern interface for information management and display, built with contemporary web technologies to deliver a seamless user experience.",
+      "I built the marketing website for Inforged Autos Noida, an automotive customization company based in Noida operating since 2005. The site showcases their four core service verticals: alloy wheels, performance tuning, car detailing (ceramic coatings, paint protection films), and full vehicle makeovers, along with a curated gallery of completed work and a WhatsApp-integrated contact flow. Built with **Next.js** and **TypeScript** for a fast, SEO-optimized experience, with **Tailwind CSS** handling the responsive, image-heavy layout. Images are served via **Cloudinary** for optimized delivery across the gallery and service sections.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -733,7 +818,7 @@ export const projects: ProjectType[] = [
     name: "Frame Fantasy",
     tag: "website",
     description:
-      "Frame Fantasy is a client freelance project. It is a gallery website for a professional photographer. The requirements stated a gallery page for all the types of photos there are along with contact details for the first version. I used Cloudinary as an images CMS for the same. The second version will include a backend with notifying services for the Contact Me page.",
+      "Frame Fantasy is a **freelance** client project: a photography portfolio and gallery website built for Purbafalguni Paul, a Mumbai-based professional photographer. I built it using **Next.js** with a **static export** configuration, and used **Cloudinary** as an image **CMS** to manage and serve the photographer's assets. The site is organized into eight distinct gallery categories (Commercial Fashion, Pre Wedding, Weddings, Conceptual, Maternity, Baby, and more), each with a curated preview and a full-view page. A **Contact** section with a submission form and social links rounds out the v1 scope. The planned **v2** will introduce a backend with **email notification services** wired to the contact form.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -758,7 +843,7 @@ export const projects: ProjectType[] = [
     name: "Sarthaka Foundation",
     tag: "website",
     description:
-      "Sarthaka Foundation is an NGO. They wanted a presentation of all their work and events, and drives. This project was one of my first with NextJS, TypeScript and TailwindCSS. The requirements desired a complex paywall as well. I learned a lot of new things creating this project.",
+      "Sarthaka Foundation is a Bangalore-based NGO dedicated to uplifting underprivileged communities through education, skill development, food distribution, and clothing drives. I built their website to present their work, events, and ongoing initiatives (including programs like *Support a Child for Education* and their *Skill Development Centers*) in a clean, accessible format. The project also required implementing a complex **paywall** to gate certain content behind authenticated access. This was one of my first projects using **Next.js**, **TypeScript**, and **TailwindCSS**, and it pushed me to learn quickly: from **server-side rendering** and **static generation** to building **authentication flows** and designing responsive UI components from scratch.",
     links: [
       {
         name: LINKS_NAMES.WEBSITE,
@@ -783,7 +868,7 @@ export const projects: ProjectType[] = [
     name: "Aashma Foundation",
     tag: "website",
     description:
-      "Aashma Foundation is an NGO that needed a landing website. Data Science Community SRM was in charge of that. I, under the community, laid the foundation for the static site. Their requirements were minimal, only a static page displaying a gallery and details to accept donations. Based on the requirements, I chose the vanilla stack.",
+      "Aashma Foundation is a charitable NGO whose online presence required a simple, accessible landing page. Under **Data Science Community SRM**, I laid the foundation for this static site, working directly from the NGO's minimal requirements: a photo **gallery** showcasing their community work and clear details to facilitate **donations**. Given the scope, I chose the **vanilla stack** (plain **HTML**, **CSS**, and **JavaScript**) paired with **Bootstrap** for responsive layout, keeping the codebase lightweight and easy to maintain. The site is structured around a single **index.html** entry point with dedicated stylesheets and a **gallery/** directory, deployed via **GitHub Pages** under the custom domain **aashmafoundation.in**.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -808,7 +893,7 @@ export const projects: ProjectType[] = [
     name: "KZ Links",
     tag: "website",
     description:
-      "KZ Links was a pure linktree adaption. It extended another project of SRMKZILLA, a URL shortener that also gave tracking statistics. It envisioned a highly customizable profile page. I was a mentor for this project. I taught and guided the recruits on how to use NextJS.",
+      "KZ Links was a **Linktree**-style profile page platform built for **SRMKZILLA**, the tech community at SRM KTR. It connected directly to SRMKZILLA's existing **URL shortener**, extending it to power fully customizable public profile pages complete with **link tracking statistics**. The stack used **Next.js**, **TypeScript**, **Tailwind CSS**, and **MongoDB**. I served as a **mentor** on this project, guiding a fresh batch of recruits through the fundamentals of **Next.js**: covering routing, server-side rendering, and component architecture as they built their first production-grade web application within the organization.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -834,7 +919,7 @@ export const projects: ProjectType[] = [
     name: "WALLeth",
     tag: "website",
     description:
-      "Walleth is a dummy frontend for an NFT Marketplace WALL.app. Built with Next.js and TypeScript, it provides a modern and responsive interface for showcasing NFT marketplace functionality. The project demonstrates frontend development skills with a focus on creating an intuitive user experience for browsing and interacting with NFTs.",
+      "WALLeth is a prototype frontend I built for **WALL.app**, a conceptual **NFT marketplace** platform. The app simulates a rich collector profile experience: displaying an **ENS-linked wallet identity**, community memberships, an **NFT category breakdown chart** (Art, PFP, Metaverse, Gaming, and more), and curated highlight cards for milestone transactions like \"Best Flip,\" \"First NFT bought,\" and \"Paper Handed.\" A horizontally scrolling **Recent Sales carousel** surfaces floor-price comparisons across blue-chip collections like **Azuki**, **BAYC**, **MoonBirds**, and **CryptoPunks**. Built with **Next.js**, **TypeScript**, and **TailwindCSS**, it shows my approach to building immersive, data-rich **Web3 interfaces**, pairing a vivid full-bleed aesthetic with structured on-chain data presentation, all without any backend dependency.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -857,7 +942,7 @@ export const projects: ProjectType[] = [
     name: "Equivalent",
     tag: "website",
     description:
-      "Equivalent is a sample block explorer project that demonstrates a new approach to viewing blockchain data. Built with Next.js and powered by Covalent's API, it features human-readable data with no hex codes, keyboard shortcuts for navigation, and multichain support. The project includes wallet balances with NFT rendering, transaction history, asset flows, and transaction decoding for DEX, NFT, and lending protocols.",
+      "Traditional block explorers overwhelm users with raw hex strings, cryptic addresses, and undecoded transaction data. I built **Equivalent**, a **multichain block explorer** powered by the **Covalent API**, to surface blockchain data in a genuinely human-readable format. Built with **Next.js**, it lets users inspect wallet balances, browse **NFT holdings** with live rendering, trace **transaction history**, and visualize **asset flows** across addresses. Decoded transaction support covers **DEX swaps**, **NFT trades**, and **lending protocol** interactions, turning opaque calldata into plain-language summaries. Keyboard shortcuts (**O**, **N**, **P**, **T**, **H**) make navigation fast without touching the mouse.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -878,7 +963,7 @@ export const projects: ProjectType[] = [
     name: "NB Extract",
     tag: "website",
     description:
-      "NB Extract is a utility tool for extracting and processing data from notebooks. The project provides functionality to parse, extract, and transform notebook content into structured formats, making it easier to work with notebook data programmatically.",
+      "**NB Extract** is a web-based **Jupyter Output Extractor** that solves the common problem of sharing notebook results without the code clutter. Upload a **.ipynb** file and it extracts only the **output cells** (text, plots, tables, and interactive content), stripping away all source code. The extracted outputs are rendered in a clean, readable preview and can be **exported as a PDF** document ready for presentations and reports. Processing happens entirely **client-side**, so uploaded notebook data never leaves the browser. Ideal for data scientists and analysts who need to share findings with non-technical stakeholders in a polished, shareable format.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -897,7 +982,7 @@ export const projects: ProjectType[] = [
     name: "TypeQuest",
     tag: "website",
     description:
-      "TypeQuest is a library wrapper for keybindings on Keypress.JS. It provides a simple and extensible way to handle keyboard shortcuts in React applications. The library includes a shortcut component for easy integration and a singleton for the Keypress.JS listener, exposing native methods for extensibility. Built with TypeScript and Vite, it offers a clean API for managing keyboard interactions.",
+      "TypeQuest is a **React** library I built to cut the boilerplate of wiring up keyboard shortcuts. Rather than reinventing key-event handling, I wrapped **Keypress.JS**, a mature, feature-rich keybinding library, behind a clean, typed API. The core is a **singleton** that holds a single Keypress.JS listener instance across the app, preventing duplicate registrations and exposing native methods for advanced extensibility. On top of that, a **ShortcutComponent** lets developers declaratively attach shortcuts inline with their JSX. Built with **TypeScript** and **Vite**, the library enforces type safety on combo strings and handler signatures, making it straightforward to add, remove, or extend keyboard interactions without touching raw DOM event listeners.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -924,7 +1009,7 @@ export const projects: ProjectType[] = [
     name: "Weather App",
     tag: "website",
     description:
-      "Weather App is a web application that provides real-time weather information for locations worldwide. The app displays current weather conditions, forecasts, and other meteorological data in a clean and user-friendly interface. Built with modern web technologies, it demonstrates API integration and responsive design principles.",
+      "Weather App is a **React** and **TypeScript** web application that delivers real-time weather data for any location worldwide via the **OpenWeatherMap API**. Built with **Tailwind CSS**, leaning into a soft sky-to-blush gradient aesthetic. The app centers on a location **search** interface and surfaces current conditions alongside forecasts, covering temperature, wind speed, atmospheric pressure, and precipitation. A persistent unit-toggle bar in the header lets users switch between **°C/°F**, **KMPH/MPH**, **MB/IN**, and **MM/IN** on the fly.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -951,7 +1036,7 @@ export const projects: ProjectType[] = [
     name: "DocGen",
     tag: "website",
     description:
-      "DocGen was a simple hack created under Data Science Community SRM. Its purpose is to generate images with customisable cursive text to create a 'fake assignment'. My role in the project was to guide and mentor the recruits. I, myself, got an insight on PreactJS in doing so.",
+      "DocGen was a fun, quirky hack built under the **Data Science Community SRM**: a **text-to-image generator** that produces handwritten-style assignment pages using customisable **cursive fonts**. Students could input their text, tweak font size, adjust **X/Y-axis positioning** and line spacing, choose sheet backgrounds, and download the final image. My role was to **guide and mentor recruits** through the build, helping them navigate **Preact.js** (the lightweight **React** alternative), **Preact CLI**, and component-based architecture. In doing so, I got hands-on exposure to **PreactJS** myself, exploring how it differs from React in bundle size and rendering. The project is built in **JavaScript** with **CSS** and scaffolded via **Preact CLI**.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -971,7 +1056,7 @@ export const projects: ProjectType[] = [
     name: "Morelinks",
     tag: "microsite",
     description:
-      "MoreLinks was a brainchild of the Data Science Community SRM. It was simply a Linktree adaptation with more. MoreLinks had a preview of the community's latest buzz, including their tweets, posts, blogs and more. The website was completely static, wherein I taught and mentored the recruits on the vanilla stack.",
+      "MoreLinks was a **Data Science Community SRM** project: an extended **Linktree**-style link page that went beyond simple URL lists. Built on the **vanilla stack** (**HTML**, **CSS**, and **JavaScript**) with **Bootstrap** for responsive layout, the site aggregated live social feeds from **Twitter**, **Instagram**, and **Medium** via **hourly API calls**, surfacing the community's latest tweets, posts, and blogs in one place. The site was **statically deployed** via **GitHub Pages** with no backend. I played a mentor and lead developer role, guiding recruits through the full build process and teaching them frontend fundamentals, **REST API integration**, and **static site architecture**.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -992,7 +1077,7 @@ export const projects: ProjectType[] = [
     name: "Data Science Community",
     tag: "website",
     description:
-      "Data Science Community SRM was a new community in SRMIST. This website was the first instalment of their online presence. I was the only web developer in the community. This project was a public face of the community. It first was built entirely on the vanilla stack, during which I started learning ReactJS. Then migrated the whole website on ReactJS. I then eventually added a backend serving along with a NodeMailer-backed Contact-Us form.",
+      "Data Science Community SRM was a student-led innovation hub at SRMIST, and this website was their first online presence. As the sole **web developer** on the team, I built and evolved the entire platform. I initially developed it on a **vanilla HTML/CSS/JavaScript** stack, during which I simultaneously started learning **ReactJS** and eventually migrated the whole frontend to **React**. I then extended the project into a full **MERN stack** application, adding a **Node.js** and **Express** backend connected to **MongoDB**. Key features include an events timeline, a **Medium API**-powered blog that refreshes hourly, a people directory, and a **NodeMailer**-backed Contact Us form. The site also integrates **OneSignal** push notifications and **Google Analytics** for user engagement tracking.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,
@@ -1015,7 +1100,7 @@ export const projects: ProjectType[] = [
     name: "IEI",
     tag: "website",
     description:
-      "Institution of Engineers (India) or IEI of the Tamil Nadu branch had commissioned their website project to SRMKZILLA during my time there. The website was supposed to be a static frontend website for the first version. The data for the People and the Events pages was to be admin panel powered. This project was a great starter project for the full-stack recruits. I was a lead developer for the frontend (complete version 1 and partial version 2). Once the base was developed, the project was handed off to the recruits, with the original developers as mentors.",
+      "The **Institution of Engineers (India)** is a professional engineering body established in 1920. The **Kattankulathur Local Centre** of the Tamil Nadu branch commissioned their website to **SRMKZILLA** during my tenure there. The goal was a **static frontend website** for version 1, with dynamic data on the **People** and **Events** pages driven by an **admin panel**. The site featured sections for Committee Members, Activities, Gallery, News, and Contact. I served as **lead developer for the frontend**, owning the complete version 1 build and contributing to a partial version 2. Once the foundation was stable, the project was handed off to full-stack recruits as a structured onboarding exercise.",
     links: [],
     stack: [STACK_NAMES.NEXT, STACK_NAMES.TAILWIND_CSS, STACK_NAMES.TYPESCRIPT],
     images: [
@@ -1029,7 +1114,7 @@ export const projects: ProjectType[] = [
     name: "SRMKZILLA Hacktoberfest 2021",
     tag: "microsite",
     description:
-      "Hacktoberfest, the annual celebration of Open Source Software, is a month-long event organized by DigitalOcean. In support of Hacktoberfest, communities all around the world host mini-events that utilize an official branding kit given by provided by DigitalOcean. SRMKZILLA, in my tenure there, also hosted a mini-event. This project was a microsite developed as the information as well as registration portal. A TypeForm handled the registration form. The microsite is entirely static and built on the vanilla stack.",
+      "**Hacktoberfest** is the annual month-long celebration of **open source software**, organized by **DigitalOcean**. SRMKZILLA hosted a mini-event during my time there, and this project was the **microsite** built to serve as both the information hub and **registration portal** for participants. The site welcomed contributors to explore SRMKZILLA's repositories, with beginner-friendly issues tagged for easy onboarding. Registration was handled through an embedded **TypeForm** integration. The microsite is fully **static**, built on the **vanilla stack** (plain **HTML5** and **CSS3**) with no framework overhead, deployed via **Netlify**.",
     links: [
       {
         name: LINKS_NAMES.GITHUB,

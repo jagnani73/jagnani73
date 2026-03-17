@@ -5,3 +5,4 @@ export { StackIcon } from "./stack-icon";
 export { LinkIcon } from "./link-icon";
 export { Experience } from "./experience";
 export { Project } from "./project";
+export { MarkdownDescription } from "./markdown-description";

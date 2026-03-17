@@ -2,6 +2,7 @@ import type { Metadata, NextPage } from "next";
 import { notFound } from "next/navigation";
 import { Project } from "@/components/shared";
 import { projects } from "@/utils/constants/data";
+import { stripMarkdown } from "@/utils/functions";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -25,10 +26,10 @@ export async function generateMetadata({
 
   return {
     title: `${project.name} | Yashvardhan Jagnani`,
-    description: project.description,
+    description: stripMarkdown(project.description),
     openGraph: {
       title: `${project.name} | Yashvardhan Jagnani`,
-      description: project.description,
+      description: stripMarkdown(project.description),
       images: [project.preview],
     },
   };

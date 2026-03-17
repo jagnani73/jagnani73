@@ -6,7 +6,7 @@ import { Carousel } from "react-responsive-carousel";
 
 import type { ProjectProps } from "@/utils/types/projects.types";
 import { toTitleCase } from "@/utils/functions";
-import { StackIcon, LinkIcon } from ".";
+import { StackIcon, LinkIcon, MarkdownDescription } from ".";
 import { usePathname } from "next/navigation";
 import { ROUTES } from "@/utils/constants/shared-constants";
 import Link from "next/link";
@@ -76,13 +76,10 @@ export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
 
       {!primary && (
         <div className="flex flex-col grow">
-          <p
-            className={`mt-8 text-justify ${
-              !isProjectPage ? "line-clamp-3" : ""
-            }`}
-          >
-            {project.description}
-          </p>
+          <MarkdownDescription
+            content={project.description}
+            truncate={!isProjectPage}
+          />
 
           <div className="flex mt-8 items-center gap-x-6 text-xl">
             Built using:
