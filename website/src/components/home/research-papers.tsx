@@ -10,8 +10,8 @@ export const ResearchPapers: React.FC<ResearchPapersProps> = ({
       <h3>Academic contributions</h3>
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-x-8 gap-y-8 lg:gap-y-16 mt-8">
-        {researchPapers.map((paper, index) => (
-          <article key={index} className="flex flex-col h-full">
+        {researchPapers.map((paper) => (
+          <article key={paper.url} className="flex flex-col h-full">
             <h4 className="font-semibold">
               <Link
                 href={paper.url}
@@ -32,9 +32,9 @@ export const ResearchPapers: React.FC<ResearchPapersProps> = ({
 
               {paper.tags.length > 0 && (
                 <div className="flex flex-wrap gap-2">
-                  {paper.tags.map((tag, tagIndex) => (
+                  {paper.tags.map((tag) => (
                     <span
-                      key={tagIndex}
+                      key={tag}
                       className="text-xs font-bold bg-steel-blue w-fit px-2 py-1 rounded-sm text-center"
                     >
                       {tag}

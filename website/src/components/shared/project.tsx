@@ -14,7 +14,7 @@ import Link from "next/link";
 export const Project: React.FC<ProjectProps> = ({ primary, project }) => {
   const images = [project.preview, ...(project.images || [])];
   const pathname = usePathname();
-  const isProjectPage = pathname.includes(project.slug);
+  const isProjectPage = pathname === `${ROUTES.PROJECTS}/${project.slug}`;
 
   return (
     <article className="flex flex-col w-full">

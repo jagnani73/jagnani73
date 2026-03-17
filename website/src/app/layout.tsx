@@ -12,16 +12,16 @@ const nunitoSans = Nunito_Sans({
   display: "swap",
 });
 
-const metadataTtile = "Yashvardhan Jagnani";
+const metadataTitle = "Yashvardhan Jagnani";
 const metadataDescription =
   "Blockchain engineer and full-stack developer building decentralized applications and infrastructure. Computer Science graduate from SRMIST, Chennai, specializing in Cybersecurity.";
 
 export const metadata: Metadata = {
-  title: metadataTtile,
+  title: metadataTitle,
   description: metadataDescription,
-  authors: [{ name: metadataTtile }],
+  authors: [{ name: metadataTitle }],
   keywords: [
-    metadataTtile,
+    metadataTitle,
     "jagnani73",
     "software developer",
     "blockchain engineer",
@@ -34,16 +34,16 @@ export const metadata: Metadata = {
   ],
   metadataBase: new URL("https://jagnani73.com"),
   openGraph: {
-    title: metadataTtile,
+    title: metadataTitle,
     description: metadataDescription,
     url: "https://jagnani73.com",
-    siteName: metadataTtile,
+    siteName: metadataTitle,
     images: [
       {
         url: "/site/og-image.png",
         width: 1200,
         height: 630,
-        alt: metadataTtile,
+        alt: metadataTitle,
       },
     ],
     locale: "en_US",
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: metadataTtile,
+    title: metadataTitle,
     description: metadataDescription,
     creator: "@jagnani73",
     images: ["/site/og-image.png"],
