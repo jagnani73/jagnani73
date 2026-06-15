@@ -11,7 +11,7 @@ export const Masthead = () => (
     {/* nav row */}
     <div className="flex flex-wrap items-baseline justify-between gap-4 px-4 py-3 font-mono text-[13.5px] text-tx3 rail:grid rail:grid-cols-[1fr_auto_1fr] rail:px-11 rail:pb-4 rail:pt-6">
       <span className="hidden rail:inline rail:justify-self-start">jagnani73</span>
-      <span className="flex gap-4 rail:justify-self-center rail:gap-[26px]">
+      <span className="flex gap-4 rail:-translate-x-8 rail:justify-self-center rail:gap-[26px]">
         <a href="#chapters" className={navLink}>
           chapters
         </a>

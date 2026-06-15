@@ -7,6 +7,7 @@ import {
   FILTERS,
   kindColor,
   isCase,
+  sequenceYear,
   type FilterId,
   type RecordEntry,
 } from "@/content/record";
@@ -79,7 +80,7 @@ const RecordRow = ({
     gridTemplateColumns: mob
       ? "1fr 20px"
       : "104px minmax(0,0.72fr) minmax(0,1.28fr) 30px",
-    gap: mob ? 10 : 18,
+    gap: mob ? 10 : 32,
     padding: mob ? "10px 14px" : "17px 44px 17px 28px",
     flex: "1 0 auto",
     alignContent: "center",
@@ -164,11 +165,7 @@ export const RecordClient = ({
   }, []);
 
   const data = RECORD.filter((r) =>
-    filter === "ALL"
-      ? true
-      : filter === "CASES"
-        ? isCase(r)
-        : r.kind === filter,
+    filter === "ALL" ? true : filter === "CASES" ? isCase(r) : r.kind === filter
   );
   const years = [...new Set(data.map((r) => r.year))].sort((a, b) => b - a);
 
@@ -183,14 +180,17 @@ export const RecordClient = ({
 
       {/* header — opaque so it sits over the fixed constellation */}
       <div className="relative z-[1] bg-bg">
-        <div className="flex flex-wrap items-baseline justify-between gap-2 px-4 py-3 font-mono text-[13.5px] text-tx3 rail:px-11 rail:pb-4 rail:pt-6">
-          <Link href="/" className="text-tx2 transition-colors hover:text-sig">
+        <div className="flex flex-wrap items-baseline justify-between gap-2 px-4 py-3 font-mono text-[13.5px] text-tx3 rail:grid rail:grid-cols-[1fr_auto_1fr] rail:px-11 rail:pb-4 rail:pt-6">
+          <Link
+            href="/"
+            className="text-tx2 transition-colors hover:text-sig rail:justify-self-start"
+          >
             ← the front page
           </Link>
-          <span className="hidden rail:inline">
+          <span className="hidden rail:inline rail:-translate-x-8 rail:justify-self-center">
             THE PORTFOLIO OF RECORD — COMPLETE
           </span>
-          <span>
+          <span className="rail:justify-self-end">
             STATUS: <span className="text-acc">NTU SINGAPORE — AUG 2026</span>
           </span>
         </div>
@@ -244,17 +244,15 @@ export const RecordClient = ({
               onConfirm={(top) => bursts.current.push(top)}
             />
             <div className="relative z-[1] flex flex-col border-l border-rule bg-bg">
-              {data
-                .filter((r) => r.year === y)
-                .map((r) => (
-                  <RecordRow
-                    key={r.year + r.title}
-                    entry={r}
-                    mob={mob}
-                    hovered={hov === r.year + r.title}
-                    onHover={setHov}
-                  />
-                ))}
+              {sequenceYear(data.filter((r) => r.year === y)).map((r) => (
+                <RecordRow
+                  key={r.year + r.title}
+                  entry={r}
+                  mob={mob}
+                  hovered={hov === r.year + r.title}
+                  onHover={setHov}
+                />
+              ))}
             </div>
           </div>
         ))}
