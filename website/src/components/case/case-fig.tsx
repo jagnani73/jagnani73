@@ -20,6 +20,8 @@ import { FigBoard } from "@/components/canvas/figs/fig-board";
 import { FigJournal } from "@/components/canvas/figs/fig-journal";
 import { FigMatch } from "@/components/canvas/figs/fig-match";
 import { FigBeacon } from "@/components/canvas/figs/fig-beacon";
+import { FigLattice } from "@/components/canvas/figs/fig-lattice";
+import { FigTunnel } from "@/components/canvas/figs/fig-tunnel";
 
 const FIGS: Record<FigKind, ComponentType<{ mob: boolean; active?: boolean }>> = {
   score: FigScore,
@@ -38,6 +40,8 @@ const FIGS: Record<FigKind, ComponentType<{ mob: boolean; active?: boolean }>> =
   journal: FigJournal,
   match: FigMatch,
   beacon: FigBeacon,
+  lattice: FigLattice,
+  tunnel: FigTunnel,
 };
 
 export const CaseFig = ({ kind }: { kind: FigKind }) => {

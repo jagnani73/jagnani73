@@ -1,6 +1,8 @@
 import { projects } from "@/utils/constants/data";
 import { projectToCase } from "@/lib/project-to-case";
 import type { CaseData } from "@/content/case-types";
+import { claudeControllerCase } from "./claude-controller";
+import { solanaMlDsa44Case } from "./solana-ml-dsa-44";
 import { insidepolyCase } from "./insidepoly";
 import { agentSdkCase } from "./agent-sdk";
 import { dewlsCase } from "./dewls";
@@ -20,6 +22,8 @@ import { bharatBeaconCase } from "./bharat-beacon";
 
 // Fully authored cases, keyed by canonical slug.
 const AUTHORED: Record<string, CaseData> = {
+  "claude-controller": claudeControllerCase,
+  "solana-ml-dsa-44": solanaMlDsa44Case,
   insidepoly: insidepolyCase,
   "agent-sdk": agentSdkCase,
   dewls: dewlsCase,

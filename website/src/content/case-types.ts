@@ -17,7 +17,9 @@ export type FigKind =
   | "board"
   | "journal"
   | "match"
-  | "beacon";
+  | "beacon"
+  | "lattice"
+  | "tunnel";
 
 export interface PlateImg {
   kind: "img";
