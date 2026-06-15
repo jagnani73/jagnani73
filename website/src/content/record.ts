@@ -21,6 +21,9 @@ export interface RecordEntry {
   url?: string;
   internal?: boolean;
   win?: boolean;
+  /** Explicit sort key within the year — entries with it lead, in ascending
+   *  order, ahead of the default kind ordering. Use to pin specific rows. */
+  order?: number;
 }
 
 export type FilterId = Kind | "ALL" | "CASES";
@@ -68,6 +71,7 @@ export const RECORD: RecordEntry[] = [
     meta: "drive the Claude Code CLI from your phone over a private Tailscale tunnel · PWA + PTY relay",
     url: "/work/claude-controller",
     internal: true,
+    order: 2,
   },
   {
     year: 2026,
@@ -92,6 +96,7 @@ export const RECORD: RecordEntry[] = [
     title: "NTU Singapore — MSc Blockchain",
     meta: "incoming · August 2026 intake",
     url: "https://www.ntu.edu.sg/",
+    order: 1,
   },
   {
     year: 2026,
@@ -707,10 +712,14 @@ const KIND_RANK: Record<Kind, number> = {
   CERTIFICATION: 6,
 };
 
+// An entry's explicit `order` (if set) leads; otherwise fall back to kind rank,
+// offset so explicit keys always sort ahead of the default ordering.
+const seqRank = (e: RecordEntry): number => e.order ?? 10 + KIND_RANK[e.kind];
+
 export const sequenceYear = (entries: RecordEntry[]): RecordEntry[] => {
   const ranked = entries
     .map((e, i) => ({ e, i }))
-    .sort((a, b) => KIND_RANK[a.e.kind] - KIND_RANK[b.e.kind] || a.i - b.i)
+    .sort((a, b) => seqRank(a.e) - seqRank(b.e) || a.i - b.i)
     .map((x) => x.e);
 
   const hackathons = ranked.filter((e) => e.kind === "HACKATHON");
