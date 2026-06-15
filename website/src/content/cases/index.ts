@@ -15,6 +15,7 @@ import { delinzkCase } from "./delinzk";
 import { nudgeLabCase } from "./nudge-lab";
 import { contractsCase } from "./contracts";
 import { hospitatvaCase } from "./hospitatva";
+import { marqueeCase } from "./marquee";
 import { shikshakCase } from "./shikshak";
 import { frenCase } from "./fren";
 import { storiesCase } from "./stories";
@@ -36,6 +37,7 @@ const AUTHORED: Record<string, CaseData> = {
   "nudge-lab": nudgeLabCase,
   contracts: contractsCase,
   hospitatva: hospitatvaCase,
+  marquee: marqueeCase,
   shikshak: shikshakCase,
   fren: frenCase,
   stories: storiesCase,
@@ -62,6 +64,7 @@ const SUPERSEDED = new Set([
   "nudge-lab",
   "contracts",
   "hospitatva",
+  "marquee",
   "shikshak",
   "fren",
   "stories",

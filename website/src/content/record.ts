@@ -461,7 +461,8 @@ export const RECORD: RecordEntry[] = [
     via: "oss",
     title: "react-easy-marquee",
     meta: "zero-dependency CSS marquee · 105k+ npm downloads",
-    url: "https://github.com/jagnani73/react-easy-marquee",
+    url: "/work/marquee",
+    internal: true,
   },
   {
     year: 2021,

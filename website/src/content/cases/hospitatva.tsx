@@ -86,5 +86,5 @@ export const hospitatvaCase: CaseData = {
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/hospitatva" },
     },
   ],
-  next: "shikshak",
+  next: "marquee",
 };

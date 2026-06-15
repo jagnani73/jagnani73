@@ -22,6 +22,7 @@ import { FigMatch } from "@/components/canvas/figs/fig-match";
 import { FigBeacon } from "@/components/canvas/figs/fig-beacon";
 import { FigLattice } from "@/components/canvas/figs/fig-lattice";
 import { FigTunnel } from "@/components/canvas/figs/fig-tunnel";
+import { FigMarquee } from "@/components/canvas/figs/fig-marquee";
 
 const FIGS: Record<FigKind, ComponentType<{ mob: boolean; active?: boolean }>> = {
   score: FigScore,
@@ -42,6 +43,7 @@ const FIGS: Record<FigKind, ComponentType<{ mob: boolean; active?: boolean }>> =
   beacon: FigBeacon,
   lattice: FigLattice,
   tunnel: FigTunnel,
+  marquee: FigMarquee,
 };
 
 export const CaseFig = ({ kind }: { kind: FigKind }) => {
