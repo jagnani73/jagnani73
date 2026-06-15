@@ -60,23 +60,14 @@ export const metadata: Metadata = {
     description: metadataDescription,
     url: "https://jagnani73.com",
     siteName: metadataTitle,
-    images: [
-      {
-        url: "/site/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: metadataTitle,
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: metadataTitle,
     description: metadataDescription,
     creator: "@jagnani73",
-    images: ["/site/og-image.png"],
   },
   icons: {
     icon: [
