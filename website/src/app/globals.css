@@ -1,7 +1,34 @@
 @import "tailwindcss";
 
+/* Editorial theme — cyan (dark) / paper (light). See lib/theme-tokens.ts. */
 @theme inline {
-  /* Custom Colors */
+  /* ── Fonts (next/font CSS vars set in layout.tsx) ── */
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-jetbrains);
+  --font-serif: var(--font-instrument);
+  --font-display: var(--font-anton);
+
+  /* ── Single editorial breakpoint: ≤1200 compact, ≥1201 desktop rail ── */
+  --breakpoint-rail: 1201px;
+
+  /* ── Editorial tokens → reference runtime vars so they flip with [data-theme] ── */
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-tx: var(--tx);
+  --color-tx2: var(--tx2);
+  --color-tx3: var(--tx3);
+  --color-pri: var(--pri);
+  --color-sig: var(--sig);
+  --color-acc: var(--acc);
+  --color-flag: var(--flag);
+  --color-ok: var(--ok);
+  --color-pri-a40: var(--pri-a40);
+  --color-pri-a18: var(--pri-a18);
+  --color-pri-a08: var(--pri-a08);
+
+  /* ── Legacy colors (old /projects + /experiences pages, removed in phase 4) ── */
   --color-eerie-black: #232323;
   --color-jet: #323232;
   --color-cultured: #fafafa;
@@ -9,31 +36,11 @@
   --color-light-green: #7ae485;
   --color-middle-red: #e28b6f;
 
-  /* Font */
-  --font-sans: var(--font-nunito-sans);
-
-  /* Extended Max Width */
-  --spacing-1: 0.25rem;
-  --spacing-2: 0.5rem;
-  --spacing-3: 0.75rem;
-  --spacing-4: 1rem;
-  --spacing-5: 1.25rem;
-  --spacing-6: 1.5rem;
-  --spacing-7: 1.75rem;
-  --spacing-8: 2rem;
-  --spacing-10: 2.5rem;
-  --spacing-12: 3rem;
-  --spacing-14: 3.5rem;
-  --spacing-16: 4rem;
+  /* ── Extended spacing (legacy) ── */
   --spacing-18: 4.5rem;
-  --spacing-20: 5rem;
   --spacing-22: 5.5rem;
-  --spacing-24: 6rem;
   --spacing-26: 6.5rem;
-  --spacing-28: 7rem;
   --spacing-30: 7.5rem;
-  --spacing-32: 8rem;
-  --spacing-64: 16rem;
   --spacing-xs: 20rem;
   --spacing-sm: 24rem;
   --spacing-md: 28rem;
@@ -47,136 +54,157 @@
   --spacing-7xl: 80rem;
 }
 
+/* ── Dark (cyan) — default ── */
+:root,
+[data-theme="dark"] {
+  --bg: #081012;
+  --bg-rgb: 8, 16, 18;
+  --panel: #0e181b;
+  --rule: #1d2e32;
+  --rule-strong: #2e4449;
+  --tx: #eaf4f6;
+  --tx2: #8fa8ad;
+  --tx3: #60797f;
+  --pri: #2fa8b8;
+  --sig: #6fd8e4;
+  --acc: #d9a441;
+  --flag: #d9756f;
+  --ok: #54b37f;
+  --pri-rgb: 47, 168, 184;
+  --sig-rgb: 111, 216, 228;
+  --pri-a40: rgba(47, 168, 184, 0.4);
+  --pri-a18: rgba(47, 168, 184, 0.18);
+  --pri-a08: rgba(47, 168, 184, 0.07);
+  color-scheme: dark;
+}
+
+/* ── Light (paper) ── */
+[data-theme="light"] {
+  --bg: #ece8e0;
+  --bg-rgb: 236, 232, 224;
+  --panel: #f4f1ea;
+  --rule: #cfc9bc;
+  --rule-strong: #b3ac9d;
+  --tx: #1a1d1f;
+  --tx2: #50575e;
+  --tx3: #6e747a;
+  --pri: #2b6ca3;
+  --sig: #134e75;
+  --acc: #9a6b12;
+  --flag: #ae3b2c;
+  --ok: #2e7d4f;
+  --pri-rgb: 43, 108, 163;
+  --sig-rgb: 19, 78, 117;
+  --pri-a40: rgba(43, 108, 163, 0.4);
+  --pri-a18: rgba(43, 108, 163, 0.18);
+  --pri-a08: rgba(43, 108, 163, 0.07);
+  color-scheme: light;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--color-eerie-black);
-  color: var(--color-cultured);
+  background: var(--bg);
+  color: var(--tx);
   scroll-behavior: smooth;
 }
 
-h1 {
-  font-size: 1.5rem;
-  font-weight: bold;
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-h2 {
-  font-size: 1.5rem;
-}
-
-h3 {
-  font-size: 1.25rem;
-}
-
-h4 {
-  font-size: 1.125rem;
-}
-
-h5 {
-  font-size: 1.25rem;
-}
-
-h6 {
-  font-size: 1.125rem;
-}
-
-@media (min-width: 768px) {
-  h1 {
-    font-size: 1.875rem;
-  }
-  h2 {
-    font-size: 1.875rem;
-  }
-  h3 {
-    font-size: 1.5rem;
-  }
-  h4 {
-    font-size: 1.25rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  h1 {
-    font-size: 2.25rem;
-  }
-  h2 {
-    font-size: 2.25rem;
-  }
-  h3 {
-    font-size: 1.875rem;
-  }
-  h4 {
-    font-size: 1.5rem;
-  }
+::selection {
+  background: var(--pri-a18);
+  color: var(--sig);
 }
 
 a,
+button,
 input,
 textarea,
-select,
-button {
+select {
   outline: none;
 }
 
-a:focus,
-input:focus,
-textarea:focus,
-select:focus,
-button:focus {
-  outline: none;
-}
-
-/* Custom Scrollbar */
+/* ── Hairline scrollbar ── */
 ::-webkit-scrollbar {
-  width: 0.125rem;
-  height: 0.125rem;
+  width: 0.25rem;
+  height: 0.25rem;
 }
-
-::-webkit-scrollbar-button {
-  width: 0;
-  height: 0;
+::-webkit-scrollbar-thumb {
+  background: var(--rule-strong);
 }
-
-::-webkit-scrollbar-thumb,
-::-webkit-scrollbar-thumb:active,
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-cultured);
-  border: none;
+::-webkit-scrollbar-track {
+  background: transparent;
 }
-
-::-webkit-scrollbar-track,
-::-webkit-scrollbar-track:hover,
-::-webkit-scrollbar-track:active {
-  background: var(--color-jet);
-  border: none;
-}
-
 ::-webkit-scrollbar-corner {
   background: transparent;
 }
 
-/* Link Hover Effect */
-.link-hover {
-  position: relative;
-  transition: color 0.3s ease;
+/* ── F · CONSENSUS — orbiting validator dots ── */
+@keyframes baSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-ba-spin {
+  animation: baSpin 3.2s linear infinite;
 }
 
-.link-hover::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--color-steel-blue);
-  transition: width 0.3s ease;
+/* ── Case fig: active agent-graph edge ── */
+@keyframes agDash {
+  to {
+    stroke-dashoffset: -9;
+  }
 }
 
-.link-hover:hover {
-  color: var(--color-steel-blue);
+/* ── Case plate lightbox ── */
+@keyframes plFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes plFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes plZoomIn {
+  from {
+    transform: scale(0.92) translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes plZoomOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.94);
+    opacity: 0;
+  }
 }
 
-.link-hover:hover::after {
-  width: 100%;
+/* Respect reduced-motion at the document level */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-ba-spin {
+    animation: none;
+  }
 }

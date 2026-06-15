@@ -1,20 +1,42 @@
 import type { Metadata } from "next";
-import { Nunito_Sans } from "next/font/google";
+import { Anton, Instrument_Serif, JetBrains_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
-import { Navbar, Footer } from "@/components/shared";
+import { ThemeProvider } from "@/components/shared/theme-provider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-const nunitoSans = Nunito_Sans({
+const anton = Anton({
   subsets: ["latin"],
-  weight: ["300", "400", "600", "700", "800", "900"],
-  variable: "--font-nunito-sans",
+  weight: "400",
+  variable: "--font-anton",
+  display: "swap",
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
+  display: "swap",
+});
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-dm-sans",
   display: "swap",
 });
 
 const metadataTitle = "Yashvardhan Jagnani";
 const metadataDescription =
-  "Blockchain engineer and full-stack developer building decentralized applications and infrastructure. Computer Science graduate from SRMIST, Chennai, specializing in Cybersecurity.";
+  "Blockchain-first software engineer — AI-native builder, forward-deployed engineer. Covalent · InsidePoly · AI Agent SDK. Incoming MSc, NTU Singapore.";
 
 export const metadata: Metadata = {
   title: metadataTitle,
@@ -23,12 +45,12 @@ export const metadata: Metadata = {
   keywords: [
     metadataTitle,
     "jagnani73",
-    "software developer",
+    "software engineer",
     "blockchain engineer",
+    "AI engineer",
     "full-stack developer",
     "web3 developer",
     "smart contracts",
-    "decentralized applications",
     "react",
     "nextjs",
   ],
@@ -58,34 +80,17 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      {
-        url: "/site/favicon-32x32.png",
-        sizes: "32x32",
-        type: "image/png",
-      },
-      {
-        url: "/site/favicon-16x16.png",
-        sizes: "16x16",
-        type: "image/png",
-      },
+      { url: "/site/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/site/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],
     apple: [
-      {
-        url: "/site/apple-touch-icon.png",
-        sizes: "180x180",
-        type: "image/png",
-      },
+      { url: "/site/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
-    other: [
-      {
-        rel: "mask-icon",
-        url: "/site/safari-pinned-tab.svg",
-      },
-    ],
+    other: [{ rel: "mask-icon", url: "/site/safari-pinned-tab.svg" }],
   },
   manifest: "/site/site.webmanifest",
   other: {
-    "msapplication-TileColor": "#232323",
+    "msapplication-TileColor": "#081012",
   },
 };
 
@@ -95,16 +100,13 @@ const RootLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <html lang="en" className={nunitoSans.variable}>
-      <head>
-        <meta name="theme-color" content="#232323" />
-      </head>
-      <body className={nunitoSans.className}>
-        <div className="flex flex-col justify-between min-h-screen">
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </div>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${anton.variable} ${instrumentSerif.variable} ${jetBrainsMono.variable} ${dmSans.variable}`}
+    >
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
         <SpeedInsights />
       </body>
       <GoogleAnalytics gaId="G-CY9KEWMBRR" />
