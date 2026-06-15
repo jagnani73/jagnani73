@@ -1,7 +1,16 @@
 import type { ReactNode } from "react";
 
 // fig.1 masthead interactives (null = no bespoke fig, e.g. derived project cases).
-export type FigKind = "score" | "agents" | "wager";
+export type FigKind =
+  | "score"
+  | "agents"
+  | "wager"
+  | "kit"
+  | "decoder"
+  | "flux"
+  | "dao"
+  | "zk"
+  | "lenden";
 
 export interface PlateImg {
   kind: "img";

@@ -3,7 +3,7 @@ import type { CaseData } from "@/content/case-types";
 export const dewlsCase: CaseData = {
   slug: "dewls",
   idx: "03",
-  rosterSize: 3,
+  rosterSize: 9,
   title: "DEWLS",
   docTitle: "Dewls — Case Study",
   badge: "SIGN PROTOCOL PRIZE · ETHONLINE 2024",
@@ -130,5 +130,5 @@ export const dewlsCase: CaseData = {
       },
     },
   ],
-  next: "insidepoly",
+  next: "goldrush-kit",
 };

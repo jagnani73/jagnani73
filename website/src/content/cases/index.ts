@@ -4,16 +4,38 @@ import type { CaseData } from "@/content/case-types";
 import { insidepolyCase } from "./insidepoly";
 import { agentSdkCase } from "./agent-sdk";
 import { dewlsCase } from "./dewls";
+import { goldrushKitCase } from "./goldrush-kit";
+import { goldrushDecoderCase } from "./goldrush-decoder";
+import { fluxCase } from "./flux";
+import { daoscapeCase } from "./daoscape";
+import { lendenCase } from "./lenden";
+import { delinzkCase } from "./delinzk";
 
 // Fully authored cases, keyed by canonical slug.
 const AUTHORED: Record<string, CaseData> = {
   insidepoly: insidepolyCase,
   "agent-sdk": agentSdkCase,
   dewls: dewlsCase,
+  "goldrush-kit": goldrushKitCase,
+  "goldrush-decoder": goldrushDecoderCase,
+  flux: fluxCase,
+  daoscape: daoscapeCase,
+  lenden: lendenCase,
+  delinzk: delinzkCase,
 };
 
 // data.ts project slugs an authored case supersedes (avoids duplicate pages).
-const SUPERSEDED = new Set(["insidepoly", "ai-agent-sdk", "dewls"]);
+const SUPERSEDED = new Set([
+  "insidepoly",
+  "ai-agent-sdk",
+  "dewls",
+  "goldrush-kit",
+  "goldrush-decoder",
+  "flux",
+  "daoscape",
+  "lenden",
+  "delinzk",
+]);
 // data.ts slug → authored slug (the SDK project ships under a different slug).
 const SLUG_ALIASES: Record<string, string> = { "ai-agent-sdk": "agent-sdk" };
 

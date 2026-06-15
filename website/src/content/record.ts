@@ -23,10 +23,11 @@ export interface RecordEntry {
   win?: boolean;
 }
 
-export type FilterId = Kind | "ALL";
+export type FilterId = Kind | "ALL" | "CASES";
 
 export const FILTERS: { id: FilterId; label: string }[] = [
   { id: "ALL", label: "ALL" },
+  { id: "CASES", label: "CASE STUDIES" },
   { id: "EXPERIENCE", label: "EXPERIENCE" },
   { id: "PROJECT", label: "PROJECTS" },
   { id: "HACKATHON", label: "HACKATHONS" },
@@ -59,15 +60,15 @@ export const RECORD: RecordEntry[] = [
   { year: 2025, kind: "EXPERIENCE", title: "Covalent — Product Engineer", meta: "GoldRush suite · AI Agent SDK · SpeedRun · OHLCV streaming @ ~250ms · 2023–2025", url: "https://www.covalenthq.com" },
   { year: 2025, kind: "HACKATHON", win: true, title: "ETHGlobal New Delhi — Fluence track prize", meta: "Flux · web3-native AI support agents", url: "https://github.com/jagnani73/flux" },
   { year: 2025, kind: "HACKATHON", win: true, title: "ETHGlobal Prague — Blockscout pool prize", meta: "DAOScape · zk reputation-weighted governance", url: "https://ethglobal.com/showcase/daoscape-g8f8m" },
-  { year: 2025, kind: "PROJECT", via: "hackathon", title: "Flux", meta: "AI support agents with on-chain awareness · uAgents + ENS + Fluence", url: "https://github.com/jagnani73/flux" },
-  { year: 2025, kind: "PROJECT", via: "hackathon", title: "DAOScape", meta: "reputation-based DAO governance · vlayer web proofs on Base", url: "https://ethglobal.com/showcase/daoscape-g8f8m" },
+  { year: 2025, kind: "PROJECT", via: "hackathon", title: "Flux", meta: "AI support agents with on-chain awareness · uAgents + ENS + Fluence", url: "/work/flux", internal: true },
+  { year: 2025, kind: "PROJECT", via: "hackathon", title: "DAOScape", meta: "reputation-based DAO governance · vlayer web proofs on Base", url: "/work/daoscape", internal: true },
   { year: 2025, kind: "PROJECT", via: "covalent", title: "SpeedRun", meta: "crypto-native vibe-coding platform · 1k+ active users · 150 token launches in month one" },
   { year: 2025, kind: "PROJECT", via: "client", title: "Inforged Noida", meta: "marketing site for an automotive customization studio", url: "https://www.inforgedautosnoida.com/" },
 
   // ── 2024 ──
   { year: 2024, kind: "PROJECT", via: "covalent", title: "AI Agent SDK", meta: "@covalenthq/ai-agent-sdk · agent orchestration for ZEE · 119★ · 2k+ downloads", url: "/work/agent-sdk", internal: true },
-  { year: 2024, kind: "PROJECT", via: "covalent", title: "GoldRush Kit", meta: "plug-n-play React components for on-chain data · 105★ · 65 versions", url: "https://github.com/covalenthq/goldrush-kit" },
-  { year: 2024, kind: "PROJECT", via: "covalent", title: "GoldRush Decoder", meta: "raw EVM logs → structured events across 200+ chains · 9 contributors", url: "https://github.com/covalenthq/goldrush-decoder" },
+  { year: 2024, kind: "PROJECT", via: "covalent", title: "GoldRush Kit", meta: "plug-n-play React components for on-chain data · 105★ · 65 versions", url: "/work/goldrush-kit", internal: true },
+  { year: 2024, kind: "PROJECT", via: "covalent", title: "GoldRush Decoder", meta: "raw EVM logs → structured events across 200+ chains · 9 contributors", url: "/work/goldrush-decoder", internal: true },
   { year: 2024, kind: "HACKATHON", win: true, title: "ETHOnline — Sign Protocol pool prize", meta: "Dewls · on-chain arcade wagering", url: "https://ethglobal.com/showcase/dewls-oyj1w" },
   { year: 2024, kind: "PROJECT", via: "hackathon", title: "Dewls", meta: "arcade wagering · proof-of-victory attestations · Morph, Hedera, Rootstock", url: "/work/dewls", internal: true },
   { year: 2024, kind: "PROJECT", title: "Equivalent", meta: "human-readable multichain block explorer on the Covalent API", url: "https://github.com/jagnani73/equivalent" },
@@ -75,8 +76,8 @@ export const RECORD: RecordEntry[] = [
 
   // ── 2023 ──
   { year: 2023, kind: "HACKATHON", win: true, title: "Unfold 2023 — Router track prize", meta: "LenDen · cross-chain lending · CoinDCX", url: "https://github.com/jagnani73/lenden" },
-  { year: 2023, kind: "PROJECT", via: "hackathon", title: "LenDen", meta: "cross-chain lending & borrowing · Router cross-talk contracts", url: "https://github.com/jagnani73/lenden" },
-  { year: 2023, kind: "PROJECT", via: "hackathon", title: "deLinZK", meta: "zk proof-of-employment credentials · Polygon ID · ETHForAll", url: "https://github.com/jagnani73/delinzk" },
+  { year: 2023, kind: "PROJECT", via: "hackathon", title: "LenDen", meta: "cross-chain lending & borrowing · Router cross-talk contracts", url: "/work/lenden", internal: true },
+  { year: 2023, kind: "PROJECT", via: "hackathon", title: "deLinZK", meta: "zk proof-of-employment credentials · Polygon ID · ETHForAll", url: "/work/delinzk", internal: true },
   { year: 2023, kind: "RESEARCH", title: "Dead letter exchanges in MQTT + broker failure via blockchain DNS", meta: "IEEE · Gold Certificate, SRM Research Day", url: "https://ieeexplore.ieee.org/document/10157491" },
   { year: 2023, kind: "RESEARCH", title: "Compressing image buffers for remote education video conferencing", meta: "IEEE · Harris corner detection + pixel map arrays", url: "https://ieeexplore.ieee.org/document/10179787" },
   { year: 2023, kind: "RESEARCH", title: "Fault tolerance in MQTT through blockchain", meta: "IEEE · Best Conference Paper", url: "https://ieeexplore.ieee.org/document/10118032" },
@@ -141,11 +142,19 @@ export const RECORD: RecordEntry[] = [
   { year: 2019, kind: "COMMUNITY", title: "Data Science Community SRM — Web Dev Lead", meta: "founding team · sole web developer · 2019–2020", url: "https://www.dscommunity.in/" },
 ];
 
-// Per-kind tallies, recomputed at build (never hardcoded). ALL = total length.
+// Entries with a case-study page (internal /work/[slug] links).
+export const isCase = (r: RecordEntry): boolean => !!r.internal;
+
+// Per-kind tallies, recomputed at build (never hardcoded). ALL = total length,
+// CASES = entries with a case page.
 export const getRecordCounts = (): Record<FilterId, number> => {
   const counts = { ALL: RECORD.length } as Record<FilterId, number>;
   for (const f of FILTERS) {
     if (f.id === "ALL") continue;
+    if (f.id === "CASES") {
+      counts[f.id] = RECORD.filter(isCase).length;
+      continue;
+    }
     counts[f.id] = RECORD.filter((r) => r.kind === f.id).length;
   }
   return counts;

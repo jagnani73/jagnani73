@@ -6,6 +6,7 @@ import {
   RECORD,
   FILTERS,
   kindColor,
+  isCase,
   type FilterId,
   type RecordEntry,
 } from "@/content/record";
@@ -162,7 +163,13 @@ export const RecordClient = ({
     };
   }, []);
 
-  const data = RECORD.filter((r) => filter === "ALL" || r.kind === filter);
+  const data = RECORD.filter((r) =>
+    filter === "ALL"
+      ? true
+      : filter === "CASES"
+        ? isCase(r)
+        : r.kind === filter,
+  );
   const years = [...new Set(data.map((r) => r.year))].sort((a, b) => b - a);
 
   return (
