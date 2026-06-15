@@ -2,8 +2,6 @@ import type { CaseData } from "@/content/case-types";
 
 export const shikshakCase: CaseData = {
   slug: "shikshak",
-  idx: "13",
-  rosterSize: 16,
   title: "SHIKSHAK",
   docTitle: "Shikshak — Case Study",
   badge: "HACK THIS FALL 2020 · 1ST",

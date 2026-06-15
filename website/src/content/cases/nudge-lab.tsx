@@ -2,8 +2,6 @@ import type { CaseData } from "@/content/case-types";
 
 export const nudgeLabCase: CaseData = {
   slug: "nudge-lab",
-  idx: "10",
-  rosterSize: 16,
   title: "NUDGELAB",
   docTitle: "NudgeLab — Case Study",
   badge: "HACKRX 3.0 · DARK HORSE",

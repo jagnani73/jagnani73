@@ -2,8 +2,6 @@ import type { CaseData } from "@/content/case-types";
 
 export const contractsCase: CaseData = {
   slug: "contracts",
-  idx: "11",
-  rosterSize: 16,
   title: "CONTRACTS",
   docTitle: "Contracts — Case Study",
   badge: "ROOKIE HACKS II · BEST HEDERA",

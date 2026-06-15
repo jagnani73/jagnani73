@@ -2,8 +2,6 @@ import type { CaseData } from "@/content/case-types";
 
 export const hospitatvaCase: CaseData = {
   slug: "hospitatva",
-  idx: "12",
-  rosterSize: 16,
   title: "HOSPITATVA",
   docTitle: "Hospitatva — Case Study",
   badge: "SMART INDIA HACKATHON · 2022",

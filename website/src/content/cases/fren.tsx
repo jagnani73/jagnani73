@@ -2,8 +2,6 @@ import type { CaseData } from "@/content/case-types";
 
 export const frenCase: CaseData = {
   slug: "fren",
-  idx: "14",
-  rosterSize: 16,
   title: "FREN",
   docTitle: "Fren — Case Study",
   badge: "HACKTHEMOUNTAINS 2020 · 4TH",

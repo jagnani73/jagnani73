@@ -4,8 +4,6 @@ import type { CaseData } from "@/content/case-types";
 // so that section is omitted until images are supplied.
 export const bharatBeaconCase: CaseData = {
   slug: "bharat-beacon",
-  idx: "16",
-  rosterSize: 16,
   title: "BHARAT BEACON",
   docTitle: "Bharat Beacon — Case Study",
   badge: "CODE2CREATE 4.0 · BEST 1ST-YR TEAM",
@@ -74,5 +72,5 @@ export const bharatBeaconCase: CaseData = {
       ],
     },
   ],
-  next: "insidepoly",
+  next: "claude-controller",
 };

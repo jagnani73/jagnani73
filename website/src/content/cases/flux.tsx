@@ -2,8 +2,6 @@ import type { CaseData } from "@/content/case-types";
 
 export const fluxCase: CaseData = {
   slug: "flux",
-  idx: "06",
-  rosterSize: 16,
   title: "FLUX",
   docTitle: "Flux — Case Study",
   badge: "FLUENCE PRIZE · ETHGLOBAL NEW DELHI",

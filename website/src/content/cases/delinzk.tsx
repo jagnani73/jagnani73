@@ -2,8 +2,6 @@ import type { CaseData } from "@/content/case-types";
 
 export const delinzkCase: CaseData = {
   slug: "delinzk",
-  idx: "09",
-  rosterSize: 16,
   title: "DELINZK",
   docTitle: "deLinZK — Case Study",
   badge: "ETHFORALL · 2023",

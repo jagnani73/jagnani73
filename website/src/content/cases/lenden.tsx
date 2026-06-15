@@ -2,8 +2,6 @@ import type { CaseData } from "@/content/case-types";
 
 export const lendenCase: CaseData = {
   slug: "lenden",
-  idx: "08",
-  rosterSize: 16,
   title: "LENDEN",
   docTitle: "LenDen — Case Study",
   badge: "ROUTER PRIZE · UNFOLD 2023",

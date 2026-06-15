@@ -35,11 +35,11 @@ The site is an **editorial "newspaper-of-record"** redesign with three page type
 ### Content (`src/content/`) — typed, build-static
 - `record.ts` — the 73-entry record + `getRecordCounts()` (computed at build, never hardcoded).
 - `home.ts` — chapters / selected work / person.
-- `case-types.ts` — `CaseData` + section unions; `cases/{insidepoly,agent-sdk,dewls}.tsx` are the authored cases; `cases/index.ts` is the registry (`getCase`, `getAllCaseSlugs`, `getCaseTitle`).
+- `case-types.ts` — `CaseData` + section unions; `cases/*.tsx` are the authored cases, keyed in the `AUTHORED` map in `cases/index.ts` (the registry: `getCase`, `getAllCaseSlugs`, `getCaseTitle`).
 - `metrics.ts` — hardcoded metric fallbacks.
 
 ### Data-driven case template
-Every project gets a `/work/[slug]` page. The 3 authored cases are exemplars; `lib/project-to-case.ts` derives a baseline `CaseData` (markdown overview + image plates) from any `data.ts` project so the rest render too. `data.ts` slug `ai-agent-sdk` aliases to the authored `agent-sdk` (no duplicate page). Authored cases override derived ones.
+Every project gets a `/work/[slug]` page. Authored cases (the `AUTHORED` map in `cases/index.ts`) are exemplars; `lib/project-to-case.ts` derives a baseline `CaseData` (markdown overview + image plates) from any `data.ts` project so the rest render too. `data.ts` slug `ai-agent-sdk` aliases to the authored `agent-sdk` (no duplicate page). Authored cases override derived ones. Each authored case's roster index (`idx`) and size (`rosterSize`) are **computed from the `AUTHORED` order in `getCase` — never hardcoded per file**.
 
 ### Live metrics (ISR)
 `lib/fetch-metrics.ts` `getMetrics()` fetches GitHub stars/forks + npm version count at build (`revalidate: 86400`), falling back to `content/metrics.ts` — **Server Components only**, never client-side, never renders a blank/spinner.
@@ -57,5 +57,5 @@ Every project gets a `/work/[slug]` page. The 3 authored cases are exemplars; `l
 
 ## Adding/Updating Content
 - Record rows: `src/content/record.ts` (counts recompute automatically).
-- A new full case study: add `src/content/cases/<slug>.tsx` + register in `cases/index.ts`. Any project in `data.ts` already has a baseline page.
+- A new full case study: add `src/content/cases/<slug>.tsx` and register it in the `AUTHORED` map in `cases/index.ts` (position in that map sets its roster index). A bespoke `fig` is a new `FigKind` in `case-types.ts` + component registered in `components/case/case-fig.tsx`; **don't set `idx`/`rosterSize`** — they're derived. Any project in `data.ts` already has a baseline page.
 - Home sections: `src/content/home.ts`. Metric numbers/fallbacks: `src/content/metrics.ts`.

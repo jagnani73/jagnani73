@@ -38,6 +38,12 @@ const AUTHORED: Record<string, CaseData> = {
   "bharat-beacon": bharatBeaconCase,
 };
 
+// Canonical roster (authored cases, in declaration order) — the single source of
+// truth for each case's roster index and the roster size. Derived in getCase,
+// never hardcoded per file: reorder/add a case here and idx + size follow.
+const ROSTER = Object.keys(AUTHORED);
+const ROSTER_SIZE = ROSTER.length;
+
 // data.ts project slugs an authored case supersedes (avoids duplicate pages).
 const SUPERSEDED = new Set([
   "insidepoly",
@@ -64,7 +70,7 @@ const derivedProjects = projects.filter((p) => !SUPERSEDED.has(p.slug));
 
 // Ordered universe of case slugs: authored first, then every other project.
 export const ALL_CASE_SLUGS: string[] = [
-  ...Object.keys(AUTHORED),
+  ...ROSTER,
   ...derivedProjects.map((p) => p.slug),
 ];
 
@@ -77,7 +83,13 @@ const nextSlugAfter = (slug: string): string => {
 
 export const getCase = (slug: string): CaseData | null => {
   const canonical = SLUG_ALIASES[slug] ?? slug;
-  if (AUTHORED[canonical]) return AUTHORED[canonical];
+  const authored = AUTHORED[canonical];
+  if (authored)
+    return {
+      ...authored,
+      idx: String(ROSTER.indexOf(canonical) + 1).padStart(2, "0"),
+      rosterSize: ROSTER_SIZE,
+    };
   const project = projectBySlug.get(slug);
   if (!project) return null;
   return projectToCase(project, nextSlugAfter(slug));
