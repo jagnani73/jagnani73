@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  redirects: async () => [
+    { source: "/projects", destination: "/work", permanent: true },
+    { source: "/projects/:slug", destination: "/work/:slug", permanent: true },
+    { source: "/experiences", destination: "/work", permanent: true },
+  ],
 };
 
 export default nextConfig;
