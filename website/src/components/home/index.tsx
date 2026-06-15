@@ -1,9 +1,0 @@
-export { Hero } from "./hero";
-export { About } from "./about";
-export { Stack } from "./stack";
-export { Experiences } from "./experiences";
-export { Projects } from "./projects";
-export { Resumes } from "./resumes";
-export { Hackathons } from "./hackathons";
-export { Certifications } from "./certifications";
-export { ResearchPapers } from "./research-papers";

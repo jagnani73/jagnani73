@@ -1,8 +1,0 @@
-export { Navbar } from "./navbar";
-export { Footer } from "./footer";
-export { SocialIcon } from "./social-icon";
-export { StackIcon } from "./stack-icon";
-export { LinkIcon } from "./link-icon";
-export { Experience } from "./experience";
-export { Project } from "./project";
-export { MarkdownDescription } from "./markdown-description";
