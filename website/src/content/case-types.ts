@@ -10,7 +10,14 @@ export type FigKind =
   | "flux"
   | "dao"
   | "zk"
-  | "lenden";
+  | "lenden"
+  | "nudge"
+  | "ledger"
+  | "price"
+  | "board"
+  | "journal"
+  | "match"
+  | "beacon";
 
 export interface PlateImg {
   kind: "img";

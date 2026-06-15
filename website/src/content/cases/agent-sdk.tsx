@@ -20,7 +20,7 @@ const result = await ZeeWorkflow.run(zee);`;
 export const agentSdkCase: CaseData = {
   slug: "agent-sdk",
   idx: "02",
-  rosterSize: 9,
+  rosterSize: 16,
   title: "AI AGENT SDK",
   docTitle: "AI Agent SDK — Case Study",
   badge: "OPEN SOURCE · 119★",

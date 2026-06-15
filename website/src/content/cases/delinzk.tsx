@@ -3,7 +3,7 @@ import type { CaseData } from "@/content/case-types";
 export const delinzkCase: CaseData = {
   slug: "delinzk",
   idx: "09",
-  rosterSize: 9,
+  rosterSize: 16,
   title: "DELINZK",
   docTitle: "deLinZK — Case Study",
   badge: "ETHFORALL · 2023",
@@ -95,5 +95,5 @@ export const delinzkCase: CaseData = {
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/delinzk" },
     },
   ],
-  next: "insidepoly",
+  next: "nudge-lab",
 };

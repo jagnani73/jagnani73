@@ -3,7 +3,7 @@ import type { CaseData } from "@/content/case-types";
 export const daoscapeCase: CaseData = {
   slug: "daoscape",
   idx: "07",
-  rosterSize: 9,
+  rosterSize: 16,
   title: "DAOSCAPE",
   docTitle: "DAOScape — Case Study",
   badge: "BLOCKSCOUT PRIZE · ETHGLOBAL PRAGUE",

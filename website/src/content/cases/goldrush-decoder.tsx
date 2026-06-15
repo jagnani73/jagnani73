@@ -20,7 +20,7 @@ const DECODER_CODE = `GoldRushDecoder.on(
 export const goldrushDecoderCase: CaseData = {
   slug: "goldrush-decoder",
   idx: "05",
-  rosterSize: 9,
+  rosterSize: 16,
   title: "GOLDRUSH DECODER",
   docTitle: "GoldRush Decoder — Case Study",
   badge: "OPEN SOURCE · 200+ CHAINS",

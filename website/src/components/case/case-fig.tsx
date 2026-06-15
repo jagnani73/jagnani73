@@ -13,6 +13,13 @@ import { FigFlux } from "@/components/canvas/figs/fig-flux";
 import { FigDao } from "@/components/canvas/figs/fig-dao";
 import { FigZk } from "@/components/canvas/figs/fig-zk";
 import { FigLenden } from "@/components/canvas/figs/fig-lenden";
+import { FigNudge } from "@/components/canvas/figs/fig-nudge";
+import { FigLedger } from "@/components/canvas/figs/fig-ledger";
+import { FigPrice } from "@/components/canvas/figs/fig-price";
+import { FigBoard } from "@/components/canvas/figs/fig-board";
+import { FigJournal } from "@/components/canvas/figs/fig-journal";
+import { FigMatch } from "@/components/canvas/figs/fig-match";
+import { FigBeacon } from "@/components/canvas/figs/fig-beacon";
 
 const FIGS: Record<FigKind, ComponentType<{ mob: boolean; active?: boolean }>> = {
   score: FigScore,
@@ -24,6 +31,13 @@ const FIGS: Record<FigKind, ComponentType<{ mob: boolean; active?: boolean }>> =
   dao: FigDao,
   zk: FigZk,
   lenden: FigLenden,
+  nudge: FigNudge,
+  ledger: FigLedger,
+  price: FigPrice,
+  board: FigBoard,
+  journal: FigJournal,
+  match: FigMatch,
+  beacon: FigBeacon,
 };
 
 export const CaseFig = ({ kind }: { kind: FigKind }) => {

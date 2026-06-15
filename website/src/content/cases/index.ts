@@ -10,6 +10,13 @@ import { fluxCase } from "./flux";
 import { daoscapeCase } from "./daoscape";
 import { lendenCase } from "./lenden";
 import { delinzkCase } from "./delinzk";
+import { nudgeLabCase } from "./nudge-lab";
+import { contractsCase } from "./contracts";
+import { hospitatvaCase } from "./hospitatva";
+import { shikshakCase } from "./shikshak";
+import { frenCase } from "./fren";
+import { storiesCase } from "./stories";
+import { bharatBeaconCase } from "./bharat-beacon";
 
 // Fully authored cases, keyed by canonical slug.
 const AUTHORED: Record<string, CaseData> = {
@@ -22,6 +29,13 @@ const AUTHORED: Record<string, CaseData> = {
   daoscape: daoscapeCase,
   lenden: lendenCase,
   delinzk: delinzkCase,
+  "nudge-lab": nudgeLabCase,
+  contracts: contractsCase,
+  hospitatva: hospitatvaCase,
+  shikshak: shikshakCase,
+  fren: frenCase,
+  stories: storiesCase,
+  "bharat-beacon": bharatBeaconCase,
 };
 
 // data.ts project slugs an authored case supersedes (avoids duplicate pages).
@@ -35,6 +49,13 @@ const SUPERSEDED = new Set([
   "daoscape",
   "lenden",
   "delinzk",
+  "nudge-lab",
+  "contracts",
+  "hospitatva",
+  "shikshak",
+  "fren",
+  "stories",
+  "bharat-beacon",
 ]);
 // data.ts slug → authored slug (the SDK project ships under a different slug).
 const SLUG_ALIASES: Record<string, string> = { "ai-agent-sdk": "agent-sdk" };

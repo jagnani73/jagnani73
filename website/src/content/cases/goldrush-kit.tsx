@@ -3,7 +3,7 @@ import type { CaseData } from "@/content/case-types";
 export const goldrushKitCase: CaseData = {
   slug: "goldrush-kit",
   idx: "04",
-  rosterSize: 9,
+  rosterSize: 16,
   title: "GOLDRUSH KIT",
   docTitle: "GoldRush Kit — Case Study",
   badge: "OPEN SOURCE · 105★",

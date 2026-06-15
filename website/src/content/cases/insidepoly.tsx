@@ -3,7 +3,7 @@ import type { CaseData } from "@/content/case-types";
 export const insidepolyCase: CaseData = {
   slug: "insidepoly",
   idx: "01",
-  rosterSize: 9,
+  rosterSize: 16,
   title: "INSIDEPOLY",
   docTitle: "InsidePoly — Case Study",
   badge: "LIVE · 2026",

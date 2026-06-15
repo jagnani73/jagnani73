@@ -199,12 +199,28 @@ select {
   }
 }
 
+/* ── Bharat Beacon fig: distress-pin pulse ── */
+@keyframes beaconPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.2);
+    opacity: 0;
+  }
+}
+.animate-beacon-pulse {
+  animation: beaconPulse 1.6s ease-out infinite;
+}
+
 /* Respect reduced-motion at the document level */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .animate-ba-spin {
+  .animate-ba-spin,
+  .animate-beacon-pulse {
     animation: none;
   }
 }
