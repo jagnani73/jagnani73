@@ -198,6 +198,13 @@ export const RECORD: RecordEntry[] = [
   },
   {
     year: 2023,
+    kind: "HACKATHON",
+    title: "ETHForAll Online VIII",
+    meta: "deLinZK · zk proof-of-employment",
+    url: "https://github.com/jagnani73/delinzk",
+  },
+  {
+    year: 2023,
     kind: "PROJECT",
     via: "hackathon",
     title: "LenDen",
