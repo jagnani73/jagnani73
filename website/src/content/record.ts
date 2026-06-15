@@ -199,7 +199,8 @@ export const RECORD: RecordEntry[] = [
   {
     year: 2023,
     kind: "HACKATHON",
-    title: "ETHForAll Online VIII",
+    win: true,
+    title: "ETHForAll Online VIII — Quadratic Voting prize",
     meta: "deLinZK · zk proof-of-employment",
     url: "https://github.com/jagnani73/delinzk",
   },
@@ -274,7 +275,7 @@ export const RECORD: RecordEntry[] = [
   {
     year: 2023,
     kind: "EDUCATION",
-    title: "B.Tech CS — Cybersecurity · SRMIST",
+    title: "B.Tech CSE — Cybersecurity · SRMIST",
     meta: "9.26/10.00 CGPA · first class with distinction · class of 2023",
   },
 
@@ -548,6 +549,15 @@ export const RECORD: RecordEntry[] = [
     year: 2020,
     kind: "PROJECT",
     via: "hackathon",
+    title: "Stories",
+    meta: "anonymous peer support with toxicity filtering",
+    url: "/work/stories",
+    internal: true,
+  },
+  {
+    year: 2020,
+    kind: "PROJECT",
+    via: "hackathon",
     title: "Shikshak",
     meta: "85% less data for remote classrooms · blackboard → pixel stream",
     url: "/work/shikshak",
@@ -560,15 +570,6 @@ export const RECORD: RecordEntry[] = [
     title: "Fren",
     meta: "privacy-first therapy journaling · NLP sentiment pipeline",
     url: "/work/fren",
-    internal: true,
-  },
-  {
-    year: 2020,
-    kind: "PROJECT",
-    via: "hackathon",
-    title: "Stories",
-    meta: "anonymous peer support with toxicity filtering",
-    url: "/work/stories",
     internal: true,
   },
   {

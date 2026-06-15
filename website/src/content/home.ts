@@ -145,7 +145,7 @@ export const PERSON = {
     pre: "The tools change; the goal stays the same — ",
     emphasis: "build things that solve real problems.",
   },
-  education: "B.TECH COMPUTER SCIENCE — CYBERSECURITY · SRMIST, CHENNAI · 2023",
+  education: "B.TECH COMPUTER SCIENCE AND ENGINEERING — CYBERSECURITY · SRMIST, CHENNAI · 2023",
   cgpa: "9.26 / 10.00 CGPA",
   cgpaNote: " — FIRST CLASS WITH DISTINCTION",
   next: "MSC BLOCKCHAIN · NTU SINGAPORE · AUGUST 2026",
