@@ -1,41 +1,25 @@
-import { NextPage } from "next";
-import {
-  Hero,
-  About,
-  Stack,
-  Experiences,
-  Projects,
-  Hackathons,
-  Certifications,
-  Resumes,
-  ResearchPapers,
-} from "@/components/home";
-import {
-  experiences,
-  projects,
-  hackathons,
-  certifications,
-  resumes,
-  researchPapers,
-} from "@/utils/constants/data";
+import { PageShell } from "@/components/shared/page-shell";
+import { PageFooter } from "@/components/shared/page-footer";
+import { getMetrics } from "@/lib/fetch-metrics";
+import { Masthead } from "@/components/home/masthead";
+import { Chapters } from "@/components/home/chapters";
+import { SelectedWork } from "@/components/home/selected-work";
+import { Person } from "@/components/home/person";
 
-const HomePage: NextPage = () => {
-  const featuredExperiences = experiences.slice(0, 3);
-  const featuredProjects = projects.slice(0, 4);
+export const revalidate = 86400;
+
+const Home = async () => {
+  const metrics = await getMetrics();
 
   return (
-    <>
-      <Hero />
-      <About />
-      <Stack />
-      <Experiences experiences={featuredExperiences} />
-      <Hackathons hackathons={hackathons} />
-      <Projects projects={featuredProjects} />
-      <Certifications certifications={certifications} />
-      <ResearchPapers researchPapers={researchPapers} />
-      <Resumes resumes={resumes} />
-    </>
+    <PageShell page="P.01" home>
+      <Masthead />
+      <Chapters />
+      <SelectedWork metrics={metrics} />
+      <Person />
+      <PageFooter />
+    </PageShell>
   );
 };
 
-export default HomePage;
+export default Home;
