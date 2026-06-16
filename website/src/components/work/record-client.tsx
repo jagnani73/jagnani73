@@ -15,6 +15,7 @@ import { TimeConstellation } from "@/components/canvas/time-constellation";
 import { YearMark } from "./year-mark";
 import { BackToTop } from "@/components/shared/back-to-top";
 import { useIsMobile } from "@/hooks/use-is-mobile";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
 const GUTTER = 168;
 
@@ -129,26 +130,41 @@ export const RecordClient = ({
   const scrollVel = useRef(0);
   const bursts = useRef<number[]>([]);
   const mob = useIsMobile();
+  const reduced = useReducedMotion();
   const gut = mob ? 96 : GUTTER;
 
-  // scroll velocity → constellation drift, decayed each frame so it settles
+  // scroll velocity → constellation drift. The decay rAF only spins while there's
+  // velocity left to bleed off (and never under reduced motion / a hidden tab), so
+  // an idle Record page doesn't hold a perpetual frame loop. The constellation
+  // runs its own loop and only reads this value.
   useEffect(() => {
+    if (reduced) return;
     let lastY = window.scrollY;
+    let raf: number | null = null;
+
+    const decay = () => {
+      scrollVel.current *= 0.94;
+      if (Math.abs(scrollVel.current) < 0.01 || document.hidden) {
+        scrollVel.current = 0;
+        raf = null;
+        return;
+      }
+      raf = requestAnimationFrame(decay);
+    };
+
     const onScroll = () => {
       scrollVel.current =
         scrollVel.current * 0.5 + (window.scrollY - lastY) * 0.5;
       lastY = window.scrollY;
+      if (raf === null && !document.hidden) raf = requestAnimationFrame(decay);
     };
-    let raf = requestAnimationFrame(function decay() {
-      scrollVel.current *= 0.94;
-      raf = requestAnimationFrame(decay);
-    });
+
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      cancelAnimationFrame(raf);
+      if (raf !== null) cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
     };
-  }, []);
+  }, [reduced]);
 
   // atEnd → confirm the final years at page bottom
   useEffect(() => {
