@@ -7,7 +7,11 @@ import { FigCaption } from "./fig-caption";
 
 type NodeKind = "io" | "agent" | "tool";
 interface AgNode {
+  /** desktop x% (long labels need wider gaps) */
   x: number;
+  /** mobile x% — chain evenly spaced (16% apart) and inset so small boxes
+   *  don't clip the panel edges on a narrow container */
+  mx: number;
   y: number;
   label: string;
   short: string;
@@ -15,14 +19,14 @@ interface AgNode {
 }
 
 const AG_NODES: Record<string, AgNode> = {
-  input: { x: 6, y: 50, label: "goal in", short: "goal", kind: "io" },
-  planner: { x: 23, y: 50, label: "AGENT · planner", short: "planner", kind: "agent" },
-  router: { x: 43, y: 50, label: "AGENT · router", short: "router", kind: "agent" },
-  t1: { x: 64, y: 16, label: "TASK AGENT · 1", short: "task 1", kind: "tool" },
-  t2: { x: 64, y: 50, label: "TASK AGENT · 2", short: "task 2", kind: "tool" },
-  t3: { x: 64, y: 84, label: "TASK AGENT · 3", short: "task 3", kind: "tool" },
-  endgame: { x: 83, y: 50, label: "AGENT · endgame", short: "endgame", kind: "agent" },
-  output: { x: 95, y: 50, label: "answer", short: "answer", kind: "io" },
+  input: { x: 6, mx: 8, y: 50, label: "goal in", short: "goal", kind: "io" },
+  planner: { x: 23, mx: 24, y: 50, label: "AGENT · planner", short: "planner", kind: "agent" },
+  router: { x: 43, mx: 40, y: 50, label: "AGENT · router", short: "router", kind: "agent" },
+  t1: { x: 64, mx: 56, y: 16, label: "TASK AGENT · 1", short: "task 1", kind: "tool" },
+  t2: { x: 64, mx: 56, y: 50, label: "TASK AGENT · 2", short: "task 2", kind: "tool" },
+  t3: { x: 64, mx: 56, y: 84, label: "TASK AGENT · 3", short: "task 3", kind: "tool" },
+  endgame: { x: 83, mx: 72, y: 50, label: "AGENT · endgame", short: "endgame", kind: "agent" },
+  output: { x: 95, mx: 88, y: 50, label: "answer", short: "answer", kind: "io" },
 };
 const AG_EDGES: [string, string][] = [
   ["input", "planner"],
@@ -66,6 +70,7 @@ export const FigAgentGraph = ({
     !!prev &&
     ((a === prev && b === activeNode) || (a === activeNode && b === prev));
   const visited = new Set(AG_SEQ.slice(0, Math.min(shownStep + 1, AG_SEQ.length)));
+  const nx = (n: AgNode) => (mob ? n.mx : n.x);
 
   return (
     <div>
@@ -89,9 +94,9 @@ export const FigAgentGraph = ({
             return (
               <line
                 key={a + b}
-                x1={A.x + "%"}
+                x1={nx(A) + "%"}
                 y1={A.y + "%"}
-                x2={B.x + "%"}
+                x2={nx(B) + "%"}
                 y2={B.y + "%"}
                 stroke={hot ? t.sig : t.ruleStrong}
                 strokeWidth={hot ? 1.6 : 1}
@@ -111,7 +116,7 @@ export const FigAgentGraph = ({
               key={id}
               className="absolute whitespace-nowrap rounded font-mono"
               style={{
-                left: n.x + "%",
+                left: nx(n) + "%",
                 top: n.y + "%",
                 transform: "translate(-50%, -50%)",
                 fontSize: mob ? 8.5 : 12,

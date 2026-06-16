@@ -3,12 +3,32 @@
 import type { CSSProperties } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
+import { THEME_TOKENS } from "@/lib/theme-tokens";
 import { FigCaption } from "./fig-caption";
 import { figPanel } from "./fig-style";
 
 const M = "var(--font-mono)";
 const PTS = "8,46 22,20 34,52 48,18 60,50 74,22 86,48 92,30";
 const DASH = 260;
+
+// Viewfinder L-corners — offsets from the panel's top / bottom edges. Sat a touch
+// low so the frame clears the label and centres on the drawing.
+const CORNER_TOP = 36;
+const CORNER_BOTTOM = 20;
+
+// fig.1 contrasts the two ends: the camera sees a real blackboard — a dark board
+// with chalk — which the student canvas re-renders as black ink on white paper.
+// Both surfaces are fixed across light/dark themes.
+const BOARD_BG = THEME_TOKENS.dark.bg;
+const BOARD_EDGE = THEME_TOKENS.dark.ruleStrong;
+const BOARD_LABEL = THEME_TOKENS.dark.tx2;
+const BOARD_CORNER = THEME_TOKENS.dark.acc;
+const CHALK = THEME_TOKENS.dark.tx;
+
+const PAPER_BG = "#FFFFFF";
+const PAPER_EDGE = THEME_TOKENS.light.rule;
+const PAPER_LABEL = THEME_TOKENS.light.sig;
+const INK = THEME_TOKENS.light.tx;
 
 // Shikshak — a blackboard captured as a pixel stream, ~85% less data than video.
 export const FigBoard = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
@@ -22,31 +42,31 @@ export const FigBoard = ({ mob, active = true }: { mob: boolean; active?: boolea
     <div>
       <FigCaption left="fig. 1 — a blackboard captured as a pixel stream — ~85% less data than video" right="OpenCV · Socket.IO" />
       <div style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "1fr 36px 1fr", gap: mob ? 10 : 6, alignItems: "center" }}>
-        <div style={{ ...panel, padding: 10, position: "relative" }}>
-          <p style={{ fontFamily: M, fontSize: 10, color: t.tx3, margin: "0 0 8px", letterSpacing: "0.08em" }}>CAMERA · blackboard</p>
+        <div style={{ ...panel, padding: 10, position: "relative", background: BOARD_BG, borderColor: BOARD_EDGE }}>
+          <p style={{ fontFamily: M, fontSize: 10, color: BOARD_LABEL, margin: "0 0 8px", letterSpacing: "0.08em" }}>CAMERA · blackboard</p>
           {([[4, 4], [4, 1], [1, 4], [1, 1]] as const).map(([l, tt], i) => {
             const st: CSSProperties = {
               position: "absolute",
               width: 12,
               height: 12,
               [l === 4 ? "left" : "right"]: 8,
-              [tt === 4 ? "top" : "bottom"]: 28,
-              borderRight: l === 1 ? `2px solid ${t.acc}` : "none",
-              borderTop: tt === 1 ? `2px solid ${t.acc}` : "none",
-              borderLeft: l === 4 ? `2px solid ${t.acc}` : "none",
-              borderBottom: tt === 4 ? `2px solid ${t.acc}` : "none",
+              [tt === 4 ? "top" : "bottom"]: tt === 4 ? CORNER_TOP : CORNER_BOTTOM,
+              borderRight: l === 1 ? `2px solid ${BOARD_CORNER}` : "none",
+              borderTop: tt === 4 ? `2px solid ${BOARD_CORNER}` : "none",
+              borderLeft: l === 4 ? `2px solid ${BOARD_CORNER}` : "none",
+              borderBottom: tt === 1 ? `2px solid ${BOARD_CORNER}` : "none",
             };
             return <span key={i} style={st} />;
           })}
           <svg viewBox="0 0 100 64" style={{ width: "100%", height: mob ? 64 : 78 }}>
-            <polyline points={PTS} fill="none" stroke={t.tx} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray={DASH} strokeDashoffset={DASH * (1 - draw)} />
+            <polyline points={PTS} fill="none" stroke={CHALK} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray={DASH} strokeDashoffset={DASH * (1 - draw)} />
           </svg>
         </div>
         <div style={{ textAlign: "center", fontFamily: M, fontSize: 13, color: t.sig }}>{mob ? "↓" : "→"}</div>
-        <div style={{ ...panel, padding: 10, borderColor: t.sig }}>
-          <p style={{ fontFamily: M, fontSize: 10, color: t.sig, margin: "0 0 8px", letterSpacing: "0.08em" }}>STUDENT · canvas</p>
+        <div style={{ ...panel, padding: 10, background: PAPER_BG, borderColor: PAPER_EDGE }}>
+          <p style={{ fontFamily: M, fontSize: 10, color: PAPER_LABEL, margin: "0 0 8px", letterSpacing: "0.08em" }}>STUDENT · canvas</p>
           <svg viewBox="0 0 100 64" style={{ width: "100%", height: mob ? 64 : 78 }}>
-            <polyline points={PTS} fill="none" stroke={t.sig} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray={DASH} strokeDashoffset={DASH * (1 - draw)} />
+            <polyline points={PTS} fill="none" stroke={INK} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray={DASH} strokeDashoffset={DASH * (1 - draw)} />
           </svg>
         </div>
       </div>
