@@ -14,7 +14,7 @@ export const Chapters = () => (
           href="/record"
           className="text-tx3 transition-colors hover:text-sig"
         >
-          full record at /record ↗
+          the full record ↗
         </Link>
       }
     />

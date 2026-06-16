@@ -88,7 +88,7 @@ export const Masthead = () => (
           href="/record"
           className="text-tx2 transition-colors hover:text-sig"
         >
-          full record at /record ↗
+          the full record ↗
         </Link>
       </div>
     </div>
