@@ -104,6 +104,7 @@ const RootLayout = ({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${anton.variable} ${instrumentSerif.variable} ${jetBrainsMono.variable} ${dmSans.variable}`}
     >
