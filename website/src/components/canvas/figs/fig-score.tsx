@@ -52,7 +52,7 @@ export const FigScore = ({
               className="relative overflow-hidden"
               style={{
                 width: tier.w + "%",
-                background: "rgba(255,255,255,0.03)",
+                background: `${t.tx}0A`,
                 border: `1px solid ${tier.c}44`,
               }}
             >
@@ -72,7 +72,7 @@ export const FigScore = ({
             bottom: -6,
             width: 2,
             background: t.tx,
-            boxShadow: "0 0 10px rgba(237,242,244,0.8)",
+            boxShadow: `0 0 10px ${t.tx}cc`,
           }}
         />
       </div>
