@@ -26,7 +26,7 @@ The site is an **editorial "newspaper-of-record"** redesign with three page type
 - `next.config.ts` `redirects()`: `/projects`, `/projects/:slug`, `/experiences` → `/record` (301). The old projects/experiences pages were removed. (The route was renamed from `/work` → `/record`; record-entry `url`s point at `/record/[slug]`.)
 
 ### Theme & tokens
-- **`next-themes`** (`components/shared/theme-provider.tsx`): `attribute="data-theme"`, `storageKey="jagnani73-mode"`, themes `dark` (cyan, default) / `light` (paper), no-flash.
+- **`next-themes`** (`components/shared/theme-provider.tsx`): `attribute="data-theme"`, `storageKey="jagnani73-mode"`, `defaultTheme="system"` + `enableSystem` (follows the OS scheme; `light` paper is the fallback), themes `dark` (cyan) / `light` (paper), no-flash.
 - Tokens are CSS custom properties in `src/app/globals.css`, defined per `[data-theme]` and mapped into Tailwind v4 via `@theme inline` → use utilities `bg-bg text-tx border-rule text-pri text-sig text-acc bg-pri-a18` etc. **Do not add unlayered element rules** (e.g. a bare `a {}`) — they override `@layer utilities` and break `text-*` on links. Keyboard focus shows a `:focus-visible` ring (`--sig`); the bare `outline: none` is paired with a `:focus-visible` override, never left standalone.
 - Canvas/JS color access: `lib/theme-tokens.ts` (typed token objects) + `hooks/use-theme-tokens.ts` (replaces the prototype's `window.PAGE_THEME`).
 - Single breakpoint **1201px** via `@theme { --breakpoint-rail }` → `rail:` (≥1201 desktop) / `max-rail:` (≤1200 compact) variants. Prefer CSS variants over JS; `hooks/use-is-mobile.ts` only where JS needs the boolean.
