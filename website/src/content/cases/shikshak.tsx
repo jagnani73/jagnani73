@@ -81,10 +81,11 @@ export const shikshakCase: CaseData = {
       type: "plates",
       n: "04",
       title: "IN THE WILD",
-      note: "plates 01–02 · the classroom",
+      note: "plates 01–03 · the classroom",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473789/jagnani73/projects/shikshak/screenshot-calibrate_1_kaglgd.png", cap: "board calibration" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473783/jagnani73/projects/shikshak/screenshot-preview_1_lsp63m.png", cap: "the reconstructed board" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473786/jagnani73/projects/shikshak/screenshot-home_1_qehcch.png", cap: "plate 03" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/shikshak" },
     },

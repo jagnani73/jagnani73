@@ -80,6 +80,7 @@ export const frenCase: CaseData = {
       note: "plate 01 · the therapist view",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473737/jagnani73/projects/fren/screenshot-therapist_1_xy2335.png", cap: "the therapist analytics panel" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473741/jagnani73/projects/fren/screenshot-client_1_ftnrvo.png", cap: "plate 02" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/fren" },
     },

@@ -1,12 +1,13 @@
 import type { CaseData } from "@/utils/types/case.types";
 
-// "IN THE WILD" section omitted until screenshots are supplied.
 export const bharatBeaconCase: CaseData = {
   slug: "bharat-beacon",
   title: "BHARAT BEACON",
   docTitle: "Bharat Beacon — Case Study",
   seoDescription:
     "Disaster response mapped live — IoT distress signals pinpointed for the authorities. Best first-year team, Code2Create 4.0.",
+  ogImage:
+    "https://res.cloudinary.com/jagnani73/image/upload/v1714473617/jagnani73/projects/bharat-beacon/image_i4bbih.png",
   badge: "CODE2CREATE 4.0 · BEST 1ST-YR TEAM",
   deck: (
     <>
@@ -70,6 +71,19 @@ export const bharatBeaconCase: CaseData = {
         { name: "HTTP polling", desc: "fresh signals without a persistent socket" },
         { name: "device metadata", desc: "context attached to every distress call" },
         { name: "three-phase model", desc: "mitigation, response, and recovery" },
+      ],
+    },
+    {
+      type: "plates",
+      n: "04",
+      title: "IN THE WILD",
+      note: "plate 01 · the government portal",
+      plates: [
+        {
+          kind: "img",
+          src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473617/jagnani73/projects/bharat-beacon/image_i4bbih.png",
+          cap: "the government portal",
+        },
       ],
     },
   ],
