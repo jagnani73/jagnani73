@@ -50,6 +50,7 @@
   --pri-a40: rgba(47, 168, 184, 0.4);
   --pri-a18: rgba(47, 168, 184, 0.18);
   --pri-a08: rgba(47, 168, 184, 0.07);
+  --logo-ink: var(--acc); /* gold mark on dark */
   color-scheme: dark;
 }
 
@@ -73,6 +74,7 @@
   --pri-a40: rgba(43, 108, 163, 0.4);
   --pri-a18: rgba(43, 108, 163, 0.18);
   --pri-a08: rgba(43, 108, 163, 0.07);
+  --logo-ink: var(--tx); /* ink mark on paper */
   color-scheme: light;
 }
 
@@ -115,15 +117,176 @@ select:focus-visible {
   border-radius: 2px;
 }
 
-/* ── Theme-aware logo (dark mark default, paper mark in light) ── */
-.logo-light {
-  display: none;
+/* ── Animated mark (splash / rail logo / page loader) ──
+   Pure-CSS rebuild of the old SVGator loader, retimed onto the current logo.
+   `>_` cursor → sleeping-Y → upright Y → the Y clones and splits → the clone's
+   chevron drops into the J. Base = assemble once and hold (the splash). The
+   `.mark-loop` (route loader) and `.mark-hover` (rail logo) modifiers below set
+   the iteration/direction. Offsets are vars for easy tuning. */
+.mark-animate {
+  --mark-cycle: 3.4s; /* 2500ms assemble + ~900ms hold */
+  --hover-cycle: 2.5s; /* per-direction speed of the rail logo hover round-trip */
+  --mb-rise: 180px; /* underscore-cursor rises into the sleeping-Y stem */
+  --hb-start: -90deg; /* left half starts lying on its side (sleeping Y) */
+  --hb-pivot-x: 350px; /* left-half rotation pivot (chevron/bar junction) */
+  --hb-pivot-y: 515px;
+  --yb-center: 191px; /* the lone Y forms centred, then drifts left to its final spot */
+  --ax-slide: -191px; /* clone is born centred (over the Y), then drifts right */
+  --ba-rise: 246px; /* bar starts as the Y stem (low), rises to the J upstroke */
+  --ca-drop: -289px; /* chevron starts as the Y fork (high), drops to the J hook */
 }
-[data-theme="light"] .logo-dark {
-  display: none;
+.mark-animate * {
+  transform-box: view-box;
 }
-[data-theme="light"] .logo-light {
-  display: block;
+
+/* Left bar = the terminal underscore cursor: blinks low (`>_`), then rises into
+   the sleeping-Y stem (`>-`). It moves along the half's local X so that — while
+   the half is rotated -90° — it reads as a vertical rise on screen. */
+.mark-animate .mark-bar-b {
+  animation: mark-bar-b var(--mark-cycle) linear both;
+}
+@keyframes mark-bar-b {
+  0% {
+    transform: translateX(calc(var(--mb-rise) * -1));
+    opacity: 1;
+  }
+  5% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 0;
+  }
+  20% {
+    transform: translateX(calc(var(--mb-rise) * -1));
+    opacity: 1;
+  }
+  29% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Left half rotates in as a unit (chevron + bar together), from lying sideways
+   to upright. The chevron stays visible throughout; the bar blinks as it lands. */
+.mark-animate .mark-half-b {
+  transform-origin: var(--hb-pivot-x) var(--hb-pivot-y);
+  animation: mark-half-b var(--mark-cycle) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes mark-half-b {
+  0%,
+  29% {
+    transform: translateX(var(--yb-center)) rotate(var(--hb-start));
+  }
+  44% {
+    transform: translateX(var(--yb-center)) rotate(0deg);
+  }
+  59% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+/* Right half clones the left Y (chevron up / bar down via the children below),
+   appears on top of it, then splits off to the right. The chevron/bar swap that
+   follows turns that clone from a Y into the J. */
+.mark-animate .mark-half-a {
+  animation: mark-half-a var(--mark-cycle) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes mark-half-a {
+  0%,
+  41% {
+    transform: translateX(var(--ax-slide));
+    opacity: 0;
+  }
+  45% {
+    transform: translateX(var(--ax-slide));
+    opacity: 1;
+  }
+  59% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* The clone's Y→J swap: bar rises from stem to upstroke, chevron drops from
+   fork to hook (the two cross past each other). */
+.mark-animate .mark-bar-a {
+  animation: mark-bar-a var(--mark-cycle) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes mark-bar-a {
+  0%,
+  59% {
+    transform: translateY(var(--ba-rise));
+  }
+  74% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.mark-animate .mark-chev-a {
+  animation: mark-chev-a var(--mark-cycle) cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes mark-chev-a {
+  0%,
+  59% {
+    transform: translateY(var(--ca-drop));
+  }
+  74% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Route loader: assemble ↔ disassemble forever */
+.mark-animate.mark-loop .mark-half-b,
+.mark-animate.mark-loop .mark-bar-b,
+.mark-animate.mark-loop .mark-half-a,
+.mark-animate.mark-loop .mark-bar-a,
+.mark-animate.mark-loop .mark-chev-a {
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+/* Rail-logo hover: one round trip — the assembled YJ breaks down to `>_` and
+   back to YJ (alternate-reverse ×2 starts and ends on the finished mark). */
+.mark-animate.mark-hover .mark-half-b,
+.mark-animate.mark-hover .mark-bar-b,
+.mark-animate.mark-hover .mark-half-a,
+.mark-animate.mark-hover .mark-bar-a,
+.mark-animate.mark-hover .mark-chev-a {
+  animation-duration: var(--hover-cycle);
+  animation-iteration-count: 2;
+  animation-direction: alternate-reverse;
+}
+
+/* Reduced motion: skip the assembly, show the mark whole */
+@media (prefers-reduced-motion: reduce) {
+  .mark-animate .mark-half-b,
+  .mark-animate .mark-bar-b,
+  .mark-animate .mark-half-a,
+  .mark-animate .mark-bar-a,
+  .mark-animate .mark-chev-a {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 /* ── Hairline scrollbar ── */
