@@ -3,8 +3,8 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import { MONO as M } from "./fig-style";
 
-const M = "var(--font-mono)";
 const A = "var(--font-display)";
 
 const DAO_VOTERS: { id: string; rep: string; proofs: string; w: number; vote: "YES" | "NO" }[] = [
@@ -14,7 +14,7 @@ const DAO_VOTERS: { id: string; rep: string; proofs: string; w: number; vote: "Y
   { id: "0xC3…01Ff", rep: "first-week wallet", proofs: "token only", w: 1.2, vote: "NO" },
 ];
 
-// DAOScape — a vote weighted by reputation proven off-chain, not tokens held.
+// DAOScape — vote weighted by off-chain reputation, not tokens held.
 export const FigDao = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
   const t = useThemeTokens();
   const n = useTick(820, DAO_VOTERS.length + 4, active, DAO_VOTERS.length + 3);

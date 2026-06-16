@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 import { useReducedMotion } from "./use-reduced-motion";
 
-// A modular interval counter (0 → mod-1) for the DOM-based case figs.
-// Pauses when offscreen (`active` false) and freezes at `staticValue` for
-// prefers-reduced-motion so the fig shows a resolved frame instead of animating.
+// Modular interval counter (0 → mod-1) for DOM case figs. Pauses when `active`
+// is false; freezes at `staticValue` under reduced-motion for a static frame.
 export const useTick = (
   ms: number,
   mod: number,

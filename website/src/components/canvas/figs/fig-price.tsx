@@ -3,8 +3,8 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import { MONO as M } from "./fig-style";
 
-const M = "var(--font-mono)";
 
 const PRICE_ROWS = [
   { item: "ICU bed · per day", proposed: "₹18,000", bench: "₹9,000", flag: true },
@@ -13,7 +13,7 @@ const PRICE_ROWS = [
   { item: "Remdesivir vial", proposed: "₹5,400", bench: "₹3,100", flag: true },
 ];
 
-// Hospitatva — proposed rates checked against the government benchmark.
+// Hospitatva — proposed rates checked against the benchmark.
 export const FigPrice = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
   const t = useThemeTokens();
   const n = useTick(760, PRICE_ROWS.length + 4, active, PRICE_ROWS.length + 3);

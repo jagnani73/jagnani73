@@ -3,11 +3,10 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel } from "./fig-style";
+import { figPanel, MONO as M } from "./fig-style";
 
-const M = "var(--font-mono)";
 
-// deLinZK — proof-of-employment: proven true, employer kept private.
+// deLinZK — proof-of-employment, employer kept private.
 export const FigZk = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
   const t = useThemeTokens();
   const n = useTick(440, 12, active, 9);

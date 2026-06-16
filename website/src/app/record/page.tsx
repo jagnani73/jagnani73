@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/shared/page-shell";
 import { getRecordCounts } from "@/content/record";
-import { RecordClient } from "@/components/work/record-client";
+import { RecordClient } from "@/components/record/record-client";
 import { JsonLd } from "@/components/shared/json-ld";
-import { collectionPageLd, breadcrumbLd } from "@/lib/seo";
+import { collectionPageLd, breadcrumbLd } from "@/utils/functions/seo";
 
 const RECORD_DESCRIPTION =
   "Everything, in one timeline — experience, projects, hackathons, community, research, education and certifications, 2019 → now.";

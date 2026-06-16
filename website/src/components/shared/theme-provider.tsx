@@ -3,9 +3,8 @@
 import { useEffect } from "react";
 import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes";
 
-// The browser-chrome favicon can't read the page theme, so swap it to follow the
-// in-app toggle. `icon.svg` (OS-reactive) stays the no-JS / first-paint default;
-// once mounted this points the favicon at the variant matching the resolved theme.
+// Favicon can't read the in-app toggle, so swap it on mount to match the resolved
+// theme. `icon.svg` (OS-reactive) stays the no-JS / first-paint default.
 const FaviconSync = () => {
   const { resolvedTheme } = useTheme();
 

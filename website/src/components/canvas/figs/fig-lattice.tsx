@@ -8,8 +8,7 @@ import { FigCaption } from "./fig-caption";
 const easeOut = (x: number) => 1 - Math.pow(1 - x, 3);
 const pct = (n: number) => `${n}%`;
 
-// Left panel (Ed25519): a base point, a curve hint, and the secret key a quantum
-// attacker recovers — the beam reaches it fast (discrete log is easy for Shor).
+// Left panel (Ed25519): beam reaches the secret key fast — discrete log is easy for Shor.
 const O = { x: 16, y: 80 };
 const K = { x: 82, y: 24 };
 const CURVE = [
@@ -18,9 +17,7 @@ const CURVE = [
   { x: 68, y: 36 },
 ];
 
-// Right panel (ML-DSA-44): a lattice (grid of points) and an off-grid target.
-// A probe hops between lattice points and never cleanly lands — the nearest-vector
-// problem stays hard, even for a quantum computer.
+// Right panel (ML-DSA-44): probe hops lattice points, never lands on the off-grid target — nearest-vector stays hard.
 const GRID: { x: number; y: number }[] = [];
 for (const y of [24, 44, 64, 84]) for (const x of [16, 39, 62, 85]) GRID.push({ x, y });
 const O2 = { x: 16, y: 84 };
@@ -35,7 +32,7 @@ export const FigLattice = ({
 }) => {
   const t = useThemeTokens();
   const reduced = useReducedMotion();
-  const [p, setP] = useState(0); // 0..1 loop
+  const [p, setP] = useState(0);
 
   useEffect(() => {
     if (reduced || !active) return;
@@ -86,7 +83,6 @@ export const FigLattice = ({
                 />
               );
             })}
-            {/* the attack beam */}
             <line
               x1={pct(O.x)}
               y1={pct(O.y)}
@@ -142,7 +138,7 @@ export const FigLattice = ({
                 />
               );
             })}
-            {/* the probe vector — searching, never lands on the target */}
+            {/* probe vector — never lands on the target */}
             <line
               x1={pct(O2.x)}
               y1={pct(O2.y)}
@@ -153,7 +149,6 @@ export const FigLattice = ({
               opacity={0.75}
             />
             <circle cx={pct(O2.x)} cy={pct(O2.y)} r={2.2} fill={t.tx3} />
-            {/* the off-grid target */}
             <circle
               cx={pct(TARGET.x)}
               cy={pct(TARGET.y)}

@@ -1,6 +1,4 @@
-import { projects } from "@/utils/constants/data";
-import { projectToCase } from "@/lib/project-to-case";
-import type { CaseData } from "@/content/case-types";
+import type { CaseData } from "@/utils/types/case.types";
 import { claudeControllerCase } from "./claude-controller";
 import { solanaMlDsa44Case } from "./solana-ml-dsa-44";
 import { insidepolyCase } from "./insidepoly";
@@ -21,7 +19,6 @@ import { frenCase } from "./fren";
 import { storiesCase } from "./stories";
 import { bharatBeaconCase } from "./bharat-beacon";
 
-// Fully authored cases, keyed by canonical slug.
 const AUTHORED: Record<string, CaseData> = {
   "claude-controller": claudeControllerCase,
   "solana-ml-dsa-44": solanaMlDsa44Case,
@@ -44,62 +41,25 @@ const AUTHORED: Record<string, CaseData> = {
   "bharat-beacon": bharatBeaconCase,
 };
 
-// Canonical roster (authored cases, in declaration order) — the single source of
-// truth for each case's roster index and the roster size. Derived in getCase,
-// never hardcoded per file: reorder/add a case here and idx + size follow.
+// Declaration order is the single source of truth for each case's idx + size,
+// derived in getCase — never hardcoded per file.
 const ROSTER = Object.keys(AUTHORED);
 const ROSTER_SIZE = ROSTER.length;
 
-// data.ts project slugs an authored case supersedes (avoids duplicate pages).
-const SUPERSEDED = new Set([
-  "insidepoly",
-  "ai-agent-sdk",
-  "dewls",
-  "goldrush-kit",
-  "goldrush-decoder",
-  "flux",
-  "daoscape",
-  "lenden",
-  "delinzk",
-  "nudge-lab",
-  "contracts",
-  "hospitatva",
-  "marquee",
-  "shikshak",
-  "fren",
-  "stories",
-  "bharat-beacon",
-]);
-// data.ts slug → authored slug (the SDK project ships under a different slug).
+// Keeps the legacy /record/ai-agent-sdk URL resolving to the authored case.
 const SLUG_ALIASES: Record<string, string> = { "ai-agent-sdk": "agent-sdk" };
 
-const derivedProjects = projects.filter((p) => !SUPERSEDED.has(p.slug));
-
-// Ordered universe of case slugs: authored first, then every other project.
-export const ALL_CASE_SLUGS: string[] = [
-  ...ROSTER,
-  ...derivedProjects.map((p) => p.slug),
-];
-
-const projectBySlug = new Map(projects.map((p) => [p.slug, p]));
-
-const nextSlugAfter = (slug: string): string => {
-  const i = ALL_CASE_SLUGS.indexOf(slug);
-  return ALL_CASE_SLUGS[(i + 1) % ALL_CASE_SLUGS.length];
-};
+export const ALL_CASE_SLUGS: string[] = ROSTER;
 
 export const getCase = (slug: string): CaseData | null => {
   const canonical = SLUG_ALIASES[slug] ?? slug;
   const authored = AUTHORED[canonical];
-  if (authored)
-    return {
-      ...authored,
-      idx: String(ROSTER.indexOf(canonical) + 1).padStart(2, "0"),
-      rosterSize: ROSTER_SIZE,
-    };
-  const project = projectBySlug.get(slug);
-  if (!project) return null;
-  return projectToCase(project, nextSlugAfter(slug));
+  if (!authored) return null;
+  return {
+    ...authored,
+    idx: String(ROSTER.indexOf(canonical) + 1).padStart(2, "0"),
+    rosterSize: ROSTER_SIZE,
+  };
 };
 
 export const getCaseTitle = (slug: string): string =>

@@ -1,4 +1,4 @@
-import type { CaseData } from "@/content/case-types";
+import type { CaseData } from "@/utils/types/case.types";
 
 const MARQUEE_CODE = `import Marquee from "react-easy-marquee";
 

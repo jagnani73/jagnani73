@@ -6,7 +6,7 @@ import { CaseMasthead } from "@/components/case/case-masthead";
 import { CaseSection } from "@/components/case/case-section";
 import { CaseFooter } from "@/components/case/case-footer";
 import { JsonLd } from "@/components/shared/json-ld";
-import { caseLd, breadcrumbLd } from "@/lib/seo";
+import { caseLd, breadcrumbLd } from "@/utils/functions/seo";
 
 const caseDescription = (c: NonNullable<ReturnType<typeof getCase>>): string =>
   c.seoDescription ??

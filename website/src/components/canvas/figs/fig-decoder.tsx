@@ -3,9 +3,8 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel } from "./fig-style";
+import { figPanel, MONO as M } from "./fig-style";
 
-const M = "var(--font-mono)";
 
 const DEC_EVENTS: { name: string; raw: string[]; fields: [string, string][] }[] = [
   {
@@ -25,7 +24,7 @@ const DEC_EVENTS: { name: string; raw: string[]; fields: [string, string][] }[] 
   },
 ];
 
-// GoldRush Decoder — a raw event log decoding into a named, enriched event.
+// GoldRush Decoder — raw event log → named, enriched event.
 export const FigDecoder = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
   const t = useThemeTokens();
   const PER = 8;

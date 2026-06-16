@@ -1,14 +1,14 @@
 import { PageShell } from "@/components/shared/page-shell";
 import { PageFooter } from "@/components/shared/page-footer";
-import { getMetrics } from "@/lib/fetch-metrics";
+import { getMetrics } from "@/utils/functions/fetch-metrics";
 import { Masthead } from "@/components/home/masthead";
 import { Chapters } from "@/components/home/chapters";
 import { SelectedWork } from "@/components/home/selected-work";
 import { Person } from "@/components/home/person";
 import { JsonLd } from "@/components/shared/json-ld";
-import { personLd, websiteLd } from "@/lib/seo";
+import { personLd, websiteLd } from "@/utils/functions/seo";
 
-export const revalidate = 86400;
+export const revalidate = 86400; // 24 hours
 
 const Home = async () => {
   const metrics = await getMetrics();

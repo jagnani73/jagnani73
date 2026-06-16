@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Metrics } from "@/content/metrics";
-import { getSelectedWork, type SelectedWorkItem } from "@/lib/selected-work";
+import type { Metrics } from "@/utils/types/metrics.types";
+import { getSelectedWork } from "@/utils/functions/selected-work";
+import type { SelectedWorkItem } from "@/utils/types/home.types";
 import { SectionHead } from "./section-head";
+import { RECORD } from "@/content/record";
 
 const tagFor = (item: SelectedWorkItem, metrics: Metrics): string => {
   if (item.metric === "agentSdk")
@@ -54,7 +56,10 @@ export const SelectedWork = ({ metrics }: { metrics: Metrics }) => {
         id="work"
         n="02"
         title="SELECTED WORK"
-        note={`${items.length} of 35+ — each opens a case study`}
+        note={`${items.length} of ${
+          RECORD.filter((r) => r.kind === "PROJECT" && r.slug !== undefined)
+            .length
+        } — each opens a case study`}
       />
       {items.map((item) => (
         <Link key={item.id} href={item.href} className={rowClass}>

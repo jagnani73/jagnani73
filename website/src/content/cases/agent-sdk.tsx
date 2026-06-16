@@ -1,4 +1,4 @@
-import type { CaseData } from "@/content/case-types";
+import type { CaseData } from "@/utils/types/case.types";
 
 const AGENT_SDK_CODE = `import { Agent, ZeeWorkflow } from "@covalenthq/ai-agent-sdk";
 

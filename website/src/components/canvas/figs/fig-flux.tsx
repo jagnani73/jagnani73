@@ -4,8 +4,8 @@ import { Fragment, type ReactNode } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import { MONO as M } from "./fig-style";
 
-const M = "var(--font-mono)";
 const S = "var(--font-sans)";
 
 const FLUX_STEPS: { kind: "user" | "agent" | "tool"; txt: string; facts?: string[] }[] = [
@@ -21,7 +21,7 @@ const FLUX_STEPS: { kind: "user" | "agent" | "tool"; txt: string; facts?: string
   },
 ];
 
-// Flux — a refund request verified against the transaction.
+// Flux — refund request verified against the transaction.
 export const FigFlux = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
   const t = useThemeTokens();
   const n = useTick(1000, FLUX_STEPS.length + 3, active, FLUX_STEPS.length + 2);

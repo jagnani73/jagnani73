@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-// fig.1 masthead interactives (null = no bespoke fig, e.g. derived project cases).
+// fig.1 masthead interactives (null = no bespoke fig).
 export type FigKind =
   | "score"
   | "agents"
@@ -72,20 +72,13 @@ export interface PlatesSection extends SectionBase {
   plates: Plate[];
   cta?: { label: string; href: string };
 }
-// Derived (non-authored) project cases render their markdown description here.
-export interface ProseSection extends SectionBase {
-  type: "prose";
-  markdown: string;
-  stack?: string;
-}
 
 export type CaseSection =
   | SplitSection
   | ArchSection
   | CardsSection
   | StatsSection
-  | PlatesSection
-  | ProseSection;
+  | PlatesSection;
 
 interface CaseDataBase {
   slug: string;
@@ -93,9 +86,8 @@ interface CaseDataBase {
   docTitle: string;
   badge: string;
   deck: ReactNode;
-  /** Plain-text meta description (~150 chars) for SEO/OG/JSON-LD. Authored cases
-   *  set this because their `deck` is JSX; derived cases fall back to the string
-   *  `deck`. See generateMetadata in record/[slug]/page.tsx. */
+  /** Plain-text meta description (~150 chars) for SEO/OG/JSON-LD — the JSX `deck`
+   *  can't be used. See generateMetadata in record/[slug]/page.tsx. */
   seoDescription?: string;
   fig: FigKind | null;
   sections: CaseSection[];
@@ -104,8 +96,7 @@ interface CaseDataBase {
   ogImage?: string;
 }
 
-// Roster index ("01") + size are injected by getCase for authored cases only;
-// derived project cases carry neither. The union keeps them travelling together.
+// idx ("01") + rosterSize are injected by getCase; the union keeps them paired.
 export type CaseData =
   | (CaseDataBase & { idx?: undefined; rosterSize?: undefined })
   | (CaseDataBase & { idx: string; rosterSize: number });

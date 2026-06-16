@@ -1,4 +1,4 @@
-import type { CaseData } from "@/content/case-types";
+import type { CaseData } from "@/utils/types/case.types";
 
 export const solanaMlDsa44Case: CaseData = {
   slug: "solana-ml-dsa-44",

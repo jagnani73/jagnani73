@@ -14,9 +14,7 @@ const hexToRGB = (h: string): string => {
   }
 };
 
-// fig. 1 — the masthead "contours" field: a marching-squares iso-line render of a
-// slow-moving scalar field that bumps up under the cursor. Ported from band-final.jsx
-// (contours engine), with prefers-reduced-motion + offscreen pause guards added.
+// fig. 1 — masthead contours: marching-squares iso-lines of a slow scalar field that bumps up under the cursor.
 export const BandCanvas = () => {
   const tokens = useThemeTokens();
   const reduced = useReducedMotion();
@@ -132,7 +130,7 @@ export const BandCanvas = () => {
     };
 
     if (reduced) {
-      // Resolved end-state: a single representative contour frame, no loop.
+      // Static end-state: one representative frame, no loop.
       renderFrame(9000);
       return () => {
         killed = true;
@@ -156,7 +154,7 @@ export const BandCanvas = () => {
       raf = requestAnimationFrame(loop);
     };
 
-    // Pause the rAF loop when the band scrolls offscreen.
+    // Pause the loop when the band scrolls offscreen.
     const io = new IntersectionObserver((entries) => {
       visible = entries[0].isIntersecting;
       if (visible && raf === null && !killed) {

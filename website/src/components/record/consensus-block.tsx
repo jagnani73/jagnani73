@@ -1,5 +1,5 @@
-// F · CONSENSUS — validator dots orbit the block, collapse inward and confirm
-// (center dot + outlined→solid square) when the year holds in the reading band.
+// F · CONSENSUS — validator dots orbit, then collapse inward and confirm once
+// the year holds in the reading band.
 export const ConsensusBlock = ({
   conf,
   mob,
@@ -28,7 +28,6 @@ export const ConsensusBlock = ({
           transformOrigin: "top left",
         }}
       >
-        {/* core square */}
         <div
           style={{
             position: "absolute",
@@ -42,7 +41,6 @@ export const ConsensusBlock = ({
             transition: "all 0.45s",
           }}
         />
-        {/* center dot */}
         <div
           style={{
             position: "absolute",
@@ -55,7 +53,6 @@ export const ConsensusBlock = ({
             transition: "opacity 0.35s 0.3s",
           }}
         />
-        {/* orbiting dots */}
         <div className={`absolute inset-0 ${conf ? "" : "animate-ba-spin"}`}>
           {[0, 1, 2, 3, 4].map((i) => {
             const a = (i / 5) * Math.PI * 2;

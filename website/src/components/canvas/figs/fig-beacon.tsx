@@ -3,8 +3,8 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import { MONO as M } from "./fig-style";
 
-const M = "var(--font-mono)";
 
 const BEACON_PINS = [
   { x: 30, y: 28 },
@@ -15,7 +15,7 @@ const BEACON_PINS = [
   { x: 56, y: 22 },
 ];
 
-// Bharat Beacon — distress signals polled onto the government dashboard in real time.
+// Bharat Beacon — distress signals polled onto the government dashboard.
 export const FigBeacon = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
   const t = useThemeTokens();
   const n = useTick(720, BEACON_PINS.length + 5, active, BEACON_PINS.length + 4);

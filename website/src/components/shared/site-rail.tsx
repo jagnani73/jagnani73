@@ -4,13 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useTheme } from "next-themes";
 import { Mark } from "./mark";
-
-interface SiteRailProps {
-  /** Page tag shown at the rail/bar edge, e.g. "P.01", "R.01", "P.03". */
-  page: string;
-  /** When false, the logo links back to home; when true (on home) it doesn't. */
-  home?: boolean;
-}
+import type { SiteRailProps } from "@/utils/types/component.types";
 
 const ModeToggle = () => {
   const { resolvedTheme, setTheme } = useTheme();
@@ -30,9 +24,8 @@ const ModeToggle = () => {
 };
 
 const Logo = ({ size, home }: { size: number; home?: boolean }) => {
-  // One inline mark, theme-coloured via --logo-ink. Hovering plays a single
-  // round-trip (YJ → `>_` → YJ) that always finishes — no pause on mouse-out.
-  // [data-rail-logo] marks the box the first-land splash collapses onto.
+  // Hover plays one round-trip (YJ → `>_` → YJ) that always finishes — no pause
+  // on mouse-out. [data-rail-logo] marks the box the splash collapses onto.
   const [playing, setPlaying] = useState(false);
   const mark = (
     <span
@@ -56,7 +49,7 @@ const Logo = ({ size, home }: { size: number; home?: boolean }) => {
 export const SiteRail = ({ page, home }: SiteRailProps) => {
   return (
     <>
-      {/* Mobile: sticky top bar (≤1200) */}
+      {/* Mobile: sticky top bar */}
       <div className="sticky top-0 z-50 flex items-center justify-between border-b border-rule bg-bg px-4 py-2.5 rail:hidden">
         <span className="flex items-center gap-2.5">
           <Logo size={26} home={home} />
@@ -70,7 +63,7 @@ export const SiteRail = ({ page, home }: SiteRailProps) => {
         </span>
       </div>
 
-      {/* Desktop: fixed 64px left rail (≥1201) */}
+      {/* Desktop: fixed 64px left rail */}
       <div className="fixed inset-y-0 left-0 z-50 hidden w-16 border-r border-rule bg-bg rail:block">
         <span className="absolute left-1/2 top-[12px] -translate-x-1/2">
           <Logo size={46} home={home} />

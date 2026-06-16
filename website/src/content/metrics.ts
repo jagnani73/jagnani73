@@ -1,16 +1,7 @@
-// Every fetchable number the design shows, with the hardcoded claim doubling as
-// the fallback when an API call fails — the UI must never render a blank or a
-// spinner for a stat. The fetchable ones are overridden at build time by
-// getMetrics() in lib/fetch-metrics.ts (ISR, revalidate daily). See
-// design_handoff_portfolio/PORT_NOTES.md.
+// Fallback stats (UI must never render blank/spinner). Overridden at build by
+// getMetrics() in utils/functions/fetch-metrics.ts (ISR, daily).
 
-export interface Metrics {
-  agentSdkStars: number;
-  agentSdkForks: number;
-  agentSdkDownloads: string;
-  goldrushKitStars: number;
-  goldrushKitVersions: number;
-}
+import type { Metrics } from "@/utils/types/metrics.types";
 
 export const METRICS: Metrics = {
   agentSdkStars: 119,

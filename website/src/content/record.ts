@@ -1,32 +1,7 @@
-// content/record.ts — the complete record, ported from work-data.js.
-// Kinds: EXPERIENCE | COMMUNITY | PROJECT | HACKATHON (win: true when awarded)
-// | RESEARCH | EDUCATION | CERTIFICATION. `via` links a project to its origin. Internal
-// urls point at /record/[slug] case pages (same-tab).
+// `via` links a project to its origin; a `slug` marks an authored case
+// (/record/[slug], same-tab), `url` is an external link.
 
-export type Kind =
-  | "EXPERIENCE"
-  | "COMMUNITY"
-  | "PROJECT"
-  | "HACKATHON"
-  | "RESEARCH"
-  | "EDUCATION"
-  | "CERTIFICATION";
-
-export interface RecordEntry {
-  year: number;
-  kind: Kind;
-  title: string;
-  meta: string;
-  via?: string;
-  url?: string;
-  internal?: boolean;
-  win?: boolean;
-  /** Explicit sort key within the year — entries with it lead, in ascending
-   *  order, ahead of the default kind ordering. Use to pin specific rows. */
-  order?: number;
-}
-
-export type FilterId = Kind | "ALL" | "CASES";
+import type { Kind, RecordEntry, FilterId } from "@/utils/types/record.types";
 
 export const FILTERS: { id: FilterId; label: string }[] = [
   { id: "ALL", label: "ALL" },
@@ -40,7 +15,6 @@ export const FILTERS: { id: FilterId; label: string }[] = [
   { id: "CERTIFICATION", label: "CERTIFICATIONS" },
 ];
 
-// Kind → token color (Tailwind text-* class).
 export const KIND_COLOR: Record<Kind, string> = {
   EXPERIENCE: "text-sig",
   COMMUNITY: "text-tx2",
@@ -69,8 +43,7 @@ export const RECORD: RecordEntry[] = [
     via: "oss",
     title: "Claude Controller",
     meta: "drive the Claude Code CLI from your phone over a private Tailscale tunnel · PWA + PTY relay",
-    url: "/record/claude-controller",
-    internal: true,
+    slug: "claude-controller",
     order: 2,
   },
   {
@@ -79,8 +52,7 @@ export const RECORD: RecordEntry[] = [
     via: "infinia",
     title: "Solana ML-DSA-44 fork",
     meta: "ML-DSA-44 post-quantum signatures on a Solana fork",
-    url: "/record/solana-ml-dsa-44",
-    internal: true,
+    slug: "solana-ml-dsa-44",
   },
   {
     year: 2026,
@@ -103,8 +75,7 @@ export const RECORD: RecordEntry[] = [
     kind: "PROJECT",
     title: "InsidePoly",
     meta: "insider-trading surveillance for Polymarket · five-signal scoring engine · live",
-    url: "/record/insidepoly",
-    internal: true,
+    slug: "insidepoly",
   },
 
   // ── 2025 ──
@@ -137,8 +108,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Flux",
     meta: "AI support agents with on-chain awareness · uAgents + ENS + Fluence",
-    url: "/record/flux",
-    internal: true,
+    slug: "flux",
   },
   {
     year: 2025,
@@ -146,8 +116,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "DAOScape",
     meta: "reputation-based DAO governance · vlayer web proofs on Base",
-    url: "/record/daoscape",
-    internal: true,
+    slug: "daoscape",
   },
   {
     year: 2025,
@@ -172,8 +141,7 @@ export const RECORD: RecordEntry[] = [
     via: "covalent",
     title: "AI Agent SDK",
     meta: "@covalenthq/ai-agent-sdk · agent orchestration for ZEE · 119★ · 2k+ downloads",
-    url: "/record/agent-sdk",
-    internal: true,
+    slug: "agent-sdk",
   },
   {
     year: 2024,
@@ -181,8 +149,7 @@ export const RECORD: RecordEntry[] = [
     via: "covalent",
     title: "GoldRush Kit",
     meta: "plug-n-play React components for on-chain data · 105★ · 65 versions",
-    url: "/record/goldrush-kit",
-    internal: true,
+    slug: "goldrush-kit",
   },
   {
     year: 2024,
@@ -190,8 +157,7 @@ export const RECORD: RecordEntry[] = [
     via: "covalent",
     title: "GoldRush Decoder",
     meta: "raw EVM logs → structured events across 200+ chains · 9 contributors",
-    url: "/record/goldrush-decoder",
-    internal: true,
+    slug: "goldrush-decoder",
   },
   {
     year: 2024,
@@ -207,8 +173,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Dewls",
     meta: "arcade wagering · proof-of-victory attestations · Morph, Hedera, Rootstock",
-    url: "/record/dewls",
-    internal: true,
+    slug: "dewls",
   },
   {
     year: 2024,
@@ -248,8 +213,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "LenDen",
     meta: "cross-chain lending & borrowing · Router cross-talk contracts",
-    url: "/record/lenden",
-    internal: true,
+    slug: "lenden",
   },
   {
     year: 2023,
@@ -257,8 +221,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "deLinZK",
     meta: "zk proof-of-employment credentials · Polygon ID · ETHForAll",
-    url: "/record/delinzk",
-    internal: true,
+    slug: "delinzk",
   },
   {
     year: 2023,
@@ -360,8 +323,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "NudgeLab",
     meta: "no-code nudge management · CDN delivery + message-queue triggers",
-    url: "/record/nudge-lab",
-    internal: true,
+    slug: "nudge-lab",
   },
   {
     year: 2022,
@@ -369,8 +331,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Contracts",
     meta: "immutable expense-splitting on Hedera smart contracts",
-    url: "/record/contracts",
-    internal: true,
+    slug: "contracts",
   },
   {
     year: 2022,
@@ -378,8 +339,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Hospitatva",
     meta: "hospital price transparency ledger on Zilliqa · SIH internals",
-    url: "/record/hospitatva",
-    internal: true,
+    slug: "hospitatva",
   },
   {
     year: 2022,
@@ -461,8 +421,7 @@ export const RECORD: RecordEntry[] = [
     via: "oss",
     title: "react-easy-marquee",
     meta: "zero-dependency CSS marquee · 105k+ npm downloads",
-    url: "/record/marquee",
-    internal: true,
+    slug: "marquee",
   },
   {
     year: 2021,
@@ -590,8 +549,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Stories",
     meta: "anonymous peer support with toxicity filtering",
-    url: "/record/stories",
-    internal: true,
+    slug: "stories",
   },
   {
     year: 2020,
@@ -599,8 +557,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Shikshak",
     meta: "85% less data for remote classrooms · blackboard → pixel stream",
-    url: "/record/shikshak",
-    internal: true,
+    slug: "shikshak",
   },
   {
     year: 2020,
@@ -608,8 +565,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Fren",
     meta: "privacy-first therapy journaling · NLP sentiment pipeline",
-    url: "/record/fren",
-    internal: true,
+    slug: "fren",
   },
   {
     year: 2020,
@@ -617,8 +573,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "BharatBeacon",
     meta: "IoT disaster response · live distress map for authorities",
-    url: "/record/bharat-beacon",
-    internal: true,
+    slug: "bharat-beacon",
   },
   {
     year: 2020,
@@ -681,11 +636,9 @@ export const RECORD: RecordEntry[] = [
   },
 ];
 
-// Entries with a case-study page (internal /record/[slug] links).
-export const isCase = (r: RecordEntry): boolean => !!r.internal;
+export const isCase = (r: RecordEntry): boolean => r.slug !== undefined;
 
-// Per-kind tallies, recomputed at build (never hardcoded). ALL = total length,
-// CASES = entries with a case page.
+// Per-kind tallies, recomputed at build (never hardcoded).
 export const getRecordCounts = (): Record<FilterId, number> => {
   const counts = { ALL: RECORD.length } as Record<FilterId, number>;
   for (const f of FILTERS) {
@@ -699,10 +652,9 @@ export const getRecordCounts = (): Record<FilterId, number> => {
   return counts;
 };
 
-// Within a year, order entries: experience → each project immediately followed
-// by its hackathon win → any standalone hackathons → research → community →
-// education → certs. A hackathon is paired to its project by matching the project
-// title at the start of the hackathon's meta ("Flux · …", "DAOScape · …").
+// Within-year order: experience → project (+ its paired hackathon win) →
+// standalone hackathons → research → community → education → certs. A hackathon
+// pairs to its project when the project title prefixes the hackathon's meta.
 const KIND_RANK: Record<Kind, number> = {
   EXPERIENCE: 0,
   PROJECT: 1,
@@ -713,8 +665,7 @@ const KIND_RANK: Record<Kind, number> = {
   CERTIFICATION: 6,
 };
 
-// An entry's explicit `order` (if set) leads; otherwise fall back to kind rank,
-// offset so explicit keys always sort ahead of the default ordering.
+// Explicit `order` leads; else kind rank, offset so explicit keys sort first.
 const seqRank = (e: RecordEntry): number => e.order ?? 10 + KIND_RANK[e.kind];
 
 export const sequenceYear = (entries: RecordEntry[]): RecordEntry[] => {
@@ -744,7 +695,7 @@ export const sequenceYear = (entries: RecordEntry[]): RecordEntry[] => {
   return result;
 };
 
-// Deterministic short hash shown beside a confirmed year ("0x….").
+// Deterministic "0x…" hash shown beside a confirmed year.
 export const yearHash = (y: number): string => {
   let h = (y * 2654435761) >>> 0;
   let s = "";

@@ -1,9 +1,9 @@
-import { METRICS, type Metrics } from "@/content/metrics";
+import { METRICS } from "@/content/metrics";
+import type { Metrics } from "@/utils/types/metrics.types";
 
 const DAY = 86400;
 
-// All fetches opt into ISR (revalidate daily) and degrade silently to the
-// hardcoded fallback in METRICS. Call only from Server Components.
+// ISR (daily); degrades silently to the METRICS fallback. Server Components only.
 
 const fetchRepo = async (
   repo: string,

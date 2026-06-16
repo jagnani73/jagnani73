@@ -3,22 +3,18 @@
 import type { CSSProperties } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
-import { THEME_TOKENS } from "@/lib/theme-tokens";
+import { THEME_TOKENS } from "@/utils/constants/theme-tokens";
 import { FigCaption } from "./fig-caption";
-import { figPanel } from "./fig-style";
+import { figPanel, MONO as M } from "./fig-style";
 
-const M = "var(--font-mono)";
 const PTS = "8,46 22,20 34,52 48,18 60,50 74,22 86,48 92,30";
 const DASH = 260;
 
-// Viewfinder L-corners — offsets from the panel's top / bottom edges. Sat a touch
-// low so the frame clears the label and centres on the drawing.
+// Viewfinder L-corner offsets, sat low so the frame clears the label and centres on the drawing.
 const CORNER_TOP = 36;
 const CORNER_BOTTOM = 20;
 
-// fig.1 contrasts the two ends: the camera sees a real blackboard — a dark board
-// with chalk — which the student canvas re-renders as black ink on white paper.
-// Both surfaces are fixed across light/dark themes.
+// Camera (dark board + chalk) vs student canvas (ink on paper); both surfaces fixed across themes.
 const BOARD_BG = THEME_TOKENS.dark.bg;
 const BOARD_EDGE = THEME_TOKENS.dark.ruleStrong;
 const BOARD_LABEL = THEME_TOKENS.dark.tx2;
@@ -30,7 +26,7 @@ const PAPER_EDGE = THEME_TOKENS.light.rule;
 const PAPER_LABEL = THEME_TOKENS.light.sig;
 const INK = THEME_TOKENS.light.tx;
 
-// Shikshak — a blackboard captured as a pixel stream, ~85% less data than video.
+// Shikshak — blackboard captured as a pixel stream.
 export const FigBoard = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
   const t = useThemeTokens();
   const n = useTick(110, 130, active, 100);

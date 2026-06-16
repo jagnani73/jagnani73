@@ -2,15 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import {
-  RECORD,
-  FILTERS,
-  kindColor,
-  isCase,
-  sequenceYear,
-  type FilterId,
-  type RecordEntry,
-} from "@/content/record";
+import { RECORD, FILTERS, kindColor, isCase, sequenceYear } from "@/content/record";
+import type { FilterId, RecordEntry } from "@/utils/types/record.types";
 import { TimeConstellation } from "@/components/canvas/time-constellation";
 import { YearMark } from "./year-mark";
 import { BackToTop } from "@/components/shared/back-to-top";
@@ -31,6 +24,8 @@ const RecordRow = ({
   onHover: (key: string) => void;
 }) => {
   const key = r.year + r.title;
+  // `slug` → internal /record/[slug]; else an optional external `url`.
+  const href = r.slug ? `/record/${r.slug}` : r.url;
   const kind = (
     <span
       className={`font-mono tracking-widest ${kindColor(r)} ${
@@ -53,9 +48,9 @@ const RecordRow = ({
   const arrow = (
     <span
       className="font-mono text-[12.5px]"
-      style={{ color: r.url ? "var(--pri)" : "var(--rule)" }}
+      style={{ color: href ? "var(--pri)" : "var(--rule)" }}
     >
-      {r.url ? "↗" : ""}
+      {href ? "↗" : ""}
     </span>
   );
 
@@ -90,7 +85,7 @@ const RecordRow = ({
     hovered ? "bg-pri-a08" : ""
   }`;
 
-  if (!r.url) {
+  if (!href) {
     return (
       <div className={cls} style={style}>
         {content}
@@ -101,13 +96,13 @@ const RecordRow = ({
     onMouseEnter: () => onHover(key),
     onMouseLeave: () => onHover(""),
   };
-  return r.internal ? (
-    <Link href={r.url} className={cls} style={style} {...handlers}>
+  return r.slug ? (
+    <Link href={href} className={cls} style={style} {...handlers}>
       {content}
     </Link>
   ) : (
     <a
-      href={r.url}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className={cls}
@@ -133,10 +128,9 @@ export const RecordClient = ({
   const reduced = useReducedMotion();
   const gut = mob ? 96 : GUTTER;
 
-  // scroll velocity → constellation drift. The decay rAF only spins while there's
-  // velocity left to bleed off (and never under reduced motion / a hidden tab), so
-  // an idle Record page doesn't hold a perpetual frame loop. The constellation
-  // runs its own loop and only reads this value.
+  // scroll velocity → constellation drift. The decay rAF runs only while there's
+  // velocity to bleed off (never under reduced motion / hidden tab), so an idle
+  // page holds no frame loop. The constellation reads this value from its own loop.
   useEffect(() => {
     if (reduced) return;
     let lastY = window.scrollY;
@@ -194,7 +188,7 @@ export const RecordClient = ({
         gut={gut}
       />
 
-      {/* header — opaque so it sits over the fixed constellation */}
+      {/* opaque so it sits over the fixed constellation */}
       <div className="relative z-[1] bg-bg">
         <div className="flex flex-wrap items-baseline justify-between gap-2 px-4 py-3 font-mono text-[13.5px] text-tx3 rail:grid rail:grid-cols-[1fr_auto_1fr] rail:px-11 rail:pb-4 rail:pt-6">
           <Link
@@ -248,7 +242,6 @@ export const RecordClient = ({
         <div className="h-px bg-rule" />
       </div>
 
-      {/* the timeline */}
       <div>
         {years.map((y) => (
           <div
@@ -277,7 +270,6 @@ export const RecordClient = ({
         ))}
       </div>
 
-      {/* footer */}
       <div className="relative z-1 bg-bg">
         <div className="h-px bg-rule-strong" />
         <div className="flex flex-wrap justify-between gap-1.5 px-4 pb-[18px] pt-3 font-mono text-[12px] text-tx3 rail:px-11 rail:pb-6 rail:pt-4">

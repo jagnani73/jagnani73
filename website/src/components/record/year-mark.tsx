@@ -3,17 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { ConsensusBlock } from "./consensus-block";
 import { yearHash } from "@/content/record";
+import type { YearMarkProps } from "@/utils/types/component.types";
 
-interface YearMarkProps {
-  year: number;
-  atEnd: boolean;
-  mob: boolean;
-  onConfirm: (top: number) => void;
-}
-
-// Sticky year numeral + consensus glyph. Confirms after the mark has held in the
-// reading band (~900ms), reverts to orbiting when it leaves; atEnd covers the
-// final years at page bottom.
+// Sticky year + consensus glyph. Confirms after holding ~900ms in the reading
+// band, reverts on leave; atEnd covers the final years at page bottom.
 export const YearMark = ({ year, atEnd, mob, onConfirm }: YearMarkProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [held, setHeld] = useState(false);

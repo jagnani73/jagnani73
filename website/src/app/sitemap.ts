@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { getAllCaseSlugs } from "@/content/cases";
-import { SITE_URL } from "@/lib/seo";
+import { SITE_URL } from "@/utils/functions/seo";
 
 const sitemap = (): MetadataRoute.Sitemap => {
   const cases: MetadataRoute.Sitemap = getAllCaseSlugs().map((slug) => ({

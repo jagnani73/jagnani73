@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, useState, type RefObject } from "react";
 
-// Observes an element and reports whether it is on-screen. Canvas islands use it
-// to pause their animation loop when scrolled out of view.
+// Reports whether an element is on-screen, so canvas islands can pause offscreen.
 export const useInView = <T extends Element>(
   options?: IntersectionObserverInit,
 ): [RefObject<T | null>, boolean] => {

@@ -1,21 +1,4 @@
-import { coverLetter } from "@/utils/constants/data";
-import { NextResponse } from "next/server";
+import { COVER_LETTER } from "@/utils/constants/site";
+import { redirectRoute } from "@/utils/functions/redirect-route";
 
-export const GET = async () => {
-  try {
-    if (!coverLetter) {
-      return NextResponse.json(
-        { error: "Cover letter not found" },
-        { status: 404 }
-      );
-    }
-
-    return NextResponse.redirect(coverLetter);
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
-  }
-};
+export const GET = redirectRoute(COVER_LETTER, "Cover letter not found");

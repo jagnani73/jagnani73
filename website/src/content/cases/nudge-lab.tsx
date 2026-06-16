@@ -1,4 +1,4 @@
-import type { CaseData } from "@/content/case-types";
+import type { CaseData } from "@/utils/types/case.types";
 
 export const nudgeLabCase: CaseData = {
   slug: "nudge-lab",

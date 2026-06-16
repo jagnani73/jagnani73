@@ -3,11 +3,9 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel } from "./fig-style";
+import { figPanel, MONO as M } from "./fig-style";
+import type { JournalColor as C } from "@/utils/types/fig.types";
 
-const M = "var(--font-mono)";
-
-type C = "flag" | "tx2" | "acc" | "ok";
 const FREN_KEYS: [string, C][] = [
   ["anxious", "flag"],
   ["work", "tx2"],
@@ -15,7 +13,7 @@ const FREN_KEYS: [string, C][] = [
   ["hopeful", "ok"],
 ];
 
-// Fren — the therapist sees the analysis, never the raw entry.
+// Fren — therapist sees the analysis, never the raw entry.
 export const FigJournal = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
   const t = useThemeTokens();
   const n = useTick(560, 11, active, 8);

@@ -1,5 +1,5 @@
-// Route-config fields (runtime/alt/size/contentType) must be declared directly —
-// Next can't statically analyze them as re-exports. Only the renderer is reused.
+// Route-config fields must be declared directly — Next can't analyze re-exports.
+// Only the renderer is reused.
 export { default } from "./opengraph-image";
 
 export const runtime = "nodejs";

@@ -1,6 +1,12 @@
-import type { CaseData } from "@/content/case-types";
+import {
+  EMAIL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  TWITTER_URL,
+} from "@/utils/constants/site";
+import type { CaseData } from "@/utils/types/case.types";
 
-// Canonical site identity — the single source of truth for metadata + JSON-LD.
+// Single source of truth for site identity (metadata + JSON-LD).
 export const SITE_URL = "https://jagnani73.com";
 export const SITE_NAME = "Yashvardhan Jagnani";
 export const SITE_DESCRIPTION =
@@ -9,8 +15,8 @@ export const SITE_DESCRIPTION =
 const PERSON_ID = `${SITE_URL}/#person`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 
-// The entity the whole site is about. Emitted once on the home page; everything
-// else references it by @id so search engines fold it into one node.
+// Emitted once on home; everything else refs it by @id so engines fold it into
+// one node.
 export const personLd = () => ({
   "@context": "https://schema.org",
   "@type": "Person",
@@ -20,7 +26,7 @@ export const personLd = () => ({
   image: `${SITE_URL}/site/android-chrome-512x512.png`,
   jobTitle: "Software Engineer",
   description: SITE_DESCRIPTION,
-  email: "yashjagnani73@gmail.com",
+  email: EMAIL,
   worksFor: { "@type": "Organization", name: "Infinia Technologies" },
   alumniOf: [
     {
@@ -44,11 +50,7 @@ export const personLd = () => ({
     "Solana",
     "Zero-Knowledge Proofs",
   ],
-  sameAs: [
-    "https://github.com/jagnani73",
-    "https://www.linkedin.com/in/yashvardhan-jagnani/",
-    "https://twitter.com/jagnani73",
-  ],
+  sameAs: [GITHUB_URL, LINKEDIN_URL, TWITTER_URL],
 });
 
 export const websiteLd = () => ({
@@ -62,7 +64,6 @@ export const websiteLd = () => ({
   publisher: { "@id": PERSON_ID },
 });
 
-// One case study → a CreativeWork authored by the Person.
 export const caseLd = (c: CaseData, slug: string, description: string) => ({
   "@context": "https://schema.org",
   "@type": "CreativeWork",
@@ -79,7 +80,7 @@ export const caseLd = (c: CaseData, slug: string, description: string) => ({
 export const collectionPageLd = (
   name: string,
   description: string,
-  path: string,
+  path: string
 ) => ({
   "@context": "https://schema.org",
   "@type": "CollectionPage",

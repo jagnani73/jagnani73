@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 import Link from "next/link";
 
-// Route-segment error boundary. Renders inside the root layout, so the rail,
-// theme tokens, and fonts are all present — it can lean on the editorial styles.
+// Route-segment error boundary: renders inside the root layout, so rail, tokens
+// and fonts are present — it can lean on the editorial styles.
 const Error = ({
   error,
   reset,

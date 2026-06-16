@@ -1,7 +1,9 @@
 import type { CSSProperties } from "react";
-import type { ThemeTokens } from "@/lib/theme-tokens";
+import type { ThemeTokens } from "@/utils/types/theme.types";
 
-// Shared "card" surface used across the case figs: hairline rule + panel fill.
+export const MONO = "var(--font-mono)";
+
+// Shared fig "card" surface: hairline rule + panel fill.
 export const figPanel = (t: ThemeTokens): CSSProperties => ({
   border: `1px solid ${t.rule}`,
   borderRadius: 6,

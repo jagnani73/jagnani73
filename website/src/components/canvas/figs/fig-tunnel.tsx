@@ -5,9 +5,7 @@ import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { FigCaption } from "./fig-caption";
 
-// Claude Controller — the phone drives the real Claude Code CLI on your laptop
-// over an encrypted Tailscale tunnel. A packet ping-pongs the tunnel (your tap
-// out, the CLI's output back) between the phone and the loopback relay + CLI.
+// Claude Controller — phone drives the laptop's Claude Code CLI over an encrypted Tailscale tunnel; a packet ping-pongs the link.
 const X1 = 28;
 const X2 = 66;
 
@@ -69,7 +67,6 @@ export const FigTunnel = ({
           <circle cx={`${dotX}%`} cy="50%" r={3} fill={t.sig} />
         </svg>
 
-        {/* phone */}
         <div
           className="absolute flex flex-col items-center rounded-md border font-mono"
           style={{
@@ -87,7 +84,6 @@ export const FigTunnel = ({
           <span style={{ fontSize: sub, color: t.tx3 }}>PWA</span>
         </div>
 
-        {/* laptop + relay */}
         <div
           className="absolute rounded-md border font-mono"
           style={{
@@ -120,7 +116,6 @@ export const FigTunnel = ({
           ))}
         </div>
 
-        {/* tunnel labels */}
         <span
           className="absolute font-mono"
           style={{

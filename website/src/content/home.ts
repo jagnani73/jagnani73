@@ -1,16 +1,12 @@
-// Home page content, ported from the design prototype (home.jsx). Baked final
-// state: accent = gold, deck = "agent speed", contours band, work tagline below·mono.
+import {
+  EMAIL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  TWITTER_URL,
+} from "@/utils/constants/site";
+import type { Chapter } from "@/utils/types/home.types";
 
 export const DECK_LINES = ["software,", "shipped at agent speed"] as const;
-
-export interface Chapter {
-  n: string;
-  org: string;
-  role: string;
-  url: string;
-  deck: string;
-  stats: [value: string, label: string][];
-}
 
 export const CHAPTERS: Chapter[] = [
   {
@@ -68,30 +64,23 @@ export const PERSON = {
     pre: "The tools change; the goal stays the same — ",
     emphasis: "build things that solve real problems.",
   },
-  education: "B.TECH COMPUTER SCIENCE AND ENGINEERING — CYBERSECURITY · SRMIST, CHENNAI · 2023",
+  education:
+    "B.TECH COMPUTER SCIENCE AND ENGINEERING — CYBERSECURITY · SRMIST, CHENNAI · 2023",
   cgpa: "9.26 / 10.00 CGPA",
   cgpaNote: " — FIRST CLASS WITH DISTINCTION",
   next: "MSC BLOCKCHAIN · NTU SINGAPORE · AUGUST 2026",
   beyond: "BEYOND CODE — music · astronomy · shows that make me think",
   links: [
-    {
-      label: "github / jagnani73 ↗",
-      href: "https://github.com/jagnani73/",
-      external: true,
-    },
+    { label: "github / jagnani73 ↗", href: GITHUB_URL, external: true },
     {
       label: "linkedin / yashvardhan-jagnani ↗",
-      href: "https://www.linkedin.com/in/yashvardhan-jagnani/",
+      href: LINKEDIN_URL,
       external: true,
     },
-    {
-      label: "twitter / jagnani73 ↗",
-      href: "https://twitter.com/jagnani73",
-      external: true,
-    },
+    { label: "twitter / jagnani73 ↗", href: TWITTER_URL, external: true },
     {
       label: "yashjagnani73@gmail.com ↗",
-      href: "mailto:yashjagnani73@gmail.com",
+      href: `mailto:${EMAIL}`,
       external: false,
     },
   ],

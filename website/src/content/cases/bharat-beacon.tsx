@@ -1,7 +1,6 @@
-import type { CaseData } from "@/content/case-types";
+import type { CaseData } from "@/utils/types/case.types";
 
-// NOTE: both "IN THE WILD" plates were pending drop-slots (no screenshots yet),
-// so that section is omitted until images are supplied.
+// "IN THE WILD" section omitted until screenshots are supplied.
 export const bharatBeaconCase: CaseData = {
   slug: "bharat-beacon",
   title: "BHARAT BEACON",

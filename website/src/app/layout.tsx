@@ -5,7 +5,9 @@ import { ThemeProvider } from "@/components/shared/theme-provider";
 import { Splash } from "@/components/shared/splash";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/seo";
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/utils/functions/seo";
+import { THEME_VARS_CSS } from "@/utils/functions/theme-css";
+import { TWITTER_HANDLE } from "@/utils/constants/site";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -76,8 +78,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: metadataTitle,
     description: metadataDescription,
-    site: "@jagnani73",
-    creator: "@jagnani73",
+    site: TWITTER_HANDLE,
+    creator: TWITTER_HANDLE,
   },
   icons: {
     icon: [
@@ -109,6 +111,8 @@ const RootLayout = ({
       className={`${anton.variable} ${instrumentSerif.variable} ${jetBrainsMono.variable} ${dmSans.variable}`}
     >
       <body>
+        {/* Palette vars — single source: utils/constants/theme-tokens.ts */}
+        <style>{THEME_VARS_CSS}</style>
         <ThemeProvider>
           <Splash />
           {children}

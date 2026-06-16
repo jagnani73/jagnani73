@@ -5,7 +5,7 @@ import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { FigCaption } from "./fig-caption";
 
-// InsidePoly — the 0–100 insider-likelihood meter, needle sweeping the tiers.
+// InsidePoly — 0–100 insider-likelihood meter.
 export const FigScore = ({
   mob,
   active = true,

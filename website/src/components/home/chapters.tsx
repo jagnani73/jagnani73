@@ -20,7 +20,6 @@ export const Chapters = () => (
     />
     {CHAPTERS.map((c, i) => (
       <div key={c.n}>
-        {/* mobile */}
         <div className="px-4 pb-[22px] pt-5 rail:hidden">
           <div className="flex items-center gap-5">
             <span className="shrink-0 font-display text-[30px] text-transparent [-webkit-text-stroke:1px_var(--rule-strong)]">
@@ -52,7 +51,6 @@ export const Chapters = () => (
           </div>
         </div>
 
-        {/* desktop */}
         <div className="hidden items-center gap-x-7 px-11 py-[30px] rail:grid rail:grid-cols-[160px_320px_1fr_290px]">
           <span className="text-center font-display text-[46px] text-transparent [-webkit-text-stroke:1px_var(--rule-strong)]">
             {c.n}

@@ -3,9 +3,8 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel } from "./fig-style";
+import { figPanel, MONO as M } from "./fig-style";
 
-const M = "var(--font-mono)";
 const S = "var(--font-sans)";
 
 const STORY_TAGS = ["burnout", "anxiety", "loneliness", "family"];
@@ -15,7 +14,7 @@ const STORY_MSGS: { who: "seeker" | "supporter"; txt: string; ok: boolean }[] = 
   { who: "supporter", txt: "████████████", ok: false },
 ];
 
-// Stories — peers matched on shared tags; every message passes a toxicity gate.
+// Stories — peers matched on shared tags, messages gated for toxicity.
 export const FigMatch = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
   const t = useThemeTokens();
   const n = useTick(900, STORY_MSGS.length + 5, active, STORY_MSGS.length + 4);

@@ -3,7 +3,7 @@
 import type { ComponentType } from "react";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useInView } from "@/hooks/use-in-view";
-import type { FigKind } from "@/content/case-types";
+import type { FigKind } from "@/utils/types/case.types";
 import { FigScore } from "@/components/canvas/figs/fig-score";
 import { FigAgentGraph } from "@/components/canvas/figs/fig-agent-graph";
 import { FigWager } from "@/components/canvas/figs/fig-wager";
@@ -46,8 +46,7 @@ const FIGS: Record<FigKind, ComponentType<{ mob: boolean; active?: boolean }>> =
   marquee: FigMarquee,
 };
 
-// Screen-reader descriptions for each fig.1 — the animated visuals are otherwise
-// opaque to assistive tech. Mirrors each fig's visible caption.
+// Screen-reader descriptions — the animated figs are opaque to assistive tech.
 const FIG_LABELS: Record<FigKind, string> = {
   score: "Figure 1 — the 0–100 insider-likelihood scale, scoring live",
   agents:

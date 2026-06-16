@@ -11,8 +11,7 @@ export const CaseFooter = ({
   <>
     <div className="h-px bg-rule-strong" />
     <div className="flex flex-col gap-3 px-4 pb-[22px] pt-4 font-mono text-[12px] text-tx3 rail:flex-row rail:items-center rail:justify-between rail:gap-1.5 rail:px-11 rail:pb-6">
-      {/* back-to-record + next-case share one row on mobile; on desktop the
-          wrapper dissolves (display:contents) into the 3-way justify-between row */}
+      {/* desktop: wrapper dissolves (display:contents) into the 3-way row */}
       <div className="flex items-center justify-between gap-4 rail:contents">
         <Link
           href="/record"
@@ -29,7 +28,6 @@ export const CaseFooter = ({
             <span className="rail:hidden">NEXT —</span>
             <span className="hidden rail:inline">NEXT CASE —</span>
           </span>
-          {/* truncates if the case name is unusually long, so the row never wraps */}
           <span className="min-w-0 truncate">{nextTitle}</span>
           <span className="shrink-0">→</span>
         </Link>

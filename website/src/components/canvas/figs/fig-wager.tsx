@@ -27,8 +27,7 @@ const DW_PHASES: [string, string][] = [
   ["ATTEST", "Proof-of-Victory · Sign Protocol"],
 ];
 
-// Dewls — one wager, settled: stake → play → settle → attest, a self-playing
-// Connect-4 ending in a signed Proof-of-Victory.
+// Dewls — a self-playing Connect-4 wager: stake → play → settle → attest.
 export const FigWager = ({
   mob,
   active = true,

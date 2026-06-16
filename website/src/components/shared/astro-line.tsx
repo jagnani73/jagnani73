@@ -1,12 +1,11 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { ASTRO_FACTS } from "@/content/astro-facts";
+import { ASTRO_FACTS } from "@/utils/constants/site";
 
-// Picked once per client page load (module eval), so it's stable across renders.
-// The server renders index 0 (deterministic SSR); after hydration it swaps to
-// this random pick. A hard reload re-evaluates the module → a fresh fact.
-// Renders bare text so it inherits the surrounding type (e.g. the footer mono).
+// Picked once per page load, stable across renders. Server renders index 0
+// (deterministic SSR); after hydration it swaps to this random pick. Bare text,
+// so it inherits the surrounding type.
 const clientIndex =
   typeof window === "undefined"
     ? 0

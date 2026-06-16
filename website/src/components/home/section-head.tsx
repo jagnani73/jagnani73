@@ -1,14 +1,6 @@
 import { Rule } from "./rule";
+import type { SectionHeadProps } from "@/utils/types/component.types";
 
-interface SectionHeadProps {
-  /** Outlined leading numeral, e.g. "01". */
-  n: string;
-  title: string;
-  note?: React.ReactNode;
-  id?: string;
-}
-
-// "01 THE CHAPTERS" — Anton title with an outlined leading numeral and a mono note.
 export const SectionHead = ({ n, title, note, id }: SectionHeadProps) => (
   <div id={id} className="scroll-mt-16">
     <Rule strong />

@@ -1,27 +1,7 @@
-// Single source of truth for canvas/JS color access (replaces the prototype's
-// window.PAGE_THEME global). The UI reads CSS custom properties from globals.css;
-// canvas islands read these typed objects via the useThemeTokens() hook.
+// Single source of truth for the whole palette: canvas/OG read these tokens, and
+// theme-css.ts generates the globals.css custom properties from them.
 
-export type ThemeName = "dark" | "light";
-
-export interface ThemeTokens {
-  bg: string;
-  bgRGB: string;
-  fluidBg: string;
-  panel: string;
-  rule: string;
-  ruleStrong: string;
-  tx: string;
-  tx2: string;
-  tx3: string;
-  pri: string;
-  sig: string;
-  acc: string;
-  flag: string;
-  ok: string;
-  priRGB: string;
-  sigRGB: string;
-}
+import type { ThemeName, ThemeTokens } from "@/utils/types/theme.types";
 
 export const THEME_TOKENS: Record<ThemeName, ThemeTokens> = {
   dark: {

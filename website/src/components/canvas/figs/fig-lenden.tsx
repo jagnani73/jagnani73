@@ -3,11 +3,10 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel } from "./fig-style";
+import { figPanel, MONO as M } from "./fig-style";
 
-const M = "var(--font-mono)";
 
-// LenDen — collateral locked on one chain, a loan released on another.
+// LenDen — collateral locked on one chain, loan released on another.
 export const FigLenden = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
   const t = useThemeTokens();
   const n = useTick(470, 16, active, 9);

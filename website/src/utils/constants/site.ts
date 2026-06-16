@@ -1,6 +1,20 @@
-// Short astronomy facts for the masthead "anton line" — kept brief (≤ ~24 chars)
-// so the desktop one-line lockup holds and multi-word ones wrap cleanly on
-// mobile. Add freely; the slot picks one at random per page load. (No Uranus.)
+// ── Contact ──────────────────────────────────────────────────────────────────
+export const EMAIL = "yashjagnani73@gmail.com";
+export const TWITTER_HANDLE = "@jagnani73";
+
+/** Profile links — single source for the person section + JSON-LD `sameAs`. */
+export const GITHUB_URL = "https://github.com/jagnani73";
+export const LINKEDIN_URL = "https://www.linkedin.com/in/yashvardhan-jagnani/";
+export const TWITTER_URL = "https://twitter.com/jagnani73";
+
+// ── Documents — redirect targets for /api/resume and /api/cover-letter ────────
+export const RESUME =
+  "https://drive.google.com/file/d/1onbdfPCgcTndFta_NYXg5yq3pW95FaMj/view?usp=drive_link";
+export const COVER_LETTER =
+  "https://drive.google.com/file/d/1Feh-3W3H5yAkAAZYEgDth-TAJXoqGfqs/view?usp=drive_link";
+
+// ── Masthead "anton line" ─────────────────────────────────────────────────────
+// Astronomy facts kept ≤ ~24 chars so the desktop one-line lockup holds.
 export const ASTRO_FACTS = [
   "SATURN COULD FLOAT",
   "VENUS SPINS BACKWARD",

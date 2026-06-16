@@ -4,19 +4,7 @@ import { useEffect, useState } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { FigCaption } from "./fig-caption";
-
-type NodeKind = "io" | "agent" | "tool";
-interface AgNode {
-  /** desktop x% (long labels need wider gaps) */
-  x: number;
-  /** mobile x% — chain evenly spaced (16% apart) and inset so small boxes
-   *  don't clip the panel edges on a narrow container */
-  mx: number;
-  y: number;
-  label: string;
-  short: string;
-  kind: NodeKind;
-}
+import type { AgNode } from "@/utils/types/fig.types";
 
 const AG_NODES: Record<string, AgNode> = {
   input: { x: 6, mx: 8, y: 50, label: "goal in", short: "goal", kind: "io" },
@@ -41,7 +29,7 @@ const AG_EDGES: [string, string][] = [
 ];
 const AG_SEQ = ["input", "planner", "router", "t1", "router", "t2", "router", "t3", "endgame", "output"];
 
-// AI Agent SDK — zee.run(): planner → router → task agents → endgame → answer.
+// AI Agent SDK — zee.run() trace: planner → router → task agents → endgame.
 export const FigAgentGraph = ({
   mob,
   active = true,

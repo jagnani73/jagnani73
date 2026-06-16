@@ -1,4 +1,4 @@
-import type { CaseData } from "@/content/case-types";
+import type { CaseData } from "@/utils/types/case.types";
 
 const SHOTS = "https://res.cloudinary.com/jagnani73/image/upload";
 

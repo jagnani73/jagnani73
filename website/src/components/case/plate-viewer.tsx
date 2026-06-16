@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import type { Plate, PlateImg } from "@/content/case-types";
+import type { Plate, PlateImg } from "@/utils/types/case.types";
 
 export const PlateViewer = ({
   plates,
@@ -32,7 +32,7 @@ export const PlateViewer = ({
     dialogRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeBig();
-      // No interactive children — keep focus on the dialog while it's open.
+      // No interactive children — trap focus on the dialog.
       if (e.key === "Tab") e.preventDefault();
     };
     window.addEventListener("keydown", onKey);
@@ -44,7 +44,6 @@ export const PlateViewer = ({
 
   return (
     <div className="grid items-stretch gap-3.5 px-4 pb-5 pt-4 rail:gap-6 rail:px-11 rail:pb-6 rail:pt-5 rail:[grid-template-columns:minmax(0,640px)_1fr]">
-      {/* plate display */}
       <div className="relative aspect-video overflow-hidden rounded-md border border-rule bg-panel">
         {plates.map((pl, j) => {
           const vis = i === j;
@@ -96,7 +95,6 @@ export const PlateViewer = ({
         })}
       </div>
 
-      {/* tab list + cta */}
       <div className="flex min-w-0 flex-col">
         {plates.map((pl, j) => (
           <button
@@ -123,7 +121,6 @@ export const PlateViewer = ({
         ) : null}
       </div>
 
-      {/* lightbox */}
       {bigPlate ? (
         <div
           ref={dialogRef}

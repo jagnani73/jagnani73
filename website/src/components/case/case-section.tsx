@@ -1,7 +1,6 @@
-import type { CaseSection as CaseSectionType } from "@/content/case-types";
+import type { CaseSection as CaseSectionType } from "@/utils/types/case.types";
 import { CaseSectionHead } from "./case-section-head";
 import { PlateViewer } from "./plate-viewer";
-import { CaseProse } from "./case-prose";
 
 export const CaseSection = ({ section: s }: { section: CaseSectionType }) => {
   if (s.type === "split") {
@@ -121,23 +120,6 @@ export const CaseSection = ({ section: s }: { section: CaseSectionType }) => {
     );
   }
 
-  if (s.type === "prose") {
-    return (
-      <section>
-        <CaseSectionHead n={s.n} title={s.title} note={s.note} />
-        <div className="px-4 pb-7 pt-5 rail:px-11 rail:pb-8 rail:pt-7">
-          <CaseProse markdown={s.markdown} />
-          {s.stack ? (
-            <p className="mt-2 font-mono text-[13px] leading-[1.9] text-tx2">
-              <span className="text-tx3">STACK —</span> {s.stack}
-            </p>
-          ) : null}
-        </div>
-      </section>
-    );
-  }
-
-  // plates
   return (
     <section>
       <CaseSectionHead n={s.n} title={s.title} note={s.note} />

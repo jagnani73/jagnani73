@@ -3,10 +3,9 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import { MONO as M } from "./fig-style";
+import type { FigAccent as C } from "@/utils/types/fig.types";
 
-const M = "var(--font-mono)";
-
-type C = "sig" | "acc" | "ok";
 const LEDGER_ENTRIES: { act: string; who: string; note: string; c: C }[] = [
   { act: "created", who: "0xA1…", note: "Dinner · ₹2,400 · split 3 ways", c: "sig" },
   { act: "edited", who: "0xB2…", note: "amount → ₹2,700", c: "acc" },
@@ -14,7 +13,7 @@ const LEDGER_ENTRIES: { act: string; who: string; note: string; c: C }[] = [
   { act: "settled", who: "0xA1…", note: "paid ₹900 share", c: "ok" },
 ];
 
-// Contracts — every edit appended to an immutable, on-chain audit log.
+// Contracts — every edit appended to an immutable on-chain log.
 export const FigLedger = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
   const t = useThemeTokens();
   const n = useTick(820, LEDGER_ENTRIES.length + 4, active, LEDGER_ENTRIES.length + 3);

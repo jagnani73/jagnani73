@@ -1,19 +1,11 @@
 "use client";
 
-import { useEffect, useRef, type RefObject } from "react";
+import { useEffect, useRef } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import type { TimeConstellationProps } from "@/utils/types/component.types";
 
-interface TimeConstellationProps {
-  scrollVel: RefObject<number>;
-  bursts: RefObject<number[]>;
-  mob: boolean;
-  gut: number;
-}
-
-// fig. 2 — a slow drifting node-mesh behind the year gutter. Nodes wander, link
-// within range, drift with scroll velocity, and ripple when a year confirms.
-// Ported from work.jsx, reading theme colors from tokens instead of window.PAGE_THEME.
+// fig. 2 — drifting node-mesh behind the year gutter; nodes link within range and ripple when a year confirms.
 export const TimeConstellation = ({
   scrollVel,
   bursts,
@@ -57,7 +49,7 @@ export const TimeConstellation = ({
     const ro = new ResizeObserver(resize);
     ro.observe(el);
 
-    // Deterministic LCG so the mesh looks identical each load.
+    // Deterministic LCG so the mesh is identical each load.
     let s = 59;
     const rr = () => {
       s = (s * 16807 + 17) % 2147483647;
@@ -78,7 +70,7 @@ export const TimeConstellation = ({
       last = nowAbs;
       const now = nowAbs;
 
-      // scrollVel is decayed by the owner (RecordClient); here we only read it.
+      // scrollVel is decayed by the owner (RecordClient); read-only here.
       const sv = animate ? scrollVel.current * 0.00002 : 0;
       while (bursts.current.length) {
         ripples.push({

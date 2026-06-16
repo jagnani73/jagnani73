@@ -2,19 +2,14 @@
 
 import { useTheme } from "next-themes";
 import { useSyncExternalStore } from "react";
-import { THEME_TOKENS, type ThemeTokens } from "@/lib/theme-tokens";
+import { THEME_TOKENS } from "@/utils/constants/theme-tokens";
+import type { ThemeTokens } from "@/utils/types/theme.types";
 
 const noop = () => () => {};
 
-// Returns the active theme's token object for canvas/JS color access.
-//
-// next-themes resolves the stored theme synchronously on the client, so reading
-// `resolvedTheme` during hydration would render the user's theme while the server
-// rendered the default — a mismatch for figs that inline these values as styles.
-// We therefore report dark on the server AND the first hydration render (via the
-// useSyncExternalStore server snapshot), then switch to the resolved theme once
-// mounted. Canvas islands draw in effects (post-mount) so they pick up the right
-// theme immediately; SVG/HTML figs briefly show the default before resolving.
+// Active theme's tokens for canvas/JS color access. Reports dark on the server
+// and the first hydration render (via the useSyncExternalStore snapshot), then
+// the resolved theme once mounted — so inlined fig styles don't hydration-mismatch.
 export const useThemeTokens = (): ThemeTokens => {
   const { resolvedTheme } = useTheme();
   const mounted = useSyncExternalStore(

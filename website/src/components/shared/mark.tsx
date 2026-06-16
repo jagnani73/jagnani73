@@ -1,20 +1,8 @@
-// The "YJ" mark — single inline SVG, theme-coloured via the --logo-ink token
-// (gold on dark, ink on paper). Geometry is the current logo (logo.svg), grouped
-// into the four pieces the splash assembles: two halves, each a chevron + a bar.
-// `animate` plays the CSS assembly choreography (see globals.css → "Animated mark");
-// without it the same paths render as the static, assembled mark.
+// The "YJ" mark — inline SVG, theme-coloured via --logo-ink. Grouped into the
+// four pieces the splash assembles (two halves, each a chevron + bar). `animate`
+// plays the CSS choreography (globals.css → "Animated mark"); else it's static.
 
-type MarkMode = "splash" | "loop" | "hover";
-
-interface MarkProps {
-  size?: number;
-  /** Play the assembly animation. Otherwise render the static assembled mark. */
-  animate?: boolean;
-  /** splash = assemble once + hold · loop = assemble↔disassemble · hover = one round-trip. */
-  mode?: MarkMode;
-  className?: string;
-  label?: string;
-}
+import type { MarkProps } from "@/utils/types/component.types";
 
 export const Mark = ({
   size = 120,
@@ -39,7 +27,7 @@ export const Mark = ({
       .filter(Boolean)
       .join(" ")}
   >
-    {/* Left half — opens the sequence (bar rises + blinks, chevron swings in) */}
+    {/* Left half — opens the sequence */}
     <g className="mark-half-b">
       <g className="mark-chev-b">
         <path d="M536.538 323.411L491.979 278.429C489.621 276.049 485.78 276.031 483.4 278.389L300.188 459.882C297.808 462.24 297.789 466.081 300.147 468.461L344.707 513.442C347.065 515.823 350.906 515.841 353.286 513.483L536.498 331.989C538.878 329.632 538.896 325.791 536.538 323.411Z" />
@@ -51,7 +39,7 @@ export const Mark = ({
       />
     </g>
 
-    {/* Right half — fades + slides in, then its bar rises and chevron drops */}
+    {/* Right half — fades + slides in after */}
     <g className="mark-half-a">
       <path
         className="mark-bar-a"

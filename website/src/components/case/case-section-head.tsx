@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 
-// Case-study section header — Anton title with an outlined leading numeral.
 export const CaseSectionHead = ({
   n,
   title,

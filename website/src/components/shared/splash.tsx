@@ -3,18 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import { Mark } from "./mark";
 
-const ASSEMBLE_MS = 2700; // assemble (~2.5s) + a short hold on the finished YJ
+const ASSEMBLE_MS = 2700; // assemble (~2.5s) + a short hold
 const COLLAPSE_MS = 650; // YJ flies into the rail logo
 
-// Module-scoped, NOT persisted: the splash plays once per full page load and
-// survives client-side route changes (the layout keeps <Splash/> mounted), but
-// a hard reload resets this module, so every reload replays the splash.
+// Module-scoped, not persisted: plays once per page load, survives client-side
+// route changes (layout keeps <Splash/> mounted); a hard reload replays it.
 let played = false;
 
-// First-land splash. Rendered on the server too (so it's on screen from the
-// first paint — no flash of the page underneath), assembles the YJ once, then
-// collapses onto the live rail logo via a measured FLIP and hands off.
-// Skipped (quick fade) under reduced motion.
+// First-land splash. SSR-rendered (on screen from first paint, no flash of the
+// page under it), assembles the YJ once, then collapses onto the live rail logo
+// via a measured FLIP. Quick fade under reduced motion.
 export const Splash = () => {
   const [done, setDone] = useState(played);
   const overlayRef = useRef<HTMLDivElement>(null);

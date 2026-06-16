@@ -3,9 +3,8 @@
 import { useEffect } from "react";
 import "./globals.css";
 
-// Last-resort boundary: catches errors thrown in the root layout itself, so it
-// fully *replaces* the layout (own <html>/<body>, no rail or next/font vars).
-// Kept self-contained with inline styles + theme tokens from globals.css.
+// Last-resort boundary: replaces the root layout (own <html>/<body>, no rail or
+// next/font vars), so it's self-contained — inline styles + globals.css tokens.
 const GlobalError = ({
   error,
   reset,

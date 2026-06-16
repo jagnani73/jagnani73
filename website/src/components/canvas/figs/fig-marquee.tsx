@@ -5,11 +5,8 @@ import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { FigCaption } from "./fig-caption";
 
-// Vendored verbatim from react-easy-marquee v1.2.4 (src/index.tsx +
-// src/animation.tsx) so fig.1 renders the real package rendering itself. One
-// faithful tweak: the `animation` shorthand is expanded to longhand (identical
-// behavior) to avoid React's shorthand/longhand warning on the pauseOnHover
-// re-render, and the id comes from useId() instead of a module counter.
+// Vendored verbatim from react-easy-marquee v1.2.4. Two tweaks: `animation` shorthand
+// expanded to longhand (avoids React's shorthand/longhand warning on pauseOnHover re-render); id from useId().
 interface MarqueeProps {
   axis?: "X" | "Y";
   reverse?: boolean;
@@ -100,7 +97,6 @@ const Marquee = ({
   );
 };
 
-// react-easy-marquee — the package, rendering itself.
 const ROW_A: [string, string][] = [
   ["zero dependencies", "sig"],
   ["CSS keyframes — no JS timers", "tx"],
@@ -174,7 +170,7 @@ export const FigMarquee = ({
   } as const;
   const h = mob ? 46 : 52;
 
-  // Static, motion-free fallback (reduced motion, or paused while offscreen).
+  // Static fallback: reduced motion or paused offscreen.
   if (reduced || !active) {
     return (
       <div>

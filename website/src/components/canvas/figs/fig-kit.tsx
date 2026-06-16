@@ -3,15 +3,13 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel } from "./fig-style";
+import { figPanel, MONO as M } from "./fig-style";
+import type { FigAccent } from "@/utils/types/fig.types";
 
-const M = "var(--font-mono)";
-
-type RowColor = "sig" | "acc" | "ok";
 const KIT_SETS: {
   type: string;
   json: string[];
-  rows: { s: string; n: string; v: string; c: RowColor }[];
+  rows: { s: string; n: string; v: string; c: FigAccent }[];
 }[] = [
   {
     type: "TokenBalances",
@@ -42,7 +40,7 @@ const KIT_SETS: {
   },
 ];
 
-// GoldRush Kit — a raw API response resolving into a rendered component.
+// GoldRush Kit — raw API response → rendered component.
 export const FigKit = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
   const t = useThemeTokens();
   const PER = 7;

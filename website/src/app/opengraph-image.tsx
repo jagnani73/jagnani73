@@ -2,6 +2,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
+import { THEME_TOKENS } from "@/utils/constants/theme-tokens";
 
 export const runtime = "nodejs";
 export const alt = "Yashvardhan Jagnani — software, shipped at agent speed";
@@ -12,17 +13,19 @@ const W = 1200;
 const H = 630;
 const L = 64;
 
+// Palette from the single source (dark theme — the OG card is always dark).
+const P = THEME_TOKENS.dark;
 const C = {
-  bg: "#081012",
-  fluidBg: "#070E10",
-  pri: "47,168,184",
-  sig: "111,216,228",
-  tx: "#EAF4F6",
-  tx2: "#8FA8AD",
-  tx3: "#60797F",
-  rule: "#1D2E32",
-  ruleStrong: "#2E4449",
-  acc: "#D9A441",
+  bg: P.bg,
+  fluidBg: P.fluidBg,
+  pri: P.priRGB,
+  sig: P.sigRGB,
+  tx: P.tx,
+  tx2: P.tx2,
+  tx3: P.tx3,
+  rule: P.rule,
+  ruleStrong: P.ruleStrong,
+  acc: P.acc,
 };
 
 const toDataUri = (svg: string) =>
@@ -122,7 +125,6 @@ const Image = async () => {
           fontFamily: "JetBrains Mono",
         }}
       >
-        {/* contour field */}
         <img src={contoursDataUri()} alt="" width={W} height={H} style={{ position: "absolute", top: 0, left: 0 }} />
         {/* legibility scrim */}
         <div
@@ -132,12 +134,10 @@ const Image = async () => {
             left: 0,
             width: W,
             height: H,
-            backgroundImage:
-              "linear-gradient(90deg, rgba(8,16,18,0.96) 0%, rgba(8,16,18,0.62) 62%, rgba(8,16,18,0.80) 100%)",
+            backgroundImage: `linear-gradient(90deg, rgba(${P.bgRGB},0.96) 0%, rgba(${P.bgRGB},0.62) 62%, rgba(${P.bgRGB},0.80) 100%)`,
           }}
         />
 
-        {/* top rule + bar */}
         <div style={{ position: "absolute", left: L, top: 30, width: W - L * 2, height: 1, backgroundColor: C.ruleStrong }} />
         <img src={logoUri} alt="" width={34} height={34} style={{ position: "absolute", left: L, top: 50 }} />
         <div style={{ position: "absolute", left: L + 48, top: 57, fontSize: 18, color: C.tx3 }}>jagnani73</div>
@@ -145,7 +145,6 @@ const Image = async () => {
           EST. 2019 — BLOCKCHAIN · AI · SOFTWARE
         </div>
 
-        {/* name */}
         <div
           style={{
             position: "absolute",
@@ -164,7 +163,6 @@ const Image = async () => {
           <div>JAGNANI</div>
         </div>
 
-        {/* deck */}
         <div
           style={{
             position: "absolute",
@@ -179,15 +177,12 @@ const Image = async () => {
           software, shipped at agent speed.
         </div>
 
-        {/* bottom rule */}
         <div style={{ position: "absolute", left: L, top: 486, width: W - L * 2, height: 1, backgroundColor: C.rule }} />
-        {/* pills */}
         <div style={{ position: "absolute", left: L, top: 504, display: "flex", gap: 10 }}>
           <Pill label="BLOCKCHAIN" />
           <Pill label="AI-NATIVE" />
           <Pill label="FORWARD-DEPLOYED" />
         </div>
-        {/* status */}
         <div style={{ position: "absolute", right: L, top: 511, display: "flex", fontSize: 17 }}>
           <span style={{ color: C.tx3 }}>STATUS:&nbsp;</span>
           <span style={{ color: C.acc }}>NTU SINGAPORE — AUG 2026</span>

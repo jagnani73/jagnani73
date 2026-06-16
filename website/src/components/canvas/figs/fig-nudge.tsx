@@ -3,9 +3,8 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel } from "./fig-style";
+import { figPanel, MONO as M } from "./fig-style";
 
-const M = "var(--font-mono)";
 const S = "var(--font-sans)";
 
 const NUDGE_SET = [
@@ -15,7 +14,7 @@ const NUDGE_SET = [
 ];
 const NUDGE_NAV = ["Search", "Dashboard", "Analytics", "Publish"];
 
-// NudgeLab — a no-code nudge, configured once, delivered into a live product.
+// NudgeLab — no-code nudge pushed into a live product.
 export const FigNudge = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
   const t = useThemeTokens();
   const PER = 5;
