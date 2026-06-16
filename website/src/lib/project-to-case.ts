@@ -13,7 +13,7 @@ const firstSentence = (md: string): string => {
     : sentence;
 };
 
-// Derive a baseline case from a data.ts project so every project has a /work/[slug]
+// Derive a baseline case from a data.ts project so every project has a /record/[slug]
 // page. Authored cases (the AUTHORED map in content/cases/index.ts) override these.
 export const projectToCase = (
   project: ProjectType,

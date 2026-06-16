@@ -14,10 +14,10 @@ An editorial, "newspaper-of-record" portfolio built with Next.js 16 (App Router)
 ## Routes (`src/app/`)
 
 - `/` — Home: masthead (animated fig.1 band canvas), `01 The Chapters`, `02 Selected Work`, `03 The Person`.
-- `/work` — **The Record**: one filterable timeline of everything, with a year-gutter constellation canvas and per-year "consensus" confirm animation.
-- `/work/[slug]` — **Case study** template. Every project gets a page: authored cases are exemplars; the rest are derived from `data.ts`. `generateStaticParams()` prerenders all of them.
+- `/record` — **The Record**: one filterable timeline of everything, with a year-gutter constellation canvas and per-year "consensus" confirm animation.
+- `/record/[slug]` — **Case study** template. Every project gets a page: authored cases are exemplars; the rest are derived from `data.ts`. `generateStaticParams()` prerenders all of them.
 - `/api/resume`, `/api/cover-letter` — redirect routes.
-- Legacy `/projects`, `/projects/:slug`, `/experiences` 301-redirect to `/work` (`next.config.ts`).
+- Legacy `/projects`, `/projects/:slug`, `/experiences` 301-redirect to `/record` (`next.config.ts`).
 
 ## Project Structure
 
@@ -26,7 +26,7 @@ website/
 ├── src/
 │   ├── app/                 # Routes, layout, globals.css, OG image routes
 │   │   ├── api/             # resume + cover-letter redirect routes
-│   │   └── work/            # /work and /work/[slug]
+│   │   └── record/          # /record and /record/[slug]
 │   ├── components/
 │   │   ├── shared/          # theme-provider, site-rail, page-shell, footer, back-to-top
 │   │   ├── home/            # masthead, chapters, selected-work, person

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Everything, in one timeline — experience, projects, hackathons, community, research, education and certifications, 2019 → now.",
 };
 
-const WorkPage = () => {
+const RecordPage = () => {
   const counts = getRecordCounts();
 
   return (
@@ -19,4 +19,4 @@ const WorkPage = () => {
   );
 };
 
-export default WorkPage;
+export default RecordPage;

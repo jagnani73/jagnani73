@@ -9,7 +9,7 @@ export const CaseMasthead = ({ caseData: c }: { caseData: CaseData }) => (
       <Link href="/" className="text-tx2 transition-colors hover:text-sig">
         ↖ the front page
       </Link>
-      <Link href="/work" className="text-tx2 transition-colors hover:text-sig">
+      <Link href="/record" className="text-tx2 transition-colors hover:text-sig">
         ← the record
       </Link>
       {c.idx ? (

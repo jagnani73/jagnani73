@@ -27,7 +27,7 @@ const NotFound = () => {
         <Link href="/" className="transition-colors hover:text-sig">
           ← the front page
         </Link>
-        <Link href="/work" className="transition-colors hover:text-sig">
+        <Link href="/record" className="transition-colors hover:text-sig">
           the record ↗
         </Link>
       </div>

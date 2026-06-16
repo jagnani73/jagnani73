@@ -1,7 +1,7 @@
 // content/record.ts — the complete record, ported from work-data.js.
 // Kinds: EXPERIENCE | COMMUNITY | PROJECT | HACKATHON (win: true when awarded)
 // | RESEARCH | EDUCATION | CERTIFICATION. `via` links a project to its origin. Internal
-// urls point at /work/[slug] case pages (same-tab).
+// urls point at /record/[slug] case pages (same-tab).
 
 export type Kind =
   | "EXPERIENCE"
@@ -69,7 +69,7 @@ export const RECORD: RecordEntry[] = [
     via: "oss",
     title: "Claude Controller",
     meta: "drive the Claude Code CLI from your phone over a private Tailscale tunnel · PWA + PTY relay",
-    url: "/work/claude-controller",
+    url: "/record/claude-controller",
     internal: true,
     order: 2,
   },
@@ -79,7 +79,7 @@ export const RECORD: RecordEntry[] = [
     via: "infinia",
     title: "Solana ML-DSA-44 fork",
     meta: "ML-DSA-44 post-quantum signatures on a Solana fork",
-    url: "/work/solana-ml-dsa-44",
+    url: "/record/solana-ml-dsa-44",
     internal: true,
   },
   {
@@ -103,7 +103,7 @@ export const RECORD: RecordEntry[] = [
     kind: "PROJECT",
     title: "InsidePoly",
     meta: "insider-trading surveillance for Polymarket · five-signal scoring engine · live",
-    url: "/work/insidepoly",
+    url: "/record/insidepoly",
     internal: true,
   },
 
@@ -137,7 +137,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Flux",
     meta: "AI support agents with on-chain awareness · uAgents + ENS + Fluence",
-    url: "/work/flux",
+    url: "/record/flux",
     internal: true,
   },
   {
@@ -146,7 +146,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "DAOScape",
     meta: "reputation-based DAO governance · vlayer web proofs on Base",
-    url: "/work/daoscape",
+    url: "/record/daoscape",
     internal: true,
   },
   {
@@ -172,7 +172,7 @@ export const RECORD: RecordEntry[] = [
     via: "covalent",
     title: "AI Agent SDK",
     meta: "@covalenthq/ai-agent-sdk · agent orchestration for ZEE · 119★ · 2k+ downloads",
-    url: "/work/agent-sdk",
+    url: "/record/agent-sdk",
     internal: true,
   },
   {
@@ -181,7 +181,7 @@ export const RECORD: RecordEntry[] = [
     via: "covalent",
     title: "GoldRush Kit",
     meta: "plug-n-play React components for on-chain data · 105★ · 65 versions",
-    url: "/work/goldrush-kit",
+    url: "/record/goldrush-kit",
     internal: true,
   },
   {
@@ -190,7 +190,7 @@ export const RECORD: RecordEntry[] = [
     via: "covalent",
     title: "GoldRush Decoder",
     meta: "raw EVM logs → structured events across 200+ chains · 9 contributors",
-    url: "/work/goldrush-decoder",
+    url: "/record/goldrush-decoder",
     internal: true,
   },
   {
@@ -207,7 +207,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Dewls",
     meta: "arcade wagering · proof-of-victory attestations · Morph, Hedera, Rootstock",
-    url: "/work/dewls",
+    url: "/record/dewls",
     internal: true,
   },
   {
@@ -248,7 +248,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "LenDen",
     meta: "cross-chain lending & borrowing · Router cross-talk contracts",
-    url: "/work/lenden",
+    url: "/record/lenden",
     internal: true,
   },
   {
@@ -257,7 +257,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "deLinZK",
     meta: "zk proof-of-employment credentials · Polygon ID · ETHForAll",
-    url: "/work/delinzk",
+    url: "/record/delinzk",
     internal: true,
   },
   {
@@ -360,7 +360,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "NudgeLab",
     meta: "no-code nudge management · CDN delivery + message-queue triggers",
-    url: "/work/nudge-lab",
+    url: "/record/nudge-lab",
     internal: true,
   },
   {
@@ -369,7 +369,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Contracts",
     meta: "immutable expense-splitting on Hedera smart contracts",
-    url: "/work/contracts",
+    url: "/record/contracts",
     internal: true,
   },
   {
@@ -378,7 +378,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Hospitatva",
     meta: "hospital price transparency ledger on Zilliqa · SIH internals",
-    url: "/work/hospitatva",
+    url: "/record/hospitatva",
     internal: true,
   },
   {
@@ -461,7 +461,7 @@ export const RECORD: RecordEntry[] = [
     via: "oss",
     title: "react-easy-marquee",
     meta: "zero-dependency CSS marquee · 105k+ npm downloads",
-    url: "/work/marquee",
+    url: "/record/marquee",
     internal: true,
   },
   {
@@ -590,7 +590,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Stories",
     meta: "anonymous peer support with toxicity filtering",
-    url: "/work/stories",
+    url: "/record/stories",
     internal: true,
   },
   {
@@ -599,7 +599,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Shikshak",
     meta: "85% less data for remote classrooms · blackboard → pixel stream",
-    url: "/work/shikshak",
+    url: "/record/shikshak",
     internal: true,
   },
   {
@@ -608,7 +608,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "Fren",
     meta: "privacy-first therapy journaling · NLP sentiment pipeline",
-    url: "/work/fren",
+    url: "/record/fren",
     internal: true,
   },
   {
@@ -617,7 +617,7 @@ export const RECORD: RecordEntry[] = [
     via: "hackathon",
     title: "BharatBeacon",
     meta: "IoT disaster response · live distress map for authorities",
-    url: "/work/bharat-beacon",
+    url: "/record/bharat-beacon",
     internal: true,
   },
   {
@@ -681,7 +681,7 @@ export const RECORD: RecordEntry[] = [
   },
 ];
 
-// Entries with a case-study page (internal /work/[slug] links).
+// Entries with a case-study page (internal /record/[slug] links).
 export const isCase = (r: RecordEntry): boolean => !!r.internal;
 
 // Per-kind tallies, recomputed at build (never hardcoded). ALL = total length,

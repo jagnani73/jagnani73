@@ -20,10 +20,10 @@ The site is an **editorial "newspaper-of-record"** redesign with three page type
 
 ### Routes (`src/app/`)
 - `/` — Home: masthead (fig.1 band canvas), `01 The Chapters`, `02 Selected Work`, `03 The Person`.
-- `/work` — **The Record**: one filterable timeline of everything (73 entries), with the year-gutter constellation canvas + per-year "consensus" confirm animation.
-- `/work/[slug]` — **Case study** template. `generateStaticParams()` prerenders every case (3 authored + all `data.ts` projects); per-case `generateMetadata()`.
+- `/record` — **The Record**: one filterable timeline of everything (73 entries), with the year-gutter constellation canvas + per-year "consensus" confirm animation. (Route lives at `src/app/record/`; the client lives at `components/work/record-client.tsx` — that component dir keeps its name.)
+- `/record/[slug]` — **Case study** template. `generateStaticParams()` prerenders every case (3 authored + all `data.ts` projects); per-case `generateMetadata()`.
 - `/api/resume`, `/api/cover-letter` — redirect routes (unchanged).
-- `next.config.ts` `redirects()`: `/projects`, `/projects/:slug`, `/experiences` → `/work` (301). The old projects/experiences pages were removed.
+- `next.config.ts` `redirects()`: `/projects`, `/projects/:slug`, `/experiences` → `/record` (301). The old projects/experiences pages were removed. (The route was renamed from `/work` → `/record`; record-entry `url`s point at `/record/[slug]`.)
 
 ### Theme & tokens
 - **`next-themes`** (`components/shared/theme-provider.tsx`): `attribute="data-theme"`, `storageKey="jagnani73-mode"`, themes `dark` (cyan, default) / `light` (paper), no-flash.
@@ -34,12 +34,15 @@ The site is an **editorial "newspaper-of-record"** redesign with three page type
 
 ### Content (`src/content/`) — typed, build-static
 - `record.ts` — the 73-entry record + `getRecordCounts()` (computed at build, never hardcoded).
-- `home.ts` — chapters / selected work / person.
+- `home.ts` — chapters / person / deck (Selected Work is **derived**, not stored here).
 - `case-types.ts` — `CaseData` + section unions; `cases/*.tsx` are the authored cases, keyed in the `AUTHORED` map in `cases/index.ts` (the registry: `getCase`, `getAllCaseSlugs`, `getCaseTitle`).
 - `metrics.ts` — hardcoded metric fallbacks.
 
+### Selected Work (home `02`) — derived, never curated
+`lib/selected-work.ts` `getSelectedWork(n=6)` returns the **latest N case studies, newest-first**, walking `RECORD` (internal `isCase` entries, already chronological). Cases **without an `ogImage` are skipped** so every row shows a real thumbnail (e.g. `solana-ml-dsa-44` is image-less → it falls through and the next case down is pulled in). Per row: title/image/tag come from the case registry (`getCase`) — `img` = the case `ogImage`; `tag` = the first `·`-segment of the case `badge`, lowercased, **except** `agent-sdk`/`goldrush-kit` whose tag is a live metric (`METRIC_BY_SLUG`). Adding an image-backed case to the record surfaces it here automatically.
+
 ### Data-driven case template
-Every project gets a `/work/[slug]` page. Authored cases (the `AUTHORED` map in `cases/index.ts`) are exemplars; `lib/project-to-case.ts` derives a baseline `CaseData` (markdown overview + image plates) from any `data.ts` project so the rest render too. `data.ts` slug `ai-agent-sdk` aliases to the authored `agent-sdk` (no duplicate page). Authored cases override derived ones. Each authored case's roster index (`idx`) and size (`rosterSize`) are **computed from the `AUTHORED` order in `getCase` — never hardcoded per file**.
+Every project gets a `/record/[slug]` page. Authored cases (the `AUTHORED` map in `cases/index.ts`) are exemplars; `lib/project-to-case.ts` derives a baseline `CaseData` (markdown overview + image plates) from any `data.ts` project so the rest render too. `data.ts` slug `ai-agent-sdk` aliases to the authored `agent-sdk` (no duplicate page). Authored cases override derived ones. Each authored case's roster index (`idx`) and size (`rosterSize`) are **computed from the `AUTHORED` order in `getCase` — never hardcoded per file**.
 
 ### Live metrics (ISR)
 `lib/fetch-metrics.ts` `getMetrics()` fetches GitHub stars/forks + npm version count at build (`revalidate: 86400`), falling back to `content/metrics.ts` — **Server Components only**, never client-side, never renders a blank/spinner.
@@ -51,11 +54,11 @@ Every project gets a `/work/[slug]` page. Authored cases (the `AUTHORED` map in 
 `shared/` (theme-provider, site-rail, page-shell, page-footer, back-to-top), `home/`, `work/`, `case/`, `canvas/`.
 
 ### Flat `data.ts`
-`src/utils/constants/data.ts` holds **only** `projects` (drives Selected Work + derived cases), `resumes`, and `coverLetter` (API routes). The `experiences`/`hackathons`/`certifications`/`researchPapers` exports (superseded by `record.ts`) were removed, along with their now-dead types/enums. Types in `src/utils/types/` are now just `ProjectType` + `ResumeType`; enums in `shared-constants.tsx` are `STACK_NAMES` + `LINKS_NAMES`; `stripMarkdown` in `functions/`.
+`src/utils/constants/data.ts` holds **only** `projects` (drives the derived `/record/[slug]` case pages), `resumes`, and `coverLetter` (API routes). The `experiences`/`hackathons`/`certifications`/`researchPapers` exports (superseded by `record.ts`) were removed, along with their now-dead types/enums. Types in `src/utils/types/` are now just `ProjectType` + `ResumeType`; enums in `shared-constants.tsx` are `STACK_NAMES` + `LINKS_NAMES`; `stripMarkdown` in `functions/`.
 
 **Images:** Cloudinary (`res.cloudinary.com/jagnani73/**`) + GitHub via `next/image` (`next.config.ts` remotePatterns). **Path alias:** `@/*` → `./src/*`.
 
 ## Adding/Updating Content
 - Record rows: `src/content/record.ts` (counts recompute automatically).
 - A new full case study: add `src/content/cases/<slug>.tsx` and register it in the `AUTHORED` map in `cases/index.ts` (position in that map sets its roster index). A bespoke `fig` is a new `FigKind` in `case-types.ts` + component registered in `components/case/case-fig.tsx`; **don't set `idx`/`rosterSize`** — they're derived. Any project in `data.ts` already has a baseline page.
-- Home sections: `src/content/home.ts`. Metric numbers/fallbacks: `src/content/metrics.ts`.
+- Home sections: `src/content/home.ts` (chapters / person / deck). Selected Work isn't edited here — it auto-tracks the latest case studies in `record.ts` via `lib/selected-work.ts`. Metric numbers/fallbacks: `src/content/metrics.ts`.
