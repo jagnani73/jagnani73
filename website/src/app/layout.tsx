@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Anton, Instrument_Serif, JetBrains_Mono, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/shared/theme-provider";
+import { Splash } from "@/components/shared/splash";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
@@ -97,7 +98,10 @@ const RootLayout = ({
       className={`${anton.variable} ${instrumentSerif.variable} ${jetBrainsMono.variable} ${dmSans.variable}`}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Splash />
+          {children}
+        </ThemeProvider>
         <SpeedInsights />
       </body>
       <GoogleAnalytics gaId="G-CY9KEWMBRR" />
