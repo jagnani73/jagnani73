@@ -84,13 +84,13 @@ const Pill = ({ label }: { label: string }) => (
     style={{
       display: "flex",
       alignItems: "center",
-      height: 30,
+      height: 34,
       padding: "0 16px",
       border: `1px solid ${C.rule}`,
-      borderRadius: 15,
+      borderRadius: 17,
       fontFamily: "JetBrains Mono",
       fontWeight: 500,
-      fontSize: 15,
+      fontSize: 17,
       color: C.tx2,
     }}
   >
@@ -140,8 +140,8 @@ const Image = async () => {
         {/* top rule + bar */}
         <div style={{ position: "absolute", left: L, top: 30, width: W - L * 2, height: 1, backgroundColor: C.ruleStrong }} />
         <img src={logoUri} alt="" width={34} height={34} style={{ position: "absolute", left: L, top: 50 }} />
-        <div style={{ position: "absolute", left: L + 48, top: 58, fontSize: 16, color: C.tx3 }}>jagnani73</div>
-        <div style={{ position: "absolute", right: L, top: 58, fontSize: 16, color: C.tx3 }}>
+        <div style={{ position: "absolute", left: L + 48, top: 57, fontSize: 18, color: C.tx3 }}>jagnani73</div>
+        <div style={{ position: "absolute", right: L, top: 57, fontSize: 18, color: C.tx3 }}>
           EST. 2019 — BLOCKCHAIN · AI · SOFTWARE
         </div>
 
@@ -188,7 +188,7 @@ const Image = async () => {
           <Pill label="FORWARD-DEPLOYED" />
         </div>
         {/* status */}
-        <div style={{ position: "absolute", right: L, top: 511, display: "flex", fontSize: 15 }}>
+        <div style={{ position: "absolute", right: L, top: 511, display: "flex", fontSize: 17 }}>
           <span style={{ color: C.tx3 }}>STATUS:&nbsp;</span>
           <span style={{ color: C.acc }}>NTU SINGAPORE — AUG 2026</span>
         </div>
