@@ -1,7 +1,5 @@
 import type { CaseData } from "@/utils/types/case.types";
 
-const SHOTS = "https://res.cloudinary.com/jagnani73/image/upload";
-
 export const claudeControllerCase: CaseData = {
   slug: "claude-controller",
   title: "CLAUDE CONTROLLER",
@@ -9,7 +7,7 @@ export const claudeControllerCase: CaseData = {
   seoDescription:
     "Run Claude Code from your phone over your own private, encrypted tunnel — your credits, your machine, no cloud. A control plane, not a chat relay.",
   badge: "OPEN SOURCE · 2026",
-  ogImage: `${SHOTS}/v1781545428/jagnani73/projects/claude-controller/Screenshot_2026-06-15_231107_vpd2ys.png`,
+  ogImage: `https://res.cloudinary.com/jagnani73/image/upload/v1781545428/jagnani73/projects/claude-controller/Screenshot_2026-06-15_231107_vpd2ys.png`,
   deck: (
     <>
       run Claude Code from your phone — over your own private, encrypted tunnel.{" "}
@@ -20,13 +18,12 @@ export const claudeControllerCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
       title: "THE IDEA",
       note: "a control plane, not a chat relay",
       serif: (
         <>
-          Claude Code&apos;s built-in remote is a chat relay — you can read along,
-          but you can&apos;t{" "}
+          Claude Code&apos;s built-in remote is a chat relay — you can read
+          along, but you can&apos;t{" "}
           <span className="text-tx">
             approve a tool, switch modes, or drive a picker from your phone.
           </span>{" "}
@@ -37,7 +34,6 @@ export const claudeControllerCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
       title: "THE RELAY",
       note: "PTY · hooks · JSONL · WebSocket",
       body: "A terminal relay, not an API client. The backend spawns the CLI in a PTY and consumes two structured signals it already emits — blocking HTTP hooks for approvals and pickers, and the transcript JSONL for content — normalizing both into a per-session bus forwarded over WebSocket. Transport (encryption, TLS, device auth) is delegated to Tailscale and Caddy.",
@@ -68,8 +64,6 @@ export const claudeControllerCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
-      title: "THE HARD PART",
       note: "the CLI was built for a human at a terminal",
       intro: (
         <>
@@ -99,8 +93,6 @@ export const claudeControllerCase: CaseData = {
     },
     {
       type: "stats",
-      n: "04",
-      title: "BY THE NUMBERS",
       note: "your machine, your credits",
       stats: [
         ["0", "calls to the paid API — your Max-plan credits"],
@@ -111,29 +103,27 @@ export const claudeControllerCase: CaseData = {
     },
     {
       type: "plates",
-      n: "05",
-      title: "IN THE WILD",
       note: "the PWA, on a phone",
       plates: [
         {
           kind: "img",
-          src: `${SHOTS}/v1781545428/jagnani73/projects/claude-controller/Screenshot_2026-06-15_231011_wwkzai.png`,
+          src: `https://res.cloudinary.com/jagnani73/image/upload/v1781545428/jagnani73/projects/claude-controller/Screenshot_2026-06-15_231011_wwkzai.png`,
           cap: "spawn a session — model, effort, and permission mode, scoped to a project",
           fit: "contain",
         },
         {
           kind: "img",
-          src: `${SHOTS}/v1781545428/jagnani73/projects/claude-controller/Screenshot_2026-06-15_231107_vpd2ys.png`,
+          src: `https://res.cloudinary.com/jagnani73/image/upload/v1781545428/jagnani73/projects/claude-controller/Screenshot_2026-06-15_231107_vpd2ys.png`,
           cap: "a live session on the phone — tool calls, results, and the running statusline",
         },
         {
           kind: "img",
-          src: `${SHOTS}/v1781545430/jagnani73/projects/claude-controller/Screenshot_2026-06-15_231314_n7gkay.png`,
+          src: `https://res.cloudinary.com/jagnani73/image/upload/v1781545430/jagnani73/projects/claude-controller/Screenshot_2026-06-15_231314_n7gkay.png`,
           cap: "the AskUserQuestion relay — the CLI's ink picker rendered as a tappable card",
         },
         {
           kind: "img",
-          src: `${SHOTS}/v1781545428/jagnani73/projects/claude-controller/Screenshot_2026-06-15_231231_vg3qid.png`,
+          src: `https://res.cloudinary.com/jagnani73/image/upload/v1781545428/jagnani73/projects/claude-controller/Screenshot_2026-06-15_231231_vg3qid.png`,
           cap: "plan approval — approve with auto-accept, approve manually, or keep planning",
         },
       ],

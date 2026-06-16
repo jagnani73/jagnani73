@@ -20,8 +20,6 @@ export const lendenCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "liquidity is siloed per chain",
       serif: (
         <>
@@ -35,8 +33,6 @@ export const lendenCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "Router cross-talk · credibility scoring",
       body: (
         <>
@@ -63,8 +59,6 @@ export const lendenCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
-      title: "THE HARD PART",
       note: "two chains, one atomic state",
       intro: (
         <>
@@ -83,15 +77,13 @@ export const lendenCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
-      note: "plates 01–05 · Unfold 2023",
+      note: "Unfold 2023",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/578f68d4-e848-4a3f-a5c5-b7cc74cf9a88_gg0aqw.png", cap: "the borrower dashboard" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/1d59ea1e-69b3-4cde-9ab9-8fabf58de774_blm70w.png", cap: "posting collateral" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/903d5d31-763d-4c5e-8a60-4593464e465d_eicstt.png", cap: "a cross-chain loan" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/9a5e12be-9c19-42da-ba67-b47af1f14a18_jvotf8.png", cap: "plate 04" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/f247c1a5-c4aa-411a-9c74-c1bbd1147bfa_l3bj0r.png", cap: "plate 05" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/9a5e12be-9c19-42da-ba67-b47af1f14a18_jvotf8.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/f247c1a5-c4aa-411a-9c74-c1bbd1147bfa_l3bj0r.png" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/lenden" },
     },

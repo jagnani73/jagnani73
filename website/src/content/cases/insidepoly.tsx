@@ -20,8 +20,6 @@ export const insidepolyCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "information asymmetry, fully public",
       serif: (
         <>
@@ -37,8 +35,6 @@ export const insidepolyCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "TypeScript monorepo · common / backend / frontend",
       body: (
         <>
@@ -80,8 +76,6 @@ export const insidepolyCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
-      title: "THE HARD PART",
       note: "score_wallets() · PL/pgSQL · single pass",
       intro: (
         <>
@@ -107,9 +101,7 @@ export const insidepolyCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
-      note: "plates 01–03 · the live product",
+      note: "the live product",
       plates: [
         {
           kind: "img",

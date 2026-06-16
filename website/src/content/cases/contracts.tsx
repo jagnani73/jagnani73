@@ -19,8 +19,6 @@ export const contractsCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "someone always edits the record",
       serif: (
         <>
@@ -32,8 +30,6 @@ export const contractsCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "Hedera contracts as the database",
       body: (
         <>
@@ -57,8 +53,6 @@ export const contractsCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
-      title: "THE HARD PART",
       note: "Hedera, newly launched",
       intro: (
         <>
@@ -78,14 +72,12 @@ export const contractsCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
-      note: "plates 01–04 · Rookie Hacks II",
+      note: "Rookie Hacks II",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473805/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-45-39_lskus9.png", cap: "the expense view" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473807/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-46-25_hpuchh.png", cap: "splitting an expense" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473811/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-46-20_hxrgok.png", cap: "the audit trail" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473801/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-45-58_qpcdoj.png", cap: "plate 04" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473801/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-45-58_qpcdoj.png" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/contracts" },
     },

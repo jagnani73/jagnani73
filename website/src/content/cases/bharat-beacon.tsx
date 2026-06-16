@@ -19,8 +19,6 @@ export const bharatBeaconCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "crises move faster than dashboards",
       serif: (
         <>
@@ -33,8 +31,6 @@ export const bharatBeaconCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "IoT signals → a live map",
       body: (
         <>
@@ -56,7 +52,6 @@ export const bharatBeaconCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
       title: "WHAT I BUILT",
       note: "the government portal",
       intro: (
@@ -75,9 +70,7 @@ export const bharatBeaconCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
-      note: "plate 01 · the government portal",
+      note: "the government portal",
       plates: [
         {
           kind: "img",

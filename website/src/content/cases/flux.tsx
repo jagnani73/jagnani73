@@ -20,8 +20,6 @@ export const fluxCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "web2 support can't read a chain",
       serif: (
         <>
@@ -37,8 +35,6 @@ export const fluxCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "three services · uAgents + ENS + Fluence",
       body: (
         <>
@@ -63,8 +59,6 @@ export const fluxCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
-      title: "THE HARD PART",
       note: "live chain data at query time",
       intro: (
         <>
@@ -83,15 +77,13 @@ export const fluxCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
-      note: "plates 01–05 · the support platform",
+      note: "the support platform",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567915/jagnani73/projects/flux/f631ab10-eee1-44d7-a70a-dfff0c2f353a.png", cap: "the admin dashboard" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766568390/jagnani73/projects/flux/a751cb71-afdd-4686-91bf-27dfd1231dec.png", cap: "an agent, configured" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766568408/jagnani73/projects/flux/2415a4c8-5508-4e49-b1fd-461240693a30.png", cap: "the support widget" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567905/jagnani73/projects/flux/40534ebc-ecbe-4d84-81bc-943dce41227b.png", cap: "plate 04" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766568417/jagnani73/projects/flux/962c2c42-774a-47a5-8a1d-5173d420969d.png", cap: "plate 05" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567905/jagnani73/projects/flux/40534ebc-ecbe-4d84-81bc-943dce41227b.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766568417/jagnani73/projects/flux/962c2c42-774a-47a5-8a1d-5173d420969d.png" },
       ],
       cta: { label: "visit flux ↗", href: "https://flux-support.vercel.app/" },
     },

@@ -20,8 +20,6 @@ export const goldrushKitCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "everyone rebuilds the same plumbing",
       serif: (
         <>
@@ -34,8 +32,6 @@ export const goldrushKitCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "atomic design · one provider · GoldRush SDK",
       body: (
         <>
@@ -61,7 +57,6 @@ export const goldrushKitCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
       title: "WHAT I SHIPPED",
       note: "owned v1.0.1 → v1.0.5",
       intro: (
@@ -82,14 +77,12 @@ export const goldrushKitCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
-      note: "plates 01–04 · the component library",
+      note: "the component library",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766564317/jagnani73/projects/goldrush-kit/81f580da-f9c3-4f15-8faf-ca37eef2fedd.png", cap: "components in Storybook" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766564635/jagnani73/projects/goldrush-kit/ac94b6a1-a9c4-42cd-a318-5c80b2549824.png", cap: "token balances, rendered" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766564330/jagnani73/projects/goldrush-kit/0172911e-a1c9-4796-aea3-05bee4f8d65f.png", cap: "transaction list view" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766565005/jagnani73/projects/goldrush-kit/e0dd45f7-2dea-49bc-ac33-a7bbfdfeda05.png", cap: "plate 04" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766565005/jagnani73/projects/goldrush-kit/e0dd45f7-2dea-49bc-ac33-a7bbfdfeda05.png" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/covalenthq/goldrush-kit" },
     },

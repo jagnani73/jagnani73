@@ -20,8 +20,6 @@ export const delinzkCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "credentials are trust-me",
       serif: (
         <>
@@ -36,8 +34,6 @@ export const delinzkCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "Polygon ID · Iden3 · zk-only auth",
       body: (
         <>
@@ -62,8 +58,6 @@ export const delinzkCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
-      title: "THE HARD PART",
       note: "a 15-digit integer constraint",
       intro: (
         <>
@@ -84,16 +78,14 @@ export const delinzkCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
-      note: "plates 01–06 · ETHForAll",
+      note: "ETHForAll",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/70ffc667-d062-4948-97dc-85c438a7ef7d_irclpf.png", cap: "the credential flow" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/91a99762-16bf-4ba8-b12c-35ceaba31927_nixd6w.png", cap: "issuing a credential" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/e505aa8f-668a-40a8-822d-3fa261b68ff7_azumdi.png", cap: "proving employment" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/6a559df0-848d-46e9-9b81-a25383c5b89d_npadrq.jpg", cap: "plate 04" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558075/jagnani73/projects/delinzk/ea9ad5d5-7066-41a4-b44b-bd2814f37f57_hftzqk.png", cap: "plate 05" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/350ad1c9-a430-42bb-ae52-d28f70b7ae34_to9t6l.png", cap: "plate 06" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/6a559df0-848d-46e9-9b81-a25383c5b89d_npadrq.jpg" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558075/jagnani73/projects/delinzk/ea9ad5d5-7066-41a4-b44b-bd2814f37f57_hftzqk.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/350ad1c9-a430-42bb-ae52-d28f70b7ae34_to9t6l.png" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/delinzk" },
     },

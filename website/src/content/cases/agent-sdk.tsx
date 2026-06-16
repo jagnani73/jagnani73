@@ -37,8 +37,6 @@ export const agentSdkCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "everyone rebuilding the same glue",
       serif: (
         <>
@@ -53,8 +51,6 @@ export const agentSdkCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "three default agents around yours · TypeScript",
       body: (
         <>
@@ -97,7 +93,6 @@ export const agentSdkCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
       title: "WHAT I SHIPPED",
       note: "core SDK · launch → v0.3.0",
       intro: (
@@ -127,8 +122,6 @@ export const agentSdkCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
       note: "npm · github",
       plates: [
         {

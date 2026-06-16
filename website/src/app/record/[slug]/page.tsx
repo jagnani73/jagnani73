@@ -72,8 +72,8 @@ const CasePage = async ({
         ]}
       />
       <CaseMasthead caseData={c} />
-      {c.sections.map((s) => (
-        <CaseSection key={s.n + s.type} section={s} />
+      {c.sections.map((s, i) => (
+        <CaseSection key={i} section={s} index={i} />
       ))}
       <CaseFooter nextSlug={c.next} nextTitle={getCaseTitle(c.next)} />
     </PageShell>

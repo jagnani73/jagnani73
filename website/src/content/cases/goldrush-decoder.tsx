@@ -36,8 +36,6 @@ export const goldrushDecoderCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "logs are opaque by default",
       serif: (
         <>
@@ -52,8 +50,6 @@ export const goldrushDecoderCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "a decoder registry · protocol-name:EventName",
       body: (
         <>
@@ -77,8 +73,6 @@ export const goldrushDecoderCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
-      title: "THE HARD PART",
       note: "batched-parallel log processing",
       intro: (
         <>
@@ -98,8 +92,6 @@ export const goldrushDecoderCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
       note: "code · the decoder API",
       plates: [
         { kind: "code", code: DECODER_CODE, cap: "registering a protocol decoder" },

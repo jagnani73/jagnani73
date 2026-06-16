@@ -32,8 +32,6 @@ export const marqueeCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "the ecosystem was too opinionated",
       serif: (
         <>
@@ -48,8 +46,6 @@ export const marqueeCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "three copies · one CSS keyframe",
       body: (
         <>
@@ -82,8 +78,6 @@ export const marqueeCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
-      title: "THE HARD PART",
       note: "perceived speed, made consistent",
       intro: (
         <>
@@ -116,9 +110,7 @@ export const marqueeCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
-      note: "plates 01–03 · npm + the demo",
+      note: "npm + the demo",
       plates: [
         {
           kind: "img",

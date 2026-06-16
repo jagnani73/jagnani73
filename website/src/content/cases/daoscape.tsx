@@ -20,8 +20,6 @@ export const daoscapeCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "token-weighted voting is plutocracy",
       serif: (
         <>
@@ -35,8 +33,6 @@ export const daoscapeCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "vlayer web proofs · Base Sepolia",
       body: (
         <>
@@ -61,8 +57,6 @@ export const daoscapeCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
-      title: "THE HARD PART",
       note: "composable proofs, zero leakage",
       intro: (
         <>
@@ -80,16 +74,14 @@ export const daoscapeCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
-      note: "plates 01–06 · the governance platform",
+      note: "the governance platform",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567356/jagnani73/projects/daoscape/5bf4f732-d1db-4517-9264-4306c07b81a5.png", cap: "the governance dashboard" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567369/jagnani73/projects/daoscape/af9a9242-4b91-4e0e-a622-979691b413c7.png", cap: "proving reputation" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567384/jagnani73/projects/daoscape/1b9d93e3-78d8-4e81-ae62-a54de565cd50.png", cap: "a weighted vote" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567343/jagnani73/projects/daoscape/46c6a4ff-3e28-494b-ab29-d284403ac1a2.png", cap: "plate 04" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567401/jagnani73/projects/daoscape/41b87a86-0e60-407c-8839-9814193a077c.png", cap: "plate 05" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567453/jagnani73/projects/daoscape/5c1cb2cf-d35c-443a-a1f3-62b99a292c91.png", cap: "plate 06" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567343/jagnani73/projects/daoscape/46c6a4ff-3e28-494b-ab29-d284403ac1a2.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567401/jagnani73/projects/daoscape/41b87a86-0e60-407c-8839-9814193a077c.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567453/jagnani73/projects/daoscape/5c1cb2cf-d35c-443a-a1f3-62b99a292c91.png" },
       ],
       cta: { label: "view the showcase ↗", href: "https://ethglobal.com/showcase/daoscape-g8f8m" },
     },

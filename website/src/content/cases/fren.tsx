@@ -19,8 +19,6 @@ export const frenCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "openness vs. privacy",
       serif: (
         <>
@@ -32,8 +30,6 @@ export const frenCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "MERN + a Flask ML service",
       body: (
         <>
@@ -55,7 +51,6 @@ export const frenCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
       title: "WHAT I BUILT",
       note: "frontend · both surfaces",
       intro: (
@@ -75,12 +70,10 @@ export const frenCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
-      note: "plate 01 · the therapist view",
+      note: "the therapist view",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473737/jagnani73/projects/fren/screenshot-therapist_1_xy2335.png", cap: "the therapist analytics panel" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473741/jagnani73/projects/fren/screenshot-client_1_ftnrvo.png", cap: "plate 02" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473741/jagnani73/projects/fren/screenshot-client_1_ftnrvo.png" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/fren" },
     },

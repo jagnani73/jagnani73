@@ -19,8 +19,6 @@ export const storiesCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "support, without exposure",
       serif: (
         <>
@@ -33,8 +31,6 @@ export const storiesCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "score-matched · filtered in transit",
       body: (
         <>
@@ -60,7 +56,6 @@ export const storiesCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
       title: "WHAT I BUILT",
       note: "frontend · chat + admin",
       intro: (
@@ -79,14 +74,12 @@ export const storiesCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
-      note: "plates 01–04 · the app",
+      note: "the app",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473758/jagnani73/projects/stories/2_1_wwqysl.png", cap: "choosing your tags" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473761/jagnani73/projects/stories/3_1_xlmyej.png", cap: "an anonymous chat" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473755/jagnani73/projects/stories/4_1_ylfthn.png", cap: "the admin panel" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473752/jagnani73/projects/stories/1_1_rnugym.png", cap: "plate 04" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473752/jagnani73/projects/stories/1_1_rnugym.png" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/stories" },
     },

@@ -52,6 +52,7 @@ export const PlateViewer = ({
           }`;
           if (pl.kind === "img") {
             const fit = pl.fit ?? fits[j] ?? "cover";
+            const cap = pl.cap ?? `plate ${String(j + 1).padStart(2, "0")}`;
             return (
               <button
                 key={j}
@@ -60,12 +61,12 @@ export const PlateViewer = ({
                   triggerRef.current = e.currentTarget;
                   setBig(j);
                 }}
-                aria-label={`open ${pl.cap}`}
+                aria-label={`open ${cap}`}
                 className={`${common} cursor-zoom-in border-0 bg-transparent p-0`}
               >
                 <Image
                   src={pl.src}
-                  alt={pl.cap}
+                  alt={cap}
                   fill
                   sizes="(max-width: 1200px) 100vw, 640px"
                   className={
@@ -104,7 +105,8 @@ export const PlateViewer = ({
               i === j ? "bg-pri-a08 text-sig" : "text-tx2 hover:text-sig"
             }`}
           >
-            plate {String(j + 1).padStart(2, "0")} — {pl.cap}
+            plate {String(j + 1).padStart(2, "0")}
+            {pl.cap ? <> — {pl.cap}</> : null}
           </button>
         ))}
         {cta ? (
@@ -126,8 +128,8 @@ export const PlateViewer = ({
           ref={dialogRef}
           role="dialog"
           aria-modal="true"
-          aria-label={`plate ${String(big + 1).padStart(2, "0")} — ${
-            bigPlate.cap
+          aria-label={`plate ${String(big + 1).padStart(2, "0")}${
+            bigPlate.cap ? ` — ${bigPlate.cap}` : ""
           }, enlarged`}
           tabIndex={-1}
           onClick={closeBig}
@@ -153,7 +155,7 @@ export const PlateViewer = ({
           >
             <Image
               src={bigPlate.src}
-              alt={bigPlate.cap}
+              alt={bigPlate.cap ?? `plate ${String(big + 1).padStart(2, "0")}`}
               fill
               sizes="92vw"
               className="object-contain"
@@ -167,7 +169,8 @@ export const PlateViewer = ({
               } 0.3s ease forwards`,
             }}
           >
-            plate {String(big + 1).padStart(2, "0")} — {bigPlate.cap}
+            plate {String(big + 1).padStart(2, "0")}
+            {bigPlate.cap ? <> — {bigPlate.cap}</> : null}
             <span className="text-tx3"> · esc or click to close</span>
           </span>
         </div>

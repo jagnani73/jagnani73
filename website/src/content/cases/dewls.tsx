@@ -19,8 +19,6 @@ export const dewlsCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "trust, removed from the referee",
       serif: (
         <>
@@ -33,8 +31,6 @@ export const dewlsCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "three chains · one server-enforced engine",
       body: (
         <>
@@ -73,8 +69,6 @@ export const dewlsCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
-      title: "THE HARD PART",
       note: "websocket state ⇄ on-chain finality",
       intro: (
         <>
@@ -104,9 +98,7 @@ export const dewlsCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
-      note: "plates 01–06 · ETHOnline 2024",
+      note: "ETHOnline 2024",
       plates: [
         {
           kind: "img",
@@ -123,9 +115,9 @@ export const dewlsCase: CaseData = {
           src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566663/jagnani73/projects/dewls/c1db88c1-0e6c-4c33-8056-d3d7a41a96a0.png",
           cap: "proof-of-victory",
         },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566622/jagnani73/projects/dewls/2008978b-b933-4627-8a14-24ecc66d65e7.png", cap: "plate 04" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566731/jagnani73/projects/dewls/4184e2cb-9978-4ef1-9656-a4d063b87c9b.png", cap: "plate 05" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566705/jagnani73/projects/dewls/bf8e57c5-ae68-40fd-a5cc-f70c9b1fd320.png", cap: "plate 06" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566622/jagnani73/projects/dewls/2008978b-b933-4627-8a14-24ecc66d65e7.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566731/jagnani73/projects/dewls/4184e2cb-9978-4ef1-9656-a4d063b87c9b.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566705/jagnani73/projects/dewls/bf8e57c5-ae68-40fd-a5cc-f70c9b1fd320.png" },
       ],
       cta: {
         label: "view the showcase ↗",

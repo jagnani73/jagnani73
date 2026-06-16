@@ -19,8 +19,6 @@ export const hospitatvaCase: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
-      title: "THE PROBLEM",
       note: "price-gouging in a crisis",
       serif: (
         <>
@@ -33,8 +31,6 @@ export const hospitatvaCase: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
-      title: "THE ARCHITECTURE",
       note: "Zilliqa · Scilla · three portals",
       body: (
         <>
@@ -57,8 +53,6 @@ export const hospitatvaCase: CaseData = {
     },
     {
       type: "cards",
-      n: "03",
-      title: "THE HARD PART",
       note: "decentralized identity at the app layer",
       intro: (
         <>
@@ -77,17 +71,15 @@ export const hospitatvaCase: CaseData = {
     },
     {
       type: "plates",
-      n: "04",
-      title: "IN THE WILD",
-      note: "plates 01–07 · the portal",
+      note: "the portal",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473710/jagnani73/projects/hospitatva/preview1_1_ghtg1s.png", cap: "the patient portal" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473707/jagnani73/projects/hospitatva/preview2_ov2nxo.png", cap: "browsing hospitals" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473715/jagnani73/projects/hospitatva/preview3_cl9fz1.png", cap: "verifying a price" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473718/jagnani73/projects/hospitatva/preview5_vqlet8.png", cap: "plate 04" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473712/jagnani73/projects/hospitatva/preview6_1_mlrp5u.png", cap: "plate 05" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473724/jagnani73/projects/hospitatva/preview7_1_ydmuwg.png", cap: "plate 06" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473721/jagnani73/projects/hospitatva/preview8_1_wghanp.png", cap: "plate 07" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473718/jagnani73/projects/hospitatva/preview5_vqlet8.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473712/jagnani73/projects/hospitatva/preview6_1_mlrp5u.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473724/jagnani73/projects/hospitatva/preview7_1_ydmuwg.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473721/jagnani73/projects/hospitatva/preview8_1_wghanp.png" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/hospitatva" },
     },

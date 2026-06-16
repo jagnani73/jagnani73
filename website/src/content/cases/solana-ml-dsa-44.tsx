@@ -19,7 +19,6 @@ export const solanaMlDsa44Case: CaseData = {
   sections: [
     {
       type: "split",
-      n: "01",
       title: "THE GOAL",
       note: "quantum-resistant by design",
       serif: (
@@ -36,7 +35,6 @@ export const solanaMlDsa44Case: CaseData = {
     },
     {
       type: "arch",
-      n: "02",
       title: "WHAT'S QUANTUM-SECURE",
       note: "verification, payments, and votes — all live",
       body: (
@@ -70,7 +68,6 @@ export const solanaMlDsa44Case: CaseData = {
     },
     {
       type: "stats",
-      n: "03",
       title: "WHAT IT PROVES",
       note: "Ed25519 → ML-DSA-44",
       stats: [
@@ -82,7 +79,6 @@ export const solanaMlDsa44Case: CaseData = {
     },
     {
       type: "cards",
-      n: "04",
       title: "WHAT IT TOOK",
       note: "a signature built for a system that assumed tiny ones",
       intro: (
@@ -109,7 +105,6 @@ export const solanaMlDsa44Case: CaseData = {
     },
     {
       type: "plates",
-      n: "05",
       title: "VERIFIED LIVE",
       note: "real keys · real signatures · raw JSON-RPC",
       plates: [

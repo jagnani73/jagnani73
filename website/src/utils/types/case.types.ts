@@ -25,13 +25,14 @@ export type FigKind =
 export interface PlateImg {
   kind: "img";
   src: string;
-  cap: string;
+  /** Caption shown after "plate NN —"; omit for just "plate NN". */
+  cap?: string;
   fit?: "cover" | "contain";
 }
 export interface PlateCode {
   kind: "code";
   code: string;
-  cap: string;
+  cap?: string;
 }
 export type Plate = PlateImg | PlateCode;
 
@@ -42,8 +43,9 @@ export interface FlowStage {
 }
 
 interface SectionBase {
-  n: string;
-  title: string;
+  /** Heading. Defaults per section type (SECTION_TITLE in case-section.tsx) —
+   *  set only to override. `n` is derived from the section's position. */
+  title?: string;
   note?: ReactNode;
 }
 
