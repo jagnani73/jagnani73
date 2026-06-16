@@ -21,6 +21,8 @@ export const goldrushDecoderCase: CaseData = {
   slug: "goldrush-decoder",
   title: "GOLDRUSH DECODER",
   docTitle: "GoldRush Decoder — Case Study",
+  seoDescription:
+    "Raw EVM logs in, structured human-readable events out — one endpoint, 200+ chains, enriched with metadata and pricing. Open source.",
   badge: "OPEN SOURCE · 200+ CHAINS",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1766564974/jagnani73/projects/goldrush-decoder/8abf9959-854f-41f2-8b9d-55c48e00866c.png",

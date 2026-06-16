@@ -4,6 +4,8 @@ export const lendenCase: CaseData = {
   slug: "lenden",
   title: "LENDEN",
   docTitle: "LenDen — Case Study",
+  seoDescription:
+    "Lend on one chain, borrow on another — cross-chain credit with a reputation layer over Router cross-talk. Router prize, Unfold 2023.",
   badge: "ROUTER PRIZE · UNFOLD 2023",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/578f68d4-e848-4a3f-a5c5-b7cc74cf9a88_gg0aqw.png",

@@ -6,6 +6,8 @@ export const claudeControllerCase: CaseData = {
   slug: "claude-controller",
   title: "CLAUDE CONTROLLER",
   docTitle: "Claude Controller — Case Study",
+  seoDescription:
+    "Run Claude Code from your phone over your own private, encrypted tunnel — your credits, your machine, no cloud. A control plane, not a chat relay.",
   badge: "OPEN SOURCE · 2026",
   ogImage: `${SHOTS}/v1781545428/jagnani73/projects/claude-controller/Screenshot_2026-06-15_231107_vpd2ys.png`,
   deck: (

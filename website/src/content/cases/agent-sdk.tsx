@@ -21,6 +21,8 @@ export const agentSdkCase: CaseData = {
   slug: "agent-sdk",
   title: "AI AGENT SDK",
   docTitle: "AI Agent SDK — Case Study",
+  seoDescription:
+    "The orchestration layer behind Covalent's Zero-Employee Enterprise — TypeScript agents that read chains, call tools, and hand work to each other. Open source.",
   badge: "OPEN SOURCE · 119★",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1766567167/jagnani73/projects/ai-agent-sdk/68955376-450a-4c28-9ed6-3eb4b8f391bf.png",

@@ -4,6 +4,8 @@ export const storiesCase: CaseData = {
   slug: "stories",
   title: "STORIES",
   docTitle: "Stories — Case Study",
+  seoDescription:
+    "Anonymous peer support — matched by shared worries, with a toxicity gate on every message. HackCBS 3.0.",
   badge: "HACKCBS 3.0",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1714473758/jagnani73/projects/stories/2_1_wwqysl.png",

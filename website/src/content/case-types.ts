@@ -93,6 +93,10 @@ interface CaseDataBase {
   docTitle: string;
   badge: string;
   deck: ReactNode;
+  /** Plain-text meta description (~150 chars) for SEO/OG/JSON-LD. Authored cases
+   *  set this because their `deck` is JSX; derived cases fall back to the string
+   *  `deck`. See generateMetadata in record/[slug]/page.tsx. */
+  seoDescription?: string;
   fig: FigKind | null;
   sections: CaseSection[];
   /** Slug of the next case (footer cycling). */

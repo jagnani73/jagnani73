@@ -4,6 +4,8 @@ export const nudgeLabCase: CaseData = {
   slug: "nudge-lab",
   title: "NUDGELAB",
   docTitle: "NudgeLab — Case Study",
+  seoDescription:
+    "No-code in-app nudges — design, configure, and ship user guidance without touching the product codebase. HackRx 3.0 Dark Horse.",
   badge: "HACKRX 3.0 · DARK HORSE",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1714473687/jagnani73/projects/nudge-lab/preview1_r2k59y.png",

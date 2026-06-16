@@ -4,6 +4,8 @@ export const insidepolyCase: CaseData = {
   slug: "insidepoly",
   title: "INSIDEPOLY",
   docTitle: "InsidePoly — Case Study",
+  seoDescription:
+    "Insider-trading surveillance for Polymarket — every trade watched, every wallet scored. Live anomaly detection across prediction-market activity.",
   badge: "LIVE · 2026",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1773432165/jagnani73/projects/insidepoly/d751cba0-010f-47f0-9464-cb961eba2fe6.png",

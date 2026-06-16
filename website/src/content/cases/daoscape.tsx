@@ -4,6 +4,8 @@ export const daoscapeCase: CaseData = {
   slug: "daoscape",
   title: "DAOSCAPE",
   docTitle: "DAOScape — Case Study",
+  seoDescription:
+    "DAO governance weighted by proven reputation, not token balance — influence earned, not bought. Blockscout prize, ETHGlobal Prague.",
   badge: "BLOCKSCOUT PRIZE · ETHGLOBAL PRAGUE",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1766567356/jagnani73/projects/daoscape/5bf4f732-d1db-4517-9264-4306c07b81a5.png",

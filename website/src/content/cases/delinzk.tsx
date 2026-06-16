@@ -4,6 +4,8 @@ export const delinzkCase: CaseData = {
   slug: "delinzk",
   title: "DELINZK",
   docTitle: "deLinZK — Case Study",
+  seoDescription:
+    "Prove you worked somewhere without revealing where — zero-knowledge proof-of-employment credentials. ETHForAll 2023.",
   badge: "ETHFORALL · 2023",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/70ffc667-d062-4948-97dc-85c438a7ef7d_irclpf.png",

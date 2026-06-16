@@ -17,6 +17,8 @@ export const marqueeCase: CaseData = {
   slug: "marquee",
   title: "REACT-EASY-MARQUEE",
   docTitle: "react-easy-marquee — Case Study",
+  seoDescription:
+    "A zero-dependency React marquee driven entirely by CSS keyframes — my most-installed npm package, 105K+ downloads.",
   badge: "NPM · 105K+ DOWNLOADS",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1714473627/jagnani73/projects/marquee/Screenshot_from_2022-07-02_19-57-10_vyyznz.png",

@@ -4,6 +4,8 @@ export const frenCase: CaseData = {
   slug: "fren",
   title: "FREN",
   docTitle: "Fren — Case Study",
+  seoDescription:
+    "Privacy-first therapy journaling — therapists see the emotional picture, never the raw words. HackTheMountains 2020.",
   badge: "HACKTHEMOUNTAINS 2020 · 4TH",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1714473737/jagnani73/projects/fren/screenshot-therapist_1_xy2335.png",

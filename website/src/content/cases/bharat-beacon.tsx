@@ -6,6 +6,8 @@ export const bharatBeaconCase: CaseData = {
   slug: "bharat-beacon",
   title: "BHARAT BEACON",
   docTitle: "Bharat Beacon — Case Study",
+  seoDescription:
+    "Disaster response mapped live — IoT distress signals pinpointed for the authorities. Best first-year team, Code2Create 4.0.",
   badge: "CODE2CREATE 4.0 · BEST 1ST-YR TEAM",
   deck: (
     <>

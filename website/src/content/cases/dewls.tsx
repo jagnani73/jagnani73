@@ -4,6 +4,8 @@ export const dewlsCase: CaseData = {
   slug: "dewls",
   title: "DEWLS",
   docTitle: "Dewls — Case Study",
+  seoDescription:
+    "On-chain arcade wagering — real stakes on 1v1 games, every win sealed as a Proof-of-Victory. Sign Protocol prize, ETHOnline 2024.",
   badge: "SIGN PROTOCOL PRIZE · ETHONLINE 2024",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1766566655/jagnani73/projects/dewls/daffe5d5-c9af-4149-a6cf-0d2cf6b1c7a5.png",

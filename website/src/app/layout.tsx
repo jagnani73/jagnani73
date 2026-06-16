@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/shared/theme-provider";
 import { Splash } from "@/components/shared/splash";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { SITE_NAME, SITE_DESCRIPTION, SITE_URL } from "@/lib/seo";
 
 const anton = Anton({
   subsets: ["latin"],
@@ -35,14 +36,18 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
-const metadataTitle = "Yashvardhan Jagnani";
-const metadataDescription =
-  "Blockchain-first software engineer — AI-native builder, forward-deployed engineer. Covalent · InsidePoly · AI Agent SDK. Incoming MSc, NTU Singapore.";
+const metadataTitle = SITE_NAME;
+const metadataDescription = SITE_DESCRIPTION;
 
 export const metadata: Metadata = {
-  title: metadataTitle,
+  title: {
+    default: metadataTitle,
+    template: "%s — Yashvardhan Jagnani",
+  },
   description: metadataDescription,
-  authors: [{ name: metadataTitle }],
+  authors: [{ name: metadataTitle, url: SITE_URL }],
+  creator: metadataTitle,
+  publisher: metadataTitle,
   keywords: [
     metadataTitle,
     "jagnani73",
@@ -55,11 +60,14 @@ export const metadata: Metadata = {
     "react",
     "nextjs",
   ],
-  metadataBase: new URL("https://jagnani73.com"),
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: metadataTitle,
     description: metadataDescription,
-    url: "https://jagnani73.com",
+    url: SITE_URL,
     siteName: metadataTitle,
     locale: "en_US",
     type: "website",
@@ -68,6 +76,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: metadataTitle,
     description: metadataDescription,
+    site: "@jagnani73",
     creator: "@jagnani73",
   },
   icons: {

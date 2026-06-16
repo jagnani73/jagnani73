@@ -4,6 +4,8 @@ export const solanaMlDsa44Case: CaseData = {
   slug: "solana-ml-dsa-44",
   title: "ML-DSA-44",
   docTitle: "Post-Quantum Solana (ML-DSA-44) — Case Study",
+  seoDescription:
+    "Making the Solana validator quantum-secure — payments and consensus votes signed with NIST's ML-DSA-44 post-quantum standard, proven live on-chain.",
   badge: "POST-QUANTUM · SOLANA FORK · 2026",
   deck: (
     <>

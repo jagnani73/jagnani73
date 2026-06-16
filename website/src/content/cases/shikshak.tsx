@@ -4,6 +4,8 @@ export const shikshakCase: CaseData = {
   slug: "shikshak",
   title: "SHIKSHAK",
   docTitle: "Shikshak — Case Study",
+  seoDescription:
+    "The online classroom rebuilt without video — a blackboard streamed as pixels for ~85% less data. 1st place, Hack This Fall 2020.",
   badge: "HACK THIS FALL 2020 · 1ST",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1714473789/jagnani73/projects/shikshak/screenshot-calibrate_1_kaglgd.png",

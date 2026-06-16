@@ -4,6 +4,8 @@ export const hospitatvaCase: CaseData = {
   slug: "hospitatva",
   title: "HOSPITATVA",
   docTitle: "Hospitatva — Case Study",
+  seoDescription:
+    "A national portal against pandemic price-gouging — hospital rates recorded immutably and checked by ML. Smart India Hackathon 2022.",
   badge: "SMART INDIA HACKATHON · 2022",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1714473710/jagnani73/projects/hospitatva/preview1_1_ghtg1s.png",

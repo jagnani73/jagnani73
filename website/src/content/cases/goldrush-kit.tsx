@@ -4,6 +4,8 @@ export const goldrushKitCase: CaseData = {
   slug: "goldrush-kit",
   title: "GOLDRUSH KIT",
   docTitle: "GoldRush Kit — Case Study",
+  seoDescription:
+    "Plug-and-play React components that turn raw on-chain data into UI — typed, themeable, drop-in across 200+ chains. Open source, 105★.",
   badge: "OPEN SOURCE · 105★",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1766564317/jagnani73/projects/goldrush-kit/81f580da-f9c3-4f15-8faf-ca37eef2fedd.png",

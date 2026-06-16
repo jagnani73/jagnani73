@@ -4,6 +4,8 @@ export const fluxCase: CaseData = {
   slug: "flux",
   title: "FLUX",
   docTitle: "Flux — Case Study",
+  seoDescription:
+    "Web3-native AI support — agents with on-chain awareness that read explorers, diagnose failed transactions, and answer from live state.",
   badge: "FLUENCE PRIZE · ETHGLOBAL NEW DELHI",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1766567915/jagnani73/projects/flux/f631ab10-eee1-44d7-a70a-dfff0c2f353a.png",

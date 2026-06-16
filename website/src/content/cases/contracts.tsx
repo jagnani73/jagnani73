@@ -4,6 +4,8 @@ export const contractsCase: CaseData = {
   slug: "contracts",
   title: "CONTRACTS",
   docTitle: "Contracts — Case Study",
+  seoDescription:
+    "Split expenses with friends on-chain — every edit, settle, and delete kept in an immutable audit log. Best Hedera, Rookie Hacks II.",
   badge: "ROOKIE HACKS II · BEST HEDERA",
   ogImage:
     "https://res.cloudinary.com/jagnani73/image/upload/v1714473805/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-45-39_lskus9.png",

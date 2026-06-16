@@ -17,6 +17,7 @@ An editorial, "newspaper-of-record" portfolio built with Next.js 16 (App Router)
 - `/record` — **The Record**: one filterable timeline of everything, with a year-gutter constellation canvas and per-year "consensus" confirm animation.
 - `/record/[slug]` — **Case study** template. Every project gets a page: authored cases are exemplars; the rest are derived from `data.ts`. `generateStaticParams()` prerenders all of them.
 - `/api/resume`, `/api/cover-letter` — redirect routes.
+- `/sitemap.xml`, `/robots.txt` — generated from `app/sitemap.ts` + `app/robots.ts`.
 - Legacy `/projects`, `/projects/:slug`, `/experiences` 301-redirect to `/record` (`next.config.ts`).
 
 ## Project Structure
@@ -26,9 +27,11 @@ website/
 ├── src/
 │   ├── app/                 # Routes, layout, globals.css, OG image routes
 │   │   ├── api/             # resume + cover-letter redirect routes
-│   │   └── record/          # /record and /record/[slug]
+│   │   ├── record/          # /record and /record/[slug]
+│   │   ├── sitemap.ts       # generated /sitemap.xml
+│   │   └── robots.ts        # generated /robots.txt
 │   ├── components/
-│   │   ├── shared/          # theme-provider, site-rail, page-shell, footer, back-to-top
+│   │   ├── shared/          # theme-provider, site-rail, page-shell, footer, back-to-top, json-ld
 │   │   ├── home/            # masthead, chapters, selected-work, person
 │   │   ├── work/            # record-client, year-mark, consensus-block
 │   │   ├── case/            # case template parts + plate-viewer lightbox
@@ -39,7 +42,7 @@ website/
 │   │   ├── cases/           # authored cases, registered in cases/index.ts
 │   │   └── case-types.ts    # CaseData + section unions
 │   ├── hooks/               # in-view, is-mobile, media-query, reduced-motion, theme-tokens, tick
-│   ├── lib/                 # fetch-metrics (ISR), project-to-case, theme-tokens
+│   ├── lib/                 # fetch-metrics (ISR), project-to-case, theme-tokens, seo
 │   └── utils/               # data.ts (projects, resumes, coverLetter), types, enums
 └── next.config.ts
 ```
@@ -52,7 +55,11 @@ Tokens are CSS custom properties in `src/app/globals.css`, defined per `[data-th
 
 - **Record rows**: `src/content/record.ts` (counts recompute automatically).
 - **Home sections**: `src/content/home.ts`.
-- **A new case study**: add `src/content/cases/<slug>.tsx` and register it in the `AUTHORED` map in `cases/index.ts`. Any `data.ts` project already has a derived page.
+- **A new case study**: add `src/content/cases/<slug>.tsx` and register it in the `AUTHORED` map in `cases/index.ts`, including a plain-text `seoDescription`. Any `data.ts` project already has a derived page.
+
+## SEO
+
+`lib/seo.ts` is the single source of truth for site identity (`SITE_URL`/`SITE_NAME`/`SITE_DESCRIPTION`) and JSON-LD builders. Each route emits structured data via `components/shared/json-ld.tsx`: the home page carries `Person` + `WebSite`, `/record` a `CollectionPage` + `BreadcrumbList`, and every case a `CreativeWork` + `BreadcrumbList`. Canonical URLs and a title template are set in `layout.tsx`; per-case meta descriptions come from each case's `seoDescription`. `sitemap.xml` enumerates every route and `robots.txt` points crawlers to it.
 
 ## Development
 
