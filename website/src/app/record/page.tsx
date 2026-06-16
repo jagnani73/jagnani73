@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/shared/page-shell";
-import { getRecordCounts } from "@/content/record";
+import { getRecordCounts, FILTERS } from "@/content/record";
 import { RecordClient } from "@/components/record/record-client";
 import { JsonLd } from "@/components/shared/json-ld";
 import { collectionPageLd, breadcrumbLd } from "@/utils/functions/seo";
+import type { FilterId } from "@/utils/types/record.types";
 
 const RECORD_DESCRIPTION =
   "Everything, in one timeline — experience, projects, hackathons, community, research, education and certifications, 2019 → now.";
@@ -20,7 +21,18 @@ export const metadata: Metadata = {
   },
 };
 
-const RecordPage = () => {
+const FILTER_IDS = new Set<string>(FILTERS.map((f) => f.id));
+const toFilterId = (raw?: string): FilterId => {
+  const up = raw?.toUpperCase();
+  return up && FILTER_IDS.has(up) ? (up as FilterId) : "ALL";
+};
+
+const RecordPage = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ filter?: string }>;
+}) => {
+  const { filter } = await searchParams;
   const counts = getRecordCounts();
 
   return (
@@ -38,7 +50,7 @@ const RecordPage = () => {
           ]),
         ]}
       />
-      <RecordClient counts={counts} />
+      <RecordClient counts={counts} initialFilter={toFilterId(filter)} />
     </PageShell>
   );
 };

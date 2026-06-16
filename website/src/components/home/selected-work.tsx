@@ -56,10 +56,19 @@ export const SelectedWork = ({ metrics }: { metrics: Metrics }) => {
         id="work"
         n="02"
         title="SELECTED WORK"
-        note={`${items.length} of ${
-          RECORD.filter((r) => r.kind === "PROJECT" && r.slug !== undefined)
-            .length
-        } — each opens a case study`}
+        note={
+          <Link
+            href="/record?filter=cases"
+            className="transition-colors hover:text-sig"
+          >
+            {items.length} of{" "}
+            {
+              RECORD.filter((r) => r.kind === "PROJECT" && r.slug !== undefined)
+                .length
+            }{" "}
+            case studies ↗
+          </Link>
+        }
       />
       {items.map((item) => (
         <Link key={item.id} href={item.href} className={rowClass}>

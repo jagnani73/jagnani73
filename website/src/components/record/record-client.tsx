@@ -116,10 +116,12 @@ const RecordRow = ({
 
 export const RecordClient = ({
   counts,
+  initialFilter,
 }: {
   counts: Record<FilterId, number>;
+  initialFilter: FilterId;
 }) => {
-  const [filter, setFilter] = useState<FilterId>("ALL");
+  const [filter, setFilter] = useState<FilterId>(initialFilter);
   const [hov, setHov] = useState("");
   const [atEnd, setAtEnd] = useState(false);
   const scrollVel = useRef(0);
@@ -127,6 +129,17 @@ export const RecordClient = ({
   const mob = useIsMobile();
   const reduced = useReducedMotion();
   const gut = mob ? 96 : GUTTER;
+
+  // Filter lives in the URL (?filter=cases) so it's shareable; sync without a
+  // reload. ALL clears the param.
+  const applyFilter = (id: FilterId) => {
+    setFilter(id);
+    window.history.replaceState(
+      null,
+      "",
+      id === "ALL" ? "/record" : `/record?filter=${id.toLowerCase()}`,
+    );
+  };
 
   // scroll velocity → constellation drift. The decay rAF runs only while there's
   // velocity to bleed off (never under reduced motion / hidden tab), so an idle
@@ -222,7 +235,7 @@ export const RecordClient = ({
               <button
                 key={f.id}
                 type="button"
-                onClick={() => setFilter(f.id)}
+                onClick={() => applyFilter(f.id)}
                 aria-pressed={active}
                 aria-label={`Filter: ${f.label} (${counts[f.id] ?? 0})`}
                 className={`cursor-pointer rounded-full px-2.5 py-1 font-mono text-[10.5px] tracking-[0.06em] transition-colors rail:px-[15px] rail:py-1.5 rail:text-[12.5px] ${
