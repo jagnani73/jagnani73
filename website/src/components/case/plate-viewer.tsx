@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import type { Plate, PlateImg } from "@/content/case-types";
 
@@ -15,19 +15,25 @@ export const PlateViewer = ({
   const [fits, setFits] = useState<Record<number, "cover" | "contain">>({});
   const [big, setBig] = useState(-1);
   const [closing, setClosing] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const dialogRef = useRef<HTMLDivElement | null>(null);
 
   const closeBig = () => {
     setClosing(true);
     setTimeout(() => {
       setBig(-1);
       setClosing(false);
+      triggerRef.current?.focus();
     }, 210);
   };
 
   useEffect(() => {
     if (big < 0) return;
+    dialogRef.current?.focus();
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeBig();
+      // No interactive children — keep focus on the dialog while it's open.
+      if (e.key === "Tab") e.preventDefault();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -51,7 +57,10 @@ export const PlateViewer = ({
               <button
                 key={j}
                 type="button"
-                onClick={() => setBig(j)}
+                onClick={(e) => {
+                  triggerRef.current = e.currentTarget;
+                  setBig(j);
+                }}
                 aria-label={`open ${pl.cap}`}
                 className={`${common} cursor-zoom-in border-0 bg-transparent p-0`}
               >
@@ -117,13 +126,22 @@ export const PlateViewer = ({
       {/* lightbox */}
       {bigPlate ? (
         <div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`plate ${String(big + 1).padStart(2, "0")} — ${
+            bigPlate.cap
+          }, enlarged`}
+          tabIndex={-1}
           onClick={closeBig}
-          className="fixed inset-0 z-[1000] flex cursor-zoom-out flex-col items-center justify-center gap-4"
+          className="fixed inset-0 z-1000 flex cursor-zoom-out flex-col items-center justify-center gap-4 outline-none"
           style={{
             background: "rgba(8,9,10,0.9)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
-            animation: `${closing ? "plFadeOut" : "plFadeIn"} 0.22s ease forwards`,
+            animation: `${
+              closing ? "plFadeOut" : "plFadeIn"
+            } 0.22s ease forwards`,
           }}
         >
           <div
@@ -131,7 +149,9 @@ export const PlateViewer = ({
             style={{
               width: "92vw",
               height: "82vh",
-              animation: `${closing ? "plZoomOut" : "plZoomIn"} 0.28s cubic-bezier(0.22,1,0.36,1) forwards`,
+              animation: `${
+                closing ? "plZoomOut" : "plZoomIn"
+              } 0.28s cubic-bezier(0.22,1,0.36,1) forwards`,
             }}
           >
             <Image
@@ -145,7 +165,9 @@ export const PlateViewer = ({
           <span
             className="font-mono text-[12.5px] text-tx2"
             style={{
-              animation: `${closing ? "plFadeOut" : "plFadeIn"} 0.3s ease forwards`,
+              animation: `${
+                closing ? "plFadeOut" : "plFadeIn"
+              } 0.3s ease forwards`,
             }}
           >
             plate {String(big + 1).padStart(2, "0")} — {bigPlate.cap}

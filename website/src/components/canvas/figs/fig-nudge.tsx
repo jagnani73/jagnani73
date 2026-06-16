@@ -3,6 +3,7 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import { figPanel } from "./fig-style";
 
 const M = "var(--font-mono)";
 const S = "var(--font-sans)";
@@ -21,7 +22,7 @@ export const FigNudge = ({ mob, active = true }: { mob: boolean; active?: boolea
   const tick = useTick(880, NUDGE_SET.length * PER, active, 2);
   const n = NUDGE_SET[Math.floor(tick / PER) % NUDGE_SET.length];
   const show = tick % PER >= 1;
-  const panel = { border: `1px solid ${t.rule}`, borderRadius: 6, background: t.panel };
+  const panel = figPanel(t);
 
   return (
     <div>

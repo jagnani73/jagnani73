@@ -162,6 +162,11 @@ export const PERSON = {
       external: true,
     },
     {
+      label: "twitter / jagnani73 ↗",
+      href: "https://twitter.com/jagnani73",
+      external: true,
+    },
+    {
       label: "yashjagnani73@gmail.com ↗",
       href: "mailto:yashjagnani73@gmail.com",
       external: false,

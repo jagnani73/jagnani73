@@ -29,15 +29,27 @@ const ModeToggle = () => {
 };
 
 const Logo = ({ size, home }: { size: number; home?: boolean }) => {
+  // Both marks ship; CSS shows the right one per [data-theme] (zero flash —
+  // next-themes sets the attribute before paint). logo-alt = paper/light.
   const img = (
-    <Image
-      src="/logo.svg"
-      alt="YJ"
-      width={size}
-      height={size}
-      className="rounded-md"
-      priority
-    />
+    <>
+      <Image
+        src="/logo.svg"
+        alt="YJ"
+        width={size}
+        height={size}
+        className="logo-dark max-w-none rounded-md"
+        priority
+      />
+      <Image
+        src="/logo-alt.svg"
+        alt="YJ"
+        width={size}
+        height={size}
+        className="logo-light max-w-none rounded-md"
+        priority
+      />
+    </>
   );
   return home ? (
     <span className="block leading-none">{img}</span>
@@ -67,10 +79,10 @@ export const SiteRail = ({ page, home }: SiteRailProps) => {
 
       {/* Desktop: fixed 64px left rail (≥1201) */}
       <div className="fixed inset-y-0 left-0 z-50 hidden w-16 border-r border-rule bg-bg rail:block">
-        <span className="absolute left-1/2 top-[22px] -translate-x-1/2">
-          <Logo size={30} home={home} />
+        <span className="absolute left-1/2 top-[12px] -translate-x-1/2">
+          <Logo size={46} home={home} />
         </span>
-        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rotate-[-90deg] whitespace-nowrap font-mono text-xs tracking-[0.3em] text-tx3">
+        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 whitespace-nowrap font-mono text-xs tracking-[0.3em] text-tx3">
           EST. 2019 — BLOCKCHAIN · AI · SOFTWARE
         </span>
         <span className="absolute bottom-14 left-1/2 -translate-x-1/2 text-base">

@@ -1,10 +1,3 @@
-export enum ROUTES {
-  HOME = "/",
-  EXPERIENCES = "/experiences",
-  PROJECTS = "/projects",
-  NOT_FOUND = "/404",
-}
-
 export enum STACK_NAMES {
   BOOTSTRAP = "bootstrap",
   C = "c",
@@ -35,13 +28,4 @@ export enum LINKS_NAMES {
   GITHUB = "github",
   NPM = "npm",
   WEBSITE = "website",
-}
-
-export enum SOCIALS_NAMES {
-  INSTAGRAM = "instagram",
-  GITHUB = "github",
-  MAIL = "mail",
-  MEDIUM = "medium",
-  LINKEDIN = "linkedin",
-  TWITTER = "twitter",
 }

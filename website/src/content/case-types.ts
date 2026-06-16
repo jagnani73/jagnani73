@@ -87,11 +87,8 @@ export type CaseSection =
   | PlatesSection
   | ProseSection;
 
-export interface CaseData {
+interface CaseDataBase {
   slug: string;
-  /** Roster index ("01") — only for the authored cases. */
-  idx?: string;
-  rosterSize?: number;
   title: string;
   docTitle: string;
   badge: string;
@@ -102,3 +99,9 @@ export interface CaseData {
   next: string;
   ogImage?: string;
 }
+
+// Roster index ("01") + size are injected by getCase for authored cases only;
+// derived project cases carry neither. The union keeps them travelling together.
+export type CaseData =
+  | (CaseDataBase & { idx?: undefined; rosterSize?: undefined })
+  | (CaseDataBase & { idx: string; rosterSize: number });

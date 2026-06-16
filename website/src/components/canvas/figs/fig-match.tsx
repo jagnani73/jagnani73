@@ -3,6 +3,7 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import { figPanel } from "./fig-style";
 
 const M = "var(--font-mono)";
 const S = "var(--font-sans)";
@@ -20,7 +21,7 @@ export const FigMatch = ({ mob, active = true }: { mob: boolean; active?: boolea
   const n = useTick(900, STORY_MSGS.length + 5, active, STORY_MSGS.length + 4);
   const matched = n >= 2;
   const msgsShown = Math.max(0, Math.min(n - 2, STORY_MSGS.length));
-  const panel = { border: `1px solid ${t.rule}`, borderRadius: 6, background: t.panel };
+  const panel = figPanel(t);
 
   return (
     <div>

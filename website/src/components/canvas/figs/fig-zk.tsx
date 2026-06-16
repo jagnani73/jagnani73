@@ -3,6 +3,7 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import { figPanel } from "./fig-style";
 
 const M = "var(--font-mono)";
 
@@ -12,7 +13,7 @@ export const FigZk = ({ mob, active = true }: { mob: boolean; active?: boolean }
   const n = useTick(440, 12, active, 9);
   const inCircuit = n >= 3 && n <= 6;
   const verified = n >= 7;
-  const panel = { border: `1px solid ${t.rule}`, borderRadius: 6, background: t.panel };
+  const panel = figPanel(t);
 
   return (
     <div>

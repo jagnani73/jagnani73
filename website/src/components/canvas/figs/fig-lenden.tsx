@@ -3,6 +3,7 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import { figPanel } from "./fig-style";
 
 const M = "var(--font-mono)";
 
@@ -16,7 +17,7 @@ export const FigLenden = ({ mob, active = true }: { mob: boolean; active?: boole
   const repaying = n >= 11 && n <= 13;
   const pkgX = sending ? ((n - 3) / 3) * 100 : repaying ? (1 - (n - 11) / 2) * 100 : loaned ? 100 : 0;
   const moving = sending || repaying;
-  const panel = { border: `1px solid ${t.rule}`, borderRadius: 6, background: t.panel };
+  const panel = figPanel(t);
 
   return (
     <div>

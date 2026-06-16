@@ -46,12 +46,43 @@ const FIGS: Record<FigKind, ComponentType<{ mob: boolean; active?: boolean }>> =
   marquee: FigMarquee,
 };
 
+// Screen-reader descriptions for each fig.1 — the animated visuals are otherwise
+// opaque to assistive tech. Mirrors each fig's visible caption.
+const FIG_LABELS: Record<FigKind, string> = {
+  score: "Figure 1 — the 0–100 insider-likelihood scale, scoring live",
+  agents:
+    "Figure 1 — zee.run(): the planner breaks the goal into tasks, the router assigns them, the endgame concludes",
+  wager: "Figure 1 — one wager, settled: stake, play, attest",
+  kit: "Figure 1 — a raw API response resolving into a rendered component",
+  decoder: "Figure 1 — a raw event log decoding into a named, enriched event",
+  flux: "Figure 1 — a refund request, verified against the transaction",
+  dao: "Figure 1 — a vote weighted by reputation proven off-chain, not tokens held",
+  zk: "Figure 1 — proof-of-employment: proven true, employer kept private",
+  lenden: "Figure 1 — collateral locked on one chain, a loan released on another",
+  nudge:
+    "Figure 1 — a no-code nudge, configured once, delivered into a live product",
+  ledger: "Figure 1 — every edit appended to an immutable, on-chain audit log",
+  price:
+    "Figure 1 — proposed rates checked against the government benchmark, anomalies flagged",
+  board:
+    "Figure 1 — a blackboard captured as a pixel stream, ~85% less data than video",
+  journal: "Figure 1 — the therapist sees the analysis, never the raw entry",
+  match:
+    "Figure 1 — peers matched on shared tags; every message passes a toxicity gate",
+  beacon:
+    "Figure 1 — distress signals polled onto the government dashboard in real time",
+  lattice: "Figure 1 — a quantum attack on each scheme's foundation",
+  tunnel:
+    "Figure 1 — your phone drives the real Claude Code CLI over an encrypted tunnel",
+  marquee: "Figure 1 — this strip is react-easy-marquee, rendering itself",
+};
+
 export const CaseFig = ({ kind }: { kind: FigKind }) => {
   const mob = useIsMobile();
   const [ref, inView] = useInView<HTMLDivElement>({ rootMargin: "200px" });
   const Fig = FIGS[kind];
   return (
-    <div ref={ref}>
+    <div ref={ref} role="img" aria-label={FIG_LABELS[kind]}>
       <Fig mob={mob} active={inView} />
     </div>
   );

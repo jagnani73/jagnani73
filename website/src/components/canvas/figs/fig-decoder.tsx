@@ -3,6 +3,7 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import { figPanel } from "./fig-style";
 
 const M = "var(--font-mono)";
 
@@ -31,7 +32,7 @@ export const FigDecoder = ({ mob, active = true }: { mob: boolean; active?: bool
   const tick = useTick(620, DEC_EVENTS.length * PER, active, 7);
   const ev = DEC_EVENTS[Math.floor(tick / PER) % DEC_EVENTS.length];
   const shown = Math.min(tick % PER, ev.fields.length);
-  const panel = { border: `1px solid ${t.rule}`, borderRadius: 6, background: t.panel };
+  const panel = figPanel(t);
 
   return (
     <div>

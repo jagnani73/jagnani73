@@ -27,31 +27,6 @@
   --color-pri-a40: var(--pri-a40);
   --color-pri-a18: var(--pri-a18);
   --color-pri-a08: var(--pri-a08);
-
-  /* ── Legacy colors (old /projects + /experiences pages, removed in phase 4) ── */
-  --color-eerie-black: #232323;
-  --color-jet: #323232;
-  --color-cultured: #fafafa;
-  --color-steel-blue: #4688b4;
-  --color-light-green: #7ae485;
-  --color-middle-red: #e28b6f;
-
-  /* ── Extended spacing (legacy) ── */
-  --spacing-18: 4.5rem;
-  --spacing-22: 5.5rem;
-  --spacing-26: 6.5rem;
-  --spacing-30: 7.5rem;
-  --spacing-xs: 20rem;
-  --spacing-sm: 24rem;
-  --spacing-md: 28rem;
-  --spacing-lg: 32rem;
-  --spacing-xl: 36rem;
-  --spacing-2xl: 42rem;
-  --spacing-3xl: 48rem;
-  --spacing-4xl: 56rem;
-  --spacing-5xl: 64rem;
-  --spacing-6xl: 72rem;
-  --spacing-7xl: 80rem;
 }
 
 /* ── Dark (cyan) — default ── */
@@ -127,6 +102,28 @@ input,
 textarea,
 select {
   outline: none;
+}
+
+/* Keyboard focus ring (suppressed for pointer focus via :focus-visible) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--sig);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ── Theme-aware logo (dark mark default, paper mark in light) ── */
+.logo-light {
+  display: none;
+}
+[data-theme="light"] .logo-dark {
+  display: none;
+}
+[data-theme="light"] .logo-light {
+  display: block;
 }
 
 /* ── Hairline scrollbar ── */

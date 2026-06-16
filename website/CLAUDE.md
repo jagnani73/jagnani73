@@ -27,7 +27,7 @@ The site is an **editorial "newspaper-of-record"** redesign with three page type
 
 ### Theme & tokens
 - **`next-themes`** (`components/shared/theme-provider.tsx`): `attribute="data-theme"`, `storageKey="jagnani73-mode"`, themes `dark` (cyan, default) / `light` (paper), no-flash.
-- Tokens are CSS custom properties in `src/app/globals.css`, defined per `[data-theme]` and mapped into Tailwind v4 via `@theme inline` → use utilities `bg-bg text-tx border-rule text-pri text-sig text-acc bg-pri-a18` etc. **Do not add unlayered element rules** (e.g. a bare `a {}`) — they override `@layer utilities` and break `text-*` on links.
+- Tokens are CSS custom properties in `src/app/globals.css`, defined per `[data-theme]` and mapped into Tailwind v4 via `@theme inline` → use utilities `bg-bg text-tx border-rule text-pri text-sig text-acc bg-pri-a18` etc. **Do not add unlayered element rules** (e.g. a bare `a {}`) — they override `@layer utilities` and break `text-*` on links. Keyboard focus shows a `:focus-visible` ring (`--sig`); the bare `outline: none` is paired with a `:focus-visible` override, never left standalone.
 - Canvas/JS color access: `lib/theme-tokens.ts` (typed token objects) + `hooks/use-theme-tokens.ts` (replaces the prototype's `window.PAGE_THEME`).
 - Single breakpoint **1201px** via `@theme { --breakpoint-rail }` → `rail:` (≥1201 desktop) / `max-rail:` (≤1200 compact) variants. Prefer CSS variants over JS; `hooks/use-is-mobile.ts` only where JS needs the boolean.
 - Fonts (`app/layout.tsx`, `next/font`): **Anton** (`font-display`), **Instrument Serif** (`font-serif`), **JetBrains Mono** (`font-mono`), **DM Sans** (`font-sans`).
@@ -45,13 +45,13 @@ Every project gets a `/work/[slug]` page. Authored cases (the `AUTHORED` map in 
 `lib/fetch-metrics.ts` `getMetrics()` fetches GitHub stars/forks + npm version count at build (`revalidate: 86400`), falling back to `content/metrics.ts` — **Server Components only**, never client-side, never renders a blank/spinner.
 
 ### Canvas islands (`src/components/canvas/`, all `"use client"`)
-`band-canvas.tsx` (home contours), `time-constellation.tsx` (`/work` mesh), `figs/{fig-score,fig-agent-graph,fig-wager}.tsx` (case fig.1). All gate on `hooks/use-reduced-motion.ts` (static end-state) and pause when offscreen (`IntersectionObserver` / `hooks/use-in-view.ts`). Year-confirm lives in `components/work/{year-mark,consensus-block}.tsx`. Lightbox in `components/case/plate-viewer.tsx`.
+`band-canvas.tsx` (home contours), `time-constellation.tsx` (`/work` mesh), `figs/{fig-score,fig-agent-graph,fig-wager}.tsx` (case fig.1). All gate on `hooks/use-reduced-motion.ts` (static end-state) and pause when offscreen (`IntersectionObserver` / `hooks/use-in-view.ts`). Year-confirm lives in `components/work/{year-mark,consensus-block}.tsx`. Lightbox in `components/case/plate-viewer.tsx` (focus-trapped `role="dialog"`). Shared fig "card" surface: `figs/fig-style.ts` (`figPanel(t)`); each fig.1 is wrapped `role="img"` with a `FIG_LABELS` description in `case-fig.tsx`.
 
 ### Component layout (`src/components/`)
 `shared/` (theme-provider, site-rail, page-shell, page-footer, back-to-top), `home/`, `work/`, `case/`, `canvas/`.
 
-### Legacy `data.ts`
-`src/utils/constants/data.ts` still holds `projects` (drives Selected Work + derived cases), `resumes`, `coverLetter` (API routes). `experiences`/`hackathons`/etc. exports are superseded by `record.ts` but kept. Types in `src/utils/types/`, enums in `shared-constants.tsx`, `stripMarkdown` in `functions/`.
+### Flat `data.ts`
+`src/utils/constants/data.ts` holds **only** `projects` (drives Selected Work + derived cases), `resumes`, and `coverLetter` (API routes). The `experiences`/`hackathons`/`certifications`/`researchPapers` exports (superseded by `record.ts`) were removed, along with their now-dead types/enums. Types in `src/utils/types/` are now just `ProjectType` + `ResumeType`; enums in `shared-constants.tsx` are `STACK_NAMES` + `LINKS_NAMES`; `stripMarkdown` in `functions/`.
 
 **Images:** Cloudinary (`res.cloudinary.com/jagnani73/**`) + GitHub via `next/image` (`next.config.ts` remotePatterns). **Path alias:** `@/*` → `./src/*`.
 

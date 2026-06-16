@@ -211,7 +211,10 @@ export const RecordClient = ({
             return (
               <button
                 key={f.id}
+                type="button"
                 onClick={() => setFilter(f.id)}
+                aria-pressed={active}
+                aria-label={`Filter: ${f.label} (${counts[f.id] ?? 0})`}
                 className={`cursor-pointer rounded-full px-2.5 py-1 font-mono text-[10.5px] tracking-[0.06em] transition-colors rail:px-[15px] rail:py-1.5 rail:text-[12.5px] ${
                   active
                     ? "border border-pri bg-pri-a18 text-sig"

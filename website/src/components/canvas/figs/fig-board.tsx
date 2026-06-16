@@ -4,6 +4,7 @@ import type { CSSProperties } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import { figPanel } from "./fig-style";
 
 const M = "var(--font-mono)";
 const PTS = "8,46 22,20 34,52 48,18 60,50 74,22 86,48 92,30";
@@ -15,7 +16,7 @@ export const FigBoard = ({ mob, active = true }: { mob: boolean; active?: boolea
   const n = useTick(110, 130, active, 100);
   const draw = Math.min(n / 70, 1);
   const reduction = Math.round(draw * 85);
-  const panel = { border: `1px solid ${t.rule}`, borderRadius: 6, background: t.panel };
+  const panel = figPanel(t);
 
   return (
     <div>

@@ -3,6 +3,7 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import { figPanel } from "./fig-style";
 
 const M = "var(--font-mono)";
 
@@ -22,7 +23,7 @@ export const FigJournal = ({ mob, active = true }: { mob: boolean; active?: bool
   const done = n >= 5;
   const keysShown = done ? FREN_KEYS.length : 0;
   const mood = done ? 34 : 0;
-  const panel = { border: `1px solid ${t.rule}`, borderRadius: 6, background: t.panel };
+  const panel = figPanel(t);
 
   return (
     <div>

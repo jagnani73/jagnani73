@@ -14,7 +14,7 @@ export const CaseMasthead = ({ caseData: c }: { caseData: CaseData }) => (
       </Link>
       {c.idx ? (
         <span className="hidden rail:inline">
-          CASE — {c.idx} / {String(c.rosterSize ?? 3).padStart(2, "0")}
+          CASE — {c.idx} / {String(c.rosterSize).padStart(2, "0")}
         </span>
       ) : null}
     </div>
