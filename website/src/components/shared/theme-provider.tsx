@@ -6,7 +6,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <NextThemesProvider
       attribute="data-theme"
-      defaultTheme="dark"
+      defaultTheme="light"
       themes={["dark", "light"]}
       storageKey="jagnani73-mode"
       enableSystem={false}
