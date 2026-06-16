@@ -90,7 +90,7 @@ export const Splash = () => {
     <div
       ref={overlayRef}
       aria-hidden
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-bg"
+      className="splash-overlay fixed inset-0 z-[100] flex items-center justify-center bg-bg"
     >
       <div ref={markRef} className="leading-none">
         <Mark animate size={180} className="block" />

@@ -87,6 +87,20 @@ body {
   scroll-behavior: smooth;
 }
 
+/* Always reserve the scrollbar gutter so toggling scroll-lock (the splash,
+   below) never changes content width — no horizontal shift on lock or unlock. */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* First-land splash: lock scroll while the overlay is mounted. Driven purely
+   off the overlay's presence in the DOM (SSR-safe, no JS race), and released
+   automatically when <Splash/> unmounts. The stable gutter above keeps this
+   from shifting the page. */
+html:has(.splash-overlay) {
+  overflow: hidden;
+}
+
 body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
