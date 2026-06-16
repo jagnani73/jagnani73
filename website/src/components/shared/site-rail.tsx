@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { useTheme } from "next-themes";
+import { Mark } from "./mark";
 
 interface SiteRailProps {
   /** Page tag shown at the rail/bar edge, e.g. "P.01", "R.01", "P.03". */
@@ -29,33 +30,25 @@ const ModeToggle = () => {
 };
 
 const Logo = ({ size, home }: { size: number; home?: boolean }) => {
-  // Both marks ship; CSS shows the right one per [data-theme] (zero flash —
-  // next-themes sets the attribute before paint). logo-alt = paper/light.
-  const img = (
-    <>
-      <Image
-        src="/logo.svg"
-        alt="YJ"
-        width={size}
-        height={size}
-        className="logo-dark max-w-none rounded-md"
-        priority
-      />
-      <Image
-        src="/logo-alt.svg"
-        alt="YJ"
-        width={size}
-        height={size}
-        className="logo-light max-w-none rounded-md"
-        priority
-      />
-    </>
+  // One inline mark, theme-coloured via --logo-ink. Hovering plays a single
+  // round-trip (YJ → `>_` → YJ) that always finishes — no pause on mouse-out.
+  // [data-rail-logo] marks the box the first-land splash collapses onto.
+  const [playing, setPlaying] = useState(false);
+  const mark = (
+    <span
+      data-rail-logo
+      onMouseEnter={() => setPlaying(true)}
+      onAnimationEnd={() => setPlaying(false)}
+      className="inline-flex leading-none"
+    >
+      <Mark size={size} animate={playing} mode="hover" className="block" />
+    </span>
   );
   return home ? (
-    <span className="block leading-none">{img}</span>
+    <span className="block leading-none">{mark}</span>
   ) : (
-    <Link href="/" className="block leading-none">
-      {img}
+    <Link href="/" className="block leading-none" aria-label="Home">
+      {mark}
     </Link>
   );
 };
