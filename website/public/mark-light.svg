@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="120" height="120" fill="#1a1d1f" role="img" aria-label="YJ mark">
+  <style>
+    g, path { transform-box: view-box; }
+    .mark-bar-b  { animation: bar-b  3.4s linear infinite alternate; }
+    .mark-half-b { transform-origin: 350px 515px; animation: half-b 3.4s cubic-bezier(.22,1,.36,1) infinite alternate; }
+    .mark-half-a { animation: half-a 3.4s cubic-bezier(.22,1,.36,1) infinite alternate; }
+    .mark-bar-a  { animation: bar-a  3.4s cubic-bezier(.22,1,.36,1) infinite alternate; }
+    .mark-chev-a { animation: chev-a 3.4s cubic-bezier(.22,1,.36,1) infinite alternate; }
+
+    @keyframes bar-b {
+      0%   { transform: translateX(-180px); opacity: 1; }
+      5%   { opacity: 0; }
+      10%  { opacity: 1; }
+      15%  { opacity: 0; }
+      20%  { transform: translateX(-180px); opacity: 1; }
+      29%  { transform: translateX(0); opacity: 1; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes half-b {
+      0%, 29% { transform: translateX(191px) rotate(-90deg); }
+      44%     { transform: translateX(191px) rotate(0deg); }
+      59%     { transform: translateX(0) rotate(0deg); }
+      100%    { transform: translateX(0) rotate(0deg); }
+    }
+    @keyframes half-a {
+      0%, 41% { transform: translateX(-191px); opacity: 0; }
+      45%     { transform: translateX(-191px); opacity: 1; }
+      59%     { transform: translateX(0); opacity: 1; }
+      100%    { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes bar-a {
+      0%, 59% { transform: translateY(246px); }
+      74%     { transform: translateY(0); }
+      100%    { transform: translateY(0); }
+    }
+    @keyframes chev-a {
+      0%, 59% { transform: translateY(-289px); }
+      74%     { transform: translateY(0); }
+      100%    { transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mark-bar-b, .mark-half-b, .mark-half-a, .mark-bar-a, .mark-chev-a {
+        animation: none; opacity: 1; transform: none;
+      }
+    }
+  </style>
+
+  <!-- Left half — the >_ cursor rises into the sleeping-Y stem, then swings upright -->
+  <g class="mark-half-b">
+    <g class="mark-chev-b">
+      <path d="M536.538 323.411L491.979 278.429C489.621 276.049 485.78 276.031 483.4 278.389L300.188 459.882C297.808 462.24 297.789 466.081 300.147 468.461L344.707 513.442C347.065 515.823 350.906 515.841 353.286 513.483L536.498 331.989C538.878 329.632 538.896 325.791 536.538 323.411Z" />
+      <path d="M352.341 513.66L397.323 469.1C399.703 466.743 399.721 462.902 397.363 460.522L215.87 277.31C213.512 274.929 209.671 274.911 207.291 277.269L162.31 321.829C159.929 324.186 159.911 328.027 162.269 330.407L343.763 513.62C346.12 516 349.961 516.018 352.341 513.66Z" />
+    </g>
+    <path class="mark-bar-b" d="M383.515 518.827H315.24C311.89 518.827 309.174 521.542 309.174 524.893V800.525C309.174 803.875 311.89 806.591 315.24 806.591H383.515C386.865 806.591 389.581 803.875 389.581 800.525V524.893C389.581 521.542 386.865 518.827 383.515 518.827Z" />
+  </g>
+
+  <!-- Right half — clones the Y, splits right, then bar rises + chevron drops into the J -->
+  <g class="mark-half-a">
+    <path class="mark-bar-a" d="M765.685 273H697.41C694.06 273 691.344 275.716 691.344 279.066V554.698C691.344 558.049 694.06 560.765 697.41 560.765H765.685C769.036 560.765 771.751 558.049 771.751 554.698V279.066C771.751 275.716 769.036 273 765.685 273Z" />
+    <g class="mark-chev-a">
+      <path d="M918.73 611.534L874.171 566.552C871.813 564.172 867.972 564.154 865.592 566.512L682.38 748.005C679.999 750.363 679.981 754.204 682.339 756.584L726.899 801.566C729.257 803.946 733.097 803.964 735.477 801.606L918.69 620.113C921.07 617.755 921.088 613.914 918.73 611.534Z" />
+      <path d="M734.511 801.804L779.492 757.244C781.872 754.887 781.89 751.046 779.533 748.666L598.039 565.453C595.681 563.073 591.84 563.055 589.46 565.413L544.479 609.973C542.099 612.33 542.081 616.171 544.438 618.551L725.932 801.763C728.29 804.144 732.131 804.162 734.511 801.804Z" />
+    </g>
+  </g>
+</svg>
