@@ -66,7 +66,7 @@ export const Masthead = () => (
       <div className="border-b border-rule px-4 py-3.5 rail:border-b-0 rail:border-r rail:px-11 rail:py-[18px]">
         <span className="text-tx3">LATEST —</span>
         <br />
-        Covalent &apos;23–&apos;25 · InsidePoly &apos;26
+        Infinia &apos;26 · Covalent &apos;23–&apos;25
         <br />
         next: <span className="text-sig">NTU Singapore · MSc, Aug 2026</span>
       </div>
