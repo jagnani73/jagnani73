@@ -31,10 +31,10 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <NextThemesProvider
       attribute="data-theme"
-      defaultTheme="light"
+      defaultTheme="system"
       themes={["dark", "light"]}
       storageKey="jagnani73-mode"
-      enableSystem={false}
+      enableSystem
       disableTransitionOnChange
     >
       <FaviconSync />
