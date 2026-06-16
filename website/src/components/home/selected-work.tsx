@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SELECTED_WORK, type SelectedWorkItem } from "@/content/home";
 import type { Metrics } from "@/content/metrics";
+import { getSelectedWork, type SelectedWorkItem } from "@/lib/selected-work";
 import { SectionHead } from "./section-head";
 
 const tagFor = (item: SelectedWorkItem, metrics: Metrics): string => {
@@ -46,31 +46,21 @@ const Row = ({ item, tag }: { item: SelectedWorkItem; tag: string }) => (
   </>
 );
 
-export const SelectedWork = ({ metrics }: { metrics: Metrics }) => (
-  <section>
-    <SectionHead
-      id="work"
-      n="02"
-      title="SELECTED WORK"
-      note="6 of 35+ — each opens a case study"
-    />
-    {SELECTED_WORK.map((item) => {
-      const tag = tagFor(item, metrics);
-      return item.internal ? (
+export const SelectedWork = ({ metrics }: { metrics: Metrics }) => {
+  const items = getSelectedWork();
+  return (
+    <section>
+      <SectionHead
+        id="work"
+        n="02"
+        title="SELECTED WORK"
+        note={`${items.length} of 35+ — each opens a case study`}
+      />
+      {items.map((item) => (
         <Link key={item.id} href={item.href} className={rowClass}>
-          <Row item={item} tag={tag} />
+          <Row item={item} tag={tagFor(item, metrics)} />
         </Link>
-      ) : (
-        <a
-          key={item.id}
-          href={item.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={rowClass}
-        >
-          <Row item={item} tag={tag} />
-        </a>
-      );
-    })}
-  </section>
-);
+      ))}
+    </section>
+  );
+};
