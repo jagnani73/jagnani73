@@ -4,14 +4,17 @@ import { DECK_LINES } from "@/content/home";
 import { Rule } from "./rule";
 
 const navLink =
-  "cursor-pointer text-tx2 transition-colors hover:text-sig";
+  "cursor-pointer whitespace-nowrap text-tx2 transition-colors hover:text-sig";
+// "the record" is the primary nav CTA — accent at all times (hover fades, not recolors).
+const recordLink =
+  "cursor-pointer whitespace-nowrap text-acc transition-opacity hover:opacity-75";
 
 export const Masthead = () => (
   <section>
     {/* nav row */}
-    <div className="flex flex-wrap items-baseline justify-between gap-4 px-4 py-3 font-mono text-[13.5px] text-tx3 rail:grid rail:grid-cols-[1fr_auto_1fr] rail:px-11 rail:pb-4 rail:pt-6">
+    <div className="flex flex-col gap-2.5 px-4 py-3 font-mono text-[13.5px] text-tx3 rail:grid rail:grid-cols-[1fr_auto_1fr] rail:items-baseline rail:gap-4 rail:px-11 rail:pb-4 rail:pt-6">
       <span className="hidden rail:inline rail:justify-self-start">jagnani73</span>
-      <span className="flex gap-4 rail:-translate-x-8 rail:justify-self-center rail:gap-[26px]">
+      <span className="flex flex-wrap gap-x-4 gap-y-1.5 rail:-translate-x-8 rail:flex-nowrap rail:justify-self-center rail:gap-[26px]">
         <a href="#chapters" className={navLink}>
           chapters
         </a>
@@ -21,7 +24,7 @@ export const Masthead = () => (
         <a href="#person" className={navLink}>
           the person
         </a>
-        <Link href="/work" className={navLink}>
+        <Link href="/record" className={recordLink}>
           the record ↗
         </Link>
       </span>
@@ -43,10 +46,7 @@ export const Masthead = () => (
         BLOCKCHAIN
       </span>
       <span className="font-serif text-[clamp(22px,2.7vw,39px)] italic text-tx">
-        {DECK_LINES[0]}
-      </span>
-      <span className="font-serif text-[clamp(22px,2.7vw,39px)] italic text-tx">
-        {DECK_LINES[1]}
+        {DECK_LINES.join(" ")}
       </span>
     </div>
     <Rule />
@@ -54,7 +54,7 @@ export const Masthead = () => (
     {/* fig. 1 band */}
     <div className="relative h-40 overflow-hidden rail:h-[220px]">
       <BandCanvas />
-      <span className="pointer-events-none absolute bottom-2.5 right-4 z-[2] font-mono text-[12px] text-tx3">
+      <span className="pointer-events-none absolute inset-x-4 bottom-2.5 z-[2] text-right font-mono text-[12px] text-tx3">
         fig. 1 — a slow map of a place that doesn&apos;t exist · your cursor is a
         hill
       </span>
@@ -85,10 +85,10 @@ export const Masthead = () => (
         </a>
         <br />
         <Link
-          href="/work"
+          href="/record"
           className="text-tx2 transition-colors hover:text-sig"
         >
-          full record at /work ↗
+          full record at /record ↗
         </Link>
       </div>
     </div>

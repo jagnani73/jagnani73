@@ -70,7 +70,7 @@ export const SiteRail = ({ page, home }: SiteRailProps) => {
           <span className="font-mono text-xs text-tx2">jagnani73</span>
         </span>
         <span className="flex items-center gap-4">
-          <span className="text-sm">
+          <span className="text-xl leading-none">
             <ModeToggle />
           </span>
           <span className="font-mono text-[11px] text-tx3">{page}</span>
