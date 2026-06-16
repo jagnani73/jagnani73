@@ -27,7 +27,7 @@ _software, shipped at agent speed._
 >_ the record --mixed
 
    119★     AI Agent SDK — agentic onchain tooling
-   3×       ETHGlobal wins · 14 hackathons, 9 awards
+   3×       ETHGlobal wins · 14 hackathons, 10 awards
    3        IEEE papers — one best-conference-paper
    1000s    users shipped as founding eng @ Hashmail
    ~250ms   live OHLCV streamed from raw swap logs
