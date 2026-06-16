@@ -1,17 +1,6 @@
-"use client";
-
-import { useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 const NotFound = () => {
-  const router = useRouter();
-
-  useEffect(() => {
-    const timeout = setTimeout(() => router.push("/"), 6000);
-    return () => clearTimeout(timeout);
-  }, [router]);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-center gap-6 px-6 text-center">
       <p className="font-mono text-[11px] tracking-[0.12em] text-tx3">
@@ -31,9 +20,6 @@ const NotFound = () => {
           the record ↗
         </Link>
       </div>
-      <p className="font-mono text-[11px] text-tx3">
-        redirecting to the front page in a moment…
-      </p>
     </main>
   );
 };
