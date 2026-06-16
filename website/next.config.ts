@@ -9,10 +9,6 @@ const nextConfig: NextConfig = {
         hostname: "res.cloudinary.com",
         pathname: "/jagnani73/**",
       },
-      {
-        protocol: "https",
-        hostname: "github.com",
-      },
     ],
   },
   redirects: async () => [
