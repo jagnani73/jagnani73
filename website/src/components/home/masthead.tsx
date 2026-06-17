@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { BandCanvas } from "@/components/canvas/band-canvas";
-import { DECK_LINES } from "@/content/home";
+import { DECK } from "@/content/home";
 import { RECORD, getRecordCounts } from "@/content/record";
 import { Rule } from "./rule";
 
@@ -50,7 +50,7 @@ export const Masthead = () => {
         BLOCKCHAIN
       </span>
       <span className="font-serif text-[clamp(22px,2.7vw,39px)] italic text-tx">
-        {DECK_LINES.join(" ")}
+        {DECK}
       </span>
     </div>
     <Rule />

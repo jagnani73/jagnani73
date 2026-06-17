@@ -6,7 +6,7 @@ import {
 } from "@/utils/constants/site";
 import type { Chapter } from "@/utils/types/home.types";
 
-export const DECK_LINES = ["software,", "shipped at agent speed"] as const;
+export const DECK = "software, shipped at agent speed";
 
 export const CHAPTERS: Chapter[] = [
   {
