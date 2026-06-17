@@ -13,6 +13,12 @@ export const RESUME =
 export const COVER_LETTER =
   "https://drive.google.com/file/d/1Feh-3W3H5yAkAAZYEgDth-TAJXoqGfqs/view?usp=drive_link";
 
+// ── Standing copy — single source for the masthead bar + footers + OG card ────
+/** Right-hand status shown after the `STATUS:` label across the mastheads and OG. */
+export const STATUS = "NTU SINGAPORE — AUG 2026";
+/** Footer copyright line (AstroLine is appended after it on Home/Record). */
+export const COPYRIGHT = "© 2026 YASHVARDHAN JAGNANI";
+
 // ── Masthead "anton line" ─────────────────────────────────────────────────────
 // Astronomy facts kept ≤ ~24 chars so the desktop one-line lockup holds.
 export const ASTRO_FACTS = [
