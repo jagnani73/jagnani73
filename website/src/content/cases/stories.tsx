@@ -73,7 +73,7 @@ export const storiesCase: CaseDetail = {
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473755/jagnani73/projects/stories/4_1_ylfthn.png", cap: "the admin panel" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473752/jagnani73/projects/stories/1_1_rnugym.png", cap: "the story feed" },
       ],
-      cta: { label: "view the source ↗", href: "https://github.com/jagnani73/stories" },
+      cta: { label: "view the source", href: "https://github.com/jagnani73/stories" },
     },
   },
 };

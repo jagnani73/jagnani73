@@ -76,7 +76,7 @@ export const goldrushKitCase: CaseDetail = {
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766564330/jagnani73/projects/goldrush-kit/0172911e-a1c9-4796-aea3-05bee4f8d65f.png", cap: "transaction list view" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766565005/jagnani73/projects/goldrush-kit/e0dd45f7-2dea-49bc-ac33-a7bbfdfeda05.png", cap: "the NFT wallet view" },
       ],
-      cta: { label: "view the source ↗", href: "https://github.com/covalenthq/goldrush-kit" },
+      cta: { label: "view the source", href: "https://github.com/covalenthq/goldrush-kit" },
     },
   },
 };

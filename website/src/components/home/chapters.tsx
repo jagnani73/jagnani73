@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { CHAPTERS } from "@/content/home";
 import { SectionHead } from "@/components/shared/section-head";
+import { CtaTerm } from "@/components/shared/cta-term";
 import { Rule } from "@/components/shared/rule";
 
 export const Chapters = () => (
@@ -11,12 +11,9 @@ export const Chapters = () => (
       n="01"
       title="THE CHAPTERS"
       note={
-        <Link
-          href="/record"
-          className="text-tx3 transition-colors hover:text-sig"
-        >
-          the full record ↗
-        </Link>
+        <CtaTerm href="/record">
+          the full record
+        </CtaTerm>
       }
     />
     {CHAPTERS.map((c, i) => (

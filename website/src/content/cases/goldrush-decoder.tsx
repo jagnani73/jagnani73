@@ -89,7 +89,7 @@ export const goldrushDecoderCase: CaseDetail = {
         { kind: "code", code: DECODER_CODE, cap: "registering a protocol decoder" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766564974/jagnani73/projects/goldrush-decoder/8abf9959-854f-41f2-8b9d-55c48e00866c.png", cap: "the decoder, documented" },
       ],
-      cta: { label: "view the source ↗", href: "https://github.com/covalenthq/goldrush-decoder" },
+      cta: { label: "view the source", href: "https://github.com/covalenthq/goldrush-decoder" },
     },
   },
 };

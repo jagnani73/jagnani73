@@ -71,7 +71,7 @@ export const shikshakCase: CaseDetail = {
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473783/jagnani73/projects/shikshak/screenshot-preview_1_lsp63m.png", cap: "the reconstructed board" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473786/jagnani73/projects/shikshak/screenshot-home_1_qehcch.png", cap: "the home screen" },
       ],
-      cta: { label: "view the source ↗", href: "https://github.com/jagnani73/shikshak" },
+      cta: { label: "view the source", href: "https://github.com/jagnani73/shikshak" },
     },
   },
 };

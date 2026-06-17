@@ -120,7 +120,7 @@ export const claudeControllerCase: CaseDetail = {
         },
       ],
       cta: {
-        label: "view the source ↗",
+        label: "view the source",
         href: "https://github.com/jagnani73/claude-controller",
       },
     },

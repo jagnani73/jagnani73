@@ -1,5 +1,6 @@
 import { PERSON } from "@/content/home";
 import { SectionHead } from "@/components/shared/section-head";
+import { CtaTerm } from "@/components/shared/cta-term";
 
 export const Person = () => (
   <section>
@@ -42,15 +43,10 @@ export const Person = () => (
             </a>
           </span>
         ))}
-        <span className="block">
-          <a
-            href={PERSON.resume.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="transition-colors hover:text-sig"
-          >
+        <span className="mt-1.5 block">
+          <CtaTerm href={PERSON.resume.href} external>
             {PERSON.resume.label}
-          </a>
+          </CtaTerm>
         </span>
       </div>
     </div>

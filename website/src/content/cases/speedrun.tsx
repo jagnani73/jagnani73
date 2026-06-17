@@ -137,7 +137,7 @@ export const speedrunCase: CaseDetail = {
         },
       ],
       cta: {
-        label: "read the launch ↗",
+        label: "read the launch",
         href: "https://www.covalenthq.com/blog/introducing-speedrun-a-covalent-prompt-to-earn-platform-for-onchain-builders/",
       },
     },

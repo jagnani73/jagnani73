@@ -71,7 +71,7 @@ export const contractsCase: CaseDetail = {
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473811/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-46-20_hxrgok.png", cap: "the audit trail" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473801/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-45-58_qpcdoj.png", cap: "settling up" },
       ],
-      cta: { label: "view the source ↗", href: "https://github.com/jagnani73/contracts" },
+      cta: { label: "view the source", href: "https://github.com/jagnani73/contracts" },
     },
   },
 };

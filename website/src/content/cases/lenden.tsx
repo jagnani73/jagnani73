@@ -77,7 +77,7 @@ export const lendenCase: CaseDetail = {
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/9a5e12be-9c19-42da-ba67-b47af1f14a18_jvotf8.png", cap: "the lender view" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/f247c1a5-c4aa-411a-9c74-c1bbd1147bfa_l3bj0r.png", cap: "repaying a loan" },
       ],
-      cta: { label: "view the source ↗", href: "https://github.com/jagnani73/lenden" },
+      cta: { label: "view the source", href: "https://github.com/jagnani73/lenden" },
     },
   },
 };

@@ -117,7 +117,7 @@ export const marqueeCase: CaseDetail = {
         },
       ],
       cta: {
-        label: "view on npm ↗",
+        label: "view on npm",
         href: "https://www.npmjs.com/package/react-easy-marquee",
       },
     },

@@ -74,7 +74,7 @@ export const nudgeLabCase: CaseDetail = {
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473698/jagnani73/projects/nudge-lab/preview5_wd9hvv.png", cap: "a nudge template" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473699/jagnani73/projects/nudge-lab/preview6_n74him.png", cap: "campaign results" },
       ],
-      cta: { label: "view the source ↗", href: "https://github.com/jagnani73/nudge-lab" },
+      cta: { label: "view the source", href: "https://github.com/jagnani73/nudge-lab" },
     },
   },
 };

@@ -5,6 +5,7 @@ import { getSelectedWork } from "@/utils/functions/selected-work";
 import { getAllCaseSlugs } from "@/content/cases";
 import type { SelectedWorkItem } from "@/utils/types/home.types";
 import { SectionHead } from "@/components/shared/section-head";
+import { CtaTerm } from "@/components/shared/cta-term";
 
 const tagFor = (item: SelectedWorkItem, metrics: Metrics): string => {
   if (item.metric === "agentSdk")
@@ -58,12 +59,9 @@ export const SelectedWork = ({ metrics }: { metrics: Metrics }) => {
         n="02"
         title="SELECTED WORK"
         note={
-          <Link
-            href="/record?filter=cases"
-            className="transition-colors hover:text-sig"
-          >
-            {items.length} of {getAllCaseSlugs().length} case studies ↗
-          </Link>
+          <CtaTerm href="/record?filter=cases">
+            {items.length} of {getAllCaseSlugs().length} case studies
+          </CtaTerm>
         }
       />
       {items.map((item) => (

@@ -79,7 +79,7 @@ export const delinzkCase: CaseDetail = {
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558075/jagnani73/projects/delinzk/ea9ad5d5-7066-41a4-b44b-bd2814f37f57_hftzqk.png", cap: "a zero-knowledge proof" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/350ad1c9-a430-42bb-ae52-d28f70b7ae34_to9t6l.png", cap: "the verifier view" },
       ],
-      cta: { label: "view the source ↗", href: "https://github.com/jagnani73/delinzk" },
+      cta: { label: "view the source", href: "https://github.com/jagnani73/delinzk" },
     },
   },
 };

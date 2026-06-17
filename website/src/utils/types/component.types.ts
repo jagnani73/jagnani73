@@ -29,6 +29,22 @@ export interface PageShellProps {
   children: ReactNode;
 }
 
+// ── shared/cta-term ──
+export interface CtaTermProps {
+  /** Omit to render a non-link `<span>` (e.g. a badge inside a clickable row). */
+  href?: string;
+  /** The label content (text or JSX). */
+  children: ReactNode;
+  /** Render an external `<a target="_blank">` instead of a next/link. */
+  external?: boolean;
+  /** The trailing/leading arrow glyph (default "→"); "←" pairs with arrowSide "left". */
+  arrow?: "→" | "←";
+  /** Which side the arrow sits on (default "right"); "left" flips the hover slide. */
+  arrowSide?: "left" | "right";
+  /** Extra classes (e.g. grid placement) merged onto the link. */
+  className?: string;
+}
+
 // ── shared/section-head ──
 export interface SectionHeadProps {
   /** Outlined leading numeral, e.g. "01". */

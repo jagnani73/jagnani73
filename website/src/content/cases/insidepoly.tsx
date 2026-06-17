@@ -112,7 +112,7 @@ export const insidepolyCase: CaseDetail = {
         },
       ],
       cta: {
-        label: "view the source ↗",
+        label: "view the source",
         href: "https://github.com/jagnani73/insidepoly",
       },
     },

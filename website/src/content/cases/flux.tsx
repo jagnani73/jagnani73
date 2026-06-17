@@ -77,7 +77,7 @@ export const fluxCase: CaseDetail = {
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567905/jagnani73/projects/flux/40534ebc-ecbe-4d84-81bc-943dce41227b.png", cap: "a routed conversation" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766568417/jagnani73/projects/flux/962c2c42-774a-47a5-8a1d-5173d420969d.png", cap: "the agent logs" },
       ],
-      cta: { label: "visit flux ↗", href: "https://flux-support.vercel.app/" },
+      cta: { label: "visit flux", href: "https://flux-support.vercel.app/" },
     },
   },
 };

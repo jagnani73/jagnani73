@@ -332,6 +332,46 @@ select:focus-visible {
   animation: beaconPulse 1.6s ease-out infinite;
 }
 
+/* ── Terminal CTA — shared "cta-term" link (components/shared/cta-term.tsx) ── */
+.cta-term {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-jetbrains), monospace;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  color: var(--sig); /* signal cyan */
+  text-decoration: none;
+  padding-bottom: 5px;
+  border-bottom: 1px dashed var(--pri); /* dashed accent underline */
+  transition: color 0.2s;
+}
+.cta-term:hover {
+  color: var(--tx);
+  border-bottom-style: solid; /* dashed → solid on hover */
+}
+.cta-term .bracket {
+  color: var(--tx3);
+} /* the [ ] */
+.cta-term .arrow {
+  color: var(--pri);
+  transition: transform 0.2s;
+}
+.cta-term:hover .arrow {
+  transform: translateX(3px);
+}
+.cta-term--left:hover .arrow {
+  transform: translateX(-3px);
+} /* back-arrows slide the other way */
+
+/* compact variant — e.g. the record "CASE STUDY" row badge */
+.cta-term--sm {
+  font-size: 11px;
+  gap: 5px;
+  padding-bottom: 3px;
+  white-space: nowrap; /* keep "CASE STUDY →" on one line in the narrow column */
+}
+
 /* Respect reduced-motion at the document level */
 @media (prefers-reduced-motion: reduce) {
   html {

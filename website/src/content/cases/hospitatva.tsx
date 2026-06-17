@@ -73,7 +73,7 @@ export const hospitatvaCase: CaseDetail = {
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473724/jagnani73/projects/hospitatva/preview7_1_ydmuwg.png", cap: "booking a slot" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473721/jagnani73/projects/hospitatva/preview8_1_wghanp.png", cap: "the admin view" },
       ],
-      cta: { label: "view the source ↗", href: "https://github.com/jagnani73/hospitatva" },
+      cta: { label: "view the source", href: "https://github.com/jagnani73/hospitatva" },
     },
   },
 };

@@ -112,7 +112,7 @@ export const dewlsCase: CaseDetail = {
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566705/jagnani73/projects/dewls/bf8e57c5-ae68-40fd-a5cc-f70c9b1fd320.png", cap: "claiming the pot" },
       ],
       cta: {
-        label: "view the showcase ↗",
+        label: "view the showcase",
         href: "https://ethglobal.com/showcase/dewls-oyj1w",
       },
     },

@@ -128,7 +128,7 @@ export const agentSdkCase: CaseDetail = {
         },
       ],
       cta: {
-        label: "view the source ↗",
+        label: "view the source",
         href: "https://github.com/covalenthq/ai-agent-sdk",
       },
     },

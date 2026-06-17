@@ -75,7 +75,7 @@ export const daoscapeCase: CaseDetail = {
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567401/jagnani73/projects/daoscape/41b87a86-0e60-407c-8839-9814193a077c.png", cap: "the voter set" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567453/jagnani73/projects/daoscape/5c1cb2cf-d35c-443a-a1f3-62b99a292c91.png", cap: "proposal results" },
       ],
-      cta: { label: "view the showcase ↗", href: "https://ethglobal.com/showcase/daoscape-g8f8m" },
+      cta: { label: "view the showcase", href: "https://ethglobal.com/showcase/daoscape-g8f8m" },
     },
   },
 };
