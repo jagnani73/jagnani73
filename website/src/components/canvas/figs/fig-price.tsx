@@ -18,16 +18,16 @@ export const FigPrice = ({ mob, active = true }: { mob: boolean; active?: boolea
   const t = useThemeTokens();
   const n = useTick(760, PRICE_ROWS.length + 4, active, PRICE_ROWS.length + 3);
   const shown = Math.min(n, PRICE_ROWS.length);
-  const cols = mob ? "1fr auto auto" : "1fr 120px 120px auto";
+  const cols = mob ? "1fr 84px 84px" : "1fr 120px 120px 90px";
 
   return (
     <div>
       <FigCaption left="fig. 1 — proposed rates checked against the government benchmark, anomalies flagged" right="Zilliqa · ML price model" />
       <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-        <div style={{ display: "grid", gridTemplateColumns: cols, gap: mob ? 10 : 14, padding: "0 14px", fontFamily: M, fontSize: 10, color: t.tx3, letterSpacing: "0.08em" }}>
+        <div style={{ display: "grid", gridTemplateColumns: cols, gap: mob ? 10 : 14, padding: mob ? "0 11px" : "0 14px", border: "1px solid transparent", fontFamily: M, fontSize: 10, color: t.tx3, letterSpacing: "0.08em" }}>
           <span>COMMODITY</span>
-          <span>{mob ? "PROP." : "PROPOSED"}</span>
-          <span>BENCHMARK</span>
+          <span style={{ textAlign: "right" }}>{mob ? "PROP." : "PROPOSED"}</span>
+          <span style={{ textAlign: "right" }}>BENCHMARK</span>
           {!mob ? <span /> : null}
         </div>
         {PRICE_ROWS.map((r, i) => {
@@ -55,7 +55,7 @@ export const FigPrice = ({ mob, active = true }: { mob: boolean; active?: boolea
               <span style={{ fontFamily: M, fontSize: mob ? 11 : 12.5, color: flagged ? t.flag : t.tx2, textAlign: "right" }}>{r.proposed}</span>
               <span style={{ fontFamily: M, fontSize: mob ? 11 : 12.5, color: t.tx3, textAlign: "right" }}>{r.bench}</span>
               {!mob ? (
-                <span style={{ fontFamily: M, fontSize: 10, color: flagged ? t.flag : t.ok, textAlign: "right" }}>
+                <span style={{ fontFamily: M, fontSize: 10, color: flagged ? t.flag : t.ok, textAlign: "right", whiteSpace: "nowrap" }}>
                   {vis ? (r.flag ? "⚠ FLAGGED" : "✓ fair") : ""}
                 </span>
               ) : null}
