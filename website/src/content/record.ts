@@ -133,7 +133,7 @@ export const RECORD: RecordEntry[] = [
     kind: "PROJECT",
     via: "covalent",
     title: "Claude Code Container",
-    meta: "Claude Code in the browser over WebContainers · SpeedRun's intended successor",
+    meta: "Claude Code on the web, via StackBlitz WebContainers",
   },
   {
     year: 2025,
