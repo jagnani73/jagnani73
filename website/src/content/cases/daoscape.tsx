@@ -1,14 +1,10 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigDao } from "@/components/canvas/figs/fig-dao";
 
-export const daoscapeCase: CaseData = {
-  slug: "daoscape",
-  title: "DAOSCAPE",
-  docTitle: "DAOScape — Case Study",
+export const daoscapeCase: CaseDetail = {
   seoDescription:
     "DAO governance weighted by proven reputation, not token balance — influence earned, not bought. Blockscout prize, ETHGlobal Prague.",
   badge: "BLOCKSCOUT PRIZE · ETHGLOBAL PRAGUE",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1766567356/jagnani73/projects/daoscape/5bf4f732-d1db-4517-9264-4306c07b81a5.png",
   deck: (
     <>
       DAO governance weighted by{" "}
@@ -16,10 +12,10 @@ export const daoscapeCase: CaseData = {
       influence earned, not bought
     </>
   ),
-  fig: "dao",
-  sections: [
-    {
-      type: "split",
+  fig: FigDao,
+  figAlt: "a vote weighted by reputation proven off-chain, not tokens held",
+  sections: {
+    split: {
       note: "token-weighted voting is plutocracy",
       serif: (
         <>
@@ -31,8 +27,7 @@ export const daoscapeCase: CaseData = {
       ),
       body: "DAOScape replaces capital-weighted voting with a reputation-based system that rewards real participation: verified social presence, email domain ownership, and open-source contributions. Influence is earned, not bought. It won the Blockscout pool prize at ETHGlobal Prague 2025.",
     },
-    {
-      type: "arch",
+    arch: {
       note: "vlayer web proofs · Base Sepolia",
       body: (
         <>
@@ -55,8 +50,7 @@ export const daoscapeCase: CaseData = {
       ],
       stack: "React 18 · TypeScript · wagmi/viem · Solidity · Foundry · vlayer · Base · Blockscout · 1inch · Supabase",
     },
-    {
-      type: "cards",
+    cards: {
       note: "composable proofs, zero leakage",
       intro: (
         <>
@@ -72,19 +66,17 @@ export const daoscapeCase: CaseData = {
         { name: "quests system", desc: "DAOs define engagement tasks with merit rewards" },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "the governance platform",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567356/jagnani73/projects/daoscape/5bf4f732-d1db-4517-9264-4306c07b81a5.png", cap: "the governance dashboard" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567369/jagnani73/projects/daoscape/af9a9242-4b91-4e0e-a622-979691b413c7.png", cap: "proving reputation" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567384/jagnani73/projects/daoscape/1b9d93e3-78d8-4e81-ae62-a54de565cd50.png", cap: "a weighted vote" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567343/jagnani73/projects/daoscape/46c6a4ff-3e28-494b-ab29-d284403ac1a2.png" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567401/jagnani73/projects/daoscape/41b87a86-0e60-407c-8839-9814193a077c.png" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567453/jagnani73/projects/daoscape/5c1cb2cf-d35c-443a-a1f3-62b99a292c91.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567343/jagnani73/projects/daoscape/46c6a4ff-3e28-494b-ab29-d284403ac1a2.png", cap: "a live proposal" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567401/jagnani73/projects/daoscape/41b87a86-0e60-407c-8839-9814193a077c.png", cap: "the voter set" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567453/jagnani73/projects/daoscape/5c1cb2cf-d35c-443a-a1f3-62b99a292c91.png", cap: "proposal results" },
       ],
       cta: { label: "view the showcase ↗", href: "https://ethglobal.com/showcase/daoscape-g8f8m" },
     },
-  ],
-  next: "lenden",
+  },
 };

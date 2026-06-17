@@ -1,3 +1,5 @@
+import type { CaseDetail } from "./case.types";
+
 export type Kind =
   | "EXPERIENCE"
   | "COMMUNITY"
@@ -16,6 +18,8 @@ export interface RecordEntry {
   /** Authored case slug → same-tab /record/[slug] link; marks the row a case.
    *  Mutually exclusive with `url`. */
   slug?: string;
+  /** The /record/[slug] detail — present on case rows (alongside `slug`). */
+  case?: CaseDetail;
   /** External link (opens in a new tab). */
   url?: string;
   win?: boolean;

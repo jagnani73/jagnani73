@@ -29,12 +29,14 @@ export interface PageShellProps {
   children: ReactNode;
 }
 
-// ── home/section-head ──
+// ── shared/section-head ──
 export interface SectionHeadProps {
   /** Outlined leading numeral, e.g. "01". */
   n: string;
   title: string;
   note?: ReactNode;
+  /** "page" = home sections (anchored, larger); "case" = case-study sections. */
+  source: "page" | "case";
   id?: string;
 }
 

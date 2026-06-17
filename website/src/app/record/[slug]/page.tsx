@@ -1,7 +1,14 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { PageShell } from "@/components/shared/page-shell";
-import { getCase, getAllCaseSlugs, getCaseTitle } from "@/content/cases";
+import {
+  getCase,
+  getAllCaseSlugs,
+  getCaseTitle,
+  getCaseImage,
+  getNextSlug,
+  orderedSections,
+} from "@/content/cases";
 import { CaseMasthead } from "@/components/case/case-masthead";
 import { CaseSection } from "@/components/case/case-section";
 import { CaseFooter } from "@/components/case/case-footer";
@@ -39,13 +46,11 @@ export const generateMetadata = async ({
       title: c.docTitle,
       description,
       url: path,
-      ...(c.ogImage ? { images: [c.ogImage] } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: c.docTitle,
       description,
-      ...(c.ogImage ? { images: [c.ogImage] } : {}),
     },
   };
 };
@@ -63,7 +68,7 @@ const CasePage = async ({
     <PageShell page="P.03">
       <JsonLd
         data={[
-          caseLd(c, slug, caseDescription(c)),
+          caseLd(c, slug, caseDescription(c), getCaseImage(c)),
           breadcrumbLd([
             { name: "Home", path: "/" },
             { name: "The Record", path: "/record" },
@@ -72,10 +77,10 @@ const CasePage = async ({
         ]}
       />
       <CaseMasthead caseData={c} />
-      {c.sections.map((s, i) => (
-        <CaseSection key={i} section={s} index={i} />
+      {orderedSections(c.sections).map((s, i) => (
+        <CaseSection key={s.type} section={s} index={i} />
       ))}
-      <CaseFooter nextSlug={c.next} nextTitle={getCaseTitle(c.next)} />
+      <CaseFooter nextSlug={getNextSlug(slug)} nextTitle={getCaseTitle(getNextSlug(slug))} />
     </PageShell>
   );
 };

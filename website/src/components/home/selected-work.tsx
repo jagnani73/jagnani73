@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Metrics } from "@/utils/types/metrics.types";
 import { getSelectedWork } from "@/utils/functions/selected-work";
 import type { SelectedWorkItem } from "@/utils/types/home.types";
-import { SectionHead } from "./section-head";
+import { SectionHead } from "@/components/shared/section-head";
 import { RECORD } from "@/content/record";
 
 const tagFor = (item: SelectedWorkItem, metrics: Metrics): string => {
@@ -28,7 +28,7 @@ const Row = ({ item, tag }: { item: SelectedWorkItem; tag: string }) => (
       />
     </span>
     <span className="min-w-0">
-      <span className="font-display text-[19px] tracking-[0.03em] text-tx transition-colors group-hover:text-sig rail:text-[31px]">
+      <span className="font-display text-[19px] uppercase tracking-[0.03em] text-tx transition-colors group-hover:text-sig rail:text-[31px]">
         {item.title}
       </span>
       <br className="rail:hidden" />
@@ -53,6 +53,7 @@ export const SelectedWork = ({ metrics }: { metrics: Metrics }) => {
   return (
     <section>
       <SectionHead
+        source="page"
         id="work"
         n="02"
         title="SELECTED WORK"
@@ -71,7 +72,7 @@ export const SelectedWork = ({ metrics }: { metrics: Metrics }) => {
         }
       />
       {items.map((item) => (
-        <Link key={item.id} href={item.href} className={rowClass}>
+        <Link key={item.id} href={`/record/${item.id}`} className={rowClass}>
           <Row item={item} tag={tagFor(item, metrics)} />
         </Link>
       ))}

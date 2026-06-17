@@ -1,24 +1,20 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigBoard } from "@/components/canvas/figs/fig-board";
 
-export const shikshakCase: CaseData = {
-  slug: "shikshak",
-  title: "SHIKSHAK",
-  docTitle: "Shikshak — Case Study",
+export const shikshakCase: CaseDetail = {
   seoDescription:
     "The online classroom rebuilt without video — a blackboard streamed as pixels for ~85% less data. 1st place, Hack This Fall 2020.",
   badge: "HACK THIS FALL 2020 · 1ST",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1714473789/jagnani73/projects/shikshak/screenshot-calibrate_1_kaglgd.png",
   deck: (
     <>
       the online classroom, rebuilt without video — a blackboard streamed as
       pixels, <span className="text-tx">~85% less data</span>
     </>
   ),
-  fig: "board",
-  sections: [
-    {
-      type: "split",
+  fig: FigBoard,
+  figAlt: "a blackboard captured as a pixel stream, ~85% less data than video",
+  sections: {
+    split: {
       note: "3GB/day put class out of reach",
       serif: (
         <>
@@ -29,8 +25,7 @@ export const shikshakCase: CaseData = {
       ),
       body: 'Shikshak ("teacher" in Hindi) rethinks the online classroom from scratch. Instead of streaming video, a teacher writes on a physical blackboard; a real-time ML pipeline detects the board, isolates its surface, and converts the content into a compact pixel array — about 85% less data than raw video. Won First Position at Hack This Fall 2020.',
     },
-    {
-      type: "arch",
+    arch: {
       note: "OpenCV → pixel array → Socket.IO",
       body: (
         <>
@@ -52,8 +47,7 @@ export const shikshakCase: CaseData = {
       ],
       stack: "React · TypeScript · OpenCV · Socket.IO · WebRTC · Canvas API",
     },
-    {
-      type: "cards",
+    cards: {
       note: "audio-only, in sync",
       intro: (
         <>
@@ -71,16 +65,14 @@ export const shikshakCase: CaseData = {
         { name: "data-channel sync", desc: "keeping audio aligned with the pixel stream" },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "the classroom",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473789/jagnani73/projects/shikshak/screenshot-calibrate_1_kaglgd.png", cap: "board calibration" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473783/jagnani73/projects/shikshak/screenshot-preview_1_lsp63m.png", cap: "the reconstructed board" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473786/jagnani73/projects/shikshak/screenshot-home_1_qehcch.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473786/jagnani73/projects/shikshak/screenshot-home_1_qehcch.png", cap: "the home screen" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/shikshak" },
     },
-  ],
-  next: "fren",
+  },
 };

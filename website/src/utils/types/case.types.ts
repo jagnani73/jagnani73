@@ -1,38 +1,18 @@
-import type { ReactNode } from "react";
+import type { ComponentType, ReactNode } from "react";
 
-// fig.1 masthead interactives (null = no bespoke fig).
-export type FigKind =
-  | "score"
-  | "agents"
-  | "wager"
-  | "kit"
-  | "decoder"
-  | "flux"
-  | "dao"
-  | "zk"
-  | "lenden"
-  | "nudge"
-  | "ledger"
-  | "price"
-  | "board"
-  | "journal"
-  | "match"
-  | "beacon"
-  | "lattice"
-  | "tunnel"
-  | "marquee";
+// A case fig.1 — the animated masthead island (components/canvas/figs/*).
+export type Fig = ComponentType<{ mob: boolean; active?: boolean }>;
 
 export interface PlateImg {
   kind: "img";
   src: string;
-  /** Caption shown after "plate NN —"; omit for just "plate NN". */
-  cap?: string;
+  cap: string;
   fit?: "cover" | "contain";
 }
 export interface PlateCode {
   kind: "code";
   code: string;
-  cap?: string;
+  cap: string;
 }
 export type Plate = PlateImg | PlateCode;
 
@@ -42,63 +22,71 @@ export interface FlowStage {
   tech?: string[];
 }
 
-interface SectionBase {
-  /** Heading. Defaults per section type (SECTION_TITLE in case-section.tsx) —
-   *  set only to override. `n` is derived from the section's position. */
+interface SectionMeta {
+  /** Heading override; defaults per type via SECTION_TITLE in case-section.tsx. */
   title?: string;
   note?: ReactNode;
 }
 
-export interface SplitSection extends SectionBase {
-  type: "split";
+export interface SplitSection extends SectionMeta {
   serif: ReactNode;
   body: ReactNode;
 }
-export interface ArchSection extends SectionBase {
-  type: "arch";
+export interface ArchSection extends SectionMeta {
   body: ReactNode;
   flow: FlowStage[];
   stack?: string;
 }
-export interface CardsSection extends SectionBase {
-  type: "cards";
+export interface CardsSection extends SectionMeta {
   intro: ReactNode;
   cards: { name: string; desc: string }[];
 }
-export interface StatsSection extends SectionBase {
-  type: "stats";
+export interface StatsSection extends SectionMeta {
   stats: [value: string, label: string][];
 }
-export interface PlatesSection extends SectionBase {
-  type: "plates";
+export interface PlatesSection extends SectionMeta {
   plates: Plate[];
   cta?: { label: string; href: string };
 }
 
-export type CaseSection =
-  | SplitSection
-  | ArchSection
-  | CardsSection
-  | StatsSection
-  | PlatesSection;
+// Authored as an object keyed by section type — insertion order is render order.
+export interface CaseSections {
+  split?: SplitSection;
+  arch?: ArchSection;
+  cards?: CardsSection;
+  stats?: StatsSection;
+  plates?: PlatesSection;
+}
 
-interface CaseDataBase {
-  slug: string;
-  title: string;
-  docTitle: string;
-  badge: string;
-  deck: ReactNode;
+// Discriminated union the renderer consumes — `orderedSections` tags each entry
+// with its key (see cases/index.ts).
+export type CaseSection =
+  | ({ type: "split" } & SplitSection)
+  | ({ type: "arch" } & ArchSection)
+  | ({ type: "cards" } & CardsSection)
+  | ({ type: "stats" } & StatsSection)
+  | ({ type: "plates" } & PlatesSection);
+
+// The /record/[slug] detail. It hangs off its record row (content/record.ts):
+// the slug, title and roster position all come from the row — see getCase.
+export interface CaseDetail {
+  /** Masthead/SEO display name, when it differs from the record-row title. */
+  displayTitle?: string;
+  /** Doc/SEO name when it differs from the display title; else derived from it. */
+  docName?: string;
   /** Plain-text meta description (~150 chars) for SEO/OG/JSON-LD — the JSX `deck`
    *  can't be used. See generateMetadata in record/[slug]/page.tsx. */
   seoDescription?: string;
-  fig: FigKind | null;
-  sections: CaseSection[];
-  /** Slug of the next case (footer cycling). */
-  next: string;
-  ogImage?: string;
+  badge: string;
+  deck: ReactNode;
+  /** fig.1 component + its screen-reader label (the role="img" accessible name). */
+  fig?: Fig;
+  figAlt?: string;
+  sections: CaseSections;
+  // Resolved by getCase from the record row — never authored on the detail.
+  slug?: string;
+  title?: string;
+  docTitle?: string;
+  idx?: string;
+  rosterSize?: number;
 }
-
-// idx ("01") + rosterSize are injected by getCase; the union keeps them paired.
-export type CaseData =
-  | (CaseDataBase & { idx?: undefined; rosterSize?: undefined })
-  | (CaseDataBase & { idx: string; rosterSize: number });

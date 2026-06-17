@@ -1,68 +1,66 @@
-import type { CaseData } from "@/utils/types/case.types";
-import { claudeControllerCase } from "./claude-controller";
-import { solanaMlDsa44Case } from "./solana-ml-dsa-44";
-import { insidepolyCase } from "./insidepoly";
-import { agentSdkCase } from "./agent-sdk";
-import { dewlsCase } from "./dewls";
-import { goldrushKitCase } from "./goldrush-kit";
-import { goldrushDecoderCase } from "./goldrush-decoder";
-import { fluxCase } from "./flux";
-import { daoscapeCase } from "./daoscape";
-import { lendenCase } from "./lenden";
-import { delinzkCase } from "./delinzk";
-import { nudgeLabCase } from "./nudge-lab";
-import { contractsCase } from "./contracts";
-import { hospitatvaCase } from "./hospitatva";
-import { marqueeCase } from "./marquee";
-import { shikshakCase } from "./shikshak";
-import { frenCase } from "./fren";
-import { storiesCase } from "./stories";
-import { bharatBeaconCase } from "./bharat-beacon";
-
-const AUTHORED: Record<string, CaseData> = {
-  "claude-controller": claudeControllerCase,
-  "solana-ml-dsa-44": solanaMlDsa44Case,
-  insidepoly: insidepolyCase,
-  "agent-sdk": agentSdkCase,
-  dewls: dewlsCase,
-  "goldrush-kit": goldrushKitCase,
-  "goldrush-decoder": goldrushDecoderCase,
-  flux: fluxCase,
-  daoscape: daoscapeCase,
-  lenden: lendenCase,
-  delinzk: delinzkCase,
-  "nudge-lab": nudgeLabCase,
-  contracts: contractsCase,
-  hospitatva: hospitatvaCase,
-  marquee: marqueeCase,
-  shikshak: shikshakCase,
-  fren: frenCase,
-  stories: storiesCase,
-  "bharat-beacon": bharatBeaconCase,
-};
-
-// Declaration order is the single source of truth for each case's idx + size,
-// derived in getCase — never hardcoded per file.
-const ROSTER = Object.keys(AUTHORED);
-const ROSTER_SIZE = ROSTER.length;
+import { RECORD } from "@/content/record";
+import type {
+  CaseDetail,
+  CaseSection,
+  CaseSections,
+  PlateImg,
+} from "@/utils/types/case.types";
 
 // Keeps the legacy /record/ai-agent-sdk URL resolving to the authored case.
 const SLUG_ALIASES: Record<string, string> = { "ai-agent-sdk": "agent-sdk" };
 
-export const ALL_CASE_SLUGS: string[] = ROSTER;
+// The case rows, in record order — the single source for slug / idx / next.
+type RecordCaseRow = (typeof RECORD)[number] & { slug: string; case: CaseDetail };
+const CASE_ROWS = RECORD.filter(
+  (r): r is RecordCaseRow => r.slug !== undefined && r.case !== undefined
+);
 
-export const getCase = (slug: string): CaseData | null => {
+const ROSTER = CASE_ROWS.map((r) => r.slug);
+const ROSTER_SIZE = ROSTER.length;
+
+// Resolves a slug to its detail merged with the row's title + roster position.
+// The return guarantees `title` (callers render it), unlike the authored detail.
+export const getCase = (
+  slug: string
+): (CaseDetail & { title: string }) | null => {
   const canonical = SLUG_ALIASES[slug] ?? slug;
-  const authored = AUTHORED[canonical];
-  if (!authored) return null;
+  const pos = ROSTER.indexOf(canonical);
+  if (pos < 0) return null;
+  const row = CASE_ROWS[pos];
+  const title = row.case.displayTitle ?? row.title;
   return {
-    ...authored,
-    idx: String(ROSTER.indexOf(canonical) + 1).padStart(2, "0"),
+    ...row.case,
+    slug: canonical,
+    title,
+    docTitle: `${row.case.docName ?? title} — Case Study`,
+    idx: String(pos + 1).padStart(2, "0"),
     rosterSize: ROSTER_SIZE,
   };
 };
 
+export const getAllCaseSlugs = (): string[] => ROSTER;
+
 export const getCaseTitle = (slug: string): string =>
   getCase(slug)?.title ?? slug;
 
-export const getAllCaseSlugs = (): string[] => ALL_CASE_SLUGS;
+// Next case in roster order (wraps) — drives the footer's case-to-case cycling.
+export const getNextSlug = (slug: string): string => {
+  const canonical = SLUG_ALIASES[slug] ?? slug;
+  const i = ROSTER.indexOf(canonical);
+  return i < 0 ? canonical : ROSTER[(i + 1) % ROSTER_SIZE];
+};
+
+// The case's representative image — the first img plate (image-less cases yield
+// undefined and are skipped from Selected Work).
+export const getCaseImage = (c: CaseDetail): string | undefined =>
+  c.sections.plates?.plates.find((p): p is PlateImg => p.kind === "img")?.src;
+
+// Sections authored as a keyed object → the tagged union the renderer consumes,
+// in insertion (display) order.
+export const orderedSections = (sections: CaseSections): CaseSection[] =>
+  (
+    Object.entries(sections) as [
+      CaseSection["type"],
+      CaseSections[CaseSection["type"]],
+    ][]
+  ).map(([type, sec]) => ({ type, ...sec }) as CaseSection);

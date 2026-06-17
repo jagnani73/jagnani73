@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { CHAPTERS } from "@/content/home";
-import { SectionHead } from "./section-head";
+import { SectionHead } from "@/components/shared/section-head";
 import { Rule } from "./rule";
 
 export const Chapters = () => (
   <section>
     <SectionHead
+      source="page"
       id="chapters"
       n="01"
       title="THE CHAPTERS"

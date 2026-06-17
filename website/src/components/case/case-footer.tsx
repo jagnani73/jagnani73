@@ -28,7 +28,7 @@ export const CaseFooter = ({
             <span className="rail:hidden">NEXT —</span>
             <span className="hidden rail:inline">NEXT CASE —</span>
           </span>
-          <span className="min-w-0 truncate">{nextTitle}</span>
+          <span className="min-w-0 truncate uppercase">{nextTitle}</span>
           <span className="shrink-0">→</span>
         </Link>
       </div>

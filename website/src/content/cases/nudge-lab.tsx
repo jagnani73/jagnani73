@@ -1,24 +1,20 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigNudge } from "@/components/canvas/figs/fig-nudge";
 
-export const nudgeLabCase: CaseData = {
-  slug: "nudge-lab",
-  title: "NUDGELAB",
-  docTitle: "NudgeLab — Case Study",
+export const nudgeLabCase: CaseDetail = {
   seoDescription:
     "No-code in-app nudges — design, configure, and ship user guidance without touching the product codebase. HackRx 3.0 Dark Horse.",
   badge: "HACKRX 3.0 · DARK HORSE",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1714473687/jagnani73/projects/nudge-lab/preview1_r2k59y.png",
   deck: (
     <>
       no-code in-app nudges — design, configure, and ship guidance{" "}
       <span className="text-tx">without touching the product codebase</span>
     </>
   ),
-  fig: "nudge",
-  sections: [
-    {
-      type: "split",
+  fig: FigNudge,
+  figAlt: "a no-code nudge, configured once, delivered into a live product",
+  sections: {
+    split: {
       note: "every nudge is an engineering ticket",
       serif: (
         <>
@@ -29,8 +25,7 @@ export const nudgeLabCase: CaseData = {
       ),
       body: "NudgeLab is a no-code, platform-independent nudge management service. Wrap any product with a lightweight SDK script tag, and a self-serve admin panel lets teams design, configure, and deploy in-app nudges — no codebase changes, no deploys. Built at HackRx 3.0, Bajaj Finserv's national hackathon, where it won the Dark Horse and Power & Pace awards.",
     },
-    {
-      type: "arch",
+    arch: {
       note: "two delivery modes · backend-owned",
       body: (
         <>
@@ -52,8 +47,7 @@ export const nudgeLabCase: CaseData = {
       ],
       stack: "Node · Express · Next.js · CDN delivery · message queue",
     },
-    {
-      type: "cards",
+    cards: {
       title: "WHAT I BUILT",
       note: "backend · both SDK layers",
       intro: (
@@ -71,19 +65,17 @@ export const nudgeLabCase: CaseData = {
         { name: "cache invalidation", desc: "config serialization so updates never go stale" },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "the admin panel",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473687/jagnani73/projects/nudge-lab/preview1_r2k59y.png", cap: "the admin panel" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473684/jagnani73/projects/nudge-lab/preview2_rdp0vp.png", cap: "configuring a nudge" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473690/jagnani73/projects/nudge-lab/preview4_dzkwog.png", cap: "a nudge, live" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473693/jagnani73/projects/nudge-lab/preview3_j50aqp.png" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473698/jagnani73/projects/nudge-lab/preview5_wd9hvv.png" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473699/jagnani73/projects/nudge-lab/preview6_n74him.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473693/jagnani73/projects/nudge-lab/preview3_j50aqp.png", cap: "the analytics view" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473698/jagnani73/projects/nudge-lab/preview5_wd9hvv.png", cap: "a nudge template" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473699/jagnani73/projects/nudge-lab/preview6_n74him.png", cap: "campaign results" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/nudge-lab" },
     },
-  ],
-  next: "contracts",
+  },
 };

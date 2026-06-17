@@ -1,13 +1,10 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigBeacon } from "@/components/canvas/figs/fig-beacon";
 
-export const bharatBeaconCase: CaseData = {
-  slug: "bharat-beacon",
-  title: "BHARAT BEACON",
-  docTitle: "Bharat Beacon — Case Study",
+export const bharatBeaconCase: CaseDetail = {
+  displayTitle: "Bharat Beacon",
   seoDescription:
     "Disaster response mapped live — IoT distress signals pinpointed for the authorities. Best first-year team, Code2Create 4.0.",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1714473617/jagnani73/projects/bharat-beacon/image_i4bbih.png",
   badge: "CODE2CREATE 4.0 · BEST 1ST-YR TEAM",
   deck: (
     <>
@@ -15,10 +12,10 @@ export const bharatBeaconCase: CaseData = {
       <span className="text-tx">pinpointed for the authorities</span>
     </>
   ),
-  fig: "beacon",
-  sections: [
-    {
-      type: "split",
+  fig: FigBeacon,
+  figAlt: "distress signals polled onto the government dashboard in real time",
+  sections: {
+    split: {
       note: "crises move faster than dashboards",
       serif: (
         <>
@@ -29,8 +26,7 @@ export const bharatBeaconCase: CaseData = {
       ),
       body: "Bharat Beacon tackles disaster management across three phases — preemptive risk mitigation, mid-crisis response, and post-crisis recovery. It's an IoT-driven system where physical devices transmit distress signals to a central platform. Built at Code2Create 4.0 by ACM VIT, where the team won Best First Year Team.",
     },
-    {
-      type: "arch",
+    arch: {
       note: "IoT signals → a live map",
       body: (
         <>
@@ -50,8 +46,7 @@ export const bharatBeaconCase: CaseData = {
       ],
       stack: "JavaScript · Node · MapBox API · HTTP polling",
     },
-    {
-      type: "cards",
+    cards: {
       title: "WHAT I BUILT",
       note: "the government portal",
       intro: (
@@ -68,8 +63,7 @@ export const bharatBeaconCase: CaseData = {
         { name: "three-phase model", desc: "mitigation, response, and recovery" },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "the government portal",
       plates: [
         {
@@ -79,6 +73,5 @@ export const bharatBeaconCase: CaseData = {
         },
       ],
     },
-  ],
-  next: "claude-controller",
+  },
 };

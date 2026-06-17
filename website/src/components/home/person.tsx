@@ -1,9 +1,10 @@
 import { PERSON } from "@/content/home";
-import { SectionHead } from "./section-head";
+import { SectionHead } from "@/components/shared/section-head";
 
 export const Person = () => (
   <section>
     <SectionHead
+      source="page"
       id="person"
       n="03"
       title="THE PERSON"

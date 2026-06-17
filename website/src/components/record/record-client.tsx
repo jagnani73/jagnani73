@@ -2,7 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { RECORD, FILTERS, kindColor, isCase, sequenceYear } from "@/content/record";
+import {
+  FILTERS,
+  kindColor,
+  isCase,
+  sequenceYear,
+} from "@/content/record-lib";
 import type { FilterId, RecordEntry } from "@/utils/types/record.types";
 import { TimeConstellation } from "@/components/canvas/time-constellation";
 import { YearMark } from "./year-mark";
@@ -115,9 +120,11 @@ const RecordRow = ({
 };
 
 export const RecordClient = ({
+  rows,
   counts,
   initialFilter,
 }: {
+  rows: RecordEntry[];
   counts: Record<FilterId, number>;
   initialFilter: FilterId;
 }) => {
@@ -187,7 +194,7 @@ export const RecordClient = ({
     };
   }, []);
 
-  const data = RECORD.filter((r) =>
+  const data = rows.filter((r) =>
     filter === "ALL" ? true : filter === "CASES" ? isCase(r) : r.kind === filter
   );
   const years = [...new Set(data.map((r) => r.year))].sort((a, b) => b - a);

@@ -1,9 +1,9 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigLattice } from "@/components/canvas/figs/fig-lattice";
 
-export const solanaMlDsa44Case: CaseData = {
-  slug: "solana-ml-dsa-44",
-  title: "ML-DSA-44",
-  docTitle: "Post-Quantum Solana (ML-DSA-44) — Case Study",
+export const solanaMlDsa44Case: CaseDetail = {
+  displayTitle: "ML-DSA-44",
+  docName: "Post-Quantum Solana (ML-DSA-44)",
   seoDescription:
     "Making the Solana validator quantum-secure — payments and consensus votes signed with NIST's ML-DSA-44 post-quantum standard, proven live on-chain.",
   badge: "POST-QUANTUM · SOLANA FORK · 2026",
@@ -15,10 +15,10 @@ export const solanaMlDsa44Case: CaseData = {
       live on-chain
     </>
   ),
-  fig: "lattice",
-  sections: [
-    {
-      type: "split",
+  fig: FigLattice,
+  figAlt: "a quantum attack on each scheme's foundation",
+  sections: {
+    split: {
       title: "THE GOAL",
       note: "quantum-resistant by design",
       serif: (
@@ -33,8 +33,7 @@ export const solanaMlDsa44Case: CaseData = {
       ),
       body: "And it isn't on paper. On a live validator, a SOL transfer signed with a post-quantum key confirms on-chain, and the validator's own consensus votes are signed with ML-DSA-44 — the chain produces, confirms, and finalizes on them. Its payments, consensus votes, and on-chain verification are all quantum-secure. It runs on a self-hosted fork, not live-Solana-compatible by design, but the post-quantum signing it proves is real and end-to-end.",
     },
-    {
-      type: "arch",
+    arch: {
       title: "WHAT'S QUANTUM-SECURE",
       note: "verification, payments, and votes — all live",
       body: (
@@ -66,8 +65,7 @@ export const solanaMlDsa44Case: CaseData = {
       stack:
         "Rust · forked solana-labs/solana v2.0.0 · fips204 0.4.6 (FIPS 204) · WSL2 · solana-test-validator",
     },
-    {
-      type: "stats",
+    stats: {
       title: "WHAT IT PROVES",
       note: "Ed25519 → ML-DSA-44",
       stats: [
@@ -77,8 +75,7 @@ export const solanaMlDsa44Case: CaseData = {
         ["~40×", "larger signatures, absorbed end-to-end"],
       ],
     },
-    {
-      type: "cards",
+    cards: {
       title: "WHAT IT TOOK",
       note: "a signature built for a system that assumed tiny ones",
       intro: (
@@ -103,8 +100,7 @@ export const solanaMlDsa44Case: CaseData = {
         },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       title: "VERIFIED LIVE",
       note: "real keys · real signatures · raw JSON-RPC",
       plates: [
@@ -136,6 +132,5 @@ verify  = ML-DSA(sig) && sha256(key) == account_keys[i]`,
         },
       ],
     },
-  ],
-  next: "insidepoly",
+  },
 };

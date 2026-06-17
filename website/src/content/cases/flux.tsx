@@ -1,14 +1,10 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigFlux } from "@/components/canvas/figs/fig-flux";
 
-export const fluxCase: CaseData = {
-  slug: "flux",
-  title: "FLUX",
-  docTitle: "Flux — Case Study",
+export const fluxCase: CaseDetail = {
   seoDescription:
     "Web3-native AI support — agents with on-chain awareness that read explorers, diagnose failed transactions, and answer from live state.",
   badge: "FLUENCE PRIZE · ETHGLOBAL NEW DELHI",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1766567915/jagnani73/projects/flux/f631ab10-eee1-44d7-a70a-dfff0c2f353a.png",
   deck: (
     <>
       Web3-native AI support — agents with{" "}
@@ -16,10 +12,10 @@ export const fluxCase: CaseData = {
       diagnose failed transactions, and answer from live state
     </>
   ),
-  fig: "flux",
-  sections: [
-    {
-      type: "split",
+  fig: FigFlux,
+  figAlt: "a refund request, verified against the transaction",
+  sections: {
+    split: {
       note: "web2 support can't read a chain",
       serif: (
         <>
@@ -33,8 +29,7 @@ export const fluxCase: CaseData = {
       ),
       body: "Flux lets any crypto project deploy intelligent support agents with on-chain awareness: they read block explorers, diagnose failed transactions, and execute pre-authorized on-chain actions — all while keeping verifiable, immutable chat logs. Built at ETHGlobal New Delhi 2025, it won Best Use of Fluence Virtual Servers.",
     },
-    {
-      type: "arch",
+    arch: {
       note: "three services · uAgents + ENS + Fluence",
       body: (
         <>
@@ -57,8 +52,7 @@ export const fluxCase: CaseData = {
       ],
       stack: "Python 3.12 · uAgents (ASI) · Node · Next.js · TailwindCSS · ENS · Fluence",
     },
-    {
-      type: "cards",
+    cards: {
       note: "live chain data at query time",
       intro: (
         <>
@@ -75,18 +69,16 @@ export const fluxCase: CaseData = {
         { name: "verifiable identity", desc: "ENS-named agents, immutable chat logs" },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "the support platform",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567915/jagnani73/projects/flux/f631ab10-eee1-44d7-a70a-dfff0c2f353a.png", cap: "the admin dashboard" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766568390/jagnani73/projects/flux/a751cb71-afdd-4686-91bf-27dfd1231dec.png", cap: "an agent, configured" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766568408/jagnani73/projects/flux/2415a4c8-5508-4e49-b1fd-461240693a30.png", cap: "the support widget" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567905/jagnani73/projects/flux/40534ebc-ecbe-4d84-81bc-943dce41227b.png" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766568417/jagnani73/projects/flux/962c2c42-774a-47a5-8a1d-5173d420969d.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766567905/jagnani73/projects/flux/40534ebc-ecbe-4d84-81bc-943dce41227b.png", cap: "a routed conversation" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766568417/jagnani73/projects/flux/962c2c42-774a-47a5-8a1d-5173d420969d.png", cap: "the agent logs" },
       ],
       cta: { label: "visit flux ↗", href: "https://flux-support.vercel.app/" },
     },
-  ],
-  next: "daoscape",
+  },
 };

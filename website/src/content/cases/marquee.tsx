@@ -1,4 +1,5 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigMarquee } from "@/components/canvas/figs/fig-marquee";
 
 const MARQUEE_CODE = `import Marquee from "react-easy-marquee";
 
@@ -13,25 +14,20 @@ const MARQUEE_CODE = `import Marquee from "react-easy-marquee";
   <h2>any children — text, images, JSX</h2>
 </Marquee>`;
 
-export const marqueeCase: CaseData = {
-  slug: "marquee",
-  title: "REACT-EASY-MARQUEE",
-  docTitle: "react-easy-marquee — Case Study",
+export const marqueeCase: CaseDetail = {
   seoDescription:
     "A zero-dependency React marquee driven entirely by CSS keyframes — my most-installed npm package, 105K+ downloads.",
   badge: "NPM · 105K+ DOWNLOADS",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1714473627/jagnani73/projects/marquee/Screenshot_from_2022-07-02_19-57-10_vyyznz.png",
   deck: (
     <>
       a zero-dependency React marquee driven entirely by{" "}
       <span className="text-tx">CSS keyframes</span> — my most-installed artifact
     </>
   ),
-  fig: "marquee",
-  sections: [
-    {
-      type: "split",
+  fig: FigMarquee,
+  figAlt: "this strip is react-easy-marquee, rendering itself",
+  sections: {
+    split: {
       note: "the ecosystem was too opinionated",
       serif: (
         <>
@@ -44,8 +40,7 @@ export const marqueeCase: CaseData = {
       ),
       body: "So I built one from scratch: a fully customizable Marquee component that accepts any children — plain text, images, or arbitrary JSX — and scrolls them in a seamless loop. I designed, architected, and maintain the whole package end to end, from the CSS animation model to the prop API and the live demo site.",
     },
-    {
-      type: "arch",
+    arch: {
       note: "three copies · one CSS keyframe",
       body: (
         <>
@@ -76,8 +71,7 @@ export const marqueeCase: CaseData = {
       stack:
         "React · TypeScript · CSS keyframes · Rollup · zero runtime dependencies",
     },
-    {
-      type: "cards",
+    cards: {
       note: "perceived speed, made consistent",
       intro: (
         <>
@@ -108,8 +102,7 @@ export const marqueeCase: CaseData = {
         },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "npm + the demo",
       plates: [
         {
@@ -129,6 +122,5 @@ export const marqueeCase: CaseData = {
         href: "https://www.npmjs.com/package/react-easy-marquee",
       },
     },
-  ],
-  next: "shikshak",
+  },
 };

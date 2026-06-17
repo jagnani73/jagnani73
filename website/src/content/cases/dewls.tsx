@@ -1,24 +1,20 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigWager } from "@/components/canvas/figs/fig-wager";
 
-export const dewlsCase: CaseData = {
-  slug: "dewls",
-  title: "DEWLS",
-  docTitle: "Dewls — Case Study",
+export const dewlsCase: CaseDetail = {
   seoDescription:
     "On-chain arcade wagering — real stakes on 1v1 games, every win sealed as a Proof-of-Victory. Sign Protocol prize, ETHOnline 2024.",
   badge: "SIGN PROTOCOL PRIZE · ETHONLINE 2024",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1766566655/jagnani73/projects/dewls/daffe5d5-c9af-4149-a6cf-0d2cf6b1c7a5.png",
   deck: (
     <>
       on-chain arcade wagering — real stakes on 1v1 games, every win sealed as a{" "}
       <span className="text-tx">Proof-of-Victory</span>
     </>
   ),
-  fig: "wager",
-  sections: [
-    {
-      type: "split",
+  fig: FigWager,
+  figAlt: "one wager, settled: stake, play, attest",
+  sections: {
+    split: {
       note: "trust, removed from the referee",
       serif: (
         <>
@@ -29,8 +25,7 @@ export const dewlsCase: CaseData = {
       ),
       body: "Dewls is an arcade wagering platform: 1v1 games — Rock-Paper-Scissors, Connect 4 — with real stakes. Every match settles on-chain, and the winner earns a Proof-of-Victory: a cryptographic attestation signed via Sign Protocol that immutably records the result on a global leaderboard. Weekly seasons share a prize pool across the weekend's top three.",
     },
-    {
-      type: "arch",
+    arch: {
       note: "three chains · one server-enforced engine",
       body: (
         <>
@@ -67,8 +62,7 @@ export const dewlsCase: CaseData = {
       stack:
         "TypeScript · Next.js · Express · Socket.IO · Redis · Supabase · Web3Auth · XMTP · Sign Protocol",
     },
-    {
-      type: "cards",
+    cards: {
       note: "websocket state ⇄ on-chain finality",
       intro: (
         <>
@@ -96,8 +90,7 @@ export const dewlsCase: CaseData = {
         },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "ETHOnline 2024",
       plates: [
         {
@@ -115,15 +108,14 @@ export const dewlsCase: CaseData = {
           src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566663/jagnani73/projects/dewls/c1db88c1-0e6c-4c33-8056-d3d7a41a96a0.png",
           cap: "proof-of-victory",
         },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566622/jagnani73/projects/dewls/2008978b-b933-4627-8a14-24ecc66d65e7.png" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566731/jagnani73/projects/dewls/4184e2cb-9978-4ef1-9656-a4d063b87c9b.png" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566705/jagnani73/projects/dewls/bf8e57c5-ae68-40fd-a5cc-f70c9b1fd320.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566622/jagnani73/projects/dewls/2008978b-b933-4627-8a14-24ecc66d65e7.png", cap: "picking a game" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566731/jagnani73/projects/dewls/4184e2cb-9978-4ef1-9656-a4d063b87c9b.png", cap: "the leaderboard" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766566705/jagnani73/projects/dewls/bf8e57c5-ae68-40fd-a5cc-f70c9b1fd320.png", cap: "claiming the pot" },
       ],
       cta: {
         label: "view the showcase ↗",
         href: "https://ethglobal.com/showcase/dewls-oyj1w",
       },
     },
-  ],
-  next: "goldrush-kit",
+  },
 };

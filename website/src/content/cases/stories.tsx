@@ -1,24 +1,20 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigMatch } from "@/components/canvas/figs/fig-match";
 
-export const storiesCase: CaseData = {
-  slug: "stories",
-  title: "STORIES",
-  docTitle: "Stories — Case Study",
+export const storiesCase: CaseDetail = {
   seoDescription:
     "Anonymous peer support — matched by shared worries, with a toxicity gate on every message. HackCBS 3.0.",
   badge: "HACKCBS 3.0",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1714473758/jagnani73/projects/stories/2_1_wwqysl.png",
   deck: (
     <>
       anonymous peer support — matched by shared worries, with a{" "}
       <span className="text-tx">toxicity gate on every message</span>
     </>
   ),
-  fig: "match",
-  sections: [
-    {
-      type: "split",
+  fig: FigMatch,
+  figAlt: "peers matched on shared tags; every message passes a toxicity gate",
+  sections: {
+    split: {
       note: "support, without exposure",
       serif: (
         <>
@@ -29,8 +25,7 @@ export const storiesCase: CaseData = {
       ),
       body: "Stories matches users — as a seeker or a supporter — for anonymous, judgment-free conversation, pairing those who share the most concern tags. Real-time chat runs on Socket.IO with room state in Redis; every message passes a toxicity classifier before it reaches the seeker. Built for HackCBS 3.0.",
     },
-    {
-      type: "arch",
+    arch: {
       note: "score-matched · filtered in transit",
       body: (
         <>
@@ -54,8 +49,7 @@ export const storiesCase: CaseData = {
       ],
       stack: "React · TypeScript · Node · Socket.IO · Redis · TensorFlow.js",
     },
-    {
-      type: "cards",
+    cards: {
       title: "WHAT I BUILT",
       note: "frontend · chat + admin",
       intro: (
@@ -72,17 +66,15 @@ export const storiesCase: CaseData = {
         { name: "anonymous by design", desc: "no identities exchanged, ever" },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "the app",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473758/jagnani73/projects/stories/2_1_wwqysl.png", cap: "choosing your tags" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473761/jagnani73/projects/stories/3_1_xlmyej.png", cap: "an anonymous chat" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473755/jagnani73/projects/stories/4_1_ylfthn.png", cap: "the admin panel" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473752/jagnani73/projects/stories/1_1_rnugym.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473752/jagnani73/projects/stories/1_1_rnugym.png", cap: "the story feed" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/stories" },
     },
-  ],
-  next: "bharat-beacon",
+  },
 };

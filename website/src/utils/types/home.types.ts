@@ -16,7 +16,6 @@ export interface SelectedWorkItem {
   /** acc-colored highlight; replaced by a live metric when `metric` is set */
   tag: string;
   metric?: "agentSdk" | "goldrushKit";
-  href: string;
-  /** the case's ogImage — image-less cases are skipped, so always present */
+  /** the case's first img plate — image-less cases are skipped, so always present */
   img: string;
 }

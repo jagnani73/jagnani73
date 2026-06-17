@@ -1,32 +1,27 @@
 // `via` links a project to its origin; a `slug` marks an authored case
 // (/record/[slug], same-tab), `url` is an external link.
 
-import type { Kind, RecordEntry, FilterId } from "@/utils/types/record.types";
-
-export const FILTERS: { id: FilterId; label: string }[] = [
-  { id: "ALL", label: "ALL" },
-  { id: "CASES", label: "CASE STUDIES" },
-  { id: "EXPERIENCE", label: "EXPERIENCE" },
-  { id: "PROJECT", label: "PROJECTS" },
-  { id: "HACKATHON", label: "HACKATHONS" },
-  { id: "COMMUNITY", label: "COMMUNITY" },
-  { id: "RESEARCH", label: "RESEARCH" },
-  { id: "EDUCATION", label: "EDUCATION" },
-  { id: "CERTIFICATION", label: "CERTIFICATIONS" },
-];
-
-export const KIND_COLOR: Record<Kind, string> = {
-  EXPERIENCE: "text-sig",
-  COMMUNITY: "text-tx2",
-  HACKATHON: "text-tx2",
-  RESEARCH: "text-tx2",
-  EDUCATION: "text-pri",
-  CERTIFICATION: "text-tx3",
-  PROJECT: "text-tx2",
-};
-
-export const kindColor = (r: RecordEntry): string =>
-  r.kind === "HACKATHON" && r.win ? "text-acc" : KIND_COLOR[r.kind];
+import type { RecordEntry, FilterId } from "@/utils/types/record.types";
+import { FILTERS, isCase } from "./record-lib";
+import { claudeControllerCase } from "./cases/claude-controller";
+import { solanaMlDsa44Case } from "./cases/solana-ml-dsa-44";
+import { insidepolyCase } from "./cases/insidepoly";
+import { agentSdkCase } from "./cases/agent-sdk";
+import { dewlsCase } from "./cases/dewls";
+import { goldrushKitCase } from "./cases/goldrush-kit";
+import { goldrushDecoderCase } from "./cases/goldrush-decoder";
+import { fluxCase } from "./cases/flux";
+import { daoscapeCase } from "./cases/daoscape";
+import { lendenCase } from "./cases/lenden";
+import { delinzkCase } from "./cases/delinzk";
+import { nudgeLabCase } from "./cases/nudge-lab";
+import { contractsCase } from "./cases/contracts";
+import { hospitatvaCase } from "./cases/hospitatva";
+import { marqueeCase } from "./cases/marquee";
+import { shikshakCase } from "./cases/shikshak";
+import { frenCase } from "./cases/fren";
+import { storiesCase } from "./cases/stories";
+import { bharatBeaconCase } from "./cases/bharat-beacon";
 
 export const RECORD: RecordEntry[] = [
   // ── 2026 ──
@@ -44,6 +39,7 @@ export const RECORD: RecordEntry[] = [
     title: "Claude Controller",
     meta: "drive the Claude Code CLI from your phone over a private Tailscale tunnel · PWA + PTY relay",
     slug: "claude-controller",
+    case: claudeControllerCase,
     order: 2,
   },
   {
@@ -53,6 +49,7 @@ export const RECORD: RecordEntry[] = [
     title: "Solana ML-DSA-44 fork",
     meta: "ML-DSA-44 post-quantum signatures on a Solana fork",
     slug: "solana-ml-dsa-44",
+    case: solanaMlDsa44Case,
   },
   {
     year: 2026,
@@ -76,6 +73,7 @@ export const RECORD: RecordEntry[] = [
     title: "InsidePoly",
     meta: "insider-trading surveillance for Polymarket · five-signal scoring engine · live",
     slug: "insidepoly",
+    case: insidepolyCase,
   },
 
   // ── 2025 ──
@@ -109,6 +107,7 @@ export const RECORD: RecordEntry[] = [
     title: "Flux",
     meta: "AI support agents with on-chain awareness · uAgents + ENS + Fluence",
     slug: "flux",
+    case: fluxCase,
   },
   {
     year: 2025,
@@ -117,6 +116,7 @@ export const RECORD: RecordEntry[] = [
     title: "DAOScape",
     meta: "reputation-based DAO governance · vlayer web proofs on Base",
     slug: "daoscape",
+    case: daoscapeCase,
   },
   {
     year: 2025,
@@ -142,6 +142,7 @@ export const RECORD: RecordEntry[] = [
     title: "AI Agent SDK",
     meta: "@covalenthq/ai-agent-sdk · agent orchestration for ZEE · 119★ · 2k+ downloads",
     slug: "agent-sdk",
+    case: agentSdkCase,
   },
   {
     year: 2024,
@@ -150,6 +151,7 @@ export const RECORD: RecordEntry[] = [
     title: "GoldRush Kit",
     meta: "plug-n-play React components for on-chain data · 105★ · 65 versions",
     slug: "goldrush-kit",
+    case: goldrushKitCase,
   },
   {
     year: 2024,
@@ -158,6 +160,7 @@ export const RECORD: RecordEntry[] = [
     title: "GoldRush Decoder",
     meta: "raw EVM logs → structured events across 200+ chains · 9 contributors",
     slug: "goldrush-decoder",
+    case: goldrushDecoderCase,
   },
   {
     year: 2024,
@@ -174,6 +177,7 @@ export const RECORD: RecordEntry[] = [
     title: "Dewls",
     meta: "arcade wagering · proof-of-victory attestations · Morph, Hedera, Rootstock",
     slug: "dewls",
+    case: dewlsCase,
   },
   {
     year: 2024,
@@ -214,6 +218,7 @@ export const RECORD: RecordEntry[] = [
     title: "LenDen",
     meta: "cross-chain lending & borrowing · Router cross-talk contracts",
     slug: "lenden",
+    case: lendenCase,
   },
   {
     year: 2023,
@@ -222,6 +227,7 @@ export const RECORD: RecordEntry[] = [
     title: "deLinZK",
     meta: "zk proof-of-employment credentials · Polygon ID · ETHForAll",
     slug: "delinzk",
+    case: delinzkCase,
   },
   {
     year: 2023,
@@ -324,6 +330,7 @@ export const RECORD: RecordEntry[] = [
     title: "NudgeLab",
     meta: "no-code nudge management · CDN delivery + message-queue triggers",
     slug: "nudge-lab",
+    case: nudgeLabCase,
   },
   {
     year: 2022,
@@ -332,6 +339,7 @@ export const RECORD: RecordEntry[] = [
     title: "Contracts",
     meta: "immutable expense-splitting on Hedera smart contracts",
     slug: "contracts",
+    case: contractsCase,
   },
   {
     year: 2022,
@@ -340,6 +348,7 @@ export const RECORD: RecordEntry[] = [
     title: "Hospitatva",
     meta: "hospital price transparency ledger on Zilliqa · SIH internals",
     slug: "hospitatva",
+    case: hospitatvaCase,
   },
   {
     year: 2022,
@@ -422,6 +431,7 @@ export const RECORD: RecordEntry[] = [
     title: "react-easy-marquee",
     meta: "zero-dependency CSS marquee · 105k+ npm downloads",
     slug: "marquee",
+    case: marqueeCase,
   },
   {
     year: 2021,
@@ -550,6 +560,7 @@ export const RECORD: RecordEntry[] = [
     title: "Stories",
     meta: "anonymous peer support with toxicity filtering",
     slug: "stories",
+    case: storiesCase,
   },
   {
     year: 2020,
@@ -558,6 +569,7 @@ export const RECORD: RecordEntry[] = [
     title: "Shikshak",
     meta: "85% less data for remote classrooms · blackboard → pixel stream",
     slug: "shikshak",
+    case: shikshakCase,
   },
   {
     year: 2020,
@@ -566,6 +578,7 @@ export const RECORD: RecordEntry[] = [
     title: "Fren",
     meta: "privacy-first therapy journaling · NLP sentiment pipeline",
     slug: "fren",
+    case: frenCase,
   },
   {
     year: 2020,
@@ -574,6 +587,7 @@ export const RECORD: RecordEntry[] = [
     title: "BharatBeacon",
     meta: "IoT disaster response · live distress map for authorities",
     slug: "bharat-beacon",
+    case: bharatBeaconCase,
   },
   {
     year: 2020,
@@ -636,8 +650,6 @@ export const RECORD: RecordEntry[] = [
   },
 ];
 
-export const isCase = (r: RecordEntry): boolean => r.slug !== undefined;
-
 // Per-kind tallies, recomputed at build (never hardcoded).
 export const getRecordCounts = (): Record<FilterId, number> => {
   const counts = { ALL: RECORD.length } as Record<FilterId, number>;
@@ -650,59 +662,4 @@ export const getRecordCounts = (): Record<FilterId, number> => {
     counts[f.id] = RECORD.filter((r) => r.kind === f.id).length;
   }
   return counts;
-};
-
-// Within-year order: experience → project (+ its paired hackathon win) →
-// standalone hackathons → research → community → education → certs. A hackathon
-// pairs to its project when the project title prefixes the hackathon's meta.
-const KIND_RANK: Record<Kind, number> = {
-  EXPERIENCE: 0,
-  PROJECT: 1,
-  HACKATHON: 2,
-  RESEARCH: 3,
-  COMMUNITY: 4,
-  EDUCATION: 5,
-  CERTIFICATION: 6,
-};
-
-// Explicit `order` leads; else kind rank, offset so explicit keys sort first.
-const seqRank = (e: RecordEntry): number => e.order ?? 10 + KIND_RANK[e.kind];
-
-export const sequenceYear = (entries: RecordEntry[]): RecordEntry[] => {
-  const ranked = entries
-    .map((e, i) => ({ e, i }))
-    .sort((a, b) => seqRank(a.e) - seqRank(b.e) || a.i - b.i)
-    .map((x) => x.e);
-
-  const hackathons = ranked.filter((e) => e.kind === "HACKATHON");
-  const used = new Set<RecordEntry>();
-  const result: RecordEntry[] = [];
-
-  for (const e of ranked) {
-    if (e.kind === "HACKATHON" && used.has(e)) continue;
-    result.push(e);
-    if (e.kind === "PROJECT") {
-      const hack = hackathons.find(
-        (h) =>
-          !used.has(h) && h.meta.toLowerCase().startsWith(e.title.toLowerCase())
-      );
-      if (hack) {
-        used.add(hack);
-        result.push(hack);
-      }
-    }
-  }
-  return result;
-};
-
-// Deterministic "0x…" hash shown beside a confirmed year.
-export const yearHash = (y: number): string => {
-  let h = (y * 2654435761) >>> 0;
-  let s = "";
-  for (let i = 0; i < 4; i++) {
-    s += "0123456789abcdef"[h & 15];
-    h = (h * 69069 + 1) >>> 0;
-    h ^= h >>> 7;
-  }
-  return "0x" + s;
 };

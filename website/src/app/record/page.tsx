@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/shared/page-shell";
-import { getRecordCounts, FILTERS } from "@/content/record";
+import { RECORD, getRecordCounts } from "@/content/record";
+import { FILTERS } from "@/content/record-lib";
 import { RecordClient } from "@/components/record/record-client";
 import { JsonLd } from "@/components/shared/json-ld";
 import { collectionPageLd, breadcrumbLd } from "@/utils/functions/seo";
@@ -34,6 +35,12 @@ const RecordPage = async ({
 }) => {
   const { filter } = await searchParams;
   const counts = getRecordCounts();
+  // Strip the heavy `case` detail — the client timeline only needs the row meta.
+  const rows = RECORD.map((r) => {
+    const row = { ...r };
+    delete row.case;
+    return row;
+  });
 
   return (
     <PageShell page="R.01">
@@ -50,7 +57,11 @@ const RecordPage = async ({
           ]),
         ]}
       />
-      <RecordClient counts={counts} initialFilter={toFilterId(filter)} />
+      <RecordClient
+        rows={rows}
+        counts={counts}
+        initialFilter={toFilterId(filter)}
+      />
     </PageShell>
   );
 };

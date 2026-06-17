@@ -1,4 +1,5 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigDecoder } from "@/components/canvas/figs/fig-decoder";
 
 const DECODER_CODE = `GoldRushDecoder.on(
   "uniswap-v3:Swap",
@@ -17,25 +18,20 @@ const DECODER_CODE = `GoldRushDecoder.on(
   },
 );`;
 
-export const goldrushDecoderCase: CaseData = {
-  slug: "goldrush-decoder",
-  title: "GOLDRUSH DECODER",
-  docTitle: "GoldRush Decoder — Case Study",
+export const goldrushDecoderCase: CaseDetail = {
   seoDescription:
     "Raw EVM logs in, structured human-readable events out — one endpoint, 200+ chains, enriched with metadata and pricing. Open source.",
   badge: "OPEN SOURCE · 200+ CHAINS",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1766564974/jagnani73/projects/goldrush-decoder/8abf9959-854f-41f2-8b9d-55c48e00866c.png",
   deck: (
     <>
       raw EVM logs in, <span className="text-tx">structured human events</span>{" "}
       out — one endpoint, 200+ chains, enriched with metadata and pricing
     </>
   ),
-  fig: "decoder",
-  sections: [
-    {
-      type: "split",
+  fig: FigDecoder,
+  figAlt: "a raw event log decoding into a named, enriched event",
+  sections: {
+    split: {
       note: "logs are opaque by default",
       serif: (
         <>
@@ -48,8 +44,7 @@ export const goldrushDecoderCase: CaseData = {
       ),
       body: "GoldRush Decoder solves this at the infrastructure level: a single REST endpoint takes a chain name and a transaction hash, and returns an array of fully structured, labelled event objects — enriched with token metadata and USD pricing — across 200+ EVM chains. I built it from the ground up at Covalent.",
     },
-    {
-      type: "arch",
+    arch: {
       note: "a decoder registry · protocol-name:EventName",
       body: (
         <>
@@ -71,8 +66,7 @@ export const goldrushDecoderCase: CaseData = {
       ],
       stack: "TypeScript · Node · Express · Covalent API · CLI scaffolding",
     },
-    {
-      type: "cards",
+    cards: {
       note: "batched-parallel log processing",
       intro: (
         <>
@@ -90,8 +84,7 @@ export const goldrushDecoderCase: CaseData = {
         { name: "contributor CLI", desc: "yarn add-config scaffolds a new protocol in one command" },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "code · the decoder API",
       plates: [
         { kind: "code", code: DECODER_CODE, cap: "registering a protocol decoder" },
@@ -99,6 +92,5 @@ export const goldrushDecoderCase: CaseData = {
       ],
       cta: { label: "view the source ↗", href: "https://github.com/covalenthq/goldrush-decoder" },
     },
-  ],
-  next: "flux",
+  },
 };

@@ -1,24 +1,20 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigLedger } from "@/components/canvas/figs/fig-ledger";
 
-export const contractsCase: CaseData = {
-  slug: "contracts",
-  title: "CONTRACTS",
-  docTitle: "Contracts — Case Study",
+export const contractsCase: CaseDetail = {
   seoDescription:
     "Split expenses with friends on-chain — every edit, settle, and delete kept in an immutable audit log. Best Hedera, Rookie Hacks II.",
   badge: "ROOKIE HACKS II · BEST HEDERA",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1714473805/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-45-39_lskus9.png",
   deck: (
     <>
       split expenses with friends on-chain — every edit, settle, and delete kept
       in an <span className="text-tx">immutable audit log</span>
     </>
   ),
-  fig: "ledger",
-  sections: [
-    {
-      type: "split",
+  fig: FigLedger,
+  figAlt: "every edit appended to an immutable, on-chain audit log",
+  sections: {
+    split: {
       note: "someone always edits the record",
       serif: (
         <>
@@ -28,8 +24,7 @@ export const contractsCase: CaseData = {
       ),
       body: "Contracts moves the whole expense-splitting workflow onto a blockchain, where the ledger's immutability means no transaction can be altered without a visible, permanent trace. Built at Rookie Hacks II 2022, where it won Best Blockchain Project Using Hedera.",
     },
-    {
-      type: "arch",
+    arch: {
       note: "Hedera contracts as the database",
       body: (
         <>
@@ -51,8 +46,7 @@ export const contractsCase: CaseData = {
       ],
       stack: "Solidity · Hedera · Next.js · Express · Node · TailwindCSS",
     },
-    {
-      type: "cards",
+    cards: {
       note: "Hedera, newly launched",
       intro: (
         <>
@@ -70,17 +64,15 @@ export const contractsCase: CaseData = {
         { name: "sparse-docs debugging", desc: "first-principles work on a new platform" },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "Rookie Hacks II",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473805/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-45-39_lskus9.png", cap: "the expense view" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473807/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-46-25_hpuchh.png", cap: "splitting an expense" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473811/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-46-20_hxrgok.png", cap: "the audit trail" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473801/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-45-58_qpcdoj.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473801/jagnani73/projects/contracts/Screenshot_from_2022-07-03_00-45-58_qpcdoj.png", cap: "settling up" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/contracts" },
     },
-  ],
-  next: "hospitatva",
+  },
 };

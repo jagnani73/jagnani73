@@ -1,5 +1,5 @@
 import type { CaseSection as CaseSectionType } from "@/utils/types/case.types";
-import { CaseSectionHead } from "./case-section-head";
+import { SectionHead } from "@/components/shared/section-head";
 import { PlateViewer } from "./plate-viewer";
 
 const SECTION_TITLE: Record<CaseSectionType["type"], string> = {
@@ -23,7 +23,7 @@ export const CaseSection = ({
   if (s.type === "split") {
     return (
       <section>
-        <CaseSectionHead n={n} title={title} note={s.note} />
+        <SectionHead source="case" n={n} title={title} note={s.note} />
         <div className="grid grid-cols-1 gap-[18px] px-4 pb-6 pt-5 rail:grid-cols-2 rail:gap-10 rail:px-11 rail:pb-[34px] rail:pt-7">
           <p className="m-0 font-sans text-[19px] leading-[1.5] text-tx2 rail:text-[23px]">
             {s.serif}
@@ -37,7 +37,7 @@ export const CaseSection = ({
   if (s.type === "arch") {
     return (
       <section>
-        <CaseSectionHead n={n} title={title} note={s.note} />
+        <SectionHead source="case" n={n} title={title} note={s.note} />
         <div className="px-4 pb-1 pt-5 rail:px-11 rail:pb-1.5 rail:pt-7">
           <p className="m-0 max-w-[860px] text-[16px] leading-[1.7] text-tx2">
             {s.body}
@@ -83,7 +83,7 @@ export const CaseSection = ({
   if (s.type === "cards") {
     return (
       <section>
-        <CaseSectionHead n={n} title={title} note={s.note} />
+        <SectionHead source="case" n={n} title={title} note={s.note} />
         <div className="px-4 pb-1 pt-5 rail:px-11 rail:pb-2 rail:pt-7">
           <p className="m-0 max-w-[860px] text-[16px] leading-[1.7] text-tx2">
             {s.intro}
@@ -117,7 +117,7 @@ export const CaseSection = ({
   if (s.type === "stats") {
     return (
       <section>
-        <CaseSectionHead n={n} title={title} note={s.note} />
+        <SectionHead source="case" n={n} title={title} note={s.note} />
         <div className="grid grid-cols-2 gap-2.5 px-4 pb-[26px] pt-5 rail:grid-cols-4 rail:gap-3.5 rail:px-11 rail:pb-9 rail:pt-7">
           {s.stats.map(([big, label]) => (
             <div
@@ -139,7 +139,8 @@ export const CaseSection = ({
 
   return (
     <section>
-      <CaseSectionHead
+      <SectionHead
+        source="case"
         n={n}
         title={title}
         note={

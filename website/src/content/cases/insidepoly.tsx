@@ -1,14 +1,10 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigScore } from "@/components/canvas/figs/fig-score";
 
-export const insidepolyCase: CaseData = {
-  slug: "insidepoly",
-  title: "INSIDEPOLY",
-  docTitle: "InsidePoly — Case Study",
+export const insidepolyCase: CaseDetail = {
   seoDescription:
     "Insider-trading surveillance for Polymarket — every trade watched, every wallet scored. Live anomaly detection across prediction-market activity.",
   badge: "LIVE · 2026",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1773432165/jagnani73/projects/insidepoly/d751cba0-010f-47f0-9464-cb961eba2fe6.png",
   deck: (
     <>
       insider-trading surveillance for{" "}
@@ -16,10 +12,10 @@ export const insidepolyCase: CaseData = {
       wallet scored
     </>
   ),
-  fig: "score",
-  sections: [
-    {
-      type: "split",
+  fig: FigScore,
+  figAlt: "the 0–100 insider-likelihood scale, scoring live",
+  sections: {
+    split: {
       note: "information asymmetry, fully public",
       serif: (
         <>
@@ -33,8 +29,7 @@ export const insidepolyCase: CaseData = {
       ),
       body: "InsidePoly closes that gap for Polymarket, the world's largest prediction market on Polygon. It continuously watches every trade and scores each trader on a 0–100 insider-trading likelihood scale — wallets scoring 80+ get flagged as suspected insiders on a public leaderboard.",
     },
-    {
-      type: "arch",
+    arch: {
       note: "TypeScript monorepo · common / backend / frontend",
       body: (
         <>
@@ -74,8 +69,7 @@ export const insidepolyCase: CaseData = {
       stack:
         "TypeScript · Next.js · Express · PostgreSQL · Redis · Drizzle · socket.io · The Graph · Alchemy",
     },
-    {
-      type: "cards",
+    cards: {
       note: "score_wallets() · PL/pgSQL · single pass",
       intro: (
         <>
@@ -99,8 +93,7 @@ export const insidepolyCase: CaseData = {
         },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "the live product",
       plates: [
         {
@@ -124,6 +117,5 @@ export const insidepolyCase: CaseData = {
         href: "https://github.com/jagnani73/insidepoly",
       },
     },
-  ],
-  next: "agent-sdk",
+  },
 };

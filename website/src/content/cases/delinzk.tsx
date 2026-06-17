@@ -1,14 +1,10 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigZk } from "@/components/canvas/figs/fig-zk";
 
-export const delinzkCase: CaseData = {
-  slug: "delinzk",
-  title: "DELINZK",
-  docTitle: "deLinZK — Case Study",
+export const delinzkCase: CaseDetail = {
   seoDescription:
     "Prove you worked somewhere without revealing where — zero-knowledge proof-of-employment credentials. ETHForAll 2023.",
   badge: "ETHFORALL · 2023",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/70ffc667-d062-4948-97dc-85c438a7ef7d_irclpf.png",
   deck: (
     <>
       prove you worked somewhere{" "}
@@ -16,10 +12,10 @@ export const delinzkCase: CaseData = {
       proof-of-employment credentials
     </>
   ),
-  fig: "zk",
-  sections: [
-    {
-      type: "split",
+  fig: FigZk,
+  figAlt: "proof-of-employment: proven true, employer kept private",
+  sections: {
+    split: {
       note: "credentials are trust-me",
       serif: (
         <>
@@ -32,8 +28,7 @@ export const delinzkCase: CaseData = {
       ),
       body: "deLinZK replaces trust-me credentials with mathematically unforgeable ones. Using Polygon ID and the Iden3 framework, a verified organization issues a Verifiable Credential encoding an employee's tenure. When the employee applies on the integrated job board, they generate a zero-knowledge proof of employment — revealing no underlying personal data. Built at ETHForAll Online VIII.",
     },
-    {
-      type: "arch",
+    arch: {
       note: "Polygon ID · Iden3 · zk-only auth",
       body: (
         <>
@@ -56,8 +51,7 @@ export const delinzkCase: CaseData = {
       ],
       stack: "Polygon ID · Iden3 · Next.js · Redis · Supabase · TypeScript",
     },
-    {
-      type: "cards",
+    cards: {
       note: "a 15-digit integer constraint",
       intro: (
         <>
@@ -76,19 +70,17 @@ export const delinzkCase: CaseData = {
         { name: "org verification", desc: "issuers vetted before they can vouch" },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "ETHForAll",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/70ffc667-d062-4948-97dc-85c438a7ef7d_irclpf.png", cap: "the credential flow" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/91a99762-16bf-4ba8-b12c-35ceaba31927_nixd6w.png", cap: "issuing a credential" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/e505aa8f-668a-40a8-822d-3fa261b68ff7_azumdi.png", cap: "proving employment" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/6a559df0-848d-46e9-9b81-a25383c5b89d_npadrq.jpg" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558075/jagnani73/projects/delinzk/ea9ad5d5-7066-41a4-b44b-bd2814f37f57_hftzqk.png" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/350ad1c9-a430-42bb-ae52-d28f70b7ae34_to9t6l.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/6a559df0-848d-46e9-9b81-a25383c5b89d_npadrq.jpg", cap: "the org dashboard" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558075/jagnani73/projects/delinzk/ea9ad5d5-7066-41a4-b44b-bd2814f37f57_hftzqk.png", cap: "a zero-knowledge proof" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766558074/jagnani73/projects/delinzk/350ad1c9-a430-42bb-ae52-d28f70b7ae34_to9t6l.png", cap: "the verifier view" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/delinzk" },
     },
-  ],
-  next: "nudge-lab",
+  },
 };

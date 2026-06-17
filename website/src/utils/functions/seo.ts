@@ -4,7 +4,7 @@ import {
   LINKEDIN_URL,
   TWITTER_URL,
 } from "@/utils/constants/site";
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
 
 // Single source of truth for site identity (metadata + JSON-LD).
 export const SITE_URL = "https://jagnani73.com";
@@ -64,14 +64,19 @@ export const websiteLd = () => ({
   publisher: { "@id": PERSON_ID },
 });
 
-export const caseLd = (c: CaseData, slug: string, description: string) => ({
+export const caseLd = (
+  c: CaseDetail,
+  slug: string,
+  description: string,
+  image?: string
+) => ({
   "@context": "https://schema.org",
   "@type": "CreativeWork",
   name: c.docTitle,
   headline: c.title,
   description,
   url: `${SITE_URL}/record/${slug}`,
-  ...(c.ogImage ? { image: c.ogImage } : {}),
+  ...(image ? { image } : {}),
   author: { "@id": PERSON_ID },
   creator: { "@id": PERSON_ID },
   isPartOf: { "@id": WEBSITE_ID },

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ConsensusBlock } from "./consensus-block";
-import { yearHash } from "@/content/record";
+import { yearHash } from "@/content/record-lib";
 import type { YearMarkProps } from "@/utils/types/component.types";
 
 // Sticky year + consensus glyph. Confirms after holding ~900ms in the reading

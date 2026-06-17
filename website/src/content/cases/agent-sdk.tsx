@@ -1,4 +1,5 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigAgentGraph } from "@/components/canvas/figs/fig-agent-graph";
 
 const AGENT_SDK_CODE = `import { Agent, ZeeWorkflow } from "@covalenthq/ai-agent-sdk";
 
@@ -17,15 +18,10 @@ const zee = new ZeeWorkflow({
 
 const result = await ZeeWorkflow.run(zee);`;
 
-export const agentSdkCase: CaseData = {
-  slug: "agent-sdk",
-  title: "AI AGENT SDK",
-  docTitle: "AI Agent SDK — Case Study",
+export const agentSdkCase: CaseDetail = {
   seoDescription:
     "The orchestration layer behind Covalent's Zero-Employee Enterprise — TypeScript agents that read chains, call tools, and hand work to each other. Open source.",
   badge: "OPEN SOURCE · 119★",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1766567167/jagnani73/projects/ai-agent-sdk/68955376-450a-4c28-9ed6-3eb4b8f391bf.png",
   deck: (
     <>
       the orchestration layer behind Covalent&apos;s{" "}
@@ -33,10 +29,10 @@ export const agentSdkCase: CaseData = {
       read chains, call tools, and hand work to each other
     </>
   ),
-  fig: "agents",
-  sections: [
-    {
-      type: "split",
+  fig: FigAgentGraph,
+  figAlt: "zee.run(): the planner breaks the goal into tasks, the router assigns them, the endgame concludes",
+  sections: {
+    split: {
       note: "everyone rebuilding the same glue",
       serif: (
         <>
@@ -49,8 +45,7 @@ export const agentSdkCase: CaseData = {
       ),
       body: "ZEE — the Zero-Employee Enterprise — needed an orchestration layer where autonomous agents could interact with on-chain data, external tools, and each other, without each integration being bespoke. I built and shipped it as @covalenthq/ai-agent-sdk on npm — 119 stars, 56 forks, and 2,000+ downloads since its December 2024 launch.",
     },
-    {
-      type: "arch",
+    arch: {
       note: "three default agents around yours · TypeScript",
       body: (
         <>
@@ -91,8 +86,7 @@ export const agentSdkCase: CaseData = {
       stack:
         "TypeScript · Vercel AI SDK · OpenAI · Google · Anthropic · GoldRush API · npm",
     },
-    {
-      type: "cards",
+    cards: {
       title: "WHAT I SHIPPED",
       note: "core SDK · launch → v0.3.0",
       intro: (
@@ -120,8 +114,7 @@ export const agentSdkCase: CaseData = {
         },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "npm · github",
       plates: [
         {
@@ -140,6 +133,5 @@ export const agentSdkCase: CaseData = {
         href: "https://github.com/covalenthq/ai-agent-sdk",
       },
     },
-  ],
-  next: "dewls",
+  },
 };

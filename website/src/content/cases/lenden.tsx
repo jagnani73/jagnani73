@@ -1,14 +1,10 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigLenden } from "@/components/canvas/figs/fig-lenden";
 
-export const lendenCase: CaseData = {
-  slug: "lenden",
-  title: "LENDEN",
-  docTitle: "LenDen — Case Study",
+export const lendenCase: CaseDetail = {
   seoDescription:
     "Lend on one chain, borrow on another — cross-chain credit with a reputation layer over Router cross-talk. Router prize, Unfold 2023.",
   badge: "ROUTER PRIZE · UNFOLD 2023",
-  ogImage:
-    "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/578f68d4-e848-4a3f-a5c5-b7cc74cf9a88_gg0aqw.png",
   deck: (
     <>
       lend on one chain, borrow on another —{" "}
@@ -16,10 +12,10 @@ export const lendenCase: CaseData = {
       layer, over Router cross-talk
     </>
   ),
-  fig: "lenden",
-  sections: [
-    {
-      type: "split",
+  fig: FigLenden,
+  figAlt: "collateral locked on one chain, a loan released on another",
+  sections: {
+    split: {
       note: "liquidity is siloed per chain",
       serif: (
         <>
@@ -31,8 +27,7 @@ export const lendenCase: CaseData = {
       ),
       body: "LenDen lets borrowers collateralize assets on one chain and receive loans on another, while lenders earn interest supplying a multi-chain treasury. It tracks repayment behavior to build a cross-chain credibility score — and on default, retains the collateral or routes it through an on-chain auction. Won First Place in the Router track at Unfold 2023.",
     },
-    {
-      type: "arch",
+    arch: {
       note: "Router cross-talk · credibility scoring",
       body: (
         <>
@@ -57,8 +52,7 @@ export const lendenCase: CaseData = {
       ],
       stack: "Solidity · Router cross-talk · Next.js · Express · Node · Supabase · Push Protocol",
     },
-    {
-      type: "cards",
+    cards: {
       note: "two chains, one atomic state",
       intro: (
         <>
@@ -75,18 +69,16 @@ export const lendenCase: CaseData = {
         { name: "default auction", desc: "on-chain liquidation when a loan goes bad" },
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "Unfold 2023",
       plates: [
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/578f68d4-e848-4a3f-a5c5-b7cc74cf9a88_gg0aqw.png", cap: "the borrower dashboard" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/1d59ea1e-69b3-4cde-9ab9-8fabf58de774_blm70w.png", cap: "posting collateral" },
         { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/903d5d31-763d-4c5e-8a60-4593464e465d_eicstt.png", cap: "a cross-chain loan" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/9a5e12be-9c19-42da-ba67-b47af1f14a18_jvotf8.png" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/f247c1a5-c4aa-411a-9c74-c1bbd1147bfa_l3bj0r.png" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/9a5e12be-9c19-42da-ba67-b47af1f14a18_jvotf8.png", cap: "the lender view" },
+        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/f247c1a5-c4aa-411a-9c74-c1bbd1147bfa_l3bj0r.png", cap: "repaying a loan" },
       ],
       cta: { label: "view the source ↗", href: "https://github.com/jagnani73/lenden" },
     },
-  ],
-  next: "delinzk",
+  },
 };

@@ -1,4 +1,4 @@
-import { getCase } from "@/content/cases";
+import { getCase, getCaseImage } from "@/content/cases";
 import { RECORD } from "@/content/record";
 import type { SelectedWorkItem } from "@/utils/types/home.types";
 
@@ -13,7 +13,7 @@ const tagFromBadge = (badge: string): string =>
   badge.split("·")[0].trim().toLowerCase();
 
 // Latest `n` cases, newest-first, derived from the record (never curated).
-// Image-less cases are skipped so every row shows a real thumbnail.
+// The thumbnail is the case's first img plate; image-less cases are skipped.
 export const getSelectedWork = (n = 6): SelectedWorkItem[] => {
   const items: SelectedWorkItem[] = [];
   for (const r of RECORD) {
@@ -21,7 +21,9 @@ export const getSelectedWork = (n = 6): SelectedWorkItem[] => {
     if (!r.slug) continue;
     const slug = r.slug;
     const c = getCase(slug);
-    if (!c?.ogImage) continue; // no hero image — skip, pull the next case down
+    if (!c) continue;
+    const img = getCaseImage(c);
+    if (!img) continue; // no img plate — skip, pull the next case down
     items.push({
       id: slug,
       title: c.title,
@@ -29,8 +31,7 @@ export const getSelectedWork = (n = 6): SelectedWorkItem[] => {
       year: String(r.year),
       tag: tagFromBadge(c.badge),
       metric: METRIC_BY_SLUG[slug],
-      href: `/record/${slug}`,
-      img: c.ogImage,
+      img,
     });
   }
   return items;

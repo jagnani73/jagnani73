@@ -1,23 +1,20 @@
-import type { CaseData } from "@/utils/types/case.types";
+import type { CaseDetail } from "@/utils/types/case.types";
+import { FigTunnel } from "@/components/canvas/figs/fig-tunnel";
 
-export const claudeControllerCase: CaseData = {
-  slug: "claude-controller",
-  title: "CLAUDE CONTROLLER",
-  docTitle: "Claude Controller — Case Study",
+export const claudeControllerCase: CaseDetail = {
   seoDescription:
     "Run Claude Code from your phone over your own private, encrypted tunnel — your credits, your machine, no cloud. A control plane, not a chat relay.",
   badge: "OPEN SOURCE · 2026",
-  ogImage: `https://res.cloudinary.com/jagnani73/image/upload/v1781545428/jagnani73/projects/claude-controller/Screenshot_2026-06-15_231107_vpd2ys.png`,
   deck: (
     <>
       run Claude Code from your phone — over your own private, encrypted tunnel.{" "}
       <span className="text-tx">your credits, your machine, no cloud.</span>
     </>
   ),
-  fig: "tunnel",
-  sections: [
-    {
-      type: "split",
+  fig: FigTunnel,
+  figAlt: "your phone drives the real Claude Code CLI over an encrypted tunnel",
+  sections: {
+    split: {
       title: "THE IDEA",
       note: "a control plane, not a chat relay",
       serif: (
@@ -32,8 +29,7 @@ export const claudeControllerCase: CaseData = {
       ),
       body: "Claude Controller spawns the real Claude Code CLI on your own machine and relays it to a custom mobile PWA over a private Tailscale tunnel. From your phone you approve tool requests with one tap, switch model / effort / permission mode mid-run, send slash commands, answer pickers, and watch live status — all on your Max-plan credits. It never calls the paid API.",
     },
-    {
-      type: "arch",
+    arch: {
       title: "THE RELAY",
       note: "PTY · hooks · JSONL · WebSocket",
       body: "A terminal relay, not an API client. The backend spawns the CLI in a PTY and consumes two structured signals it already emits — blocking HTTP hooks for approvals and pickers, and the transcript JSONL for content — normalizing both into a per-session bus forwarded over WebSocket. Transport (encryption, TLS, device auth) is delegated to Tailscale and Caddy.",
@@ -62,8 +58,7 @@ export const claudeControllerCase: CaseData = {
       stack:
         "TypeScript monorepo · React 19 · Vite · Tailwind 4 · Node · node-pty · ws · Tailscale · Caddy",
     },
-    {
-      type: "cards",
+    cards: {
       note: "the CLI was built for a human at a terminal",
       intro: (
         <>
@@ -91,8 +86,7 @@ export const claudeControllerCase: CaseData = {
         },
       ],
     },
-    {
-      type: "stats",
+    stats: {
       note: "your machine, your credits",
       stats: [
         ["0", "calls to the paid API — your Max-plan credits"],
@@ -101,8 +95,7 @@ export const claudeControllerCase: CaseData = {
         ["MIT", "open source"],
       ],
     },
-    {
-      type: "plates",
+    plates: {
       note: "the PWA, on a phone",
       plates: [
         {
@@ -132,6 +125,5 @@ export const claudeControllerCase: CaseData = {
         href: "https://github.com/jagnani73/claude-controller",
       },
     },
-  ],
-  next: "solana-ml-dsa-44",
+  },
 };
