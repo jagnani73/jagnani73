@@ -52,7 +52,7 @@ export const SiteRail = ({ page, home }: SiteRailProps) => {
       {/* Mobile: sticky top bar */}
       <div className="sticky top-0 z-50 flex items-center justify-between border-b border-rule bg-bg px-4 py-2.5 rail:hidden">
         <span className="flex items-center gap-2.5">
-          <Logo size={26} home={home} />
+          <Logo size={40} home={home} />
           <span className="font-mono text-xs text-tx2">jagnani73</span>
         </span>
         <span className="flex items-center gap-4">
@@ -66,7 +66,7 @@ export const SiteRail = ({ page, home }: SiteRailProps) => {
       {/* Desktop: fixed 64px left rail */}
       <div className="fixed inset-y-0 left-0 z-50 hidden w-16 border-r border-rule bg-bg rail:block">
         <span className="absolute left-1/2 top-[12px] -translate-x-1/2">
-          <Logo size={46} home={home} />
+          <Logo size={50} home={home} />
         </span>
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 whitespace-nowrap font-mono text-xs tracking-[0.3em] text-tx3">
           EST. 2019 — BLOCKCHAIN · AI · SOFTWARE
