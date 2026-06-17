@@ -22,6 +22,7 @@ import { shikshakCase } from "./cases/shikshak";
 import { frenCase } from "./cases/fren";
 import { storiesCase } from "./cases/stories";
 import { bharatBeaconCase } from "./cases/bharat-beacon";
+import { speedrunCase } from "./cases/speedrun";
 
 export const RECORD: RecordEntry[] = [
   // ── 2026 ──
@@ -124,6 +125,15 @@ export const RECORD: RecordEntry[] = [
     via: "covalent",
     title: "SpeedRun",
     meta: "crypto-native vibe-coding platform · 1k+ active users · 150 token launches in month one",
+    slug: "speedrun",
+    case: speedrunCase,
+  },
+  {
+    year: 2025,
+    kind: "PROJECT",
+    via: "covalent",
+    title: "Claude Code Container",
+    meta: "Claude Code in the browser over WebContainers · SpeedRun's intended successor",
   },
   {
     year: 2025,
