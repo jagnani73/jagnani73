@@ -32,6 +32,10 @@ export const kindColor = (r: RecordEntry): string =>
 // A `slug` marks an authored case row.
 export const isCase = (r: RecordEntry): boolean => r.slug !== undefined;
 
+// Stable per-row identity — year+title is unique across RECORD. Used as both the
+// React key and the hover key so the two can never drift apart.
+export const rowKey = (r: RecordEntry): string => r.year + r.title;
+
 // Within-year order: experience → project (+ its paired hackathon win) →
 // standalone hackathons → research → community → education → certs. A hackathon
 // pairs to its project when the project title prefixes the hackathon's meta.

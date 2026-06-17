@@ -6,12 +6,15 @@ import {
   FILTERS,
   kindColor,
   isCase,
+  rowKey,
   sequenceYear,
 } from "@/content/record-lib";
 import type { FilterId, RecordEntry } from "@/utils/types/record.types";
 import { TimeConstellation } from "@/components/canvas/time-constellation";
 import { YearMark } from "./year-mark";
 import { BackToTop } from "@/components/shared/back-to-top";
+import { Rule } from "@/components/shared/rule";
+import { STATUS, COPYRIGHT } from "@/utils/constants/site";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
@@ -28,7 +31,7 @@ const RecordRow = ({
   hovered: boolean;
   onHover: (key: string) => void;
 }) => {
-  const key = r.year + r.title;
+  const key = rowKey(r);
   // `slug` → internal /record/[slug]; else an optional external `url`.
   const href = r.slug ? `/record/${r.slug}` : r.url;
   const kind = (
@@ -148,11 +151,11 @@ export const RecordClient = ({
     );
   };
 
-  // scroll velocity → constellation drift. The decay rAF runs only while there's
-  // velocity to bleed off (never under reduced motion / hidden tab), so an idle
-  // page holds no frame loop. The constellation reads this value from its own loop.
+  // One scroll listener drives both signals: the at-end confirm (always) and the
+  // constellation drift — scroll velocity bled off by a decay rAF that runs only
+  // while there's velocity left (never under reduced motion / a hidden tab), so an
+  // idle page holds no frame loop. The constellation reads scrollVel from its loop.
   useEffect(() => {
-    if (reduced) return;
     let lastY = window.scrollY;
     let raf: number | null = null;
 
@@ -167,36 +170,30 @@ export const RecordClient = ({
     };
 
     const onScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setAtEnd(max <= 0 || window.scrollY >= max - 60);
+      if (reduced) return;
       scrollVel.current =
         scrollVel.current * 0.5 + (window.scrollY - lastY) * 0.5;
       lastY = window.scrollY;
       if (raf === null && !document.hidden) raf = requestAnimationFrame(decay);
     };
 
+    const id = requestAnimationFrame(onScroll);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
+      cancelAnimationFrame(id);
       if (raf !== null) cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
     };
   }, [reduced]);
 
-  // atEnd → confirm the final years at page bottom
-  useEffect(() => {
-    const onScroll = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      setAtEnd(max <= 0 || window.scrollY >= max - 60);
-    };
-    const id = requestAnimationFrame(onScroll);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      cancelAnimationFrame(id);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, []);
-
-  const data = rows.filter((r) =>
-    filter === "ALL" ? true : filter === "CASES" ? isCase(r) : r.kind === filter
-  );
+  const matchesFilter = (r: RecordEntry): boolean => {
+    if (filter === "ALL") return true;
+    if (filter === "CASES") return isCase(r);
+    return r.kind === filter;
+  };
+  const data = rows.filter(matchesFilter);
   const years = [...new Set(data.map((r) => r.year))].sort((a, b) => b - a);
 
   return (
@@ -221,10 +218,10 @@ export const RecordClient = ({
             THE PORTFOLIO OF RECORD — COMPLETE
           </span>
           <span className="rail:justify-self-end">
-            STATUS: <span className="text-acc">NTU SINGAPORE — AUG 2026</span>
+            STATUS: <span className="text-acc">{STATUS}</span>
           </span>
         </div>
-        <div className="h-px bg-rule-strong" />
+        <Rule strong />
 
         <div className="flex flex-wrap items-baseline justify-between gap-3 px-4 pb-2 pt-4 rail:px-11 rail:pb-3 rail:pt-6">
           <h1 className="m-0 whitespace-nowrap font-display text-[clamp(36px,11vw,48px)] tracking-[0.01em] rail:text-[clamp(48px,5.5vw,80px)]">
@@ -259,7 +256,7 @@ export const RecordClient = ({
             );
           })}
         </div>
-        <div className="h-px bg-rule" />
+        <Rule />
       </div>
 
       <div>
@@ -278,10 +275,10 @@ export const RecordClient = ({
             <div className="relative z-[1] flex flex-col border-l border-rule bg-bg">
               {sequenceYear(data.filter((r) => r.year === y)).map((r) => (
                 <RecordRow
-                  key={r.year + r.title}
+                  key={rowKey(r)}
                   entry={r}
                   mob={mob}
-                  hovered={hov === r.year + r.title}
+                  hovered={hov === rowKey(r)}
                   onHover={setHov}
                 />
               ))}
@@ -291,9 +288,9 @@ export const RecordClient = ({
       </div>
 
       <div className="relative z-1 bg-bg">
-        <div className="h-px bg-rule-strong" />
+        <Rule strong />
         <div className="flex flex-wrap justify-between gap-1.5 px-4 pb-[18px] pt-3 font-mono text-[12px] text-tx3 rail:px-11 rail:pb-6 rail:pt-4">
-          <span>© 2026 YASHVARDHAN JAGNANI</span>
+          <span>{COPYRIGHT}</span>
           <BackToTop />
         </div>
       </div>
