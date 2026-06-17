@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CHAPTERS } from "@/content/home";
 import { SectionHead } from "@/components/shared/section-head";
-import { Rule } from "./rule";
+import { Rule } from "@/components/shared/rule";
 
 export const Chapters = () => (
   <section>

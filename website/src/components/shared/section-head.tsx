@@ -1,4 +1,5 @@
 import type { SectionHeadProps } from "@/utils/types/component.types";
+import { Rule } from "@/components/shared/rule";
 
 // Numbered section header (outlined numeral + title + note between two rules).
 // `source` picks the home ("page") vs case-study sizing; "page" is also anchored.
@@ -6,7 +7,7 @@ export const SectionHead = ({ n, title, note, source, id }: SectionHeadProps) =>
   const page = source === "page";
   return (
     <div id={id} className={page ? "scroll-mt-16" : undefined}>
-      <div className="h-px bg-rule-strong" />
+      <Rule strong />
       <div
         className={`flex flex-wrap items-baseline justify-between gap-1.5 px-4 py-3.5 rail:px-11 ${
           page ? "rail:py-[18px]" : "rail:py-4"
@@ -26,7 +27,7 @@ export const SectionHead = ({ n, title, note, source, id }: SectionHeadProps) =>
           <span className="font-mono text-[13px] text-tx3">{note}</span>
         ) : null}
       </div>
-      <div className="h-px bg-rule" />
+      <Rule />
     </div>
   );
 };

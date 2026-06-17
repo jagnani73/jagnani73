@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BackToTop } from "@/components/shared/back-to-top";
+import { Rule } from "@/components/shared/rule";
 
 export const CaseFooter = ({
   nextSlug,
@@ -9,7 +10,7 @@ export const CaseFooter = ({
   nextTitle: string;
 }) => (
   <>
-    <div className="h-px bg-rule-strong" />
+    <Rule strong />
     <div className="flex flex-col gap-3 px-4 pb-[22px] pt-4 font-mono text-[12px] text-tx3 rail:flex-row rail:items-center rail:justify-between rail:gap-1.5 rail:px-11 rail:pb-6">
       {/* desktop: wrapper dissolves (display:contents) into the 3-way row */}
       <div className="flex items-center justify-between gap-4 rail:contents">
