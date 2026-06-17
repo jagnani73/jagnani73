@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metrics } from "@/utils/types/metrics.types";
 import { getSelectedWork } from "@/utils/functions/selected-work";
+import { getAllCaseSlugs } from "@/content/cases";
 import type { SelectedWorkItem } from "@/utils/types/home.types";
 import { SectionHead } from "@/components/shared/section-head";
-import { RECORD } from "@/content/record";
 
 const tagFor = (item: SelectedWorkItem, metrics: Metrics): string => {
   if (item.metric === "agentSdk")
@@ -62,12 +62,7 @@ export const SelectedWork = ({ metrics }: { metrics: Metrics }) => {
             href="/record?filter=cases"
             className="transition-colors hover:text-sig"
           >
-            {items.length} of{" "}
-            {
-              RECORD.filter((r) => r.kind === "PROJECT" && r.slug !== undefined)
-                .length
-            }{" "}
-            case studies ↗
+            {items.length} of {getAllCaseSlugs().length} case studies ↗
           </Link>
         }
       />
