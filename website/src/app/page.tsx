@@ -1,5 +1,4 @@
 import { PageShell } from "@/components/shared/page-shell";
-import { PageFooter } from "@/components/shared/page-footer";
 import { getMetrics } from "@/utils/functions/fetch-metrics";
 import { Masthead } from "@/components/home/masthead";
 import { Chapters } from "@/components/home/chapters";
@@ -20,7 +19,6 @@ const Home = async () => {
       <Chapters />
       <SelectedWork metrics={metrics} />
       <Person />
-      <PageFooter />
     </PageShell>
   );
 };

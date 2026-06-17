@@ -16,9 +16,11 @@ const pad2 = (n: number): string => String(n).padStart(2, "0");
 export const CaseSection = ({
   section: s,
   index,
+  next,
 }: {
   section: CaseSectionType;
   index: number;
+  next: { slug: string; title: string };
 }) => {
   const n = pad2(index + 1);
   const title = s.title ?? SECTION_TITLE[s.type];
@@ -153,7 +155,7 @@ export const CaseSection = ({
           </>
         }
       />
-      <PlateViewer plates={s.plates} cta={s.cta} />
+      <PlateViewer plates={s.plates} cta={s.cta} next={next} />
     </section>
   );
 };

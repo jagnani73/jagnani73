@@ -42,7 +42,7 @@ export const getAllCaseSlugs = (): string[] => ROSTER;
 export const getCaseTitle = (slug: string): string =>
   getCase(slug)?.title ?? slug;
 
-// Next case in roster order (wraps) — drives the footer's case-to-case cycling.
+// Next case in roster order (wraps) — drives the plates-section "next case" CTA.
 export const getNextSlug = (slug: string): string => {
   const canonical = SLUG_ALIASES[slug] ?? slug;
   const i = ROSTER.indexOf(canonical);

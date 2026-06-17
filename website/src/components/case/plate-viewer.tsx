@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { CtaTerm } from "@/components/shared/cta-term";
 import type { Plate } from "@/utils/types/case.types";
 
 // Two-digit plate label, e.g. "03".
@@ -10,9 +11,11 @@ const plateNo = (n: number): string => String(n + 1).padStart(2, "0");
 export const PlateViewer = ({
   plates,
   cta,
+  next,
 }: {
   plates: Plate[];
   cta?: { label: string; href: string };
+  next: { slug: string; title: string };
 }) => {
   const [i, setI] = useState(0);
   const [fits, setFits] = useState<Record<number, "cover" | "contain">>({});
@@ -112,18 +115,16 @@ export const PlateViewer = ({
             plate {plateNo(j)} — {pl.cap}
           </button>
         ))}
-        {cta ? (
-          <div className="mt-auto px-3 pb-0.5 pt-3.5">
-            <a
-              href={cta.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block rounded bg-pri px-4 py-[7px] font-sans text-[14px] font-semibold text-bg"
-            >
+        <div className="mt-auto flex flex-col items-start gap-3.5 px-3 pb-1 pt-4">
+          <CtaTerm href={`/record/${next.slug}`}>
+            next study — <span className="uppercase">{next.title}</span>
+          </CtaTerm>
+          {cta ? (
+            <CtaTerm href={cta.href} external>
               {cta.label}
-            </a>
-          </div>
-        ) : null}
+            </CtaTerm>
+          ) : null}
+        </div>
       </div>
 
       {bigPlate ? (

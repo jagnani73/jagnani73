@@ -11,7 +11,6 @@ import {
 } from "@/content/cases";
 import { CaseMasthead } from "@/components/case/case-masthead";
 import { CaseSection } from "@/components/case/case-section";
-import { CaseFooter } from "@/components/case/case-footer";
 import { JsonLd } from "@/components/shared/json-ld";
 import { caseLd, breadcrumbLd } from "@/utils/functions/seo";
 
@@ -64,6 +63,9 @@ const CasePage = async ({
   const c = getCase(slug);
   if (!c) notFound();
 
+  const nextSlug = getNextSlug(slug);
+  const next = { slug: nextSlug, title: getCaseTitle(nextSlug) };
+
   return (
     <PageShell page="P.03">
       <JsonLd
@@ -78,9 +80,8 @@ const CasePage = async ({
       />
       <CaseMasthead caseData={c} />
       {orderedSections(c.sections).map((s, i) => (
-        <CaseSection key={s.type} section={s} index={i} />
+        <CaseSection key={s.type} section={s} index={i} next={next} />
       ))}
-      <CaseFooter nextSlug={getNextSlug(slug)} nextTitle={getCaseTitle(getNextSlug(slug))} />
     </PageShell>
   );
 };

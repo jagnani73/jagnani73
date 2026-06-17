@@ -3,13 +3,9 @@ import { BandCanvas } from "@/components/canvas/band-canvas";
 import { DECK } from "@/content/home";
 import { RECORD, getRecordCounts } from "@/content/record";
 import { Rule } from "@/components/shared/rule";
-import { STATUS } from "@/utils/constants/site";
 
 const navLink =
   "cursor-pointer whitespace-nowrap text-tx2 transition-colors hover:text-sig";
-// primary nav CTA — accent always; hover fades, doesn't recolor.
-const recordLink =
-  "cursor-pointer whitespace-nowrap text-acc transition-opacity hover:opacity-75";
 
 export const Masthead = () => {
   const counts = getRecordCounts();
@@ -19,30 +15,6 @@ export const Masthead = () => {
 
   return (
     <section>
-      <div className="flex flex-col gap-2.5 px-4 py-3 font-mono text-[13.5px] text-tx3 rail:grid rail:grid-cols-[1fr_auto_1fr] rail:items-baseline rail:gap-4 rail:px-11 rail:pb-4 rail:pt-6">
-        <span className="hidden rail:inline rail:justify-self-start">
-          jagnani73
-        </span>
-        <span className="flex flex-wrap gap-x-4 gap-y-1.5 rail:-translate-x-8 rail:flex-nowrap rail:justify-self-center rail:gap-[26px]">
-          <a href="#chapters" className={navLink}>
-            chapters
-          </a>
-          <a href="#work" className={navLink}>
-            selected work
-          </a>
-          <a href="#person" className={navLink}>
-            the person
-          </a>
-          <Link href="/record" className={recordLink}>
-            the record ↗
-          </Link>
-        </span>
-        <span className="rail:justify-self-end">
-          STATUS: <span className="text-acc">{STATUS}</span>
-        </span>
-      </div>
-      <Rule strong />
-
       <h1 className="m-0 overflow-hidden px-4 pb-3 pt-[18px] font-display text-[clamp(40px,13.5vw,60px)] leading-[0.95] tracking-[0.005em] text-tx rail:whitespace-nowrap rail:px-11 rail:pb-4 rail:pt-[26px] rail:text-[clamp(64px,8.6vw,126px)]">
         YASHVARDHAN JAGNANI
       </h1>

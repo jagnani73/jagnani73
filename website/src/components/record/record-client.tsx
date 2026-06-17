@@ -12,9 +12,8 @@ import {
 import type { FilterId, RecordEntry } from "@/utils/types/record.types";
 import { TimeConstellation } from "@/components/canvas/time-constellation";
 import { YearMark } from "./year-mark";
-import { BackToTop } from "@/components/shared/back-to-top";
 import { Rule } from "@/components/shared/rule";
-import { STATUS, COPYRIGHT } from "@/utils/constants/site";
+import { CtaTerm } from "@/components/shared/cta-term";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 
@@ -34,7 +33,12 @@ const RecordRow = ({
   const key = rowKey(r);
   // `slug` → internal /record/[slug]; else an optional external `url`.
   const href = r.slug ? `/record/${r.slug}` : r.url;
-  const kind = (
+  // Case rows show the "CASE STUDY →" terminal badge in place of the kind label;
+  // the whole row is already a Link, so the badge is a non-link CtaTerm span.
+  const caseBadge = <CtaTerm className="cta-term--sm">CASE STUDY</CtaTerm>;
+  const kind = isCase(r) ? (
+    mob ? <span className="mb-0.5 block">{caseBadge}</span> : caseBadge
+  ) : (
     <span
       className={`font-mono tracking-widest ${kindColor(r)} ${
         mob ? "mb-0.5 block text-[11px]" : "inline text-[12px]"
@@ -207,22 +211,6 @@ export const RecordClient = ({
 
       {/* opaque so it sits over the fixed constellation */}
       <div className="relative z-[1] bg-bg">
-        <div className="flex flex-wrap items-baseline justify-between gap-2 px-4 py-3 font-mono text-[13.5px] text-tx3 rail:grid rail:grid-cols-[1fr_auto_1fr] rail:px-11 rail:pb-4 rail:pt-6">
-          <Link
-            href="/"
-            className="text-tx2 transition-colors hover:text-sig rail:justify-self-start"
-          >
-            ← the front page
-          </Link>
-          <span className="hidden rail:inline rail:-translate-x-8 rail:justify-self-center">
-            THE PORTFOLIO OF RECORD — COMPLETE
-          </span>
-          <span className="rail:justify-self-end">
-            STATUS: <span className="text-acc">{STATUS}</span>
-          </span>
-        </div>
-        <Rule strong />
-
         <div className="flex flex-wrap items-baseline justify-between gap-3 px-4 pb-2 pt-4 rail:px-11 rail:pb-3 rail:pt-6">
           <h1 className="m-0 whitespace-nowrap font-display text-[clamp(36px,11vw,48px)] tracking-[0.01em] rail:text-[clamp(48px,5.5vw,80px)]">
             THE RECORD
@@ -287,13 +275,6 @@ export const RecordClient = ({
         ))}
       </div>
 
-      <div className="relative z-1 bg-bg">
-        <Rule strong />
-        <div className="flex flex-wrap justify-between gap-1.5 px-4 pb-[18px] pt-3 font-mono text-[12px] text-tx3 rail:px-11 rail:pb-6 rail:pt-4">
-          <span>{COPYRIGHT}</span>
-          <BackToTop />
-        </div>
-      </div>
     </>
   );
 };
