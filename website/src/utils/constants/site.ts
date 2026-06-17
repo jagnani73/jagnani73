@@ -16,11 +16,11 @@ export const COVER_LETTER =
 // ── Standing copy — single source for the masthead bar + footers + OG card ────
 /** Right-hand status shown after the `STATUS:` label across the mastheads and OG. */
 export const STATUS = "NTU SINGAPORE — AUG 2026";
-/** Footer copyright line (AstroLine is appended after it on Home/Record). */
+/** Footer copyright line (the AstroLine fact is appended after it on every page). */
 export const COPYRIGHT = "© 2026 YASHVARDHAN JAGNANI";
 
-// ── Masthead "anton line" ─────────────────────────────────────────────────────
-// Astronomy facts kept ≤ ~24 chars so the desktop one-line lockup holds.
+// ── Footer fact line (AstroLine) ──────────────────────────────────────────────
+// Astronomy facts kept ≤ ~24 chars so the desktop one-line footer lockup holds.
 export const ASTRO_FACTS = [
   "SATURN COULD FLOAT",
   "VENUS SPINS BACKWARD",

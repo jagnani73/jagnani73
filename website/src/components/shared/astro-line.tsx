@@ -1,24 +1,30 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { ASTRO_FACTS } from "@/utils/constants/site";
 
-// Picked once per page load, stable across renders. Server renders index 0
-// (deterministic SSR); after hydration it swaps to this random pick. Bare text,
-// so it inherits the surrounding type.
-const clientIndex =
-  typeof window === "undefined"
-    ? 0
-    : Math.floor(Math.random() * ASTRO_FACTS.length);
-
-const subscribe = () => () => {};
+// The footer fact. The base index is derived deterministically from the path,
+// so it's stable across SSR/CSR (no hydration mismatch) yet differs from page to
+// page; hovering the line advances to the next fact. The wrapping span carries
+// no type of its own, so it inherits the surrounding footer styling.
+const pathIndex = (path: string): number => {
+  let h = 0;
+  for (let i = 0; i < path.length; i++) h = (h * 31 + path.charCodeAt(i)) >>> 0;
+  return h % ASTRO_FACTS.length;
+};
 
 export const AstroLine = () => {
-  const idx = useSyncExternalStore(
-    subscribe,
-    () => clientIndex,
-    () => 0
-  );
+  const base = pathIndex(usePathname());
+  const [step, setStep] = useState(0);
+  const idx = (base + step) % ASTRO_FACTS.length;
 
-  return <>{ASTRO_FACTS[idx]}</>;
+  return (
+    <span
+      onMouseEnter={() => setStep((s) => s + 1)}
+      className="cursor-default transition-colors hover:text-tx2"
+    >
+      {ASTRO_FACTS[idx]}
+    </span>
+  );
 };
