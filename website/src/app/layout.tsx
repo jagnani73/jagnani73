@@ -44,7 +44,7 @@ const metadataDescription = SITE_DESCRIPTION;
 export const metadata: Metadata = {
   title: {
     default: metadataTitle,
-    template: "%s — Yashvardhan Jagnani",
+    template: `%s — ${SITE_NAME}`,
   },
   description: metadataDescription,
   authors: [{ name: metadataTitle, url: SITE_URL }],
