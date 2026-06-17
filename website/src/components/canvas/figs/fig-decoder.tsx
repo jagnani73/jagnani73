@@ -47,7 +47,7 @@ export const FigDecoder = ({ mob, active = true }: { mob: boolean; active?: bool
           alignItems: "center",
         }}
       >
-        <div style={{ ...panel, padding: mob ? "12px 14px" : "16px 18px", minHeight: mob ? 0 : 188 }}>
+        <div style={{ ...panel, padding: mob ? "12px 14px" : "16px 18px", height: mob ? 160 : 188, overflow: "hidden" }}>
           <p style={{ fontFamily: M, fontSize: 10.5, color: t.tx3, margin: "0 0 10px", letterSpacing: "0.1em" }}>
             RAW LOG · hex
           </p>
@@ -58,7 +58,7 @@ export const FigDecoder = ({ mob, active = true }: { mob: boolean; active?: bool
           ))}
         </div>
         <div style={{ textAlign: "center", fontFamily: M, fontSize: 13, color: t.sig }}>{mob ? "↓" : "→"}</div>
-        <div style={{ ...panel, padding: mob ? "12px 14px" : "16px 18px", minHeight: mob ? 0 : 188, borderColor: t.sig }}>
+        <div style={{ ...panel, padding: mob ? "12px 14px" : "16px 18px", height: mob ? 160 : 188, overflow: "hidden", borderColor: t.sig }}>
           <p style={{ fontFamily: M, fontSize: 10.5, color: t.sig, margin: "0 0 8px", letterSpacing: "0.1em" }}>
             DECODED · structured
           </p>
