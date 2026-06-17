@@ -2,7 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import type { Plate, PlateImg } from "@/utils/types/case.types";
+import type { Plate } from "@/utils/types/case.types";
+
+// Two-digit plate label, e.g. "03".
+const plateNo = (n: number): string => String(n + 1).padStart(2, "0");
 
 export const PlateViewer = ({
   plates,
@@ -39,8 +42,10 @@ export const PlateViewer = ({
     return () => window.removeEventListener("keydown", onKey);
   }, [big]);
 
-  const bigPlate =
-    big >= 0 && plates[big]?.kind === "img" ? (plates[big] as PlateImg) : null;
+  const open = big >= 0 ? plates[big] : undefined;
+  const bigPlate = open?.kind === "img" ? open : null;
+  const fade = closing ? "plFadeOut" : "plFadeIn";
+  const zoom = closing ? "plZoomOut" : "plZoomIn";
 
   return (
     <div className="grid items-stretch gap-3.5 px-4 pb-5 pt-4 rail:gap-6 rail:px-11 rail:pb-6 rail:pt-5 rail:[grid-template-columns:minmax(0,640px)_1fr]">
@@ -104,7 +109,7 @@ export const PlateViewer = ({
               i === j ? "bg-pri-a08 text-sig" : "text-tx2 hover:text-sig"
             }`}
           >
-            plate {String(j + 1).padStart(2, "0")} — {pl.cap}
+            plate {plateNo(j)} — {pl.cap}
           </button>
         ))}
         {cta ? (
@@ -126,9 +131,7 @@ export const PlateViewer = ({
           ref={dialogRef}
           role="dialog"
           aria-modal="true"
-          aria-label={`plate ${String(big + 1).padStart(2, "0")} — ${
-            bigPlate.cap
-          }, enlarged`}
+          aria-label={`plate ${plateNo(big)} — ${bigPlate.cap}, enlarged`}
           tabIndex={-1}
           onClick={closeBig}
           className="fixed inset-0 z-1000 flex cursor-zoom-out flex-col items-center justify-center gap-4 outline-none"
@@ -136,9 +139,7 @@ export const PlateViewer = ({
             background: "rgba(8,9,10,0.9)",
             backdropFilter: "blur(10px)",
             WebkitBackdropFilter: "blur(10px)",
-            animation: `${
-              closing ? "plFadeOut" : "plFadeIn"
-            } 0.22s ease forwards`,
+            animation: `${fade} 0.22s ease forwards`,
           }}
         >
           <div
@@ -146,9 +147,7 @@ export const PlateViewer = ({
             style={{
               width: "92vw",
               height: "82vh",
-              animation: `${
-                closing ? "plZoomOut" : "plZoomIn"
-              } 0.28s cubic-bezier(0.22,1,0.36,1) forwards`,
+              animation: `${zoom} 0.28s cubic-bezier(0.22,1,0.36,1) forwards`,
             }}
           >
             <Image
@@ -161,13 +160,9 @@ export const PlateViewer = ({
           </div>
           <span
             className="font-mono text-[12.5px] text-tx2"
-            style={{
-              animation: `${
-                closing ? "plFadeOut" : "plFadeIn"
-              } 0.3s ease forwards`,
-            }}
+            style={{ animation: `${fade} 0.3s ease forwards` }}
           >
-            plate {String(big + 1).padStart(2, "0")} — {bigPlate.cap}
+            plate {plateNo(big)} — {bigPlate.cap}
             <span className="text-tx3"> · esc or click to close</span>
           </span>
         </div>

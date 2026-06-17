@@ -10,6 +10,9 @@ const SECTION_TITLE: Record<CaseSectionType["type"], string> = {
   plates: "IN THE WILD",
 };
 
+// Two-digit label, e.g. "03".
+const pad2 = (n: number): string => String(n).padStart(2, "0");
+
 export const CaseSection = ({
   section: s,
   index,
@@ -17,7 +20,7 @@ export const CaseSection = ({
   section: CaseSectionType;
   index: number;
 }) => {
-  const n = String(index + 1).padStart(2, "0");
+  const n = pad2(index + 1);
   const title = s.title ?? SECTION_TITLE[s.type];
 
   if (s.type === "split") {
@@ -48,7 +51,7 @@ export const CaseSection = ({
             <div key={st.stage} className="contents">
               <div className="flex min-w-0 flex-1 flex-col rounded-md border border-rule bg-panel p-4 rail:px-[18px] rail:pb-3.5 rail:pt-4">
                 <span className="font-mono text-[11px] tracking-[0.08em] text-tx3">
-                  {String(i + 1).padStart(2, "0")}
+                  {pad2(i + 1)}
                 </span>
                 <p className="m-0 mb-1.5 mt-[7px] font-mono text-[13.5px] tracking-[0.08em] text-sig">
                   {st.stage}
@@ -145,7 +148,7 @@ export const CaseSection = ({
         title={title}
         note={
           <>
-            plates 01–{String(s.plates.length).padStart(2, "0")}
+            plates 01–{pad2(s.plates.length)}
             {s.note ? <> · {s.note}</> : null}
           </>
         }
