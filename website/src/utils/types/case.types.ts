@@ -67,8 +67,16 @@ export type CaseSection =
   | ({ type: "stats" } & StatsSection)
   | ({ type: "plates" } & PlatesSection);
 
-// The /record/[slug] detail. It hangs off its record row (content/record.ts):
-// the slug, title and roster position all come from the row — see getCase.
+/** A case fig.1 island paired with its required role="img" accessible name. */
+export interface CaseFigure {
+  component: Fig;
+  alt: string;
+}
+
+// The authored /record/[slug] detail (content/cases/*.tsx). It hangs off its
+// record row (content/record.ts): the slug, title and roster position come from
+// the row and are added by getCase — they are NOT part of the authored shape, so
+// a case file cannot set them by mistake. getCase returns a `ResolvedCase`.
 export interface CaseDetail {
   /** Masthead/SEO display name, when it differs from the record-row title. */
   displayTitle?: string;
@@ -79,14 +87,17 @@ export interface CaseDetail {
   seoDescription?: string;
   badge: string;
   deck: ReactNode;
-  /** fig.1 component + its screen-reader label (the role="img" accessible name). */
-  fig?: Fig;
-  figAlt?: string;
+  /** fig.1 island + its screen-reader label — present together or not at all. */
+  fig?: CaseFigure;
   sections: CaseSections;
-  // Resolved by getCase from the record row — never authored on the detail.
-  slug?: string;
-  title?: string;
-  docTitle?: string;
-  idx?: string;
-  rosterSize?: number;
+}
+
+// What getCase returns: a CaseDetail with the row-derived fields guaranteed, so
+// renderers (CaseMasthead, caseLd, generateMetadata) need no `?`/`?? ""` guards.
+export interface ResolvedCase extends CaseDetail {
+  slug: string;
+  title: string;
+  docTitle: string;
+  idx: string;
+  rosterSize: number;
 }

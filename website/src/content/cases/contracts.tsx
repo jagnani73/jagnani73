@@ -11,8 +11,7 @@ export const contractsCase: CaseDetail = {
       in an <span className="text-tx">immutable audit log</span>
     </>
   ),
-  fig: FigLedger,
-  figAlt: "every edit appended to an immutable, on-chain audit log",
+  fig: { component: FigLedger, alt: "every edit appended to an immutable, on-chain audit log" },
   sections: {
     split: {
       note: "someone always edits the record",

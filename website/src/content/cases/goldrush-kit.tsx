@@ -12,8 +12,7 @@ export const goldrushKitCase: CaseDetail = {
       themeable, drop-in across 200+ chains
     </>
   ),
-  fig: FigKit,
-  figAlt: "a raw API response resolving into a rendered component",
+  fig: { component: FigKit, alt: "a raw API response resolving into a rendered component" },
   sections: {
     split: {
       note: "everyone rebuilds the same plumbing",

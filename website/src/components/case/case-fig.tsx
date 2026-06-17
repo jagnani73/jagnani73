@@ -2,21 +2,16 @@
 
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { useInView } from "@/hooks/use-in-view";
-import type { Fig } from "@/utils/types/case.types";
+import { Rule } from "@/components/shared/rule";
+import type { CaseFigure } from "@/utils/types/case.types";
 
 // The fig component + its label come straight from the case data — no registry.
-export const CaseFig = ({
-  fig: FigComponent,
-  alt,
-}: {
-  fig: Fig;
-  alt: string;
-}) => {
+export const CaseFig = ({ component: FigComponent, alt }: CaseFigure) => {
   const mob = useIsMobile();
   const [ref, inView] = useInView<HTMLDivElement>({ rootMargin: "200px" });
   return (
     <>
-      <div className="h-px bg-rule" />
+      <Rule />
       <div className="px-4 pb-5 pt-4 rail:px-11 rail:pb-6 rail:pt-5">
         <div ref={ref} role="img" aria-label={`Figure 1 — ${alt}`}>
           <FigComponent mob={mob} active={inView} />

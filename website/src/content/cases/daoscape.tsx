@@ -12,8 +12,7 @@ export const daoscapeCase: CaseDetail = {
       influence earned, not bought
     </>
   ),
-  fig: FigDao,
-  figAlt: "a vote weighted by reputation proven off-chain, not tokens held",
+  fig: { component: FigDao, alt: "a vote weighted by reputation proven off-chain, not tokens held" },
   sections: {
     split: {
       note: "token-weighted voting is plutocracy",

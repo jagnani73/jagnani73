@@ -11,8 +11,7 @@ export const storiesCase: CaseDetail = {
       <span className="text-tx">toxicity gate on every message</span>
     </>
   ),
-  fig: FigMatch,
-  figAlt: "peers matched on shared tags; every message passes a toxicity gate",
+  fig: { component: FigMatch, alt: "peers matched on shared tags; every message passes a toxicity gate" },
   sections: {
     split: {
       note: "support, without exposure",

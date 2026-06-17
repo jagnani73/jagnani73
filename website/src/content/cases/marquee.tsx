@@ -24,8 +24,7 @@ export const marqueeCase: CaseDetail = {
       <span className="text-tx">CSS keyframes</span> — my most-installed artifact
     </>
   ),
-  fig: FigMarquee,
-  figAlt: "this strip is react-easy-marquee, rendering itself",
+  fig: { component: FigMarquee, alt: "this strip is react-easy-marquee, rendering itself" },
   sections: {
     split: {
       note: "the ecosystem was too opinionated",

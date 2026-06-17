@@ -12,8 +12,7 @@ export const delinzkCase: CaseDetail = {
       proof-of-employment credentials
     </>
   ),
-  fig: FigZk,
-  figAlt: "proof-of-employment: proven true, employer kept private",
+  fig: { component: FigZk, alt: "proof-of-employment: proven true, employer kept private" },
   sections: {
     split: {
       note: "credentials are trust-me",

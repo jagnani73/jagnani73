@@ -12,8 +12,7 @@ export const insidepolyCase: CaseDetail = {
       wallet scored
     </>
   ),
-  fig: FigScore,
-  figAlt: "the 0–100 insider-likelihood scale, scoring live",
+  fig: { component: FigScore, alt: "the 0–100 insider-likelihood scale, scoring live" },
   sections: {
     split: {
       note: "information asymmetry, fully public",

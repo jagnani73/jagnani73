@@ -11,8 +11,7 @@ export const nudgeLabCase: CaseDetail = {
       <span className="text-tx">without touching the product codebase</span>
     </>
   ),
-  fig: FigNudge,
-  figAlt: "a no-code nudge, configured once, delivered into a live product",
+  fig: { component: FigNudge, alt: "a no-code nudge, configured once, delivered into a live product" },
   sections: {
     split: {
       note: "every nudge is an engineering ticket",

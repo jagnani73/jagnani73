@@ -12,8 +12,7 @@ export const bharatBeaconCase: CaseDetail = {
       <span className="text-tx">pinpointed for the authorities</span>
     </>
   ),
-  fig: FigBeacon,
-  figAlt: "distress signals polled onto the government dashboard in real time",
+  fig: { component: FigBeacon, alt: "distress signals polled onto the government dashboard in real time" },
   sections: {
     split: {
       note: "crises move faster than dashboards",

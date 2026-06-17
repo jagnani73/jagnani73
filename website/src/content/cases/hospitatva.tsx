@@ -11,8 +11,7 @@ export const hospitatvaCase: CaseDetail = {
       <span className="text-tx">recorded immutably, checked by ML</span>
     </>
   ),
-  fig: FigPrice,
-  figAlt: "proposed rates checked against the government benchmark, anomalies flagged",
+  fig: { component: FigPrice, alt: "proposed rates checked against the government benchmark, anomalies flagged" },
   sections: {
     split: {
       note: "price-gouging in a crisis",

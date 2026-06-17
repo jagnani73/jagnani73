@@ -15,8 +15,7 @@ export const solanaMlDsa44Case: CaseDetail = {
       live on-chain
     </>
   ),
-  fig: FigLattice,
-  figAlt: "a quantum attack on each scheme's foundation",
+  fig: { component: FigLattice, alt: "a quantum attack on each scheme's foundation" },
   sections: {
     split: {
       title: "THE GOAL",

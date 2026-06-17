@@ -12,8 +12,7 @@ export const lendenCase: CaseDetail = {
       layer, over Router cross-talk
     </>
   ),
-  fig: FigLenden,
-  figAlt: "collateral locked on one chain, a loan released on another",
+  fig: { component: FigLenden, alt: "collateral locked on one chain, a loan released on another" },
   sections: {
     split: {
       note: "liquidity is siloed per chain",

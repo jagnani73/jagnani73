@@ -29,8 +29,7 @@ export const agentSdkCase: CaseDetail = {
       read chains, call tools, and hand work to each other
     </>
   ),
-  fig: FigAgentGraph,
-  figAlt: "zee.run(): the planner breaks the goal into tasks, the router assigns them, the endgame concludes",
+  fig: { component: FigAgentGraph, alt: "zee.run(): the planner breaks the goal into tasks, the router assigns them, the endgame concludes" },
   sections: {
     split: {
       note: "everyone rebuilding the same glue",

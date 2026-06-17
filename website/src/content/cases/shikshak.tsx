@@ -11,8 +11,7 @@ export const shikshakCase: CaseDetail = {
       pixels, <span className="text-tx">~85% less data</span>
     </>
   ),
-  fig: FigBoard,
-  figAlt: "a blackboard captured as a pixel stream, ~85% less data than video",
+  fig: { component: FigBoard, alt: "a blackboard captured as a pixel stream, ~85% less data than video" },
   sections: {
     split: {
       note: "3GB/day put class out of reach",

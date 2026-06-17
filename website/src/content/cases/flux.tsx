@@ -12,8 +12,7 @@ export const fluxCase: CaseDetail = {
       diagnose failed transactions, and answer from live state
     </>
   ),
-  fig: FigFlux,
-  figAlt: "a refund request, verified against the transaction",
+  fig: { component: FigFlux, alt: "a refund request, verified against the transaction" },
   sections: {
     split: {
       note: "web2 support can't read a chain",

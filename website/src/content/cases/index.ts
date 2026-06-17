@@ -4,6 +4,7 @@ import type {
   CaseSection,
   CaseSections,
   PlateImg,
+  ResolvedCase,
 } from "@/utils/types/case.types";
 
 // Keeps the legacy /record/ai-agent-sdk URL resolving to the authored case.
@@ -19,10 +20,8 @@ const ROSTER = CASE_ROWS.map((r) => r.slug);
 const ROSTER_SIZE = ROSTER.length;
 
 // Resolves a slug to its detail merged with the row's title + roster position.
-// The return guarantees `title` (callers render it), unlike the authored detail.
-export const getCase = (
-  slug: string
-): (CaseDetail & { title: string }) | null => {
+// The return guarantees the derived fields, unlike the authored CaseDetail.
+export const getCase = (slug: string): ResolvedCase | null => {
   const canonical = SLUG_ALIASES[slug] ?? slug;
   const pos = ROSTER.indexOf(canonical);
   if (pos < 0) return null;
@@ -56,11 +55,13 @@ export const getCaseImage = (c: CaseDetail): string | undefined =>
   c.sections.plates?.plates.find((p): p is PlateImg => p.kind === "img")?.src;
 
 // Sections authored as a keyed object → the tagged union the renderer consumes,
-// in insertion (display) order.
-export const orderedSections = (sections: CaseSections): CaseSection[] =>
-  (
-    Object.entries(sections) as [
-      CaseSection["type"],
-      CaseSections[CaseSection["type"]],
-    ][]
-  ).map(([type, sec]) => ({ type, ...sec }) as CaseSection);
+// in insertion (display) order. Entries are typed per-key (a `CaseSections` ⇄
+// `CaseSection` drift becomes a compile error) so only the final tag cast remains.
+export const orderedSections = (sections: CaseSections): CaseSection[] => {
+  type SectionEntry = {
+    [K in keyof CaseSections]-?: [K, NonNullable<CaseSections[K]>];
+  }[keyof CaseSections];
+  return (Object.entries(sections) as SectionEntry[]).map(
+    ([type, sec]) => ({ type, ...sec }) as CaseSection,
+  );
+};

@@ -4,7 +4,7 @@ import {
   LINKEDIN_URL,
   TWITTER_URL,
 } from "@/utils/constants/site";
-import type { CaseDetail } from "@/utils/types/case.types";
+import type { ResolvedCase } from "@/utils/types/case.types";
 
 // Single source of truth for site identity (metadata + JSON-LD).
 export const SITE_URL = "https://jagnani73.com";
@@ -65,7 +65,7 @@ export const websiteLd = () => ({
 });
 
 export const caseLd = (
-  c: CaseDetail,
+  c: ResolvedCase,
   slug: string,
   description: string,
   image?: string

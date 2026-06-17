@@ -11,8 +11,7 @@ export const dewlsCase: CaseDetail = {
       <span className="text-tx">Proof-of-Victory</span>
     </>
   ),
-  fig: FigWager,
-  figAlt: "one wager, settled: stake, play, attest",
+  fig: { component: FigWager, alt: "one wager, settled: stake, play, attest" },
   sections: {
     split: {
       note: "trust, removed from the referee",

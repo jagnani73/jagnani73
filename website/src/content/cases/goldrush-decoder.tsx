@@ -28,8 +28,7 @@ export const goldrushDecoderCase: CaseDetail = {
       out — one endpoint, 200+ chains, enriched with metadata and pricing
     </>
   ),
-  fig: FigDecoder,
-  figAlt: "a raw event log decoding into a named, enriched event",
+  fig: { component: FigDecoder, alt: "a raw event log decoding into a named, enriched event" },
   sections: {
     split: {
       note: "logs are opaque by default",

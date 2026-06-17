@@ -11,8 +11,7 @@ export const claudeControllerCase: CaseDetail = {
       <span className="text-tx">your credits, your machine, no cloud.</span>
     </>
   ),
-  fig: FigTunnel,
-  figAlt: "your phone drives the real Claude Code CLI over an encrypted tunnel",
+  fig: { component: FigTunnel, alt: "your phone drives the real Claude Code CLI over an encrypted tunnel" },
   sections: {
     split: {
       title: "THE IDEA",

@@ -11,8 +11,7 @@ export const frenCase: CaseDetail = {
       <span className="text-tx">emotional picture, never the raw words</span>
     </>
   ),
-  fig: FigJournal,
-  figAlt: "the therapist sees the analysis, never the raw entry",
+  fig: { component: FigJournal, alt: "the therapist sees the analysis, never the raw entry" },
   sections: {
     split: {
       note: "openness vs. privacy",
