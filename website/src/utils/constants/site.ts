@@ -1,3 +1,11 @@
+// ── Layout ───────────────────────────────────────────────────────────────────
+/**
+ * Height (px) of the mobile sticky SiteRail bar (logo 40 + `py-2.5` + border).
+ * Sticky year marks and the constellation gutter offset by this so content
+ * tucks below the bar instead of being clipped behind it.
+ */
+export const MOBILE_BAR_H = 60;
+
 // ── Contact ──────────────────────────────────────────────────────────────────
 export const EMAIL = "yashjagnani73@gmail.com";
 export const TWITTER_HANDLE = "@jagnani73";

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ConsensusBlock } from "./consensus-block";
 import { yearHash } from "@/content/record-lib";
+import { MOBILE_BAR_H } from "@/utils/constants/site";
 import type { YearMarkProps } from "@/utils/types/component.types";
 
 // Sticky year + consensus glyph. Confirms after holding ~900ms in the reading
@@ -48,7 +49,7 @@ export const YearMark = ({ year, atEnd, mob, onConfirm }: YearMarkProps) => {
       ref={ref}
       className="sticky z-1 self-start"
       style={{
-        top: mob ? 46 : 0,
+        top: mob ? MOBILE_BAR_H : 0,
         padding: mob ? "6px 8px 12px 12px" : "16px 20px 16px 40px",
       }}
     >

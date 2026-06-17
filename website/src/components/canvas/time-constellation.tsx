@@ -5,6 +5,7 @@ import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCanvasScene } from "@/hooks/use-canvas-scene";
 import { rgba } from "@/utils/functions/canvas";
+import { MOBILE_BAR_H } from "@/utils/constants/site";
 import type { TimeConstellationProps } from "@/utils/types/component.types";
 
 // fig. 2 — drifting node-mesh behind the year gutter; nodes link within range and ripple when a year confirms.
@@ -112,10 +113,10 @@ export const TimeConstellation = ({
       className="pointer-events-none fixed z-0"
       style={{
         left: mob ? 0 : 64,
-        top: mob ? 46 : 0,
+        top: mob ? MOBILE_BAR_H : 0,
         // Stable large-viewport height (not bottom:0) so the mobile URL-bar
         // show/hide doesn't resize the canvas and flicker the fade on scroll.
-        height: mob ? "calc(100lvh - 46px)" : "100lvh",
+        height: mob ? `calc(100lvh - ${MOBILE_BAR_H}px)` : "100lvh",
         width: gut,
       }}
     >
