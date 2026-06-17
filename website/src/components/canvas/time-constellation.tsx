@@ -110,18 +110,31 @@ export const TimeConstellation = ({
   return (
     <div
       className="pointer-events-none fixed z-0"
-      style={{ left: mob ? 0 : 64, top: mob ? 46 : 0, bottom: 0, width: gut }}
+      style={{
+        left: mob ? 0 : 64,
+        top: mob ? 46 : 0,
+        // Stable large-viewport height (not bottom:0) so the mobile URL-bar
+        // show/hide doesn't resize the canvas and flicker the fade on scroll.
+        height: mob ? "calc(100lvh - 46px)" : "100lvh",
+        width: gut,
+      }}
     >
       <div
         ref={hostRef}
         className="absolute inset-0"
-        style={{ opacity: mob ? 0.55 : 0.7 }}
+        style={{ opacity: mob ? 0.4 : 0.5 }}
       />
       <div
         className="absolute inset-0"
         style={{
-          background:
-            "linear-gradient(90deg, transparent 55%, rgba(var(--bg-rgb),0.95) 94%)",
+          background: [
+            // top fade — soften the panel's top edge so it doesn't read as
+            // spilling above the header margin when scrolled.
+            "linear-gradient(180deg, rgba(var(--bg-rgb),1), rgba(var(--bg-rgb),0) 64px)",
+            // right fade — dissolve into the content column. rgba(bg,0) (not
+            // `transparent`) avoids a grey midtone on the light theme.
+            "linear-gradient(90deg, rgba(var(--bg-rgb),0) 55%, rgba(var(--bg-rgb),0.95) 94%)",
+          ].join(", "),
         }}
       />
     </div>
