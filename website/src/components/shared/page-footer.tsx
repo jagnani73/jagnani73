@@ -9,8 +9,9 @@ import { COPYRIGHT } from "@/utils/constants/site";
 // (Case pages carry their case-to-case "next case" CTA in the plates section.)
 // Desktop is a 3-column grid (copyright | arcade CTA | back-to-top) so the centre
 // CTA is anchored dead-centre regardless of the side widths — flex justify-between
-// can't do that. Explicit `col-start-*` keeps back-to-top in column 3 even when
-// the arcade CTA renders null (on /arcade itself). Mobile stacks them.
+// can't do that. Each side cell self-places via `col-start-*`, so the columns hold
+// even when the arcade CTA (on /arcade) or back-to-top (at the top of the page)
+// renders null. Mobile stacks them.
 export const PageFooter = () => {
   return (
     <footer className="relative z-[1] flex flex-col gap-3 border-t border-rule bg-bg px-4 py-6 rail:grid rail:grid-cols-3 rail:items-center rail:px-11">
@@ -18,9 +19,7 @@ export const PageFooter = () => {
         {COPYRIGHT} — <AstroLine />
       </span>
       <FooterArcadeCta />
-      <div className="rail:col-start-3 rail:justify-self-end">
-        <BackToTop />
-      </div>
+      <BackToTop />
     </footer>
   );
 };
