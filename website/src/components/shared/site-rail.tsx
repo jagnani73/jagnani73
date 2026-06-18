@@ -53,7 +53,16 @@ export const SiteRail = ({ page, home }: SiteRailProps) => {
       <div className="sticky top-0 z-50 flex items-center justify-between border-b border-rule bg-bg px-4 py-2.5 rail:hidden">
         <span className="flex items-center gap-2.5">
           <Logo size={40} home={home} />
-          <span className="font-mono text-xs text-tx2">jagnani73</span>
+          {home ? (
+            <span className="font-mono text-xs text-tx2">jagnani73</span>
+          ) : (
+            <Link
+              href="/"
+              className="font-mono text-xs text-tx2 transition-colors hover:text-sig"
+            >
+              jagnani73
+            </Link>
+          )}
         </span>
         <span className="flex items-center gap-4">
           <span className="text-xl leading-none">
