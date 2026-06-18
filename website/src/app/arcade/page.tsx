@@ -3,8 +3,8 @@ import { PageShell } from "@/components/shared/page-shell";
 import { SectionHead } from "@/components/shared/section-head";
 import { ArcadeBoard } from "@/components/home/arcade-board";
 
-// Unlisted all-games board — not linked anywhere, kept out of the sitemap, and
-// noindex so it stays a quiet corner.
+// All-games board — surfaced only via the footer's "the arcade" CTA (production
+// only), kept out of the sitemap, and noindex so it stays a quiet corner.
 export const metadata: Metadata = {
   title: "Arcade",
   robots: { index: false, follow: false },
