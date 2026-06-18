@@ -1,4 +1,10 @@
 import type { ReactNode, RefObject } from "react";
+import type { ArcadeGame } from "@/utils/types/arcade.types";
+
+// ── home/arcade-card ──
+export interface ArcadeCardProps {
+  game: ArcadeGame;
+}
 
 // ── shared/mark ──
 export type MarkMode = "splash" | "loop" | "hover";

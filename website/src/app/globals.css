@@ -332,6 +332,62 @@ select:focus-visible {
   animation: beaconPulse 1.6s ease-out infinite;
 }
 
+/* ── Arcade card (home/arcade-card.tsx + home/arcade-board.tsx): a 480px card
+   wherever there's room, shrinking to the viewport on narrower screens. Plain CSS
+   (not a Tailwind arbitrary value) so the dev pipeline can't drop it. ── */
+.arcade-card-w {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* The playfield is a query container that grows to fit its game. On a card wide
+   enough (desktop) the game is a horizontal [board | panel] row; on a narrow card
+   (phone) it stacks the board above the panel so nothing overflows — the 470px
+   threshold is just under the 480px cap, so the full-width card stays horizontal
+   and anything narrower stacks. */
+.arcade-play {
+  position: relative;
+  container-type: inline-size;
+  min-height: 250px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.arcade-game-row {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+@container (max-width: 470px) {
+  .arcade-game-row {
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+/* ── Music panel: "now playing" equalizer bars (home/music-panel.tsx) ── */
+@keyframes eqBar {
+  0%,
+  100% {
+    transform: scaleY(0.35);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.eq-bar {
+  height: 100%;
+  background: var(--sig);
+  transform-origin: bottom;
+  animation: eqBar 0.9s ease-in-out infinite;
+}
+
 /* ── Terminal CTA — shared "cta-term" link (components/shared/cta-term.tsx) ── */
 .cta-term {
   display: inline-flex;
@@ -378,7 +434,8 @@ select:focus-visible {
     scroll-behavior: auto;
   }
   .animate-ba-spin,
-  .animate-beacon-pulse {
+  .animate-beacon-pulse,
+  .eq-bar {
     animation: none;
   }
 }
