@@ -1,9 +1,11 @@
 import type { ReactNode, RefObject } from "react";
-import type { ArcadeGame } from "@/utils/types/arcade.types";
+import type { ArcadeGame, ArcadePage } from "@/utils/types/arcade.types";
 
 // ── home/arcade-card ──
 export interface ArcadeCardProps {
   game: ArcadeGame;
+  /** Which page the card lives on — home (the Person section) vs the /arcade board. */
+  page: ArcadePage;
 }
 
 // ── shared/mark ──

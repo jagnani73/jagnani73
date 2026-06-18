@@ -1,12 +1,17 @@
 "use client";
 
-import { useRef, type CSSProperties } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useStoredBest, readBest, writeBest } from "@/hooks/use-stored-best";
 import { dpr as getDpr } from "@/utils/functions/canvas";
 import { rnd, rndf } from "@/utils/functions/random";
-import type { GameMode } from "@/utils/types/arcade.types";
+import {
+  trackArcadeView,
+  trackArcadeStart,
+  trackArcadePlay,
+} from "@/utils/functions/analytics";
+import type { GameMode, Outcome, RoundDetail } from "@/utils/types/arcade.types";
 import type { ArcadeCardProps } from "@/utils/types/component.types";
 
 // One game's frame: header (label + the MINE/YOU bests), the playfield (a query
@@ -60,11 +65,35 @@ const beats = (mode: GameMode, value: number, prev: number | null): boolean => {
   return true; // "wins" — every win increments
 };
 
-export const ArcadeCard = ({ game }: ArcadeCardProps) => {
+export const ArcadeCard = ({ game, page }: ArcadeCardProps) => {
   const tokens = useThemeTokens();
   const reduced = useReducedMotion();
   const yours = useStoredBest(game.key);
   const confRef = useRef<HTMLCanvasElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const viewedRef = useRef(false);
+
+  // Fire one `arcade_view` the first time the card is ≥50% in view (threshold 0.5
+  // — so a tall card on a very short viewport may never trip it). The home hub
+  // sits well below the fold, so a mount-time impression would over-count; gating
+  // on intersection also means the hub's reaction→random placeholder swap has long
+  // settled by the time the section is scrolled to.
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el || typeof IntersectionObserver === "undefined") return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !viewedRef.current) {
+          viewedRef.current = true;
+          trackArcadeView({ game: game.key, mode: game.mode, page });
+          io.disconnect();
+        }
+      },
+      { threshold: 0.5 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [game.key, game.mode, page]);
 
   const celebrate = () => {
     chime();
@@ -115,13 +144,47 @@ export const ArcadeCard = ({ game }: ArcadeCardProps) => {
     requestAnimationFrame(loop);
   };
 
-  const score = (value: number) => {
+  // Emit one arcade_play with the given outcome, score, and best flag.
+  const fire = (
+    outcome: Outcome,
+    value: number,
+    newBest: boolean,
+    detail?: RoundDetail,
+  ): void =>
+    trackArcadePlay({
+      game: game.key,
+      mode: game.mode,
+      page,
+      outcome,
+      score: value,
+      new_best: newBest,
+      moves: detail?.moves,
+      first_word: detail?.word,
+    });
+
+  const score = (value: number, detail?: RoundDetail) => {
     const prev = readBest(game.key);
     const improved = beats(game.mode, value, prev);
     const nb = game.mode === "wins" ? (prev || 0) + 1 : improved ? value : prev!;
     writeBest(game.key, nb); // notifies useStoredBest → the YOU cell updates
     if (improved) celebrate();
+    // Outcome from the detail when the game set one, else derived from the mode
+    // ("win" for the wins games, "done" for the scored ones).
+    fire(
+      detail?.outcome ?? (game.mode === "wins" ? "win" : "done"),
+      value,
+      improved,
+      detail,
+    );
   };
+
+  // A terminal round that records no best — a loss/draw/fail. Telemetry only, so
+  // it carries no score (always 0) and requires the outcome.
+  const end = (detail: RoundDetail & { outcome: Outcome }) =>
+    fire(detail.outcome, 0, false, detail);
+
+  const start = () =>
+    trackArcadeStart({ game: game.key, mode: game.mode, page });
 
   const Comp = game.Comp;
   const fmt = (v: number | null) =>
@@ -133,6 +196,7 @@ export const ArcadeCard = ({ game }: ArcadeCardProps) => {
 
   return (
     <div
+      ref={cardRef}
       style={{
         position: "relative",
         background: "var(--panel)",
@@ -179,7 +243,7 @@ export const ArcadeCard = ({ game }: ArcadeCardProps) => {
       {/* playfield — a query container; grows to fit, stacks board over panel on
           a narrow card (see `.arcade-play` / `.arcade-game-row` in globals.css) */}
       <div className="arcade-play">
-        <Comp score={score} />
+        <Comp score={score} start={start} end={end} />
         <canvas
           ref={confRef}
           style={{

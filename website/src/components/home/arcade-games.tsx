@@ -134,7 +134,7 @@ const boardGrid = (cols: number, rows: number, gap: number) => {
 };
 
 /* 1 · REACTION (min ms) — full-bleed exception */
-function AReaction({ score }: GameProps) {
+function AReaction({ score, start }: GameProps) {
   const [st, setSt] = useState<"idle" | "wait" | "go" | "early" | "done">(
     "idle"
   );
@@ -142,6 +142,7 @@ function AReaction({ score }: GameProps) {
   const t = useRef(0);
   const to = useRef<ReturnType<typeof setTimeout> | null>(null);
   const go = () => {
+    if (st === "idle") start(); // first engagement only — idle is the initial state
     setSt("wait");
     to.current = setTimeout(() => {
       t.current = performance.now();
@@ -205,7 +206,7 @@ function AReaction({ score }: GameProps) {
 /* 2 · MEMORY (max level) */
 const MM = ["var(--sig)", "var(--acc)", "var(--ok)", "var(--flag)"];
 const MM_GRID = boardGrid(2, 2, 8);
-function AMemory({ score }: GameProps) {
+function AMemory({ score, start }: GameProps) {
   const [seq, setSeq] = useState<number[]>([]);
   const [fl, setFl] = useState(-1);
   const [ui, setUi] = useState(0);
@@ -278,7 +279,13 @@ function AMemory({ score }: GameProps) {
       </Board>
       <Panel status={status} color={st === "over" ? "var(--flag)" : undefined}>
         {st === "idle" || st === "over" ? (
-          <button onClick={() => nx([])} style={dashBtn}>
+          <button
+            onClick={() => {
+              start();
+              nx([]);
+            }}
+            style={dashBtn}
+          >
             {st === "over" ? "↻ again" : "start"}
           </button>
         ) : null}
@@ -289,7 +296,7 @@ function AMemory({ score }: GameProps) {
 
 /* 3 · QUICK CLICKS (max) */
 const CLICKS_GRID = boardGrid(3, 3, 8);
-function AClicks({ score }: GameProps) {
+function AClicks({ score, start: onStart }: GameProps) {
   const [pos, setPos] = useState(4);
   const [sc, setSc] = useState(0);
   const [time, setTime] = useState(0);
@@ -316,6 +323,7 @@ function AClicks({ score }: GameProps) {
     return () => clearInterval(t);
   }, [run]); // eslint-disable-line react-hooks/exhaustive-deps
   const start = () => {
+    onStart();
     setSc(0);
     setTime(10);
     setRun(true);
@@ -363,6 +371,10 @@ function AClicks({ score }: GameProps) {
   );
 }
 
+// Player pieces on a board (cells set to 1) — the "moves" stat for tic-tac-toe
+// and Connect 4, where 1 is the human and 2 the AI.
+const myMoves = (bd: number[]) => bd.filter((v) => v === 1).length;
+
 /* 4 · TIC-TAC-TOE (wins) */
 const TTT_W = [
   [0, 1, 2],
@@ -375,7 +387,7 @@ const TTT_W = [
   [2, 4, 6],
 ];
 const TTT_GRID = boardGrid(3, 3, 6);
-function ATicTac({ score }: GameProps) {
+function ATicTac({ score, start, end }: GameProps) {
   const [b, setB] = useState<number[]>(Array(9).fill(0));
   const [done, setDone] = useState(0);
   const win = (bd: number[], p: number) =>
@@ -384,17 +396,19 @@ function ATicTac({ score }: GameProps) {
     bd.map((v, i) => (v ? -1 : i)).filter((i) => i >= 0);
   const move = (i: number) => {
     if (done || b[i]) return;
+    if (b.every((c) => !c)) start(); // first mark on a fresh board
     const nb = b.slice();
     nb[i] = 1;
     if (win(nb, 1)) {
       setB(nb);
       setDone(1);
-      score(1);
+      score(1, { moves: myMoves(nb) });
       return;
     }
     if (!emp(nb).length) {
       setB(nb);
       setDone(3);
+      end({ outcome: "draw", moves: myMoves(nb) });
       return;
     }
     const o = emp(nb);
@@ -413,8 +427,13 @@ function ATicTac({ score }: GameProps) {
     if (m == null) m = o[rnd(o.length)];
     nb[m] = 2;
     setB(nb);
-    if (win(nb, 2)) setDone(2);
-    else if (!emp(nb).length) setDone(3);
+    if (win(nb, 2)) {
+      setDone(2);
+      end({ outcome: "loss", moves: myMoves(nb) });
+    } else if (!emp(nb).length) {
+      setDone(3);
+      end({ outcome: "draw", moves: myMoves(nb) });
+    }
   };
   const status =
     done === 1
@@ -478,7 +497,7 @@ function ATicTac({ score }: GameProps) {
 const C4_C = 7;
 const C4_R = 6;
 const C4_GRID = boardGrid(C4_C, C4_R, 4);
-function AConnect4({ score }: GameProps) {
+function AConnect4({ score, start, end }: GameProps) {
   const [bd, setBd] = useState<number[]>(() => Array(C4_C * C4_R).fill(0));
   const [turn, setTurn] = useState(1);
   const [done, setDone] = useState(0);
@@ -530,12 +549,20 @@ function AConnect4({ score }: GameProps) {
     if (done || turn !== 1) return;
     const nb = drop(bd, c, 1);
     if (!nb) return;
+    if (bd.every((v) => !v)) start(); // first disc on a fresh board
     const pl = win(nb, 1);
     if (pl) {
       setBd(nb);
       setWinC(pl);
       setDone(1);
-      score(1);
+      score(1, { moves: myMoves(nb) });
+      return;
+    }
+    if (nb.every((v) => v)) {
+      // board filled on the player's move — a draw
+      setBd(nb);
+      setDone(3);
+      end({ outcome: "draw", moves: myMoves(nb) });
       return;
     }
     setBd(nb);
@@ -567,6 +594,10 @@ function AConnect4({ score }: GameProps) {
       if (al) {
         setWinC(al);
         setDone(2);
+        end({ outcome: "loss", moves: myMoves(ab) });
+      } else if (ab.every((v) => v)) {
+        setDone(3);
+        end({ outcome: "draw", moves: myMoves(ab) });
       }
       setBd(ab);
       setTurn(1);
@@ -577,6 +608,8 @@ function AConnect4({ score }: GameProps) {
       ? "you win 🎉"
       : done === 2
       ? "I win"
+      : done === 3
+      ? "draw"
       : turn === 1
       ? "drop a disc"
       : "thinking…";
@@ -763,7 +796,7 @@ const WORDS = [
 const pick = () => WORDS[rnd(WORDS.length)];
 const TRIES = 5; // guesses allowed before the word is revealed
 const WORDLE_GRID = boardGrid(5, TRIES, 4);
-function AWordle({ score }: GameProps) {
+function AWordle({ score, start, end }: GameProps) {
   const [ans, setAns] = useState(pick);
   const [rows, setRows] = useState<string[]>([]);
   const [cur, setCur] = useState("");
@@ -778,11 +811,17 @@ function AWordle({ score }: GameProps) {
       setRows(ng);
       if (cur === ans) {
         setDone(1);
-        score(1);
-      } else if (ng.length >= TRIES) setDone(2);
+        score(1, { moves: ng.length, word: ng[0] });
+      } else if (ng.length >= TRIES) {
+        setDone(2);
+        end({ outcome: "loss", moves: ng.length, word: ng[0] });
+      }
       setCur("");
     } else if (k === "⌫") setCur((c) => c.slice(0, -1));
-    else if (cur.length < 5) setCur((c) => c + k);
+    else if (cur.length < 5) {
+      if (!rows.length && !cur) start(); // first letter of the round
+      setCur((c) => c + k);
+    }
   };
   const KB = ["QWERTYUIOP", "ASDFGHJKL", "⌫ZXCVBNM⏎"];
   const cell = (ch: string, state: number | null) => (

@@ -10,7 +10,7 @@ export const ArcadeBoard = () => (
   <div className="flex flex-wrap justify-center gap-6 px-4 py-6 rail:gap-x-12 rail:gap-y-6 rail:px-11 rail:py-9">
     {ARCADE_GAMES.map((g) => (
       <div key={g.key} className="arcade-card-w">
-        <ArcadeCard game={g} />
+        <ArcadeCard game={g} page="arcade" />
       </div>
     ))}
   </div>

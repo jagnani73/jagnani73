@@ -20,5 +20,5 @@ export const Arcade = () => {
     setIdx(rnd(games.length));
   }, [games.length]);
 
-  return <ArcadeCard game={games[idx]} />;
+  return <ArcadeCard game={games[idx]} page="home" />;
 };
