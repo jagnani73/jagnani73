@@ -9,7 +9,7 @@ export const SectionHead = ({ n, title, note, source, id }: SectionHeadProps) =>
     <div id={id} className={page ? "scroll-mt-16" : undefined}>
       <Rule strong />
       <div
-        className={`flex flex-wrap items-baseline justify-between gap-1.5 px-4 py-3.5 rail:px-11 ${
+        className={`flex flex-col items-start gap-1.5 px-4 py-3.5 rail:flex-row rail:flex-wrap rail:items-baseline rail:justify-between rail:px-11 ${
           page ? "rail:py-[18px]" : "rail:py-4"
         }`}
       >
