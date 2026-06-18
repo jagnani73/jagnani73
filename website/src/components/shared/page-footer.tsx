@@ -11,10 +11,11 @@ import { COPYRIGHT } from "@/utils/constants/site";
 // CTA is anchored dead-centre regardless of the side widths — flex justify-between
 // can't do that. Each side cell self-places via `col-start-*`, so the columns hold
 // even when the arcade CTA (on /arcade) or back-to-top (at the top of the page)
-// renders null. Mobile stacks them.
+// renders null. Mobile stacks them, left-aligned via `items-start` so the arcade
+// CTA's dashed underline hugs its label instead of stretching the full width.
 export const PageFooter = () => {
   return (
-    <footer className="relative z-[1] flex flex-col gap-3 border-t border-rule bg-bg px-4 py-6 rail:grid rail:grid-cols-3 rail:items-center rail:px-11">
+    <footer className="relative z-[1] flex flex-col items-start gap-3 border-t border-rule bg-bg px-4 py-6 rail:grid rail:grid-cols-3 rail:items-center rail:px-11">
       <span className="font-mono text-[11px] tracking-[0.08em] text-tx3 rail:col-start-1 rail:justify-self-start">
         {COPYRIGHT} — <AstroLine />
       </span>
