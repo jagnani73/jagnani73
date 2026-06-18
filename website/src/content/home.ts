@@ -1,10 +1,5 @@
-import {
-  EMAIL,
-  GITHUB_URL,
-  LINKEDIN_URL,
-  TWITTER_URL,
-} from "@/utils/constants/site";
-import type { Chapter } from "@/utils/types/home.types";
+import { EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/utils/constants/site";
+import type { Chapter, Person } from "@/utils/types/home.types";
 
 export const DECK = "software, shipped at agent speed";
 
@@ -59,17 +54,40 @@ export const CHAPTERS: Chapter[] = [
   },
 ];
 
-export const PERSON = {
-  quote: {
-    pre: "The tools change; the goal stays the same — ",
-    emphasis: "build things that solve real problems.",
-  },
-  education:
-    "B.TECH COMPUTER SCIENCE AND ENGINEERING — CYBERSECURITY · SRMIST, CHENNAI · 2023",
-  cgpa: "9.26 / 10.00 CGPA",
-  cgpaNote: " — FIRST CLASS WITH DISTINCTION",
-  next: "MSC BLOCKCHAIN · NTU SINGAPORE · AUGUST 2026",
-  beyond: "BEYOND CODE — music · astronomy · shows that make me think",
+export const PERSON: Person = {
+  quote: { pre: "Engineer by trade. ", emphasis: "Builder by reflex." },
+  bio: [
+    [
+      {
+        t: "I'm a blockchain software engineer who likes living close to the data layer — turning raw on-chain noise into interfaces and tools people actually trust. This August I'm heading to ",
+      },
+      { t: "NTU Singapore", em: true },
+      {
+        t: " for an MSc in Blockchain, to go deeper on the systems I keep gravitating toward.",
+      },
+    ],
+    [
+      { t: "I " },
+      { t: "think best in public", em: true },
+      {
+        t: " — half-formed repos, hackathon demos, things shipped before they're ready. Most of my best work started as a 48-hour build I couldn't stop poking at long after the judging was over.",
+      },
+    ],
+    [
+      {
+        t: "Away from the editor it's usually music, a long look at the night sky, or a show that won't leave my head for days. I like things — code and otherwise — that are ",
+      },
+      { t: "built to be understood,", em: true },
+      { t: " not just to work." },
+    ],
+  ],
+  arcadeCaption: "↑ a different game every visit — beat my score",
+  currently: [
+    ["CURRENTLY", "shipping toward NTU · always a side project"],
+    ["BASED", "New Delhi, India — Singapore from Aug 2026"],
+    ["OFF THE CLOCK", "music · astronomy · shows that make me think"],
+    ["ALWAYS UP FOR", "a hackathon, a hard data problem, good coffee"],
+  ],
   links: [
     { label: "github / jagnani73 ↗", href: GITHUB_URL, external: true },
     {
@@ -77,12 +95,11 @@ export const PERSON = {
       href: LINKEDIN_URL,
       external: true,
     },
-    { label: "twitter / jagnani73 ↗", href: TWITTER_URL, external: true },
     {
       label: "yashjagnani73@gmail.com ↗",
       href: `mailto:${EMAIL}`,
       external: false,
     },
   ],
-  resume: { label: "résumé — dec 2025", href: "/api/resume" },
-} as const;
+  resume: { label: "resume — dec 2025", href: "/api/resume" },
+};
