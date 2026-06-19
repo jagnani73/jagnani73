@@ -9,7 +9,8 @@ import { STATUS } from "@/utils/constants/site";
 // The shared top bar — rendered once by PageShell on every page. STATUS sits
 // right on every page and the `jagnani73` brand sits left on desktop only (mobile
 // shows it in the SiteRail bar); the centered CTA is chosen from the route
-// (home → the record · the record/arcade → the front page · a case → the record).
+// (home → the record · the record/arcade (incl. /arcade/stats) → the front page ·
+// a case → the record).
 // `relative z-1 bg-bg` keeps it opaque over The Record's fixed constellation.
 const ctaPos = "rail:-translate-x-8 rail:justify-self-center";
 
@@ -20,7 +21,7 @@ export const MastheadBar = () => {
       <CtaTerm href="/record" className={ctaPos}>
         the record
       </CtaTerm>
-    ) : pathname === "/record" || pathname === "/arcade" ? (
+    ) : pathname === "/record" || pathname.startsWith("/arcade") ? (
       <CtaTerm href="/" arrow="←" arrowSide="left" className={ctaPos}>
         the front page
       </CtaTerm>
