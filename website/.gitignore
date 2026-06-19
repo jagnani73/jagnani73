@@ -40,3 +40,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# drizzle-kit pull byproducts — we keep only schema.ts + the hand-written types
+/src/common/database/meta/
+/src/common/database/*.sql

@@ -1,0 +1,7 @@
+# Claude Code MCP config — contains the Neon DB connection string (credentials)
+.mcp.json
+
+# env files (never commit secrets; the app's own ignore lives in website/.gitignore)
+.env
+.env.*
+!.env.example
