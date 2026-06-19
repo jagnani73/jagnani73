@@ -72,6 +72,11 @@ export const ArcadeCard = ({ game, page }: ArcadeCardProps) => {
   const confRef = useRef<HTMLCanvasElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const viewedRef = useRef(false);
+  // Timestamp of the last start(), so the hub can attach round duration centrally
+  // (no per-game wiring). Consumed once per round, so only the round immediately
+  // after a start() carries a duration — others report null rather than a wrong
+  // value (start() fires once per engagement, not once per round).
+  const startedAtRef = useRef<number | null>(null);
 
   // Fire one `arcade_view` the first time the card is ≥50% in view (threshold 0.5
   // — so a tall card on a very short viewport may never trip it). The home hub
@@ -150,7 +155,11 @@ export const ArcadeCard = ({ game, page }: ArcadeCardProps) => {
     value: number,
     newBest: boolean,
     detail?: RoundDetail,
-  ): void =>
+  ): void => {
+    const startedAt = startedAtRef.current;
+    const duration_ms =
+      startedAt != null ? Math.round(performance.now() - startedAt) : undefined;
+    startedAtRef.current = null; // consume — next round needs its own start()
     trackArcadePlay({
       game: game.key,
       mode: game.mode,
@@ -159,8 +168,10 @@ export const ArcadeCard = ({ game, page }: ArcadeCardProps) => {
       score: value,
       new_best: newBest,
       moves: detail?.moves,
+      duration_ms,
       first_word: detail?.word,
     });
+  };
 
   const score = (value: number, detail?: RoundDetail) => {
     const prev = readBest(game.key);
@@ -183,8 +194,10 @@ export const ArcadeCard = ({ game, page }: ArcadeCardProps) => {
   const end = (detail: RoundDetail & { outcome: Outcome }) =>
     fire(detail.outcome, 0, false, detail);
 
-  const start = () =>
+  const start = () => {
+    startedAtRef.current = performance.now();
     trackArcadeStart({ game: game.key, mode: game.mode, page });
+  };
 
   const Comp = game.Comp;
   const fmt = (v: number | null) =>

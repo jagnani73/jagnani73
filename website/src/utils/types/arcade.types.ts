@@ -3,6 +3,16 @@ import type { ComponentType } from "react";
 // How the hub decides whether a fresh `score(value)` beats the stored best.
 export type GameMode = "min" | "max" | "wins";
 
+// The six arcade games — the single source for the closed set of game keys, reused
+// by the registry, the telemetry payload, the sink allowlist, and the stats page.
+export type ArcadeGameKey =
+  | "reaction"
+  | "memory"
+  | "clicks"
+  | "ttt"
+  | "c4"
+  | "wordle";
+
 // Which page a card is rendered on — the home page (the Person section) vs the
 // /arcade all-games board. Rides along on every analytics event so the two can be
 // told apart.
@@ -38,7 +48,7 @@ export interface GameProps {
 
 export interface ArcadeGame {
   /** localStorage suffix: `arcade.best.<key>` — never change once shipped */
-  key: string;
+  key: ArcadeGameKey;
   label: string;
   mode: GameMode;
   /** owner's record, shown as MINE (placeholder until real values land) */
