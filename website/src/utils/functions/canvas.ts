@@ -4,7 +4,8 @@
 export const dpr = (): number => Math.min(window.devicePixelRatio || 1, 2);
 
 /** `rgba()` from an "r,g,b" triplet — the form ThemeTokens stores as `priRGB`/`sigRGB`. */
-export const rgba = (rgb: string, alpha: number): string => `rgba(${rgb},${alpha})`;
+export const rgba = (rgb: string, alpha: number): string =>
+  `rgba(${rgb},${alpha})`;
 
 /** Hex token (`#rrggbb` / `#rgb`) → an "r,g,b" triplet, so any token can feed `rgba()`. */
 export const hexRgb = (hex: string): string => {

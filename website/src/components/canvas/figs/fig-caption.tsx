@@ -2,7 +2,13 @@
 
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 
-export const FigCaption = ({ left, right }: { left: string; right: string }) => {
+export const FigCaption = ({
+  left,
+  right,
+}: {
+  left: string;
+  right: string;
+}) => {
   const t = useThemeTokens();
   return (
     <div

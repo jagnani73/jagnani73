@@ -7,14 +7,15 @@ import type { ArcadeGameKey } from "@/utils/types/arcade.types";
 // renamed). Score formatting matches ArcadeCard's `fmt`.
 // NOTE: keep label/unit in sync with the registry (small, deliberate duplication
 // — a unit added there but not here renders as a bare number).
-export const GAME_META: Record<ArcadeGameKey, { label: string; unit: string }> = {
-  reaction: { label: "Reaction test", unit: "ms" },
-  memory: { label: "Memory", unit: "lvl" },
-  clicks: { label: "Quick clicks", unit: "" },
-  ttt: { label: "Tic-tac-toe", unit: "×" },
-  c4: { label: "Connect 4", unit: "×" },
-  wordle: { label: "Mini wordle", unit: "×" },
-};
+export const GAME_META: Record<ArcadeGameKey, { label: string; unit: string }> =
+  {
+    reaction: { label: "Reaction test", unit: "ms" },
+    memory: { label: "Memory", unit: "lvl" },
+    clicks: { label: "Quick clicks", unit: "" },
+    ttt: { label: "Tic-tac-toe", unit: "×" },
+    c4: { label: "Connect 4", unit: "×" },
+    wordle: { label: "Mini wordle", unit: "×" },
+  };
 
 // The closed set of game keys, derived from GAME_META — the single runtime source
 // for the sink's allowlist (route.ts) so it can't drift from this list.

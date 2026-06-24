@@ -3,23 +3,28 @@ import { FigPrice } from "@/components/canvas/figs/fig-price";
 
 export const hospitatvaCase: CaseDetail = {
   seoDescription:
-    "A national portal against pandemic price-gouging — hospital rates recorded immutably and checked by ML. Smart India Hackathon 2022.",
+    "A national portal against pandemic price-gouging: hospital rates recorded immutably and checked by ML. Smart India Hackathon 2022.",
   badge: "SMART INDIA HACKATHON · 2022",
   deck: (
     <>
-      a national portal against pandemic price-gouging — hospital rates{" "}
+      a national portal against pandemic price-gouging: hospital rates{" "}
       <span className="text-tx">recorded immutably, checked by ML</span>
     </>
   ),
-  fig: { component: FigPrice, alt: "proposed rates checked against the government benchmark, anomalies flagged" },
+  fig: {
+    component: FigPrice,
+    alt: "proposed rates checked against the government benchmark, anomalies flagged",
+  },
   sections: {
     split: {
       note: "price-gouging in a crisis",
       serif: (
         <>
           During COVID, private hospitals inflated costs for beds, oxygen, and
-          treatment — and{" "}
-          <span className="text-tx">opacity around availability left families helpless.</span>
+          treatment, and{" "}
+          <span className="text-tx">
+            opacity around availability left families helpless.
+          </span>
         </>
       ),
       body: "Hospitatva is a national information portal bringing full transparency to hospital pricing and commodity availability. A distributed ledger on Zilliqa records the rates hospitals propose and charge; a 30-input ML model detects billing anomalies before invoices are finalized. Built for Smart India Hackathon Internals 2022.",
@@ -32,48 +37,110 @@ export const hospitatvaCase: CaseDetail = {
           <strong className="font-semibold text-tx">Zilliqa</strong> immutably
           record proposed rates and live commodity counts. Three portals serve
           patients, hospital staff, and officials; a{" "}
-          <strong className="font-semibold text-tx">30-input ML price model</strong>{" "}
-          flags anomalies, and I built the frontend logic — including DID-based
+          <strong className="font-semibold text-tx">
+            30-input ML price model
+          </strong>{" "}
+          flags anomalies, and I built the frontend logic, including DID-based
           auth via MagicLink, grounded in the Web of Trust.
         </>
       ),
       flow: [
-        { stage: "RECORD", role: "proposed rates + commodity counts on-chain", tech: ["Zilliqa", "Scilla"] },
-        { stage: "AUTH", role: "DID sign-in, Web of Trust", tech: ["MagicLink"] },
-        { stage: "PREDICT", role: "30-input model flags anomalies", tech: ["scikit-learn", "TensorFlow"] },
-        { stage: "REVIEW", role: "officials triage patient complaints", tech: ["Next.js"] },
+        {
+          stage: "RECORD",
+          role: "proposed rates + commodity counts on-chain",
+          tech: ["Zilliqa", "Scilla"],
+        },
+        {
+          stage: "AUTH",
+          role: "DID sign-in, Web of Trust",
+          tech: ["MagicLink"],
+        },
+        {
+          stage: "PREDICT",
+          role: "30-input model flags anomalies",
+          tech: ["scikit-learn", "TensorFlow"],
+        },
+        {
+          stage: "REVIEW",
+          role: "officials triage patient complaints",
+          tech: ["Next.js"],
+        },
       ],
-      stack: "Zilliqa · Scilla · Next.js · TypeScript · MagicLink (DID) · scikit-learn",
+      stack:
+        "Zilliqa · Scilla · Next.js · TypeScript · MagicLink (DID) · scikit-learn",
     },
     cards: {
       note: "decentralized identity at the app layer",
       intro: (
         <>
           I integrated{" "}
-          <span className="font-mono text-sig">DID-based authentication</span> via
-          MagicLink — which meant rethinking how auth context flows through a
+          <span className="font-mono text-sig">DID-based authentication</span>{" "}
+          via MagicLink, which meant rethinking how auth context flows through a
           Next.js app when identity is cryptographic, not a session cookie:
         </>
       ),
       cards: [
-        { name: "DID auth", desc: "wallet-native sign-in on the Web of Trust model" },
-        { name: "no sessions / JWTs", desc: "auth state tied to cryptographic identity" },
-        { name: "three-portal flow", desc: "patients, hospitals, and officials, one ledger" },
-        { name: "anomaly pipeline", desc: "ML flags inflated bills before they finalize" },
+        {
+          name: "DID auth",
+          desc: "wallet-native sign-in on the Web of Trust model",
+        },
+        {
+          name: "no sessions / JWTs",
+          desc: "auth state tied to cryptographic identity",
+        },
+        {
+          name: "three-portal flow",
+          desc: "patients, hospitals, and officials, one ledger",
+        },
+        {
+          name: "anomaly pipeline",
+          desc: "ML flags inflated bills before they finalize",
+        },
       ],
     },
     plates: {
       note: "the portal",
       plates: [
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473710/jagnani73/projects/hospitatva/preview1_1_ghtg1s.png", cap: "the patient portal" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473707/jagnani73/projects/hospitatva/preview2_ov2nxo.png", cap: "browsing hospitals" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473715/jagnani73/projects/hospitatva/preview3_cl9fz1.png", cap: "verifying a price" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473718/jagnani73/projects/hospitatva/preview5_vqlet8.png", cap: "the hospital profile" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473712/jagnani73/projects/hospitatva/preview6_1_mlrp5u.png", cap: "comparing prices" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473724/jagnani73/projects/hospitatva/preview7_1_ydmuwg.png", cap: "booking a slot" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473721/jagnani73/projects/hospitatva/preview8_1_wghanp.png", cap: "the admin view" },
+        {
+          kind: "img",
+          src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473710/jagnani73/projects/hospitatva/preview1_1_ghtg1s.png",
+          cap: "the patient portal",
+        },
+        {
+          kind: "img",
+          src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473707/jagnani73/projects/hospitatva/preview2_ov2nxo.png",
+          cap: "browsing hospitals",
+        },
+        {
+          kind: "img",
+          src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473715/jagnani73/projects/hospitatva/preview3_cl9fz1.png",
+          cap: "verifying a price",
+        },
+        {
+          kind: "img",
+          src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473718/jagnani73/projects/hospitatva/preview5_vqlet8.png",
+          cap: "the hospital profile",
+        },
+        {
+          kind: "img",
+          src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473712/jagnani73/projects/hospitatva/preview6_1_mlrp5u.png",
+          cap: "comparing prices",
+        },
+        {
+          kind: "img",
+          src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473724/jagnani73/projects/hospitatva/preview7_1_ydmuwg.png",
+          cap: "booking a slot",
+        },
+        {
+          kind: "img",
+          src: "https://res.cloudinary.com/jagnani73/image/upload/v1714473721/jagnani73/projects/hospitatva/preview8_1_wghanp.png",
+          cap: "the admin view",
+        },
       ],
-      cta: { label: "view the source", href: "https://github.com/jagnani73/hospitatva" },
+      cta: {
+        label: "view the source",
+        href: "https://github.com/jagnani73/hospitatva",
+      },
     },
   },
 };

@@ -33,7 +33,8 @@ const EMPTY: ArcadeStats = {
 };
 
 // Anonymous, non-reversible label from the visitor uuid — never expose the full id.
-const anon = (id: string | null): string => (id ? `#${id.slice(0, 4)}` : "#????");
+const anon = (id: string | null): string =>
+  id ? `#${id.slice(0, 4)}` : "#????";
 
 export const getArcadeStats = async (): Promise<ArcadeStats> => {
   if (!db) return EMPTY;
@@ -81,7 +82,9 @@ export const getArcadeStats = async (): Promise<ArcadeStats> => {
         .where(play)
         .groupBy(arcadeEvents.game),
       db
-        .select({ streak: sql<number | null>`max(${arcadeEvents.winStreak})::int` })
+        .select({
+          streak: sql<number | null>`max(${arcadeEvents.winStreak})::int`,
+        })
         .from(arcadeEvents)
         .where(play),
       db
@@ -92,7 +95,10 @@ export const getArcadeStats = async (): Promise<ArcadeStats> => {
         })
         .from(arcadeEvents)
         .where(
-          and(eq(arcadeEvents.game, "wordle"), isNotNull(arcadeEvents.firstLetter)),
+          and(
+            eq(arcadeEvents.game, "wordle"),
+            isNotNull(arcadeEvents.firstLetter),
+          ),
         )
         .groupBy(arcadeEvents.firstLetter)
         .orderBy(desc(sql`count(*)`)),
@@ -103,7 +109,10 @@ export const getArcadeStats = async (): Promise<ArcadeStats> => {
         })
         .from(arcadeEvents)
         .where(
-          and(eq(arcadeEvents.game, "wordle"), isNotNull(arcadeEvents.firstWord)),
+          and(
+            eq(arcadeEvents.game, "wordle"),
+            isNotNull(arcadeEvents.firstWord),
+          ),
         )
         .groupBy(arcadeEvents.firstWord)
         .orderBy(desc(sql`count(*)`))

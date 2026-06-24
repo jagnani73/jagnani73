@@ -4,14 +4,41 @@
 // `x-vercel-ip-country` returns uppercase ISO 3166-1 alpha-2 codes.
 const PRIVACY_GATED_COUNTRIES = new Set<string>([
   // EU 27
-  "AT", "BE", "BG", "HR", "CY", "CZ", "DK", "EE", "FI", "FR", "DE", "GR",
-  "HU", "IE", "IT", "LV", "LT", "LU", "MT", "NL", "PL", "PT", "RO", "SK",
-  "SI", "ES", "SE",
+  "AT",
+  "BE",
+  "BG",
+  "HR",
+  "CY",
+  "CZ",
+  "DK",
+  "EE",
+  "FI",
+  "FR",
+  "DE",
+  "GR",
+  "HU",
+  "IE",
+  "IT",
+  "LV",
+  "LT",
+  "LU",
+  "MT",
+  "NL",
+  "PL",
+  "PT",
+  "RO",
+  "SK",
+  "SI",
+  "ES",
+  "SE",
   // EEA (non-EU)
-  "IS", "LI", "NO",
+  "IS",
+  "LI",
+  "NO",
   // UK GDPR
   "GB",
 ]);
 
-export const isPrivacyGatedCountry = (code: string | null | undefined): boolean =>
-  !!code && PRIVACY_GATED_COUNTRIES.has(code.toUpperCase());
+export const isPrivacyGatedCountry = (
+  code: string | null | undefined,
+): boolean => !!code && PRIVACY_GATED_COUNTRIES.has(code.toUpperCase());

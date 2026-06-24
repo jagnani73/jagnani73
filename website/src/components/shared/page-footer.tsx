@@ -17,7 +17,7 @@ export const PageFooter = () => {
   return (
     <footer className="relative z-[1] flex flex-col items-start gap-3 border-t border-rule bg-bg px-4 py-6 rail:grid rail:grid-cols-3 rail:items-center rail:px-11">
       <span className="font-mono text-[11px] tracking-[0.08em] text-tx3 rail:col-start-1 rail:justify-self-start">
-        {COPYRIGHT} — <AstroLine />
+        {COPYRIGHT} - <AstroLine />
       </span>
       <FooterArcadeCta />
       <BackToTop />

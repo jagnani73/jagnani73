@@ -7,15 +7,51 @@ import { MONO as M } from "./fig-style";
 
 const A = "var(--font-display)";
 
-const DAO_VOTERS: { id: string; rep: string; proofs: string; w: number; vote: "YES" | "NO" }[] = [
-  { id: "0xD4…aF21", rep: "core dev · 2yr", proofs: "github + email", w: 9.0, vote: "YES" },
-  { id: "0xA1…9c0E", rep: "verified contributor", proofs: "twitter + github", w: 8.4, vote: "YES" },
-  { id: "0xB2…77dC", rep: "multisig signer", proofs: "email + github", w: 6.1, vote: "YES" },
-  { id: "0xC3…01Ff", rep: "first-week wallet", proofs: "token only", w: 1.2, vote: "NO" },
+const DAO_VOTERS: {
+  id: string;
+  rep: string;
+  proofs: string;
+  w: number;
+  vote: "YES" | "NO";
+}[] = [
+  {
+    id: "0xD4…aF21",
+    rep: "core dev · 2yr",
+    proofs: "github + email",
+    w: 9.0,
+    vote: "YES",
+  },
+  {
+    id: "0xA1…9c0E",
+    rep: "verified contributor",
+    proofs: "twitter + github",
+    w: 8.4,
+    vote: "YES",
+  },
+  {
+    id: "0xB2…77dC",
+    rep: "multisig signer",
+    proofs: "email + github",
+    w: 6.1,
+    vote: "YES",
+  },
+  {
+    id: "0xC3…01Ff",
+    rep: "first-week wallet",
+    proofs: "token only",
+    w: 1.2,
+    vote: "NO",
+  },
 ];
 
 // DAOScape — vote weighted by off-chain reputation, not tokens held.
-export const FigDao = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
+export const FigDao = ({
+  mob,
+  active = true,
+}: {
+  mob: boolean;
+  active?: boolean;
+}) => {
   const t = useThemeTokens();
   const n = useTick(820, DAO_VOTERS.length + 4, active, DAO_VOTERS.length + 3);
   const shown = Math.min(n, DAO_VOTERS.length);
@@ -30,7 +66,10 @@ export const FigDao = ({ mob, active = true }: { mob: boolean; active?: boolean 
 
   return (
     <div>
-      <FigCaption left="fig. 1 — a vote weighted by reputation proven off-chain, not tokens held" right="proposal #07 · weighted tally" />
+      <FigCaption
+        left="fig. 1: a vote weighted by reputation proven off-chain, not tokens held"
+        right="proposal #07 · weighted tally"
+      />
       <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
         {DAO_VOTERS.map((v, i) => {
           const vis = i < shown;
@@ -41,7 +80,9 @@ export const FigDao = ({ mob, active = true }: { mob: boolean; active?: boolean 
               style={{
                 ...panel,
                 display: "grid",
-                gridTemplateColumns: mob ? "auto 1fr auto auto" : "104px 1fr auto auto",
+                gridTemplateColumns: mob
+                  ? "auto 1fr auto auto"
+                  : "104px 1fr auto auto",
                 alignItems: "center",
                 gap: mob ? 8 : 14,
                 padding: mob ? "8px 10px" : "10px 14px",
@@ -50,7 +91,15 @@ export const FigDao = ({ mob, active = true }: { mob: boolean; active?: boolean 
                 transition: "opacity 0.4s",
               }}
             >
-              <span style={{ fontFamily: M, fontSize: mob ? 10.5 : 12.5, color: t.tx }}>{v.id}</span>
+              <span
+                style={{
+                  fontFamily: M,
+                  fontSize: mob ? 10.5 : 12.5,
+                  color: t.tx,
+                }}
+              >
+                {v.id}
+              </span>
               {!mob ? (
                 <span style={{ fontFamily: M, fontSize: 11, color: t.tx3 }}>
                   {v.rep}{" "}
@@ -62,9 +111,18 @@ export const FigDao = ({ mob, active = true }: { mob: boolean; active?: boolean 
               ) : (
                 <span />
               )}
-              <span style={{ fontFamily: A, fontSize: mob ? 16 : 20, color: v.w >= 5 ? t.sig : t.tx3, letterSpacing: "0.02em" }}>
+              <span
+                style={{
+                  fontFamily: A,
+                  fontSize: mob ? 16 : 20,
+                  color: v.w >= 5 ? t.sig : t.tx3,
+                  letterSpacing: "0.02em",
+                }}
+              >
                 {v.w.toFixed(1)}
-                <span style={{ fontSize: 10, color: t.tx3, fontFamily: M }}>×</span>
+                <span style={{ fontSize: 10, color: t.tx3, fontFamily: M }}>
+                  ×
+                </span>
               </span>
               <span
                 style={{
@@ -81,13 +139,43 @@ export const FigDao = ({ mob, active = true }: { mob: boolean; active?: boolean 
             </div>
           );
         })}
-        <div style={{ display: "flex", height: 12, borderRadius: 99, overflow: "hidden", marginTop: 5, background: t.panel }}>
-          <div style={{ width: `${(yes / total) * 100}%`, background: t.ok, transition: "width 0.5s" }} />
-          <div style={{ width: `${(no / total) * 100}%`, background: t.flag, transition: "width 0.5s" }} />
+        <div
+          style={{
+            display: "flex",
+            height: 12,
+            borderRadius: 99,
+            overflow: "hidden",
+            marginTop: 5,
+            background: t.panel,
+          }}
+        >
+          <div
+            style={{
+              width: `${(yes / total) * 100}%`,
+              background: t.ok,
+              transition: "width 0.5s",
+            }}
+          />
+          <div
+            style={{
+              width: `${(no / total) * 100}%`,
+              background: t.flag,
+              transition: "width 0.5s",
+            }}
+          />
         </div>
-        <div style={{ display: "flex", justifyContent: "space-between", fontFamily: M, fontSize: 11 }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            fontFamily: M,
+            fontSize: 11,
+          }}
+        >
           <span style={{ color: t.ok }}>YES {yes.toFixed(1)}</span>
-          <span style={{ color: t.tx3 }}>vlayer web proofs · reputation-weighted</span>
+          <span style={{ color: t.tx3 }}>
+            vlayer web proofs · reputation-weighted
+          </span>
           <span style={{ color: t.flag }}>NO {no.toFixed(1)}</span>
         </div>
       </div>

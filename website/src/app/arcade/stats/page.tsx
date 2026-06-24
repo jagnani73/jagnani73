@@ -91,7 +91,7 @@ const ArcadeStatsPage = async () => {
       <PageShell page="STATS">
         {head}
         <p className="max-w-[60ch] px-4 py-16 font-serif text-[18px] leading-relaxed text-tx2 rail:px-11">
-          The stats are temporarily unavailable — we hit a snag fetching them.
+          The stats are temporarily unavailable. We hit a snag fetching them.
           Check back shortly.
         </p>
       </PageShell>
@@ -115,7 +115,7 @@ const ArcadeStatsPage = async () => {
         {head}
         <p className="max-w-[60ch] px-4 py-16 font-serif text-[18px] leading-relaxed text-tx2 rail:px-11">
           No rounds on record yet. The arcade only logs from the live production
-          site — once it&apos;s deployed and a few games have been played, the
+          site. Once it&apos;s deployed and a few games have been played, the
           numbers fill in here.
         </p>
       </PageShell>
@@ -147,8 +147,8 @@ const ArcadeStatsPage = async () => {
             <Tile value={nf.format(s.totals.views)} label="arcade views" />
           </div>
           <p className="mt-4 font-mono text-[12px] text-tx3">
-            {nf.format(s.totals.views)} cards seen → {nf.format(s.totals.starts)}{" "}
-            engaged
+            {nf.format(s.totals.views)} cards seen →{" "}
+            {nf.format(s.totals.starts)} engaged
             {startRate != null ? ` · ${startRate}% start rate` : ""}
             {roundsPerSession != null
               ? ` · ${roundsPerSession} rounds per session`
@@ -293,7 +293,7 @@ const ArcadeStatsPage = async () => {
             </div>
           </div>
           <p className="mt-3 font-mono text-[11px] text-tx3">
-            EU/EEA/UK visitors and opt-outs aren&apos;t counted here — by design.
+            EU/EEA/UK visitors and opt-outs aren&apos;t counted here, by design.
           </p>
         </section>
       </div>

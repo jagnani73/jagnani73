@@ -8,7 +8,7 @@ import { collectionPageLd, breadcrumbLd } from "@/utils/functions/seo";
 import type { FilterId } from "@/utils/types/record.types";
 
 const RECORD_DESCRIPTION =
-  "Everything, in one timeline — experience, projects, hackathons, community, research, education and certifications, 2019 → now.";
+  "Everything, in one timeline: experience, projects, hackathons, community, research, education and certifications, 2019 → now.";
 
 export const metadata: Metadata = {
   title: "The Record",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/record" },
   openGraph: {
     type: "website",
-    title: "The Record — Yashvardhan Jagnani",
+    title: "The Record - Yashvardhan Jagnani",
     description: RECORD_DESCRIPTION,
     url: "/record",
   },
@@ -47,7 +47,7 @@ const RecordPage = async ({
       <JsonLd
         data={[
           collectionPageLd(
-            "The Record — Yashvardhan Jagnani",
+            "The Record - Yashvardhan Jagnani",
             RECORD_DESCRIPTION,
             "/record",
           ),

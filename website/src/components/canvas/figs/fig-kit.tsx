@@ -13,7 +13,13 @@ const KIT_SETS: {
 }[] = [
   {
     type: "TokenBalances",
-    json: ['"items": [', '  { "ticker": "USDC",', '    "balance": "1240.50",', '    "quote": 1240.50 },', '  { "ticker": "WETH", … } ]'],
+    json: [
+      '"items": [',
+      '  { "ticker": "USDC",',
+      '    "balance": "1240.50",',
+      '    "quote": 1240.50 },',
+      '  { "ticker": "WETH", … } ]',
+    ],
     rows: [
       { s: "USDC", n: "USD Coin", v: "1,240.50", c: "sig" },
       { s: "WETH", n: "Wrapped Ether", v: "3.82", c: "acc" },
@@ -22,7 +28,13 @@ const KIT_SETS: {
   },
   {
     type: "NFTWalletView",
-    json: ['"nft_data": [', '  { "name": "Punk #1401",', '    "token_id": 1401 },', '  { "name": "Ape #88",', '    "token_id": 88 } ]'],
+    json: [
+      '"nft_data": [',
+      '  { "name": "Punk #1401",',
+      '    "token_id": 1401 },',
+      '  { "name": "Ape #88",',
+      '    "token_id": 88 } ]',
+    ],
     rows: [
       { s: "#1401", n: "CryptoPunks", v: "32.0 Ξ", c: "sig" },
       { s: "#88", n: "Bored Ape YC", v: "12.4 Ξ", c: "acc" },
@@ -31,7 +43,12 @@ const KIT_SETS: {
   },
   {
     type: "TransactionsList",
-    json: ['"items": [', '  { "type": "swap",', '    "value": "0.50 ETH" },', '  { "type": "send", … } ]'],
+    json: [
+      '"items": [',
+      '  { "type": "swap",',
+      '    "value": "0.50 ETH" },',
+      '  { "type": "send", … } ]',
+    ],
     rows: [
       { s: "SWAP", n: "Uniswap V3", v: "0.50 ETH", c: "sig" },
       { s: "SEND", n: "→ vitalik.eth", v: "200 USDC", c: "acc" },
@@ -41,7 +58,13 @@ const KIT_SETS: {
 ];
 
 // GoldRush Kit — raw API response → rendered component.
-export const FigKit = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
+export const FigKit = ({
+  mob,
+  active = true,
+}: {
+  mob: boolean;
+  active?: boolean;
+}) => {
   const t = useThemeTokens();
   const PER = 7;
   const tick = useTick(640, KIT_SETS.length * PER, active, 6);
@@ -52,7 +75,7 @@ export const FigKit = ({ mob, active = true }: { mob: boolean; active?: boolean 
   return (
     <div>
       <FigCaption
-        left="fig. 1 — a raw API response resolving into a rendered component"
+        left="fig. 1: a raw API response resolving into a rendered component"
         right={`<${set.type} />`}
       />
       <div
@@ -63,16 +86,56 @@ export const FigKit = ({ mob, active = true }: { mob: boolean; active?: boolean 
           alignItems: "stretch",
         }}
       >
-        <div style={{ ...panel, padding: mob ? "12px 14px" : "16px 18px", minHeight: mob ? 0 : 204 }}>
-          <p style={{ fontFamily: M, fontSize: 10.5, color: t.tx3, margin: "0 0 8px", letterSpacing: "0.1em" }}>
+        <div
+          style={{
+            ...panel,
+            padding: mob ? "12px 14px" : "16px 18px",
+            minHeight: mob ? 0 : 204,
+          }}
+        >
+          <p
+            style={{
+              fontFamily: M,
+              fontSize: 10.5,
+              color: t.tx3,
+              margin: "0 0 8px",
+              letterSpacing: "0.1em",
+            }}
+          >
             RAW · GoldRush SDK
           </p>
-          <pre style={{ margin: 0, fontFamily: M, fontSize: mob ? 10 : 11.5, lineHeight: 1.75, color: t.tx2, whiteSpace: "pre-wrap" }}>
+          <pre
+            style={{
+              margin: 0,
+              fontFamily: M,
+              fontSize: mob ? 10 : 11.5,
+              lineHeight: 1.75,
+              color: t.tx2,
+              whiteSpace: "pre-wrap",
+            }}
+          >
             {set.json.join("\n")}
           </pre>
         </div>
-        <div style={{ ...panel, padding: mob ? 12 : 14, minHeight: mob ? 0 : 204, display: "flex", flexDirection: "column", gap: 8 }}>
-          <p style={{ fontFamily: M, fontSize: 10.5, color: t.sig, margin: "0 0 2px", letterSpacing: "0.1em" }}>
+        <div
+          style={{
+            ...panel,
+            padding: mob ? 12 : 14,
+            minHeight: mob ? 0 : 204,
+            display: "flex",
+            flexDirection: "column",
+            gap: 8,
+          }}
+        >
+          <p
+            style={{
+              fontFamily: M,
+              fontSize: 10.5,
+              color: t.sig,
+              margin: "0 0 2px",
+              letterSpacing: "0.1em",
+            }}
+          >
             RENDERED · drop-in component
           </p>
           {set.rows.map((r, i) => {
@@ -112,10 +175,36 @@ export const FigKit = ({ mob, active = true }: { mob: boolean; active?: boolean 
                   {r.s.slice(0, 3)}
                 </span>
                 <div style={{ minWidth: 0, flex: 1 }}>
-                  <p style={{ margin: 0, fontFamily: M, fontSize: mob ? 11 : 12.5, color: t.tx }}>{r.s}</p>
-                  <p style={{ margin: 0, fontFamily: M, fontSize: 10.5, color: t.tx3 }}>{r.n}</p>
+                  <p
+                    style={{
+                      margin: 0,
+                      fontFamily: M,
+                      fontSize: mob ? 11 : 12.5,
+                      color: t.tx,
+                    }}
+                  >
+                    {r.s}
+                  </p>
+                  <p
+                    style={{
+                      margin: 0,
+                      fontFamily: M,
+                      fontSize: 10.5,
+                      color: t.tx3,
+                    }}
+                  >
+                    {r.n}
+                  </p>
                 </div>
-                <span style={{ fontFamily: M, fontSize: mob ? 10.5 : 12, color: t[r.c] }}>{r.v}</span>
+                <span
+                  style={{
+                    fontFamily: M,
+                    fontSize: mob ? 10.5 : 12,
+                    color: t[r.c],
+                  }}
+                >
+                  {r.v}
+                </span>
               </div>
             );
           })}

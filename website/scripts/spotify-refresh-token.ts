@@ -17,7 +17,11 @@
 //   4. Open the printed URL, approve, then copy the printed
 //        SPOTIFY_REFRESH_TOKEN=...   line into website/.env.local
 
-import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
+import {
+  createServer,
+  type IncomingMessage,
+  type ServerResponse,
+} from "node:http";
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
@@ -42,7 +46,8 @@ const fromEnvFile = (key: string): string | undefined => {
   }
 };
 
-const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID || fromEnvFile("SPOTIFY_CLIENT_ID");
+const CLIENT_ID =
+  process.env.SPOTIFY_CLIENT_ID || fromEnvFile("SPOTIFY_CLIENT_ID");
 const CLIENT_SECRET =
   process.env.SPOTIFY_CLIENT_SECRET || fromEnvFile("SPOTIFY_CLIENT_SECRET");
 
@@ -62,61 +67,65 @@ const authUrl =
     scope: SCOPES,
   }).toString();
 
-console.log("\n1) Confirm this Redirect URI is registered on your Spotify app:");
+console.log(
+  "\n1) Confirm this Redirect URI is registered on your Spotify app:",
+);
 console.log("   " + REDIRECT);
 console.log("\n2) Open this URL, log in, and approve:\n");
 console.log("   " + authUrl + "\n");
 
-const server = createServer(async (req: IncomingMessage, res: ServerResponse) => {
-  if (!req.url || !req.url.startsWith(CB_PATH)) {
-    res.writeHead(404);
-    res.end();
-    return;
-  }
-  const url = new URL(req.url, REDIRECT);
-  const code = url.searchParams.get("code");
-  const err = url.searchParams.get("error");
-  if (err) {
-    res.end("Authorization failed: " + err);
-    console.error("Authorization failed:", err);
-    server.close();
-    process.exit(1);
-  }
-  if (!code) {
-    res.end("No authorization code in callback.");
-    return;
-  }
-  try {
-    const tokenRes = await fetch("https://accounts.spotify.com/api/token", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization:
-          "Basic " +
-          Buffer.from(CLIENT_ID + ":" + CLIENT_SECRET).toString("base64"),
-      },
-      body: new URLSearchParams({
-        grant_type: "authorization_code",
-        code,
-        redirect_uri: REDIRECT,
-      }),
-    });
-    const data = (await tokenRes.json()) as { refresh_token?: string };
-    if (!tokenRes.ok || !data.refresh_token) {
-      throw new Error(JSON.stringify(data));
+const server = createServer(
+  async (req: IncomingMessage, res: ServerResponse) => {
+    if (!req.url || !req.url.startsWith(CB_PATH)) {
+      res.writeHead(404);
+      res.end();
+      return;
     }
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end("<h2>Done — close this tab and return to the terminal.</h2>");
-    console.log("\n✅ Add this line to website/.env.local:\n");
-    console.log("SPOTIFY_REFRESH_TOKEN=" + data.refresh_token + "\n");
-  } catch (e) {
-    res.end("Token exchange failed; see the terminal.");
-    console.error("Token exchange failed:", e);
-  } finally {
-    server.close();
-    setTimeout(() => process.exit(0), 200);
-  }
-});
+    const url = new URL(req.url, REDIRECT);
+    const code = url.searchParams.get("code");
+    const err = url.searchParams.get("error");
+    if (err) {
+      res.end("Authorization failed: " + err);
+      console.error("Authorization failed:", err);
+      server.close();
+      process.exit(1);
+    }
+    if (!code) {
+      res.end("No authorization code in callback.");
+      return;
+    }
+    try {
+      const tokenRes = await fetch("https://accounts.spotify.com/api/token", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          Authorization:
+            "Basic " +
+            Buffer.from(CLIENT_ID + ":" + CLIENT_SECRET).toString("base64"),
+        },
+        body: new URLSearchParams({
+          grant_type: "authorization_code",
+          code,
+          redirect_uri: REDIRECT,
+        }),
+      });
+      const data = (await tokenRes.json()) as { refresh_token?: string };
+      if (!tokenRes.ok || !data.refresh_token) {
+        throw new Error(JSON.stringify(data));
+      }
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.end("<h2>Done — close this tab and return to the terminal.</h2>");
+      console.log("\n✅ Add this line to website/.env.local:\n");
+      console.log("SPOTIFY_REFRESH_TOKEN=" + data.refresh_token + "\n");
+    } catch (e) {
+      res.end("Token exchange failed; see the terminal.");
+      console.error("Token exchange failed:", e);
+    } finally {
+      server.close();
+      setTimeout(() => process.exit(0), 200);
+    }
+  },
+);
 
 server.listen(PORT, "127.0.0.1", () =>
   console.log("Waiting for the redirect on " + REDIRECT + " …\n"),

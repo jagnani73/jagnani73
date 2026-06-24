@@ -186,7 +186,7 @@ export const MusicPanel = () => {
               ? now.artist
               : st.status === "loading"
                 ? "loading…"
-                : "spotify — offline"}
+                : "spotify offline"}
           </p>
         </div>
       </a>
@@ -218,7 +218,13 @@ export const MusicPanel = () => {
               }}
             >
               <span style={{ display: "flex", gap: "9px", minWidth: 0 }}>
-                <span style={{ fontFamily: MONO, fontSize: "10px", color: "var(--pri)" }}>
+                <span
+                  style={{
+                    fontFamily: MONO,
+                    fontSize: "10px",
+                    color: "var(--pri)",
+                  }}
+                >
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span

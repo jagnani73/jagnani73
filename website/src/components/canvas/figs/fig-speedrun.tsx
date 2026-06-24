@@ -48,7 +48,11 @@ const Preview = ({
 }): ReactNode => {
   const sz = mob ? 11 : 12;
   const head = { margin: 0, fontFamily: M, fontSize: sz, color: t.tx } as const;
-  const muted = { fontFamily: M, fontSize: mob ? 10 : 11, color: t.tx3 } as const;
+  const muted = {
+    fontFamily: M,
+    fontSize: mob ? 10 : 11,
+    color: t.tx3,
+  } as const;
   const pill = {
     alignSelf: "flex-start",
     fontFamily: M,
@@ -64,7 +68,9 @@ const Preview = ({
       <>
         <p style={head}>ETH Gas Calculator</p>
         <span style={muted}>transfer · 21,000 gas</span>
-        <span style={{ fontFamily: M, fontSize: mob ? 19 : 22, color: t.acc }}>≈ $0.42</span>
+        <span style={{ fontFamily: M, fontSize: mob ? 19 : 22, color: t.acc }}>
+          ≈ $0.42
+        </span>
         <span style={muted}>live base fee · GoldRush</span>
       </>
     );
@@ -80,9 +86,29 @@ const Preview = ({
       <>
         <p style={head}>Wallet PnL · Top 3</p>
         {rows.map(([r, a, v]) => (
-          <div key={r} style={{ display: "flex", alignItems: "center", gap: 9, fontFamily: M, fontSize: sz }}>
+          <div
+            key={r}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 9,
+              fontFamily: M,
+              fontSize: sz,
+            }}
+          >
             <span style={{ color: t.tx3, width: 10 }}>{r}</span>
-            <span style={{ color: t.tx2, flex: 1, minWidth: 0, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{a}</span>
+            <span
+              style={{
+                color: t.tx2,
+                flex: 1,
+                minWidth: 0,
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
+              {a}
+            </span>
             <span style={{ color: t.ok }}>{v}</span>
           </div>
         ))}
@@ -100,7 +126,10 @@ const Preview = ({
       <>
         <p style={head}>Tokenize · gm-streaks</p>
         {rows.map(([a, b]) => (
-          <div key={a} style={{ display: "flex", gap: 9, fontFamily: M, fontSize: sz }}>
+          <div
+            key={a}
+            style={{ display: "flex", gap: 9, fontFamily: M, fontSize: sz }}
+          >
             <span style={{ color: t.tx3, width: mob ? 46 : 56 }}>{a}</span>
             <span style={{ color: t.tx2 }}>{b}</span>
           </div>
@@ -126,7 +155,7 @@ const Preview = ({
           paddingLeft: 8,
         }}
       >
-        gm — mainnet is live. ship something onchain today.
+        gm, mainnet is live. ship something onchain today.
       </span>
       <span style={pill}>Generate ↻</span>
     </>
@@ -157,7 +186,7 @@ export const FigSpeedRun = ({
   return (
     <div>
       <FigCaption
-        left="fig. 1 — a plain prompt, built and running in the browser"
+        left="fig. 1: a plain prompt, built and running in the browser"
         right={ex.tag}
       />
       <div
@@ -180,16 +209,47 @@ export const FigSpeedRun = ({
             gap: 9,
           }}
         >
-          <p style={{ margin: 0, fontFamily: M, fontSize: label, color: t.tx3, letterSpacing: "0.1em" }}>
+          <p
+            style={{
+              margin: 0,
+              fontFamily: M,
+              fontSize: label,
+              color: t.tx3,
+              letterSpacing: "0.1em",
+            }}
+          >
             SPEEDRUN · build
           </p>
           <div style={{ display: "flex", alignItems: "baseline", gap: 7 }}>
-            <span style={{ fontFamily: M, fontSize: code, color: t.sig, flexShrink: 0 }}>›</span>
-            <span style={{ fontFamily: M, fontSize: code, color: t.tx, lineHeight: 1.45 }}>
+            <span
+              style={{
+                fontFamily: M,
+                fontSize: code,
+                color: t.sig,
+                flexShrink: 0,
+              }}
+            >
+              ›
+            </span>
+            <span
+              style={{
+                fontFamily: M,
+                fontSize: code,
+                color: t.tx,
+                lineHeight: 1.45,
+              }}
+            >
               &ldquo;{ex.prompt}&rdquo;
             </span>
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 5, marginTop: 1 }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 5,
+              marginTop: 1,
+            }}
+          >
             {ex.files.map((f, i) => {
               const vis = i < filesShown;
               return (
@@ -211,7 +271,16 @@ export const FigSpeedRun = ({
               );
             })}
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 7, marginTop: "auto", fontFamily: M, fontSize: mob ? 10 : 11 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 7,
+              marginTop: "auto",
+              fontFamily: M,
+              fontSize: mob ? 10 : 11,
+            }}
+          >
             <span
               style={{
                 width: 7,
@@ -223,7 +292,9 @@ export const FigSpeedRun = ({
               }}
             />
             <span style={{ color: t.tx3 }}>
-              {devReady ? "WebContainer · dev server ready" : "booting WebContainer…"}
+              {devReady
+                ? "WebContainer · dev server ready"
+                : "booting WebContainer…"}
             </span>
           </div>
         </div>
@@ -240,7 +311,15 @@ export const FigSpeedRun = ({
             gap: 8,
           }}
         >
-          <p style={{ margin: 0, fontFamily: M, fontSize: label, color: t.sig, letterSpacing: "0.1em" }}>
+          <p
+            style={{
+              margin: 0,
+              fontFamily: M,
+              fontSize: label,
+              color: t.sig,
+              letterSpacing: "0.1em",
+            }}
+          >
             PREVIEW · live in-browser
           </p>
           <div
@@ -257,11 +336,26 @@ export const FigSpeedRun = ({
             }}
           >
             {previewOn ? (
-              <div style={{ display: "flex", flexDirection: "column", gap: mob ? 7 : 9, opacity: 1, transition: "opacity 0.35s" }}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: mob ? 7 : 9,
+                  opacity: 1,
+                  transition: "opacity 0.35s",
+                }}
+              >
                 <Preview k={ex.key} t={t} mob={mob} />
               </div>
             ) : (
-              <span style={{ alignSelf: "center", fontFamily: M, fontSize: mob ? 10.5 : 11.5, color: t.tx3 }}>
+              <span
+                style={{
+                  alignSelf: "center",
+                  fontFamily: M,
+                  fontSize: mob ? 10.5 : 11.5,
+                  color: t.tx3,
+                }}
+              >
                 compiling preview…
               </span>
             )}

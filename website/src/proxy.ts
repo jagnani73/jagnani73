@@ -13,12 +13,16 @@ export function proxy(req: NextRequest): NextResponse {
   const res = NextResponse.next();
   if (!req.cookies.has("arc_geo")) {
     const country = req.headers.get("x-vercel-ip-country");
-    res.cookies.set("arc_geo", isPrivacyGatedCountry(country) ? "gated" : "ok", {
-      maxAge: 60 * 60 * 24, // 1 day — re-evaluated if the visitor returns later
-      sameSite: "lax",
-      path: "/",
-      // intentionally NOT httpOnly: client JS must read it to gate the id
-    });
+    res.cookies.set(
+      "arc_geo",
+      isPrivacyGatedCountry(country) ? "gated" : "ok",
+      {
+        maxAge: 60 * 60 * 24, // 1 day — re-evaluated if the visitor returns later
+        sameSite: "lax",
+        path: "/",
+        // intentionally NOT httpOnly: client JS must read it to gate the id
+      },
+    );
   }
   return res;
 }

@@ -64,7 +64,7 @@ export const FigWager = ({
   return (
     <div>
       <FigCaption
-        left="fig. 1 — one wager, settled: stake → play → attest"
+        left="fig. 1: one wager, settled: stake → play → attest"
         right="connect 4 · 1v1 · winner takes the pot"
       />
       <div
@@ -118,8 +118,9 @@ export const FigWager = ({
             className="overflow-hidden text-ellipsis whitespace-nowrap font-mono"
             style={{ fontSize: mob ? 10.5 : 12, color: t.tx2 }}
           >
-            <span style={{ color: t.sig }}>0x4f2…a91</span> · 25 USDC&nbsp;&nbsp;⇄
-            &nbsp;&nbsp;<span style={{ color: t.acc }}>0x7c2…d04</span> · 25 USDC —{" "}
+            <span style={{ color: t.sig }}>0x4f2…a91</span> · 25
+            USDC&nbsp;&nbsp;⇄ &nbsp;&nbsp;
+            <span style={{ color: t.acc }}>0x7c2…d04</span> · 25 USDC,{" "}
             <span style={{ color: t.tx }}>pot locked</span>
           </div>
           <div className="grid grid-cols-4 gap-2">
@@ -169,7 +170,7 @@ export const FigWager = ({
             }}
           >
             {phase === 3
-              ? "PROOF-OF-VICTORY #1042 — signed via Sign Protocol ✓"
+              ? "PROOF-OF-VICTORY #1042, signed via Sign Protocol ✓"
               : "awaiting result…"}
           </div>
         </div>

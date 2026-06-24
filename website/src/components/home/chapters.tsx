@@ -10,11 +10,7 @@ export const Chapters = () => (
       id="chapters"
       n="01"
       title="THE CHAPTERS"
-      note={
-        <CtaTerm href="/record">
-          the full record
-        </CtaTerm>
-      }
+      note={<CtaTerm href="/record">the full record</CtaTerm>}
     />
     {CHAPTERS.map((c, i) => (
       <div key={c.n}>

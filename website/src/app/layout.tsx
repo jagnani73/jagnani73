@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Anton, Instrument_Serif, JetBrains_Mono, DM_Sans } from "next/font/google";
+import {
+  Anton,
+  Instrument_Serif,
+  JetBrains_Mono,
+  DM_Sans,
+} from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/shared/theme-provider";
 import { Splash } from "@/components/shared/splash";
@@ -44,7 +49,7 @@ const metadataDescription = SITE_DESCRIPTION;
 export const metadata: Metadata = {
   title: {
     default: metadataTitle,
-    template: `%s — ${SITE_NAME}`,
+    template: `%s - ${SITE_NAME}`,
   },
   description: metadataDescription,
   authors: [{ name: metadataTitle, url: SITE_URL }],
@@ -88,7 +93,11 @@ export const metadata: Metadata = {
       { url: "/site/favicon-16x16.png", sizes: "16x16", type: "image/png" },
     ],
     apple: [
-      { url: "/site/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      {
+        url: "/site/apple-touch-icon.png",
+        sizes: "180x180",
+        type: "image/png",
+      },
     ],
     other: [{ rel: "mask-icon", url: "/site/safari-pinned-tab.svg" }],
   },

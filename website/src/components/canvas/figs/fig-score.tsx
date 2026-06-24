@@ -39,7 +39,7 @@ export const FigScore = ({
   return (
     <div>
       <FigCaption
-        left="fig. 1 — the 0–100 insider-likelihood scale, scoring live"
+        left="fig. 1: the 0–100 insider-likelihood scale, scoring live"
         right={`wallet 0x4f2…a91 · score ${shown.toFixed(0)}`}
       />
       <div className="relative flex gap-[3px]" style={{ height: 34 }}>

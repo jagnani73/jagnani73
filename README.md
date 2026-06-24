@@ -22,13 +22,13 @@ _software, shipped at agent speed._
    role     blockchain-first engineer · AI-native builder
    focus    agentic + onchain tooling, at agent speed
    now      incoming MSc Blockchain · NTU Singapore '26
-   prior    Covalent · Infinia · Hashmail · Quinence · SRMIST
+   prior    Infinia · Covalent · Hashmail · Quinence · SRMIST
 
 >_ the record --mixed
 
-   119★     AI Agent SDK — agentic onchain tooling
+   119★     AI Agent SDK: agentic onchain tooling
    3×       ETHGlobal wins · 14 hackathons, 10 awards
-   3        IEEE papers — one best-conference-paper
+   3        IEEE papers: one best-conference-paper
    1000s    users shipped as founding eng @ Hashmail
    ~250ms   live OHLCV streamed from raw swap logs
 
@@ -45,7 +45,7 @@ _software, shipped at agent speed._
 
 <div align="center">
 
-_“The tools change; the goal stays the same — build things that solve real problems.”_
+_“The tools change; the goal stays the same: build things that solve real problems.”_
 
 [`jagnani73.com`](https://jagnani73.com) &nbsp;·&nbsp; [`github`](https://github.com/jagnani73) &nbsp;·&nbsp; [`linkedin`](https://www.linkedin.com/in/yashvardhan-jagnani/) &nbsp;·&nbsp; [`x/@jagnani73`](https://twitter.com/jagnani73) &nbsp;·&nbsp; [`email`](mailto:yashjagnani73@gmail.com)
 

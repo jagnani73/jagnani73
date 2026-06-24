@@ -27,7 +27,13 @@ const PAPER_LABEL = THEME_TOKENS.light.sig;
 const INK = THEME_TOKENS.light.tx;
 
 // Shikshak — blackboard captured as a pixel stream.
-export const FigBoard = ({ mob, active = true }: { mob: boolean; active?: boolean }) => {
+export const FigBoard = ({
+  mob,
+  active = true,
+}: {
+  mob: boolean;
+  active?: boolean;
+}) => {
   const t = useThemeTokens();
   const n = useTick(110, 130, active, 100);
   const draw = Math.min(n / 70, 1);
@@ -36,17 +42,53 @@ export const FigBoard = ({ mob, active = true }: { mob: boolean; active?: boolea
 
   return (
     <div>
-      <FigCaption left="fig. 1 — a blackboard captured as a pixel stream — ~85% less data than video" right="OpenCV · Socket.IO" />
-      <div style={{ display: "grid", gridTemplateColumns: mob ? "1fr" : "1fr 36px 1fr", gap: mob ? 10 : 6, alignItems: "center" }}>
-        <div style={{ ...panel, padding: 10, position: "relative", background: BOARD_BG, borderColor: BOARD_EDGE }}>
-          <p style={{ fontFamily: M, fontSize: 10, color: BOARD_LABEL, margin: "0 0 8px", letterSpacing: "0.08em" }}>CAMERA · blackboard</p>
-          {([[4, 4], [4, 1], [1, 4], [1, 1]] as const).map(([l, tt], i) => {
+      <FigCaption
+        left="fig. 1: a blackboard captured as a pixel stream, ~85% less data than video"
+        right="OpenCV · Socket.IO"
+      />
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: mob ? "1fr" : "1fr 36px 1fr",
+          gap: mob ? 10 : 6,
+          alignItems: "center",
+        }}
+      >
+        <div
+          style={{
+            ...panel,
+            padding: 10,
+            position: "relative",
+            background: BOARD_BG,
+            borderColor: BOARD_EDGE,
+          }}
+        >
+          <p
+            style={{
+              fontFamily: M,
+              fontSize: 10,
+              color: BOARD_LABEL,
+              margin: "0 0 8px",
+              letterSpacing: "0.08em",
+            }}
+          >
+            CAMERA · blackboard
+          </p>
+          {(
+            [
+              [4, 4],
+              [4, 1],
+              [1, 4],
+              [1, 1],
+            ] as const
+          ).map(([l, tt], i) => {
             const st: CSSProperties = {
               position: "absolute",
               width: 12,
               height: 12,
               [l === 4 ? "left" : "right"]: 8,
-              [tt === 4 ? "top" : "bottom"]: tt === 4 ? CORNER_TOP : CORNER_BOTTOM,
+              [tt === 4 ? "top" : "bottom"]:
+                tt === 4 ? CORNER_TOP : CORNER_BOTTOM,
               borderRight: l === 1 ? `2px solid ${BOARD_CORNER}` : "none",
               borderTop: tt === 4 ? `2px solid ${BOARD_CORNER}` : "none",
               borderLeft: l === 4 ? `2px solid ${BOARD_CORNER}` : "none",
@@ -54,24 +96,118 @@ export const FigBoard = ({ mob, active = true }: { mob: boolean; active?: boolea
             };
             return <span key={i} style={st} />;
           })}
-          <svg viewBox="0 0 100 64" style={{ width: "100%", height: mob ? 64 : 78 }}>
-            <polyline points={PTS} fill="none" stroke={CHALK} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray={DASH} strokeDashoffset={DASH * (1 - draw)} />
+          <svg
+            viewBox="0 0 100 64"
+            style={{ width: "100%", height: mob ? 64 : 78 }}
+          >
+            <polyline
+              points={PTS}
+              fill="none"
+              stroke={CHALK}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeDasharray={DASH}
+              strokeDashoffset={DASH * (1 - draw)}
+            />
           </svg>
         </div>
-        <div style={{ textAlign: "center", fontFamily: M, fontSize: 13, color: t.sig }}>{mob ? "↓" : "→"}</div>
-        <div style={{ ...panel, padding: 10, background: PAPER_BG, borderColor: PAPER_EDGE }}>
-          <p style={{ fontFamily: M, fontSize: 10, color: PAPER_LABEL, margin: "0 0 8px", letterSpacing: "0.08em" }}>STUDENT · canvas</p>
-          <svg viewBox="0 0 100 64" style={{ width: "100%", height: mob ? 64 : 78 }}>
-            <polyline points={PTS} fill="none" stroke={INK} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" strokeDasharray={DASH} strokeDashoffset={DASH * (1 - draw)} />
+        <div
+          style={{
+            textAlign: "center",
+            fontFamily: M,
+            fontSize: 13,
+            color: t.sig,
+          }}
+        >
+          {mob ? "↓" : "→"}
+        </div>
+        <div
+          style={{
+            ...panel,
+            padding: 10,
+            background: PAPER_BG,
+            borderColor: PAPER_EDGE,
+          }}
+        >
+          <p
+            style={{
+              fontFamily: M,
+              fontSize: 10,
+              color: PAPER_LABEL,
+              margin: "0 0 8px",
+              letterSpacing: "0.08em",
+            }}
+          >
+            STUDENT · canvas
+          </p>
+          <svg
+            viewBox="0 0 100 64"
+            style={{ width: "100%", height: mob ? 64 : 78 }}
+          >
+            <polyline
+              points={PTS}
+              fill="none"
+              stroke={INK}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeDasharray={DASH}
+              strokeDashoffset={DASH * (1 - draw)}
+            />
           </svg>
         </div>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 10 }}>
-        <span style={{ fontFamily: M, fontSize: 10.5, color: t.tx3, whiteSpace: "nowrap" }}>raw video 3GB/day</span>
-        <div style={{ flex: 1, height: 8, borderRadius: 99, background: t.panel, overflow: "hidden", position: "relative" }}>
-          <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: `${100 - reduction}%`, background: t.ok, transition: "width 0.15s linear" }} />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          marginTop: 10,
+        }}
+      >
+        <span
+          style={{
+            fontFamily: M,
+            fontSize: 10.5,
+            color: t.tx3,
+            whiteSpace: "nowrap",
+          }}
+        >
+          raw video 3GB/day
+        </span>
+        <div
+          style={{
+            flex: 1,
+            height: 8,
+            borderRadius: 99,
+            background: t.panel,
+            overflow: "hidden",
+            position: "relative",
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              bottom: 0,
+              width: `${100 - reduction}%`,
+              background: t.ok,
+              transition: "width 0.15s linear",
+            }}
+          />
         </div>
-        <span style={{ fontFamily: M, fontSize: 10.5, color: t.ok, whiteSpace: "nowrap" }}>−{reduction}%</span>
+        <span
+          style={{
+            fontFamily: M,
+            fontSize: 10.5,
+            color: t.ok,
+            whiteSpace: "nowrap",
+          }}
+        >
+          −{reduction}%
+        </span>
       </div>
     </div>
   );

@@ -112,12 +112,12 @@ export const PlateViewer = ({
               i === j ? "bg-pri-a08 text-sig" : "text-tx2 hover:text-sig"
             }`}
           >
-            plate {plateNo(j)} — {pl.cap}
+            plate {plateNo(j)}: {pl.cap}
           </button>
         ))}
         <div className="mt-auto flex flex-col items-start gap-3.5 px-3 pb-1 pt-4">
           <CtaTerm href={`/record/${next.slug}`}>
-            next study — <span className="uppercase">{next.title}</span>
+            next study: <span className="uppercase">{next.title}</span>
           </CtaTerm>
           {cta ? (
             <CtaTerm href={cta.href} external>
@@ -132,7 +132,7 @@ export const PlateViewer = ({
           ref={dialogRef}
           role="dialog"
           aria-modal="true"
-          aria-label={`plate ${plateNo(big)} — ${bigPlate.cap}, enlarged`}
+          aria-label={`plate ${plateNo(big)}: ${bigPlate.cap}, enlarged`}
           tabIndex={-1}
           onClick={closeBig}
           className="fixed inset-0 z-1000 flex cursor-zoom-out flex-col items-center justify-center gap-4 outline-none"
@@ -163,7 +163,7 @@ export const PlateViewer = ({
             className="font-mono text-[12.5px] text-tx2"
             style={{ animation: `${fade} 0.3s ease forwards` }}
           >
-            plate {plateNo(big)} — {bigPlate.cap}
+            plate {plateNo(big)}: {bigPlate.cap}
             <span className="text-tx3"> · esc or click to close</span>
           </span>
         </div>

@@ -82,8 +82,8 @@ const Marquee = ({
                       ? "row-reverse"
                       : "row"
                     : reverse
-                    ? "column-reverse"
-                    : "column",
+                      ? "column-reverse"
+                      : "column",
                 alignItems:
                   align === "center" ? "center" : `flex-${align ?? "start"}`,
               }}
@@ -99,7 +99,7 @@ const Marquee = ({
 
 const ROW_A: [string, string][] = [
   ["zero dependencies", "sig"],
-  ["CSS keyframes — no JS timers", "tx"],
+  ["CSS keyframes, no JS timers", "tx"],
   ["pauseOnHover", "tx2"],
   ["axis: X / Y", "acc"],
   ["reverse", "tx2"],
@@ -130,12 +130,12 @@ export const FigMarquee = ({
     k === "sig"
       ? t.sig
       : k === "tx"
-      ? t.tx
-      : k === "acc"
-      ? t.acc
-      : k === "ok"
-      ? t.ok
-      : t.tx2;
+        ? t.tx
+        : k === "acc"
+          ? t.acc
+          : k === "ok"
+            ? t.ok
+            : t.tx2;
 
   const pills = (row: [string, string][]) =>
     row.map(([label, c], i) => {
@@ -175,7 +175,7 @@ export const FigMarquee = ({
     return (
       <div>
         <FigCaption
-          left="fig. 1 — react-easy-marquee, rendering itself"
+          left="fig. 1: react-easy-marquee, rendering itself"
           right="v1.2.4"
         />
         <div className="flex flex-col gap-2.5">
@@ -196,7 +196,7 @@ export const FigMarquee = ({
   return (
     <div>
       <FigCaption
-        left="fig. 1 — this strip is react-easy-marquee, rendering itself"
+        left="fig. 1: this strip is react-easy-marquee, rendering itself"
         right="v1.2.4 · hover to pause"
       />
       <div className="flex flex-col gap-2.5">
@@ -228,8 +228,8 @@ export const FigMarquee = ({
         className="m-0 mt-2.5 font-mono text-[10.5px]"
         style={{ color: t.tx3 }}
       >
-        ↳ no requestAnimationFrame, no scroll listeners — three offset copies
-        and one CSS @keyframes translate
+        ↳ no requestAnimationFrame, no scroll listeners: three offset copies and
+        one CSS @keyframes translate
       </p>
     </div>
   );

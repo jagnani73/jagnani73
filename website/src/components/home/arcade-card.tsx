@@ -11,7 +11,11 @@ import {
   trackArcadeStart,
   trackArcadePlay,
 } from "@/utils/functions/analytics";
-import type { GameMode, Outcome, RoundDetail } from "@/utils/types/arcade.types";
+import type {
+  GameMode,
+  Outcome,
+  RoundDetail,
+} from "@/utils/types/arcade.types";
 import type { ArcadeCardProps } from "@/utils/types/component.types";
 
 // One game's frame: header (label + the MINE/YOU bests), the playfield (a query
@@ -176,7 +180,8 @@ export const ArcadeCard = ({ game, page }: ArcadeCardProps) => {
   const score = (value: number, detail?: RoundDetail) => {
     const prev = readBest(game.key);
     const improved = beats(game.mode, value, prev);
-    const nb = game.mode === "wins" ? (prev || 0) + 1 : improved ? value : prev!;
+    const nb =
+      game.mode === "wins" ? (prev || 0) + 1 : improved ? value : prev!;
     writeBest(game.key, nb); // notifies useStoredBest → the YOU cell updates
     if (improved) celebrate();
     // Outcome from the detail when the game set one, else derived from the mode

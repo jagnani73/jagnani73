@@ -78,7 +78,7 @@ export const SiteRail = ({ page, home }: SiteRailProps) => {
           <Logo size={50} home={home} />
         </span>
         <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 whitespace-nowrap font-mono text-xs tracking-[0.3em] text-tx3">
-          EST. 2019 — BLOCKCHAIN · AI · SOFTWARE
+          EST. 2019 - BLOCKCHAIN · AI · SOFTWARE
         </span>
         <span className="absolute bottom-14 left-1/2 -translate-x-1/2 text-base">
           <ModeToggle />

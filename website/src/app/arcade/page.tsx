@@ -12,7 +12,12 @@ export const metadata: Metadata = {
 
 const ArcadePage = () => (
   <PageShell page="ARCADE">
-    <SectionHead source="page" n="07" title="THE ARCADE" note="every game · beat my scores" />
+    <SectionHead
+      source="page"
+      n="07"
+      title="THE ARCADE"
+      note="every game · beat my scores"
+    />
     <ArcadeBoard />
   </PageShell>
 );

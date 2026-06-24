@@ -37,7 +37,8 @@ export const getSessionId = (): string | null => {
 };
 
 export const getVisitorId = (): string | null => {
-  if (typeof window === "undefined" || typeof crypto === "undefined") return null;
+  if (typeof window === "undefined" || typeof crypto === "undefined")
+    return null;
   if (!crypto.randomUUID || trackingDisallowed()) return null;
   try {
     let id = localStorage.getItem(VISITOR_KEY);

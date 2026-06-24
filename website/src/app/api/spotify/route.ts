@@ -52,11 +52,15 @@ const getAccessToken = async (
   if (!data.access_token || !data.expires_in) {
     throw new Error("spotify token: malformed response");
   }
-  cached = { value: data.access_token, exp: Date.now() + data.expires_in * 1000 };
+  cached = {
+    value: data.access_token,
+    exp: Date.now() + data.expires_in * 1000,
+  };
   return cached.value;
 };
 
-const artistsOf = (t: SpotifyTrack) => t.artists?.map((a) => a.name).join(", ") ?? "";
+const artistsOf = (t: SpotifyTrack) =>
+  t.artists?.map((a) => a.name).join(", ") ?? "";
 const imgOf = (t: SpotifyTrack) => t.album?.images?.[0]?.url ?? "";
 const toNow = (t: SpotifyTrack, playing: boolean): NowPlaying => ({
   name: t.name,
@@ -87,8 +91,14 @@ export const GET = async () => {
     const token = await getAccessToken(id, secret, refresh);
     const auth = { Authorization: "Bearer " + token };
     const [nowRes, recentRes, topRes] = await Promise.all([
-      fetch(`${API}/me/player/currently-playing`, { headers: auth, cache: "no-store" }),
-      fetch(`${API}/me/player/recently-played?limit=1`, { headers: auth, cache: "no-store" }),
+      fetch(`${API}/me/player/currently-playing`, {
+        headers: auth,
+        cache: "no-store",
+      }),
+      fetch(`${API}/me/player/recently-played?limit=1`, {
+        headers: auth,
+        cache: "no-store",
+      }),
       // top tracks shift slowly — let the data layer cache them for an hour
       fetch(`${API}/me/top/tracks?time_range=short_term&limit=4`, {
         headers: auth,

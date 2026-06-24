@@ -19,7 +19,7 @@ const Error = ({
 
   return (
     <StatusScreen
-      kicker="ERROR — 500 / THE PRESS JAMMED"
+      kicker="ERROR: 500 / THE PRESS JAMMED"
       code="5 · 0 · 0"
       line="something broke between the wire and the page"
     >

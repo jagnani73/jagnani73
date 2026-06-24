@@ -20,29 +20,32 @@ const result = await ZeeWorkflow.run(zee);`;
 
 export const agentSdkCase: CaseDetail = {
   seoDescription:
-    "The orchestration layer behind Covalent's Zero-Employee Enterprise — TypeScript agents that read chains, call tools, and hand work to each other. Open source.",
+    "The orchestration layer behind Covalent's Zero-Employee Enterprise: TypeScript agents that read chains, call tools, and hand work to each other. Open source.",
   badge: "OPEN SOURCE · 119★",
   deck: (
     <>
       the orchestration layer behind Covalent&apos;s{" "}
-      <span className="text-tx">Zero-Employee Enterprise</span> — agents that
+      <span className="text-tx">Zero-Employee Enterprise</span>: agents that
       read chains, call tools, and hand work to each other
     </>
   ),
-  fig: { component: FigAgentGraph, alt: "zee.run(): the planner breaks the goal into tasks, the router assigns them, the endgame concludes" },
+  fig: {
+    component: FigAgentGraph,
+    alt: "zee.run(): the planner breaks the goal into tasks, the router assigns them, the endgame concludes",
+  },
   sections: {
     split: {
       note: "everyone rebuilding the same glue",
       serif: (
         <>
-          LLMs could finally reason about on-chain data — but{" "}
+          LLMs could finally reason about on-chain data, but{" "}
           <span className="text-tx">
             every team was hand-rolling the same fragile glue to let them act on
             it.
           </span>
         </>
       ),
-      body: "ZEE — the Zero-Employee Enterprise — needed an orchestration layer where autonomous agents could interact with on-chain data, external tools, and each other, without each integration being bespoke. I built and shipped it as @covalenthq/ai-agent-sdk on npm — 119 stars, 56 forks, and 2,000+ downloads since its December 2024 launch.",
+      body: "ZEE (the Zero-Employee Enterprise) needed an orchestration layer where autonomous agents could interact with on-chain data, external tools, and each other, without each integration being bespoke. I built and shipped it as @covalenthq/ai-agent-sdk on npm: 119 stars, 56 forks, and 2,000+ downloads since its December 2024 launch.",
     },
     arch: {
       note: "three default agents around yours · TypeScript",
@@ -53,11 +56,11 @@ export const agentSdkCase: CaseDetail = {
           <strong className="font-semibold text-tx">planner</strong> breaks the
           goal into dependency-ordered tasks; the{" "}
           <strong className="font-semibold text-tx">router</strong> assigns each
-          task to the most suitable agent — and answers their follow-up questions
+          task to the most suitable agent, and answers their follow-up questions
           mid-run with full context; the{" "}
           <strong className="font-semibold text-tx">endgame</strong> agent
-          compiles everything into the final response. An action queue drives the
-          whole run, capped at 50 iterations.
+          compiles everything into the final response. An action queue drives
+          the whole run, capped at 50 iterations.
         </>
       ),
       flow: [
@@ -101,7 +104,7 @@ export const agentSdkCase: CaseDetail = {
         },
         {
           name: "Vercel AI SDK migration",
-          desc: "one layer for streaming + tool calls — killed a cross-provider tool-calling bug",
+          desc: "one layer for streaming + tool calls, killing a cross-provider tool-calling bug",
         },
         {
           name: "ZEE assignment refactor",

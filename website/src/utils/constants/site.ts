@@ -23,7 +23,7 @@ export const COVER_LETTER =
 
 // ── Standing copy — single source for the masthead bar + footers + OG card ────
 /** Right-hand status shown after the `STATUS:` label across the mastheads and OG. */
-export const STATUS = "NTU SINGAPORE — AUG 2026";
+export const STATUS = "NTU SINGAPORE - AUG 2026";
 /** Footer copyright line (the AstroLine fact is appended after it on every page). */
 export const COPYRIGHT = "© 2026 YASHVARDHAN JAGNANI";
 

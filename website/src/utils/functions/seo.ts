@@ -10,7 +10,7 @@ import type { ResolvedCase } from "@/utils/types/case.types";
 export const SITE_URL = "https://jagnani73.com";
 export const SITE_NAME = "Yashvardhan Jagnani";
 export const SITE_DESCRIPTION =
-  "Blockchain-first software engineer — AI-native builder, forward-deployed engineer. Infinia · Covalent · Claude Controller. Incoming MSc, NTU Singapore.";
+  "Blockchain-first software engineer, AI-native builder, forward-deployed engineer. Infinia · Covalent · Claude Controller. Incoming MSc, NTU Singapore.";
 
 const PERSON_ID = `${SITE_URL}/#person`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
@@ -68,7 +68,7 @@ export const caseLd = (
   c: ResolvedCase,
   slug: string,
   description: string,
-  image?: string
+  image?: string,
 ) => ({
   "@context": "https://schema.org",
   "@type": "CreativeWork",
@@ -85,7 +85,7 @@ export const caseLd = (
 export const collectionPageLd = (
   name: string,
   description: string,
-  path: string
+  path: string,
 ) => ({
   "@context": "https://schema.org",
   "@type": "CollectionPage",

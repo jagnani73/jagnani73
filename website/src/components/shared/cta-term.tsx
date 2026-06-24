@@ -13,7 +13,11 @@ export const CtaTerm = ({
   arrowSide = "right",
   className,
 }: CtaTermProps) => {
-  const cls = ["cta-term", arrowSide === "left" ? "cta-term--left" : "", className]
+  const cls = [
+    "cta-term",
+    arrowSide === "left" ? "cta-term--left" : "",
+    className,
+  ]
     .filter(Boolean)
     .join(" ");
 

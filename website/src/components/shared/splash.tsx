@@ -27,7 +27,9 @@ export const Splash = () => {
     };
 
     const overlay = overlayRef.current;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
     if (reduce) {
       if (!overlay) {
@@ -74,7 +76,7 @@ export const Splash = () => {
           duration: COLLAPSE_MS,
           easing: "cubic-bezier(0.7, 0, 0.2, 1)",
           fill: "forwards",
-        }
+        },
       );
       move.finished.then(finish).catch(finish);
     }, ASSEMBLE_MS);

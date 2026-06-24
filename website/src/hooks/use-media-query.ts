@@ -4,7 +4,10 @@ import { useCallback, useSyncExternalStore } from "react";
 
 // Media query via useSyncExternalStore (no setState-in-effect). serverFallback
 // is what SSR / the first hydration render reports.
-export const useMediaQuery = (query: string, serverFallback = false): boolean => {
+export const useMediaQuery = (
+  query: string,
+  serverFallback = false,
+): boolean => {
   const subscribe = useCallback(
     (onChange: () => void) => {
       const mq = window.matchMedia(query);

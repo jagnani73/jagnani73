@@ -1,21 +1,21 @@
-# Yashvardhan Jagnani — Portfolio
+# Yashvardhan Jagnani - Portfolio
 
 An editorial, "newspaper-of-record" portfolio: Next.js 16 (App Router), React 19 (React Compiler), TypeScript (strict), Tailwind CSS v4.
 
 ## Stack
 
 - **Framework**: Next.js 16 (App Router), React 19 + React Compiler
-- **Styling**: Tailwind CSS v4 (`@theme`) — dark (cyan) / light (paper) via `next-themes`
+- **Styling**: Tailwind CSS v4 (`@theme`): dark (cyan) / light (paper) via `next-themes`
 - **Analytics**: `@next/third-parties` (GA) + `@vercel/speed-insights`
 - **Package manager**: pnpm
 
 ## Routes (`src/app/`)
 
-- `/` — Home: masthead (fig.1 band canvas), `01 The Chapters`, `02 Selected Work`, `03 The Person`.
-- `/record` — **The Record**: one filterable timeline of everything, with a year-gutter constellation canvas + per-year "consensus" animation.
-- `/record/[slug]` — **Case-study** template for the authored cases (`generateStaticParams` prerenders the roster). Other projects are plain timeline rows, not pages.
-- `/api/resume`, `/api/cover-letter` — redirect routes.
-- `/sitemap.xml`, `/robots.txt` — generated. Legacy `/projects`, `/experiences` 301 → `/record`.
+- `/` - Home: masthead (fig.1 band canvas), `01 The Chapters`, `02 Selected Work`, `03 The Person`.
+- `/record` - **The Record**: one filterable timeline of everything, with a year-gutter constellation canvas + per-year "consensus" animation.
+- `/record/[slug]` - **Case-study** template for the authored cases (`generateStaticParams` prerenders the roster). Other projects are plain timeline rows, not pages.
+- `/api/resume`, `/api/cover-letter` - redirect routes.
+- `/sitemap.xml`, `/robots.txt` - generated. Legacy `/projects`, `/experiences` 301 → `/record`.
 
 ## Structure (`src/`)
 
@@ -42,7 +42,7 @@ The palette is defined once in `utils/constants/theme-tokens.ts`. `utils/functio
 
 ## SEO
 
-`utils/functions/seo.ts` is the single source for site identity (`SITE_*`) and the JSON-LD builders, rendered via `components/shared/json-ld.tsx` — home → `Person` + `WebSite`, `/record` → `CollectionPage`, each case → `CreativeWork`. Canonicals and the title template live in `layout.tsx`.
+`utils/functions/seo.ts` is the single source for site identity (`SITE_*`) and the JSON-LD builders, rendered via `components/shared/json-ld.tsx`: home → `Person` + `WebSite`, `/record` → `CollectionPage`, each case → `CreativeWork`. Canonicals and the title template live in `layout.tsx`.
 
 ## Develop
 

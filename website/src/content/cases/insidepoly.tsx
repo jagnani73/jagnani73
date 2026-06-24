@@ -3,38 +3,41 @@ import { FigScore } from "@/components/canvas/figs/fig-score";
 
 export const insidepolyCase: CaseDetail = {
   seoDescription:
-    "Insider-trading surveillance for Polymarket — every trade watched, every wallet scored. Live anomaly detection across prediction-market activity.",
+    "Insider-trading surveillance for Polymarket: every trade watched, every wallet scored. Live anomaly detection across prediction-market activity.",
   badge: "LIVE · 2026",
   deck: (
     <>
       insider-trading surveillance for{" "}
-      <span className="text-tx">Polymarket</span> — every trade watched, every
+      <span className="text-tx">Polymarket</span>: every trade watched, every
       wallet scored
     </>
   ),
-  fig: { component: FigScore, alt: "the 0–100 insider-likelihood scale, scoring live" },
+  fig: {
+    component: FigScore,
+    alt: "the 0–100 insider-likelihood scale, scoring live",
+  },
   sections: {
     split: {
       note: "information asymmetry, fully public",
       serif: (
         <>
           Prediction markets are uniquely vulnerable: the data is all on-chain
-          and public — yet{" "}
+          and public, yet{" "}
           <span className="text-tx">
             no tooling existed to flag wallets trading with suspiciously
             prescient timing.
           </span>
         </>
       ),
-      body: "InsidePoly closes that gap for Polymarket, the world's largest prediction market on Polygon. It continuously watches every trade and scores each trader on a 0–100 insider-trading likelihood scale — wallets scoring 80+ get flagged as suspected insiders on a public leaderboard.",
+      body: "InsidePoly closes that gap for Polymarket, the world's largest prediction market on Polygon. It continuously watches every trade and scores each trader on a 0–100 insider-trading likelihood scale; wallets scoring 80+ get flagged as suspected insiders on a public leaderboard.",
     },
     arch: {
       note: "TypeScript monorepo · common / backend / frontend",
       body: (
         <>
-          One pipeline, five stages — from a raw{" "}
-          <strong className="font-semibold text-tx">OrderFilled</strong> log to a
-          scored wallet on a public leaderboard, with no application-layer
+          One pipeline, five stages: from a raw{" "}
+          <strong className="font-semibold text-tx">OrderFilled</strong> log to
+          a scored wallet on a public leaderboard, with no application-layer
           round-trips in the hot path.
         </>
       ),
@@ -73,7 +76,7 @@ export const insidepolyCase: CaseDetail = {
       intro: (
         <>
           The scoring engine is one PL/pgSQL function computing five behavioral
-          signals in a single pass — no round-trips through the application
+          signals in a single pass, no round-trips through the application
           layer. Each signal contributes up to{" "}
           <span className="font-mono text-sig">25 points</span>:
         </>

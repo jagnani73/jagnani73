@@ -18,7 +18,7 @@ const caseDescription = (c: NonNullable<ReturnType<typeof getCase>>): string =>
   c.seoDescription ??
   (typeof c.deck === "string"
     ? c.deck
-    : `${c.title} — a case study by Yashvardhan Jagnani.`);
+    : `${c.title}, a case study by Yashvardhan Jagnani.`);
 
 export const dynamicParams = true;
 export const revalidate = 86400;
@@ -54,11 +54,7 @@ export const generateMetadata = async ({
   };
 };
 
-const CasePage = async ({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) => {
+const CasePage = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const { slug } = await params;
   const c = getCase(slug);
   if (!c) notFound();

@@ -26,7 +26,7 @@ export const YearMark = ({ year, atEnd, mob, onConfirm }: YearMarkProps) => {
         if (visible) timer = setTimeout(() => setHeld(true), 900);
         else setHeld(false);
       },
-      { rootMargin: "0px 0px -45% 0px" }
+      { rootMargin: "0px 0px -45% 0px" },
     );
     io.observe(el);
     return () => {

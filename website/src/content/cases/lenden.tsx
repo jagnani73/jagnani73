@@ -3,28 +3,31 @@ import { FigLenden } from "@/components/canvas/figs/fig-lenden";
 
 export const lendenCase: CaseDetail = {
   seoDescription:
-    "Lend on one chain, borrow on another — cross-chain credit with a reputation layer over Router cross-talk. Router prize, Unfold 2023.",
+    "Lend on one chain, borrow on another: cross-chain credit with a reputation layer over Router cross-talk. Router prize, Unfold 2023.",
   badge: "ROUTER PRIZE · UNFOLD 2023",
   deck: (
     <>
-      lend on one chain, borrow on another —{" "}
+      lend on one chain, borrow on another:{" "}
       <span className="text-tx">cross-chain credit</span> with a reputation
       layer, over Router cross-talk
     </>
   ),
-  fig: { component: FigLenden, alt: "collateral locked on one chain, a loan released on another" },
+  fig: {
+    component: FigLenden,
+    alt: "collateral locked on one chain, a loan released on another",
+  },
   sections: {
     split: {
       note: "liquidity is siloed per chain",
       serif: (
         <>
-          Assets sit scattered across Avalanche, Polygon, and beyond — with{" "}
+          Assets sit scattered across Avalanche, Polygon, and beyond, with{" "}
           <span className="text-tx">
             no unified way to unlock liquidity without selling.
           </span>
         </>
       ),
-      body: "LenDen lets borrowers collateralize assets on one chain and receive loans on another, while lenders earn interest supplying a multi-chain treasury. It tracks repayment behavior to build a cross-chain credibility score — and on default, retains the collateral or routes it through an on-chain auction. Won First Place in the Router track at Unfold 2023.",
+      body: "LenDen lets borrowers collateralize assets on one chain and receive loans on another, while lenders earn interest supplying a multi-chain treasury. It tracks repayment behavior to build a cross-chain credibility score, and on default, retains the collateral or routes it through an on-chain auction. Won First Place in the Router track at Unfold 2023.",
     },
     arch: {
       note: "Router cross-talk · credibility scoring",
@@ -44,40 +47,95 @@ export const lendenCase: CaseDetail = {
         </>
       ),
       flow: [
-        { stage: "COLLATERALIZE", role: "lock NFT / token on the source chain", tech: ["Solidity"] },
-        { stage: "MESSAGE", role: "cross-chain coordination", tech: ["Router cross-talk"] },
-        { stage: "BORROW", role: "loan released on the destination chain", tech: ["Solidity"] },
-        { stage: "SETTLE", role: "repay → credibility, or default → auction", tech: ["Push Protocol"] },
+        {
+          stage: "COLLATERALIZE",
+          role: "lock NFT / token on the source chain",
+          tech: ["Solidity"],
+        },
+        {
+          stage: "MESSAGE",
+          role: "cross-chain coordination",
+          tech: ["Router cross-talk"],
+        },
+        {
+          stage: "BORROW",
+          role: "loan released on the destination chain",
+          tech: ["Solidity"],
+        },
+        {
+          stage: "SETTLE",
+          role: "repay → credibility, or default → auction",
+          tech: ["Push Protocol"],
+        },
       ],
-      stack: "Solidity · Router cross-talk · Next.js · Express · Node · Supabase · Push Protocol",
+      stack:
+        "Solidity · Router cross-talk · Next.js · Express · Node · Supabase · Push Protocol",
     },
     cards: {
       note: "two chains, one atomic state",
       intro: (
         <>
           The hardest challenge was orchestrating reliable state sync across two
-          chains — keeping the collateral lock on the source and the loan release
+          chains, keeping the collateral lock on the source and the loan release
           on the destination{" "}
-          <span className="font-mono text-sig">atomic and recoverable under failure</span>:
+          <span className="font-mono text-sig">
+            atomic and recoverable under failure
+          </span>
+          :
         </>
       ),
       cards: [
-        { name: "atomic cross-chain state", desc: "lock and release coordinated as one operation" },
-        { name: "recoverable on failure", desc: "no stranded collateral when a hop fails" },
-        { name: "credibility scoring", desc: "repayment history as a cross-chain reputation layer" },
-        { name: "default auction", desc: "on-chain liquidation when a loan goes bad" },
+        {
+          name: "atomic cross-chain state",
+          desc: "lock and release coordinated as one operation",
+        },
+        {
+          name: "recoverable on failure",
+          desc: "no stranded collateral when a hop fails",
+        },
+        {
+          name: "credibility scoring",
+          desc: "repayment history as a cross-chain reputation layer",
+        },
+        {
+          name: "default auction",
+          desc: "on-chain liquidation when a loan goes bad",
+        },
       ],
     },
     plates: {
       note: "Unfold 2023",
       plates: [
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/578f68d4-e848-4a3f-a5c5-b7cc74cf9a88_gg0aqw.png", cap: "the borrower dashboard" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/1d59ea1e-69b3-4cde-9ab9-8fabf58de774_blm70w.png", cap: "posting collateral" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/903d5d31-763d-4c5e-8a60-4593464e465d_eicstt.png", cap: "a cross-chain loan" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/9a5e12be-9c19-42da-ba67-b47af1f14a18_jvotf8.png", cap: "the lender view" },
-        { kind: "img", src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/f247c1a5-c4aa-411a-9c74-c1bbd1147bfa_l3bj0r.png", cap: "repaying a loan" },
+        {
+          kind: "img",
+          src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/578f68d4-e848-4a3f-a5c5-b7cc74cf9a88_gg0aqw.png",
+          cap: "the borrower dashboard",
+        },
+        {
+          kind: "img",
+          src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/1d59ea1e-69b3-4cde-9ab9-8fabf58de774_blm70w.png",
+          cap: "posting collateral",
+        },
+        {
+          kind: "img",
+          src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/903d5d31-763d-4c5e-8a60-4593464e465d_eicstt.png",
+          cap: "a cross-chain loan",
+        },
+        {
+          kind: "img",
+          src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/9a5e12be-9c19-42da-ba67-b47af1f14a18_jvotf8.png",
+          cap: "the lender view",
+        },
+        {
+          kind: "img",
+          src: "https://res.cloudinary.com/jagnani73/image/upload/v1766562131/jagnani73/projects/lenden/f247c1a5-c4aa-411a-9c74-c1bbd1147bfa_l3bj0r.png",
+          cap: "repaying a loan",
+        },
       ],
-      cta: { label: "view the source", href: "https://github.com/jagnani73/lenden" },
+      cta: {
+        label: "view the source",
+        href: "https://github.com/jagnani73/lenden",
+      },
     },
   },
 };

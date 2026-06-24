@@ -46,12 +46,16 @@ export const FigTunnel = ({
   return (
     <div>
       <FigCaption
-        left="fig. 1 — your phone drives the real Claude Code CLI over an encrypted tunnel"
+        left="fig. 1: your phone drives the real Claude Code CLI over an encrypted tunnel"
         right="WSS · Tailscale · WireGuard"
       />
       <div
         className="relative overflow-hidden rounded-md"
-        style={{ height: H, border: `1px solid ${t.rule}`, background: t.panel }}
+        style={{
+          height: H,
+          border: `1px solid ${t.rule}`,
+          background: t.panel,
+        }}
       >
         <svg width="100%" height="100%" className="absolute inset-0">
           <line
@@ -78,7 +82,9 @@ export const FigTunnel = ({
             padding: mob ? "8px 12px" : "12px 18px",
           }}
         >
-          <span style={{ fontSize: title, color: t.sig, letterSpacing: "0.06em" }}>
+          <span
+            style={{ fontSize: title, color: t.sig, letterSpacing: "0.06em" }}
+          >
             PHONE
           </span>
           <span style={{ fontSize: sub, color: t.tx3 }}>PWA</span>
@@ -109,7 +115,12 @@ export const FigTunnel = ({
           {laptopRows.map((r) => (
             <span
               key={r.label}
-              style={{ display: "block", fontSize: sub, color: r.c, lineHeight: 1.55 }}
+              style={{
+                display: "block",
+                fontSize: sub,
+                color: r.c,
+                lineHeight: 1.55,
+              }}
             >
               {r.label}
             </span>

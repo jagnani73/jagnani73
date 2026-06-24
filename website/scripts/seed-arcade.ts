@@ -44,7 +44,8 @@ if (!url) {
 // ── helpers ──────────────────────────────────────────────────────────────────
 const ri = (a: number, b: number): number =>
   Math.floor(Math.random() * (b - a + 1)) + a;
-const pick = <T>(arr: readonly T[]): T => arr[Math.floor(Math.random() * arr.length)];
+const pick = <T>(arr: readonly T[]): T =>
+  arr[Math.floor(Math.random() * arr.length)];
 const chance = (p: number): boolean => Math.random() < p;
 const shuffle = <T>(arr: readonly T[]): T[] =>
   [...arr].sort(() => Math.random() - 0.5);
@@ -226,7 +227,11 @@ const play = (
   });
 };
 
-const genSession = (visitor: string | null, country: string, when: number): void => {
+const genSession = (
+  visitor: string | null,
+  country: string,
+  when: number,
+): void => {
   const session = randomUUID();
   const page = pick(PAGES);
   let t = when;
@@ -304,15 +309,41 @@ for (let s = 0; s < ri(2, 4); s++) genSession(whale, whaleCountry, randWhen());
 
 // ── insert ───────────────────────────────────────────────────────────────────
 const COLS = [
-  "type", "game", "mode", "page", "outcome", "score", "new_best", "moves",
-  "duration_ms", "first_word", "session_plays", "win_streak", "visitor_id",
-  "session_id", "country", "created_at",
+  "type",
+  "game",
+  "mode",
+  "page",
+  "outcome",
+  "score",
+  "new_best",
+  "moves",
+  "duration_ms",
+  "first_word",
+  "session_plays",
+  "win_streak",
+  "visitor_id",
+  "session_id",
+  "country",
+  "created_at",
 ] as const;
 
 const tuple = (r: Row): (string | number | boolean | null)[] => [
-  r.type, r.game, r.mode, r.page, r.outcome, r.score, r.new_best, r.moves,
-  r.duration_ms, r.first_word, r.session_plays, r.win_streak, r.visitor_id,
-  r.session_id, r.country, r.created_at,
+  r.type,
+  r.game,
+  r.mode,
+  r.page,
+  r.outcome,
+  r.score,
+  r.new_best,
+  r.moves,
+  r.duration_ms,
+  r.first_word,
+  r.session_plays,
+  r.win_streak,
+  r.visitor_id,
+  r.session_id,
+  r.country,
+  r.created_at,
 ];
 
 const main = async (): Promise<void> => {

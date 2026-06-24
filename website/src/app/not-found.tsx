@@ -3,7 +3,7 @@ import { StatusScreen } from "@/components/shared/status-screen";
 
 const NotFound = () => (
   <StatusScreen
-    kicker="ERROR — 404 / OFF THE RECORD"
+    kicker="ERROR: 404 / OFF THE RECORD"
     code="4 · 0 · 4"
     line="this page was never entered into the record"
   >

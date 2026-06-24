@@ -34,7 +34,7 @@ const Row = ({ item, tag }: { item: SelectedWorkItem; tag: string }) => (
       </span>
       <br className="rail:hidden" />
       <span className="font-mono text-[10.5px] text-tx2 rail:hidden">
-        {item.year} · {tag} — {item.meta}
+        {item.year} · {tag} - {item.meta}
       </span>
       <span className="hidden font-mono text-[12px] text-tx2 rail:block">
         {item.meta}

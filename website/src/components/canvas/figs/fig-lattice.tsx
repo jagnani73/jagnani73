@@ -19,7 +19,8 @@ const CURVE = [
 
 // Right panel (ML-DSA-44): probe hops lattice points, never lands on the off-grid target — nearest-vector stays hard.
 const GRID: { x: number; y: number }[] = [];
-for (const y of [24, 44, 64, 84]) for (const x of [16, 39, 62, 85]) GRID.push({ x, y });
+for (const y of [24, 44, 64, 84])
+  for (const x of [16, 39, 62, 85]) GRID.push({ x, y });
 const O2 = { x: 16, y: 84 };
 const TARGET = { x: 56, y: 40 };
 
@@ -59,15 +60,22 @@ export const FigLattice = ({
   return (
     <div>
       <FigCaption
-        left="fig. 1 — a quantum attack on each scheme's foundation"
+        left="fig. 1: a quantum attack on each scheme's foundation"
         right="Ed25519: solved · ML-DSA-44: hard"
       />
       <div
         className="relative grid grid-cols-2 overflow-hidden rounded-md"
-        style={{ height: H, border: `1px solid ${t.rule}`, background: t.panel }}
+        style={{
+          height: H,
+          border: `1px solid ${t.rule}`,
+          background: t.panel,
+        }}
       >
         {/* ── Ed25519 — broken ── */}
-        <div className="relative" style={{ borderRight: `1px solid ${t.rule}` }}>
+        <div
+          className="relative"
+          style={{ borderRight: `1px solid ${t.rule}` }}
+        >
           <svg width="100%" height="100%" className="absolute inset-0">
             {[O, ...CURVE, K].slice(0, -1).map((d, i) => {
               const n = [O, ...CURVE, K][i + 1];

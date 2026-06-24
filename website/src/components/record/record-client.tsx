@@ -37,7 +37,11 @@ const RecordRow = ({
   // the whole row is already a Link, so the badge is a non-link CtaTerm span.
   const caseBadge = <CtaTerm className="cta-term--sm">CASE STUDY</CtaTerm>;
   const kind = isCase(r) ? (
-    mob ? <span className="mb-0.5 block">{caseBadge}</span> : caseBadge
+    mob ? (
+      <span className="mb-0.5 block">{caseBadge}</span>
+    ) : (
+      caseBadge
+    )
   ) : (
     <span
       className={`font-mono tracking-widest ${kindColor(r)} ${
@@ -274,7 +278,6 @@ export const RecordClient = ({
           </div>
         ))}
       </div>
-
     </>
   );
 };

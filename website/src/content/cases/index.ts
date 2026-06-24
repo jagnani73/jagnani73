@@ -11,9 +11,12 @@ import type {
 const SLUG_ALIASES: Record<string, string> = { "ai-agent-sdk": "agent-sdk" };
 
 // The case rows, in record order — the single source for slug / idx / next.
-type RecordCaseRow = (typeof RECORD)[number] & { slug: string; case: CaseDetail };
+type RecordCaseRow = (typeof RECORD)[number] & {
+  slug: string;
+  case: CaseDetail;
+};
 const CASE_ROWS = RECORD.filter(
-  (r): r is RecordCaseRow => r.slug !== undefined && r.case !== undefined
+  (r): r is RecordCaseRow => r.slug !== undefined && r.case !== undefined,
 );
 
 const ROSTER = CASE_ROWS.map((r) => r.slug);
@@ -31,7 +34,7 @@ export const getCase = (slug: string): ResolvedCase | null => {
     ...row.case,
     slug: canonical,
     title,
-    docTitle: `${row.case.docName ?? title} — Case Study`,
+    docTitle: `${row.case.docName ?? title} - Case Study`,
     idx: String(pos + 1).padStart(2, "0"),
     rosterSize: ROSTER_SIZE,
   };

@@ -78,7 +78,7 @@ export const CaseSection = ({
         </div>
         {s.stack ? (
           <div className="px-4 pb-[22px] pt-2.5 font-mono text-[13px] leading-[1.9] text-tx2 rail:px-11 rail:pb-[30px] rail:pt-3">
-            <span className="text-tx3">STACK —</span> {s.stack}
+            <span className="text-tx3">STACK:</span> {s.stack}
           </div>
         ) : null}
       </section>

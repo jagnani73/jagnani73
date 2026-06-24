@@ -41,7 +41,8 @@ const uuidOrNull = (v: unknown): string | null =>
 export const POST = async (req: Request): Promise<Response> => {
   const noContent = new Response(null, { status: 204 });
   if (!SINK_ON || !db) return noContent;
-  if (Number(req.headers.get("content-length") ?? 0) > MAX_BODY) return noContent;
+  if (Number(req.headers.get("content-length") ?? 0) > MAX_BODY)
+    return noContent;
 
   let body: Partial<ArcadeEventPayload>;
   try {
@@ -79,7 +80,8 @@ export const POST = async (req: Request): Promise<Response> => {
   // Country: Vercel injects a 2-letter ISO code; validate the shape before it
   // lands in the DB (every other field is bounded — this one shouldn't be raw).
   const rawCountry = req.headers.get("x-vercel-ip-country");
-  const country = rawCountry && /^[A-Z]{2}$/.test(rawCountry) ? rawCountry : null;
+  const country =
+    rawCountry && /^[A-Z]{2}$/.test(rawCountry) ? rawCountry : null;
 
   // Server-side privacy gate (belt-and-suspenders with the client): drop the
   // persistent id for opt-outs and gated geos. Aggregates/records still count.

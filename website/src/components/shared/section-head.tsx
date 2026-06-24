@@ -3,7 +3,13 @@ import { Rule } from "@/components/shared/rule";
 
 // Numbered section header (outlined numeral + title + note between two rules).
 // `source` picks the home ("page") vs case-study sizing; "page" is also anchored.
-export const SectionHead = ({ n, title, note, source, id }: SectionHeadProps) => {
+export const SectionHead = ({
+  n,
+  title,
+  note,
+  source,
+  id,
+}: SectionHeadProps) => {
   const page = source === "page";
   return (
     <div id={id} className={page ? "scroll-mt-16" : undefined}>
@@ -15,7 +21,9 @@ export const SectionHead = ({ n, title, note, source, id }: SectionHeadProps) =>
       >
         <span
           className={`font-display tracking-[0.04em] text-tx ${
-            page ? "text-[23px] rail:text-[32px]" : "text-[22px] rail:text-[30px]"
+            page
+              ? "text-[23px] rail:text-[32px]"
+              : "text-[22px] rail:text-[30px]"
           }`}
         >
           <span className="mr-4 text-transparent [-webkit-text-stroke:1px_var(--pri)]">

@@ -31,16 +31,21 @@ const GlobalError = ({
           textAlign: "center",
           background: "var(--bg)",
           color: "var(--tx)",
-          fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+          fontFamily:
+            "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
         }}
       >
         <p
           style={{ fontSize: 11, letterSpacing: "0.12em", color: "var(--tx3)" }}
         >
-          ERROR — THE PRESS JAMMED
+          ERROR: THE PRESS JAMMED
         </p>
         <h1
-          style={{ margin: 0, fontSize: "clamp(56px,16vw,140px)", lineHeight: 0.9 }}
+          style={{
+            margin: 0,
+            fontSize: "clamp(56px,16vw,140px)",
+            lineHeight: 0.9,
+          }}
         >
           5 · 0 · 0
         </h1>

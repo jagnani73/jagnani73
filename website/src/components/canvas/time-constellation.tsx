@@ -88,7 +88,10 @@ export const TimeConstellation = ({
               if (d2 < 4200) {
                 const b = Math.max(boost(pos[i].yn), boost(pos[j].yn));
                 const rgb = b > 0.1 ? sigRGB : priRGB;
-                ctx.strokeStyle = rgba(rgb, (0.22 + 0.45 * b) * (1 - d2 / 4200));
+                ctx.strokeStyle = rgba(
+                  rgb,
+                  (0.22 + 0.45 * b) * (1 - d2 / 4200),
+                );
                 ctx.beginPath();
                 ctx.moveTo(pos[i].x, pos[i].y);
                 ctx.lineTo(pos[j].x, pos[j].y);

@@ -68,7 +68,8 @@ export const sequenceYear = (entries: RecordEntry[]): RecordEntry[] => {
     if (e.kind === "PROJECT") {
       const hack = hackathons.find(
         (h) =>
-          !used.has(h) && h.meta.toLowerCase().startsWith(e.title.toLowerCase())
+          !used.has(h) &&
+          h.meta.toLowerCase().startsWith(e.title.toLowerCase()),
       );
       if (hack) {
         used.add(hack);

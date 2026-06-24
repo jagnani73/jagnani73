@@ -5,24 +5,27 @@ export const solanaMlDsa44Case: CaseDetail = {
   displayTitle: "ML-DSA-44",
   docName: "Post-Quantum Solana (ML-DSA-44)",
   seoDescription:
-    "Making the Solana validator quantum-secure — payments and consensus votes signed with NIST's ML-DSA-44 post-quantum standard, proven live on-chain.",
+    "Making the Solana validator quantum-secure: payments and consensus votes signed with NIST's ML-DSA-44 post-quantum standard, proven live on-chain.",
   badge: "POST-QUANTUM · SOLANA FORK · 2026",
   deck: (
     <>
-      making the Solana validator quantum-secure — payments and consensus votes
+      making the Solana validator quantum-secure: payments and consensus votes
       signed with{" "}
       <span className="text-tx">NIST&apos;s post-quantum standard</span>, proven
       live on-chain
     </>
   ),
-  fig: { component: FigLattice, alt: "a quantum attack on each scheme's foundation" },
+  fig: {
+    component: FigLattice,
+    alt: "a quantum attack on each scheme's foundation",
+  },
   sections: {
     split: {
       title: "THE GOAL",
       note: "quantum-resistant by design",
       serif: (
         <>
-          A large enough quantum computer forges Ed25519 — and Solana signs
+          A large enough quantum computer forges Ed25519, and Solana signs
           everything with it.{" "}
           <span className="text-tx">
             This fork makes the validator quantum-secure, replacing its
@@ -30,16 +33,16 @@ export const solanaMlDsa44Case: CaseDetail = {
           </span>
         </>
       ),
-      body: "And it isn't on paper. On a live validator, a SOL transfer signed with a post-quantum key confirms on-chain, and the validator's own consensus votes are signed with ML-DSA-44 — the chain produces, confirms, and finalizes on them. Its payments, consensus votes, and on-chain verification are all quantum-secure. It runs on a self-hosted fork, not live-Solana-compatible by design, but the post-quantum signing it proves is real and end-to-end.",
+      body: "And it isn't on paper. On a live validator, a SOL transfer signed with a post-quantum key confirms on-chain, and the validator's own consensus votes are signed with ML-DSA-44; the chain produces, confirms, and finalizes on them. Its payments, consensus votes, and on-chain verification are all quantum-secure. It runs on a self-hosted fork, not live-Solana-compatible by design, but the post-quantum signing it proves is real and end-to-end.",
     },
     arch: {
       title: "WHAT'S QUANTUM-SECURE",
-      note: "verification, payments, and votes — all live",
+      note: "verification, payments, and votes: all live",
       body: (
         <>
-          The validator signs several things through one shared engine. This fork
-          hardens the three that carry value and consensus — on-chain
-          verification, user payments, and the validator&apos;s own votes —{" "}
+          The validator signs several things through one shared engine. This
+          fork hardens the three that carry value and consensus (on-chain
+          verification, user payments, and the validator&apos;s own votes),{" "}
           <strong className="font-semibold text-tx">all live</strong> on
           ML-DSA-44 and verified end to end.
         </>
@@ -79,15 +82,15 @@ export const solanaMlDsa44Case: CaseDetail = {
       note: "a signature built for a system that assumed tiny ones",
       intro: (
         <>
-          Putting a signature ~38× the size of Ed25519&apos;s through a validator
-          built for tiny ones meant unwinding assumptions baked in deep — each
-          solved so the post-quantum path runs beside the original:
+          Putting a signature ~38× the size of Ed25519&apos;s through a
+          validator built for tiny ones meant unwinding assumptions baked in
+          deep, each solved so the post-quantum path runs beside the original:
         </>
       ),
       cards: [
         {
           name: "address from key",
-          desc: "an account's address was literally its 32-byte key; ML-DSA's is 1312 — so the address became sha256(pubkey), with the full key carried inside the tx",
+          desc: "an account's address was literally its 32-byte key; ML-DSA's is 1312, so the address became sha256(pubkey), with the full key carried inside the tx",
         },
         {
           name: "room on the wire",
@@ -95,7 +98,7 @@ export const solanaMlDsa44Case: CaseDetail = {
         },
         {
           name: "drop-in, not a cutover",
-          desc: "a 0x00 lead byte marks a post-quantum tx so it runs beside Ed25519 — the chain gains quantum-secure signing with no risky hard switch, and never stops producing blocks",
+          desc: "a 0x00 lead byte marks a post-quantum tx so it runs beside Ed25519; the chain gains quantum-secure signing with no risky hard switch, and never stops producing blocks",
         },
       ],
     },
@@ -105,7 +108,7 @@ export const solanaMlDsa44Case: CaseDetail = {
       plates: [
         {
           kind: "code",
-          cap: "every phase ships a live demo — proven on a throwaway validator, nothing staged",
+          cap: "every phase ships a live demo: proven on a throwaway validator, nothing staged",
           code: `# Payments — a SOL transfer signed post-quantum confirms on-chain
 $ bash programs/ml-dsa-tests/demo-transfer.sh
   ML-DSA-44 transfer confirmed         forged transfer rejected
