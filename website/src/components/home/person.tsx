@@ -90,7 +90,7 @@ export const Person = () => (
             </a>
           </Fragment>
         ))}
-        <span className="ml-auto">
+        <span className="rail:ml-auto">
           <CtaTerm href={PERSON.resume.href} external>
             {PERSON.resume.label}
           </CtaTerm>
