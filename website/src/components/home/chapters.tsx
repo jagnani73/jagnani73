@@ -3,6 +3,32 @@ import { SectionHead } from "@/components/shared/section-head";
 import { CtaTerm } from "@/components/shared/cta-term";
 import { Rule } from "@/components/shared/rule";
 
+// The org links out when it has a `url`; without one (e.g. a dead domain) it
+// renders as plain text instead of a non-navigating <a>.
+const ChapterOrg = ({
+  url,
+  org,
+  size,
+}: {
+  url?: string;
+  org: string;
+  size: string;
+}) => {
+  const base = `font-display ${size} tracking-[0.03em] text-tx`;
+  return url ? (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${base} transition-colors hover:text-sig`}
+    >
+      {org}
+    </a>
+  ) : (
+    <span className={base}>{org}</span>
+  );
+};
+
 export const Chapters = () => (
   <section>
     <SectionHead
@@ -20,14 +46,7 @@ export const Chapters = () => (
               {c.n}
             </span>
             <span className="min-w-0">
-              <a
-                href={c.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-display text-[21px] tracking-[0.03em] text-tx transition-colors hover:text-sig"
-              >
-                {c.org}
-              </a>
+              <ChapterOrg url={c.url} org={c.org} size="text-[21px]" />
               <br />
               <span className="font-mono text-[12px] text-tx3">{c.role}</span>
             </span>
@@ -50,14 +69,7 @@ export const Chapters = () => (
             {c.n}
           </span>
           <span>
-            <a
-              href={c.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-display text-[28px] tracking-[0.03em] text-tx transition-colors hover:text-sig"
-            >
-              {c.org}
-            </a>
+            <ChapterOrg url={c.url} org={c.org} size="text-[28px]" />
             <br />
             <span className="font-mono text-[12.5px] text-tx2">{c.role}</span>
           </span>

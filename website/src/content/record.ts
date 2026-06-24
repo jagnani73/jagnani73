@@ -265,7 +265,6 @@ export const RECORD: RecordEntry[] = [
     kind: "EXPERIENCE",
     title: "Hashmail - Founding Engineer",
     meta: "wallet-native mail · 1000s of users · v1 → v2 · 2022–2023",
-    url: "https://hashmail.dev",
   },
   {
     year: 2023,
@@ -425,7 +424,6 @@ export const RECORD: RecordEntry[] = [
     kind: "COMMUNITY",
     title: "GitHub Community SRM - Founding Administrator",
     meta: "campus OSS revolution · events + portal · 2021–2022",
-    url: "https://githubsrm.tech",
   },
   {
     year: 2021,

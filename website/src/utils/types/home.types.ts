@@ -2,7 +2,8 @@ export interface Chapter {
   n: string;
   org: string;
   role: string;
-  url: string;
+  /** External link (opens in a new tab); omitted → the org renders as plain text. */
+  url?: string;
   deck: string;
   stats: [value: string, label: string][];
 }

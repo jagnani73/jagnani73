@@ -21,7 +21,6 @@ export const CHAPTERS: Chapter[] = [
     n: "II",
     org: "THE COLLEGE YEARS",
     role: "Hashmail · Quinence · SRMIST - 2019–2023",
-    url: "https://hashmail.dev",
     deck: "founding engineer on Hashmail's wallet-native mail; web3 client builds at Quinence, alongside four internships and six campus founding roles.",
     stats: [
       ["1000s", "Hashmail users"],
