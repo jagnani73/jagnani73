@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "db:apply": "tsx scripts/apply-schema.ts",
     "db:seed": "tsx scripts/seed-arcade.ts",
     "db:pull": "drizzle-kit pull"
@@ -32,7 +34,9 @@
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.7",
+    "eslint-config-prettier": "^10.1.8",
     "pg": "^8.21.0",
+    "prettier": "^3.8.4",
     "tailwindcss": "^4",
     "tsx": "^4.22.4",
     "typescript": "^5"
