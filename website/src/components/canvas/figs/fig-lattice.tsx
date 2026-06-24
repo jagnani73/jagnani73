@@ -111,7 +111,7 @@ export const FigLattice = ({
             />
           </svg>
           <span
-            className="absolute left-2.5 top-2 font-mono tracking-[0.08em]"
+            className="absolute top-2 left-2.5 font-mono tracking-[0.08em]"
             style={{ fontSize: title, color: t.flag }}
           >
             ED25519
@@ -169,7 +169,7 @@ export const FigLattice = ({
             <circle cx={pct(TARGET.x)} cy={pct(TARGET.y)} r={1.7} fill={t.ok} />
           </svg>
           <span
-            className="absolute left-2.5 top-2 font-mono tracking-[0.08em]"
+            className="absolute top-2 left-2.5 font-mono tracking-[0.08em]"
             style={{ fontSize: title, color: t.ok }}
           >
             ML-DSA-44

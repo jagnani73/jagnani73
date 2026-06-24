@@ -29,7 +29,7 @@ const dur = (ms: number): string => {
 };
 
 const SubHead = ({ children }: { children: ReactNode }) => (
-  <h2 className="mb-4 font-mono text-[12px] uppercase tracking-[0.14em] text-tx3">
+  <h2 className="mb-4 font-mono text-[12px] tracking-[0.14em] text-tx3 uppercase">
     {children}
   </h2>
 );
@@ -39,7 +39,7 @@ const Tile = ({ value, label }: { value: string; label: string }) => (
     <div className="font-display text-[34px] leading-none text-tx rail:text-[40px]">
       {value}
     </div>
-    <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.12em] text-tx3">
+    <div className="mt-2 font-mono text-[11px] tracking-[0.12em] text-tx3 uppercase">
       {label}
     </div>
   </div>
@@ -179,7 +179,7 @@ const ArcadeStatsPage = async () => {
         <section>
           <SubHead>Records &amp; bests</SubHead>
           <div className="mb-6 border border-rule bg-panel px-5 py-5">
-            <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-tx3">
+            <div className="font-mono text-[11px] tracking-[0.12em] text-tx3 uppercase">
               fastest reaction ever
             </div>
             <div className="mt-1 font-display text-[44px] leading-none text-sig">
@@ -191,7 +191,7 @@ const ArcadeStatsPage = async () => {
               .filter((b) => b.game !== "reaction")
               .map((b) => (
                 <div key={b.game} className="border border-rule px-4 py-3">
-                  <div className="font-mono text-[11px] uppercase tracking-[0.1em] text-tx3">
+                  <div className="font-mono text-[11px] tracking-[0.1em] text-tx3 uppercase">
                     {gameLabel(b.game)}
                   </div>
                   <div className="mt-1 font-display text-[22px] text-tx">
@@ -253,7 +253,7 @@ const ArcadeStatsPage = async () => {
           <SubHead>The regulars</SubHead>
           <div className="grid gap-3 rail:grid-cols-2">
             <div className="border border-rule bg-panel px-5 py-5">
-              <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-tx3">
+              <div className="font-mono text-[11px] tracking-[0.12em] text-tx3 uppercase">
                 most rounds · one player
               </div>
               {s.topVisitorOverall ? (
@@ -270,7 +270,7 @@ const ArcadeStatsPage = async () => {
               )}
             </div>
             <div className="border border-rule bg-panel px-5 py-5">
-              <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-tx3">
+              <div className="font-mono text-[11px] tracking-[0.12em] text-tx3 uppercase">
                 most of one game · one player
               </div>
               {s.topVisitorGame ? (

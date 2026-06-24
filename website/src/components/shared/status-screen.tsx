@@ -20,7 +20,7 @@ export const StatusScreen = ({
     <h1 className="m-0 font-display text-[clamp(64px,18vw,180px)] leading-[0.9] text-tx">
       {code}
     </h1>
-    <p className="font-serif text-[clamp(20px,3vw,32px)] italic text-tx2">
+    <p className="font-serif text-[clamp(20px,3vw,32px)] text-tx2 italic">
       {line}
     </p>
     <div className="mt-2 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 font-mono text-[13px] text-tx2">

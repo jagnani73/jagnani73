@@ -51,7 +51,7 @@ export const PlateViewer = ({
   const zoom = closing ? "plZoomOut" : "plZoomIn";
 
   return (
-    <div className="grid items-stretch gap-3.5 px-4 pb-5 pt-4 rail:gap-6 rail:px-11 rail:pb-6 rail:pt-5 rail:[grid-template-columns:minmax(0,640px)_1fr]">
+    <div className="grid items-stretch gap-3.5 px-4 pt-4 pb-5 rail:[grid-template-columns:minmax(0,640px)_1fr] rail:gap-6 rail:px-11 rail:pt-5 rail:pb-6">
       <div className="relative aspect-video overflow-hidden rounded-md border border-rule bg-panel">
         {plates.map((pl, j) => {
           const vis = i === j;
@@ -115,7 +115,7 @@ export const PlateViewer = ({
             plate {plateNo(j)}: {pl.cap}
           </button>
         ))}
-        <div className="mt-auto flex flex-col items-start gap-3.5 px-3 pb-1 pt-4">
+        <div className="mt-auto flex flex-col items-start gap-3.5 px-3 pt-4 pb-1">
           <CtaTerm href={`/record/${next.slug}`}>
             next study: <span className="uppercase">{next.title}</span>
           </CtaTerm>

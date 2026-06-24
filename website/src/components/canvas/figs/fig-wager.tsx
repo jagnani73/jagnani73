@@ -115,7 +115,7 @@ export const FigWager = ({
         </div>
         <div className="flex min-w-0 flex-col justify-center gap-2">
           <div
-            className="overflow-hidden text-ellipsis whitespace-nowrap font-mono"
+            className="overflow-hidden font-mono text-ellipsis whitespace-nowrap"
             style={{ fontSize: mob ? 10.5 : 12, color: t.tx2 }}
           >
             <span style={{ color: t.sig }}>0x4f2…a91</span> · 25
@@ -160,7 +160,7 @@ export const FigWager = ({
             })}
           </div>
           <div
-            className="overflow-hidden text-ellipsis whitespace-nowrap rounded-[5px] font-mono"
+            className="overflow-hidden rounded-[5px] font-mono text-ellipsis whitespace-nowrap"
             style={{
               border: `1px solid ${phase === 3 ? t.acc : t.rule}`,
               padding: "9px 12px",

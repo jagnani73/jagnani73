@@ -12,7 +12,7 @@ export const CaseFig = ({ component: FigComponent, alt }: CaseFigure) => {
   return (
     <>
       <Rule />
-      <div className="px-4 pb-5 pt-4 rail:px-11 rail:pb-6 rail:pt-5">
+      <div className="px-4 pt-4 pb-5 rail:px-11 rail:pt-5 rail:pb-6">
         <div ref={ref} role="img" aria-label={`Figure 1: ${alt}`}>
           <FigComponent mob={mob} active={inView} />
         </div>

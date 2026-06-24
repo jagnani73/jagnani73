@@ -57,7 +57,7 @@ export const FigScore = ({
               }}
             >
               <span
-                className="absolute left-2 top-1/2 -translate-y-1/2 font-mono text-[11.5px] tracking-[0.08em]"
+                className="absolute top-1/2 left-2 -translate-y-1/2 font-mono text-[11.5px] tracking-[0.08em]"
                 style={{ color: tier.c }}
               >
                 {mob ? tier.range : `${tier.name} ${tier.range}`}

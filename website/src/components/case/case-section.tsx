@@ -29,7 +29,7 @@ export const CaseSection = ({
     return (
       <section>
         <SectionHead source="case" n={n} title={title} note={s.note} />
-        <div className="grid grid-cols-1 gap-[18px] px-4 pb-6 pt-5 rail:grid-cols-2 rail:gap-10 rail:px-11 rail:pb-[34px] rail:pt-7">
+        <div className="grid grid-cols-1 gap-[18px] px-4 pt-5 pb-6 rail:grid-cols-2 rail:gap-10 rail:px-11 rail:pt-7 rail:pb-[34px]">
           <p className="m-0 font-sans text-[19px] leading-[1.5] text-tx2 rail:text-[23px]">
             {s.serif}
           </p>
@@ -43,19 +43,19 @@ export const CaseSection = ({
     return (
       <section>
         <SectionHead source="case" n={n} title={title} note={s.note} />
-        <div className="px-4 pb-1 pt-5 rail:px-11 rail:pb-1.5 rail:pt-7">
+        <div className="px-4 pt-5 pb-1 rail:px-11 rail:pt-7 rail:pb-1.5">
           <p className="m-0 max-w-[860px] text-[16px] leading-[1.7] text-tx2">
             {s.body}
           </p>
         </div>
-        <div className="flex flex-col items-stretch px-4 pb-2 pt-4 rail:flex-row rail:px-11 rail:pb-2.5 rail:pt-6">
+        <div className="flex flex-col items-stretch px-4 pt-4 pb-2 rail:flex-row rail:px-11 rail:pt-6 rail:pb-2.5">
           {s.flow.map((st, i) => (
             <div key={st.stage} className="contents">
-              <div className="flex min-w-0 flex-1 flex-col rounded-md border border-rule bg-panel p-4 rail:px-[18px] rail:pb-3.5 rail:pt-4">
+              <div className="flex min-w-0 flex-1 flex-col rounded-md border border-rule bg-panel p-4 rail:px-[18px] rail:pt-4 rail:pb-3.5">
                 <span className="font-mono text-[11px] tracking-[0.08em] text-tx3">
                   {pad2(i + 1)}
                 </span>
-                <p className="m-0 mb-1.5 mt-[7px] font-mono text-[13.5px] tracking-[0.08em] text-sig">
+                <p className="m-0 mt-[7px] mb-1.5 font-mono text-[13.5px] tracking-[0.08em] text-sig">
                   {st.stage}
                 </p>
                 <p className="m-0 text-[13.5px] leading-[1.55] text-tx2">
@@ -77,7 +77,7 @@ export const CaseSection = ({
           ))}
         </div>
         {s.stack ? (
-          <div className="px-4 pb-[22px] pt-2.5 font-mono text-[13px] leading-[1.9] text-tx2 rail:px-11 rail:pb-[30px] rail:pt-3">
+          <div className="px-4 pt-2.5 pb-[22px] font-mono text-[13px] leading-[1.9] text-tx2 rail:px-11 rail:pt-3 rail:pb-[30px]">
             <span className="text-tx3">STACK:</span> {s.stack}
           </div>
         ) : null}
@@ -89,24 +89,24 @@ export const CaseSection = ({
     return (
       <section>
         <SectionHead source="case" n={n} title={title} note={s.note} />
-        <div className="px-4 pb-1 pt-5 rail:px-11 rail:pb-2 rail:pt-7">
+        <div className="px-4 pt-5 pb-1 rail:px-11 rail:pt-7 rail:pb-2">
           <p className="m-0 max-w-[860px] text-[16px] leading-[1.7] text-tx2">
             {s.intro}
           </p>
         </div>
         <div
-          className="grid grid-cols-2 gap-2.5 px-4 pb-6 pt-4 rail:gap-3.5 rail:px-11 rail:pb-[34px] rail:pt-[22px] rail:[grid-template-columns:repeat(var(--cards),minmax(0,1fr))]"
+          className="grid grid-cols-2 gap-2.5 px-4 pt-4 pb-6 rail:[grid-template-columns:repeat(var(--cards),minmax(0,1fr))] rail:gap-3.5 rail:px-11 rail:pt-[22px] rail:pb-[34px]"
           style={{ "--cards": String(s.cards.length) } as React.CSSProperties}
         >
           {s.cards.map((c, i) => (
             <div
               key={c.name}
-              className="rounded-md border border-rule bg-panel px-4 pb-3.5 pt-4"
+              className="rounded-md border border-rule bg-panel px-4 pt-4 pb-3.5"
             >
               <span className="font-display text-[26px] text-transparent [-webkit-text-stroke:1px_var(--rule-strong)]">
                 0{i + 1}
               </span>
-              <p className="m-0 mb-1 mt-2.5 font-mono text-[13.5px] tracking-[0.04em] text-tx">
+              <p className="m-0 mt-2.5 mb-1 font-mono text-[13.5px] tracking-[0.04em] text-tx">
                 {c.name}
               </p>
               <p className="m-0 font-mono text-[12px] leading-[1.6] text-tx3">
@@ -123,7 +123,7 @@ export const CaseSection = ({
     return (
       <section>
         <SectionHead source="case" n={n} title={title} note={s.note} />
-        <div className="grid grid-cols-2 gap-2.5 px-4 pb-[26px] pt-5 rail:grid-cols-4 rail:gap-3.5 rail:px-11 rail:pb-9 rail:pt-7">
+        <div className="grid grid-cols-2 gap-2.5 px-4 pt-5 pb-[26px] rail:grid-cols-4 rail:gap-3.5 rail:px-11 rail:pt-7 rail:pb-9">
           {s.stats.map(([big, label]) => (
             <div
               key={label}

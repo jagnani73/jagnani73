@@ -215,16 +215,16 @@ export const RecordClient = ({
 
       {/* opaque so it sits over the fixed constellation */}
       <div className="relative z-[1] bg-bg">
-        <div className="flex flex-wrap items-baseline justify-between gap-3 px-4 pb-2 pt-4 rail:px-11 rail:pb-3 rail:pt-6">
-          <h1 className="m-0 whitespace-nowrap font-display text-[clamp(36px,11vw,48px)] tracking-[0.01em] rail:text-[clamp(48px,5.5vw,80px)]">
+        <div className="flex flex-wrap items-baseline justify-between gap-3 px-4 pt-4 pb-2 rail:px-11 rail:pt-6 rail:pb-3">
+          <h1 className="m-0 font-display text-[clamp(36px,11vw,48px)] tracking-[0.01em] whitespace-nowrap rail:text-[clamp(48px,5.5vw,80px)]">
             THE RECORD
           </h1>
-          <span className="font-serif text-[clamp(20px,2vw,28px)] italic text-tx2">
+          <span className="font-serif text-[clamp(20px,2vw,28px)] text-tx2 italic">
             2019 → now, nothing exiled
           </span>
         </div>
 
-        <div className="flex flex-wrap gap-1.5 px-4 pb-3.5 pt-1 rail:gap-2 rail:px-11 rail:pb-[18px]">
+        <div className="flex flex-wrap gap-1.5 px-4 pt-1 pb-3.5 rail:gap-2 rail:px-11 rail:pb-[18px]">
           {FILTERS.map((f) => {
             const active = filter === f.id;
             return (

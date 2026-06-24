@@ -14,7 +14,7 @@ export const Chapters = () => (
     />
     {CHAPTERS.map((c, i) => (
       <div key={c.n}>
-        <div className="px-4 pb-[22px] pt-5 rail:hidden">
+        <div className="px-4 pt-5 pb-[22px] rail:hidden">
           <div className="flex items-center gap-5">
             <span className="shrink-0 font-display text-[30px] text-transparent [-webkit-text-stroke:1px_var(--rule-strong)]">
               {c.n}

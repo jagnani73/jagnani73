@@ -13,9 +13,9 @@ export const Person = () => (
     <SectionHead source="page" id="person" n="03" title="THE PERSON" />
 
     {/* statement + arcade */}
-    <div className="flex flex-col gap-[26px] px-4 pb-2 pt-6 rail:flex-row rail:items-start rail:gap-12 rail:px-11 rail:pb-[14px] rail:pt-9">
+    <div className="flex flex-col gap-[26px] px-4 pt-6 pb-2 rail:flex-row rail:items-start rail:gap-12 rail:px-11 rail:pt-9 rail:pb-[14px]">
       <div className="rail:min-w-0 rail:flex-1">
-        <p className="m-0 font-serif text-[26px] italic leading-tight text-tx2 rail:text-[38px]">
+        <p className="m-0 font-serif text-[26px] leading-tight text-tx2 italic rail:text-[38px]">
           {PERSON.quote.pre}
           <span className="text-tx">{PERSON.quote.emphasis}</span>
         </p>
@@ -45,7 +45,7 @@ export const Person = () => (
     </div>
 
     {/* currently — signal strip */}
-    <div className="px-4 pb-1 pt-4 rail:px-11 rail:pb-1.5 rail:pt-5">
+    <div className="px-4 pt-4 pb-1 rail:px-11 rail:pt-5 rail:pb-1.5">
       <div className="grid grid-cols-2 gap-px border border-rule bg-rule rail:grid-cols-4">
         {PERSON.currently.map(([k, v]) => (
           <div
@@ -64,13 +64,13 @@ export const Person = () => (
     </div>
 
     {/* off the clock — music + sky */}
-    <div className="grid grid-cols-1 gap-4 px-4 pb-1 pt-[18px] rail:grid-cols-2 rail:gap-5 rail:px-11 rail:pb-1.5 rail:pt-[22px]">
+    <div className="grid grid-cols-1 gap-4 px-4 pt-[18px] pb-1 rail:grid-cols-2 rail:gap-5 rail:px-11 rail:pt-[22px] rail:pb-1.5">
       <MusicPanel />
       <SkyMap />
     </div>
 
     {/* contacts */}
-    <div className="px-4 pb-[26px] pt-8 rail:px-11 rail:pb-10 rail:pt-12">
+    <div className="px-4 pt-8 pb-[26px] rail:px-11 rail:pt-12 rail:pb-10">
       <div className="flex flex-wrap items-center gap-x-5 gap-y-2.5 font-mono text-[13px] text-tx2">
         {PERSON.links.map((l, i) => (
           <Fragment key={l.href}>

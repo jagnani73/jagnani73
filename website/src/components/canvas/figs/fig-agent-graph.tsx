@@ -166,7 +166,7 @@ export const FigAgentGraph = ({
           return (
             <span
               key={id}
-              className="absolute whitespace-nowrap rounded font-mono"
+              className="absolute rounded font-mono whitespace-nowrap"
               style={{
                 left: nx(n) + "%",
                 top: n.y + "%",

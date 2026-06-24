@@ -25,11 +25,11 @@ const Row = ({ item, tag }: { item: SelectedWorkItem; tag: string }) => (
         alt={item.title}
         fill
         sizes="(max-width: 1200px) 96px, 160px"
-        className="object-cover grayscale brightness-[0.85] transition-[filter] duration-300 group-hover:grayscale-0 group-hover:brightness-100"
+        className="object-cover brightness-[0.85] grayscale transition-[filter] duration-300 group-hover:brightness-100 group-hover:grayscale-0"
       />
     </span>
     <span className="min-w-0">
-      <span className="font-display text-[19px] uppercase tracking-[0.03em] text-tx transition-colors group-hover:text-sig rail:text-[31px]">
+      <span className="font-display text-[19px] tracking-[0.03em] text-tx uppercase transition-colors group-hover:text-sig rail:text-[31px]">
         {item.title}
       </span>
       <br className="rail:hidden" />
@@ -43,7 +43,7 @@ const Row = ({ item, tag }: { item: SelectedWorkItem; tag: string }) => (
     <span className="hidden font-mono text-[13.5px] text-tx3 rail:inline">
       {item.year}
     </span>
-    <span className="hidden whitespace-nowrap font-mono text-[12.5px] text-acc rail:inline-block">
+    <span className="hidden font-mono text-[12.5px] whitespace-nowrap text-acc rail:inline-block">
       {tag}
     </span>
   </>
