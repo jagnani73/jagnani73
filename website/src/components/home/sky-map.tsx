@@ -638,7 +638,7 @@ export const SkyMap = () => {
           width: "100%",
           minHeight: 0,
           cursor: "grab",
-          touchAction: "pan-y",
+          touchAction: "none",
         }}
         className="h-[188px] rail:h-[210px]"
       >
