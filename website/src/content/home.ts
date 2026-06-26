@@ -31,7 +31,7 @@ export const CHAPTERS: Chapter[] = [
   {
     n: "III",
     org: "THE WEEKENDS",
-    role: "Hackathons · 2020 – · a parallel track through every era",
+    role: "Hackathons · since 2020 · a parallel track through every era",
     url: "https://ethglobal.com",
     deck: "fourteen weekends of building in public: prediction markets, zk governance, on-chain arcades.",
     stats: [
