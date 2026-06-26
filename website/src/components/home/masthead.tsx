@@ -32,9 +32,8 @@ export const Masthead = () => {
 
       <div className="relative h-40 overflow-hidden rail:h-[220px]">
         <BandCanvas />
-        <span className="pointer-events-none absolute inset-x-4 bottom-2.5 z-[2] text-right font-mono text-[12px] text-tx3">
-          fig. 1: a slow map of a place that doesn&apos;t exist · your cursor is
-          a hill
+        <span className="pointer-events-none absolute inset-x-4 bottom-2.5 z-2 text-right font-mono text-[12px] text-tx3">
+          fig. 1: a slow map of a place that doesn&apos;t exist
         </span>
       </div>
       <Rule />
