@@ -21,7 +21,7 @@ _software, shipped at agent speed._
 
    role     blockchain-first engineer · AI-native builder
    focus    agentic + onchain tooling, at agent speed
-   now      incoming MSc Blockchain · NTU Singapore '26
+   now      MSc Blockchain · NTU Singapore '26
    prior    Infinia · Covalent · Hashmail · Quinence · SRMIST
 
 >_ the record --mixed

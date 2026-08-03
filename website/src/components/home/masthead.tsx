@@ -44,7 +44,7 @@ export const Masthead = () => {
           <br />
           Infinia &apos;26 · Covalent &apos;23–&apos;25
           <br />
-          next: <span className="text-sig">NTU Singapore · MSc, Aug 2026</span>
+          now: <span className="text-sig">NTU Singapore · MSc Blockchain</span>
         </div>
         <div className="border-b border-rule px-4 py-3.5 rail:border-r rail:border-b-0 rail:px-11 rail:py-[18px]">
           <span className="text-tx3">RECORD:</span>

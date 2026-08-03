@@ -64,7 +64,7 @@ export const RECORD: RecordEntry[] = [
     year: 2026,
     kind: "EDUCATION",
     title: "NTU Singapore - MSc Blockchain",
-    meta: "incoming · August 2026 intake",
+    meta: "in progress · August 2026 intake",
     url: "https://www.ntu.edu.sg/",
     order: 1,
   },

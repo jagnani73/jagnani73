@@ -58,11 +58,11 @@ export const PERSON: Person = {
   bio: [
     [
       {
-        t: "I'm a blockchain software engineer who likes living close to the data layer, turning raw on-chain noise into interfaces and tools people actually trust. This August I'm heading to ",
+        t: "I'm a blockchain software engineer who likes living close to the data layer, turning raw on-chain noise into interfaces and tools people actually trust. I'm now at ",
       },
       { t: "NTU Singapore", em: true },
       {
-        t: " for an MSc in Blockchain, to go deeper on the systems I keep gravitating toward.",
+        t: " for an MSc in Blockchain, going deeper on the systems I keep gravitating toward.",
       },
     ],
     [
@@ -82,8 +82,8 @@ export const PERSON: Person = {
   ],
   arcadeCaption: "↑ a different game every visit, beat my score",
   currently: [
-    ["CURRENTLY", "shipping toward NTU · always a side project"],
-    ["BASED", "New Delhi, India - Singapore from Aug 2026"],
+    ["CURRENTLY", "MSc Blockchain at NTU · always a side project"],
+    ["BASED", "Singapore - via New Delhi, India"],
     ["OFF THE CLOCK", "music · astronomy · shows that make me think"],
     ["ALWAYS UP FOR", "a hackathon, a hard data problem, good coffee"],
   ],
