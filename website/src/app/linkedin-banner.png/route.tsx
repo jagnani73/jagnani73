@@ -11,10 +11,10 @@
 import type { NextRequest } from "next/server";
 import {
   BANNER_VARIANTS,
-  DEFAULT_SCALE,
   DEFAULT_VARIANT,
   MAX_SCALE,
   isBannerVariant,
+  parseScale,
   renderBanner,
 } from "@/utils/functions/banner";
 
@@ -39,9 +39,8 @@ export const GET = async (req: NextRequest) => {
   // Scale drives the raster size and is caller-controlled, so it is restricted
   // to whole numbers within range: 4x is already 6336x1584. Bounding it also
   // keeps the set of cache keys small.
-  const rawScale = params.get("scale");
-  const scale = rawScale === null ? DEFAULT_SCALE : Number(rawScale);
-  if (!Number.isInteger(scale) || scale < 1 || scale > MAX_SCALE) {
+  const scale = parseScale(params.get("scale"));
+  if (scale === null) {
     return bad(`scale must be a whole number from 1 to ${MAX_SCALE}`);
   }
 

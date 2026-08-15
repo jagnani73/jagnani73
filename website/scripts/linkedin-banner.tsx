@@ -16,7 +16,11 @@ import {
   BANNER_W,
   DEFAULT_SCALE,
   MAX_SCALE,
+  X_BANNER_VARIANTS,
+  X_H,
+  X_W,
   renderBanner,
+  renderXBanner,
 } from "../src/utils/functions/banner";
 
 const main = async () => {
@@ -37,6 +41,16 @@ const main = async () => {
     writeFileSync(path, buf);
     console.log(
       `${v.key.padEnd(12)} ${BANNER_W * scale}x${BANNER_H * scale}  ${(buf.length / 1024).toFixed(0).padStart(5)} KB  -> ${path}`,
+    );
+  }
+
+  for (const v of Object.values(X_BANNER_VARIANTS)) {
+    const img = await renderXBanner(v.key, scale);
+    const path = join(outDir, `${v.key}@${scale}x.png`);
+    const buf = Buffer.from(await img.arrayBuffer());
+    writeFileSync(path, buf);
+    console.log(
+      `${v.key.padEnd(12)} ${X_W * scale}x${X_H * scale}  ${(buf.length / 1024).toFixed(0).padStart(5)} KB  -> ${path}`,
     );
   }
 

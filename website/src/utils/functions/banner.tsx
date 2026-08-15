@@ -10,10 +10,24 @@
 import { ImageResponse } from "next/og";
 import { THEME_TOKENS } from "@/utils/constants/theme-tokens";
 import { contourSegments } from "@/utils/functions/contours";
+import {
+  LINES,
+  STARS,
+  TRAIL_MS,
+  TRAIL_N,
+  altaz,
+  formatLat,
+  lstAt,
+  makeBgStars,
+  makeProjector,
+} from "@/utils/functions/sky";
 import type {
   BannerVariant,
   BannerVariantKey,
+  XBannerVariant,
+  XBannerVariantKey,
 } from "@/utils/types/banner.types";
+import type { SkyLocation } from "@/utils/types/sky.types";
 import type { ThemeTokens } from "@/utils/types/theme.types";
 
 /** LinkedIn's nominal layout size. Authoring units — never render at 1x. */
@@ -43,6 +57,17 @@ export const DEFAULT_SCALE = 3;
 export const MAX_SCALE = 4;
 
 export const DEFAULT_VARIANT: BannerVariantKey = "b-safe";
+
+/**
+ * Parses the routes' `?scale=` into a whole number within range, or null if it
+ * isn't one. Shared by both banner routes so the cap — which is what stops a
+ * caller asking for a raster big enough to kill the function — can't diverge.
+ */
+export const parseScale = (raw: string | null): number | null => {
+  if (raw === null) return DEFAULT_SCALE;
+  const n = Number(raw);
+  return Number.isInteger(n) && n >= 1 && n <= MAX_SCALE ? n : null;
+};
 
 const SCRIM_BALANCED = [0.38, 0.22, 0.9, 0.92, 0.42, 0.26] as const;
 const SCRIM_OPEN = [0.3, 0.16, 0.82, 0.84, 0.34, 0.2] as const;
@@ -185,6 +210,241 @@ const getFonts = () => {
     },
   );
   return fontsPromise;
+};
+
+// ── X header ────────────────────────────────────────────────────────────────
+// 1500x500 (3:1), max 5 MB. The avatar covers the lower-left ~20%, the display
+// name/handle/bio overlay the bottom on mobile, and the top ~50px can be
+// cropped — so the type sits in the middle band, away from both edges.
+
+export const X_W = 1500;
+export const X_H = 500;
+
+export const DEFAULT_X_VARIANT: XBannerVariantKey = "x-line";
+
+/**
+ * Fixed instant, place and facing, so the sky is deterministic and the route
+ * cacheable. Chosen by scoring candidates for how much of the catalogue lands
+ * in a 3:1 frame: looking east from Singapore at this hour puts 17 catalogued
+ * stars and 6 constellation segments inside it, against 8 and 3 facing north.
+ */
+const X_SKY_LOC: SkyLocation = { lat: 1.3521, lon: 103.8198, name: "Singapore" };
+const X_SKY_MS = Date.UTC(2026, 7, 15, 22, 0);
+const X_SKY_AZ = 90;
+const X_SKY_ALT = 30;
+
+/**
+ * A 3:1 crop only catches a slice of the sphere, so the header needs a far
+ * denser field than the sky map's 320 to read as a night sky at all.
+ */
+const X_BG_STARS = makeBgStars(2400, 73);
+
+export const X_BANNER_VARIANTS: Record<XBannerVariantKey, XBannerVariant> = {
+  "x-line": {
+    key: "x-line",
+    label: "Latitude line",
+    coord: true,
+    caption: "and still posting, rarely",
+    handle: true,
+  },
+  "x-bare": {
+    key: "x-bare",
+    label: "Sky only",
+    coord: false,
+    handle: true,
+  },
+};
+
+export const isXBannerVariant = (v: string): v is XBannerVariantKey =>
+  Object.hasOwn(X_BANNER_VARIANTS, v);
+
+/**
+ * The real alt-az sky, traced once in design units into SVG. Same catalogue and
+ * same stereographic camera as the live SkyMap (utils/functions/sky), so the
+ * header and the home page plot the same stars.
+ */
+const skyDataUri = (P: ThemeTokens, scale: number) => {
+  const lst = lstAt(X_SKY_MS, X_SKY_LOC.lon);
+  const project = makeProjector(X_W, X_H, X_SKY_ALT, X_SKY_AZ);
+  const parts: string[] = [];
+
+  // faint procedural starfield
+  let field = "";
+  X_BG_STARS.forEach(([ra, dec, m]) => {
+    const { alt, az } = altaz(ra, dec, X_SKY_LOC.lat, lst);
+    if (alt <= 0) return;
+    const p = project(alt, az);
+    if (!p || p.x < -4 || p.x > X_W + 4 || p.y < -4 || p.y > X_H + 4) return;
+    const a = Math.max(0.16, 0.82 - (m - 2.8) * 0.15);
+    field += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${m > 4.6 ? 0.7 : 1.05}" fill="#9fb9c2" fill-opacity="${a.toFixed(2)}"/>`;
+  });
+  parts.push(field);
+
+  // 10-hour trails behind the brightest stars
+  let trails = "";
+  STARS.forEach(([, ra, dec, m]) => {
+    if (m > 1.6) return;
+    let d = "";
+    let open = false;
+    for (let k = TRAIL_N; k >= 0; k--) {
+      const dtm = (k / TRAIL_N) * TRAIL_MS;
+      const t = (((lst - (dtm * 360.98564736629) / 86400000) % 360) + 360) % 360;
+      const { alt, az } = altaz(ra, dec, X_SKY_LOC.lat, t);
+      const p = alt > 0 ? project(alt, az) : null;
+      if (!p) {
+        open = false;
+        continue;
+      }
+      d += `${open ? "L" : "M"}${p.x.toFixed(1)} ${p.y.toFixed(1)}`;
+      open = true;
+    }
+    if (d) {
+      trails += `<path d="${d}" fill="none" stroke="${P.pri}" stroke-opacity="0.17" stroke-width="1.1" stroke-linecap="round"/>`;
+    }
+  });
+  parts.push(trails);
+
+  // constellation lines + the named stars themselves
+  const pos: Record<string, { x: number; y: number } | null> = {};
+  STARS.forEach(([n, ra, dec]) => {
+    const { alt, az } = altaz(ra, dec, X_SKY_LOC.lat, lst);
+    pos[n] = alt > 0 ? project(alt, az) : null;
+  });
+
+  let lines = "";
+  LINES.forEach(([a, b]) => {
+    const pa = pos[a];
+    const pb = pos[b];
+    if (!pa || !pb) return;
+    lines += `<line x1="${pa.x.toFixed(1)}" y1="${pa.y.toFixed(1)}" x2="${pb.x.toFixed(1)}" y2="${pb.y.toFixed(1)}" stroke="${P.pri}" stroke-opacity="0.42" stroke-width="1.1"/>`;
+  });
+  parts.push(lines);
+
+  let stars = "";
+  STARS.forEach(([n, , , m]) => {
+    const p = pos[n];
+    if (!p) return;
+    const r = Math.max(0.9, 2.9 - m * 0.5);
+    if (m < 1.0) {
+      stars += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${(r * 2.6).toFixed(1)}" fill="${P.sig}" fill-opacity="0.1"/>`;
+    }
+    stars += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${r.toFixed(1)}" fill="#EAF4F6" fill-opacity="${(0.95 - m * 0.07).toFixed(2)}"/>`;
+  });
+  parts.push(stars);
+
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${X_W * scale}" height="${X_H * scale}" viewBox="0 0 ${X_W} ${X_H}">` +
+    `<defs><linearGradient id="night" x1="0" y1="0" x2="0" y2="1">` +
+    `<stop offset="0" stop-color="#142A34" stop-opacity="0.62"/>` +
+    `<stop offset="0.7" stop-color="#0A161C" stop-opacity="0.45"/>` +
+    `<stop offset="1" stop-color="${P.bg}" stop-opacity="0"/>` +
+    `</linearGradient></defs>` +
+    `<rect width="${X_W}" height="${X_H}" fill="${P.fluidBg}"/>` +
+    `<rect width="${X_W}" height="${X_H}" fill="url(#night)"/>` +
+    parts.join("") +
+    `</svg>`;
+
+  return toDataUri(svg);
+};
+
+export const renderXBanner = async (
+  key: XBannerVariantKey = DEFAULT_X_VARIANT,
+  scale: number = DEFAULT_SCALE,
+  headers?: HeadersInit,
+): Promise<ImageResponse> => {
+  const v = X_BANNER_VARIANTS[key];
+  const P = THEME_TOKENS.dark;
+  const [anton, serifItalic, mono] = await getFonts();
+
+  const s = (n: number) => n * scale;
+  const W = s(X_W);
+  const H = s(X_H);
+
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          position: "relative",
+          display: "flex",
+          width: W,
+          height: H,
+          backgroundColor: P.bg,
+          fontFamily: "JetBrains Mono",
+        }}
+      >
+        <img
+          src={skyDataUri(P, scale)}
+          alt=""
+          width={W}
+          height={H}
+          style={{ position: "absolute", top: 0, left: 0 }}
+        />
+
+        {/* A band of ground behind the type so the stars never fight the words. */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: W,
+            height: H,
+            backgroundImage: `linear-gradient(180deg, rgba(${P.bgRGB},0.00) 0%, rgba(${P.bgRGB},0.08) 40%, rgba(${P.bgRGB},0.42) 66%, rgba(${P.bgRGB},0.62) 100%)`,
+          }}
+        />
+
+        {v.handle ? (
+          <div
+            style={{
+              position: "absolute",
+              left: s(56),
+              top: s(58),
+              fontSize: s(19),
+              letterSpacing: "0.06em",
+              color: P.tx2,
+            }}
+          >
+            @jagnani73
+          </div>
+        ) : null}
+
+        {v.coord || v.caption ? (
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              top: s(288),
+              width: W,
+              display: "flex",
+              justifyContent: "center",
+              fontSize: s(27),
+              letterSpacing: "0.12em",
+            }}
+          >
+            {v.coord ? (
+              <span style={{ color: P.sig }}>{formatLat(X_SKY_LOC)}</span>
+            ) : null}
+            {v.coord && v.caption ? <span>&nbsp;</span> : null}
+            {v.caption ? <span style={{ color: P.tx2 }}>{v.caption}</span> : null}
+          </div>
+        ) : null}
+      </div>
+    ),
+    {
+      width: W,
+      height: H,
+      ...(headers ? { headers } : {}),
+      fonts: [
+        { name: "Anton", data: anton, weight: 400, style: "normal" },
+        {
+          name: "Instrument Serif",
+          data: serifItalic,
+          weight: 400,
+          style: "italic",
+        },
+        { name: "JetBrains Mono", data: mono, weight: 400, style: "normal" },
+      ],
+    },
+  );
 };
 
 export const renderBanner = async (
@@ -367,3 +627,8 @@ export const renderBanner = async (
     },
   );
 };
+
+
+
+
+
