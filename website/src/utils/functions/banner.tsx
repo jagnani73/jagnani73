@@ -134,7 +134,7 @@ export const BANNER_VARIANTS: Record<BannerVariantKey, BannerVariant> = {
 export const isBannerVariant = (v: string): v is BannerVariantKey =>
   Object.hasOwn(BANNER_VARIANTS, v);
 
-const EYEBROW = "BLOCKCHAIN · DATA INFRASTRUCTURE · DEVELOPER TOOLING";
+const EYEBROW = "VALIDATORS · AGENTS · DEVELOPER TOOLS";
 const NAME = "YASHVARDHAN JAGNANI";
 const TAGLINE = "software, shipped at agent speed.";
 const FOOTLINE = "jagnani73.com  ·  MSc BLOCKCHAIN, NTU SINGAPORE";
