@@ -44,7 +44,7 @@ export const CHAPTERS: Chapter[] = [
     n: "IV",
     org: "THE PAPERS",
     role: "IEEE · 2023",
-    url: "https://ieeexplore.ieee.org/document/10118032",
+    url: "https://ieeexplore.ieee.org/document/10157491",
     deck: "blockchain meets MQTT: broker failure, fault tolerance, and dead letter exchanges, peer-reviewed.",
     stats: [
       ["3", "publications"],
