@@ -14,25 +14,18 @@ export const CHAPTERS: Chapter[] = [
     n: "I",
     org: "AFTER B.TECH",
     role: "Infinia · Covalent · 2023–2026",
-    roles: [
-      {
-        org: "Infinia Technologies",
-        url: "https://infiniatechnologies.com/",
-        meta: "Blockchain Software Consultant · 2026",
-        line: "put post-quantum signatures on every surface a Solana node signs, and built the on-chain donation path for Global Citizen.",
-      },
-      {
-        org: "Covalent",
-        url: "https://www.covalenthq.com",
-        meta: "Product & Engineering Consultant · 2023–2025",
-        line: "owned the GoldRush suite, built the AI Agent SDK, led SpeedRun, and streamed live OHLCV out of raw swap logs.",
-      },
+    deck: "post-quantum signatures on every surface a Solana node signs at Infinia, plus Global Citizen's on-chain donation path; the GoldRush suite and SpeedRun at Covalent.",
+    deckLinks: [
+      { text: "Infinia", url: "https://infiniatechnologies.com/" },
+      { text: "Covalent", url: "https://www.covalenthq.com" },
     ],
+    // Two per employer, in the deck's order. The Infinia pair is lifted from
+    // the ML-DSA-44 case's own stats; Global Citizen has no measured numbers.
     stats: [
-      ["~250ms", "OHLCV streaming"],
+      ["FIPS 204", "NIST standard, implemented"],
+      ["5", "Solana signing surfaces"],
       ["119★", "AI Agent SDK"],
       ["1k+", "SpeedRun users, month one"],
-      ["5+", "GoldRush products owned"],
     ],
   },
   {

@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { CHAPTERS } from "@/content/home";
 import type { Chapter } from "@/utils/types/home.types";
 import { SectionHead } from "@/components/shared/section-head";
@@ -30,26 +31,40 @@ const ChapterOrg = ({
   );
 };
 
-// A chapter spanning several employers lists each one with its own line; a
-// single-employer chapter just runs its deck as prose. `size` tracks the two
-// layouts, which set body copy at different sizes.
-const ChapterBody = ({ c, size }: { c: Chapter; size: string }) =>
-  c.roles ? (
-    <span className={`font-sans ${size} leading-[1.6] text-tx2`}>
-      {c.roles.map((r, i) => (
-        <span key={r.org} className={i > 0 ? "mt-3 block" : "block"}>
-          <ChapterOrg url={r.url} org={r.org} size="text-[15px]" />
-          <span className="font-mono text-[12px] text-tx3"> {r.meta}</span>
-          <br />
-          {r.line}
-        </span>
-      ))}
-    </span>
-  ) : (
-    <span className={`font-sans ${size} leading-[1.65] text-tx2`}>
-      {c.deck}
-    </span>
-  );
+// Splits the deck around each `deckLinks` mention and links it in place, so the
+// orgs stay inside the prose at body size rather than heading it. Same
+// split-on-substring idiom as fig-flux's `highlight`.
+const deckProse = (c: Chapter): ReactNode[] => {
+  let parts: ReactNode[] = [c.deck];
+  c.deckLinks?.forEach(({ text, url }) => {
+    parts = parts.flatMap((part) => {
+      if (typeof part !== "string") return [part];
+      const at = part.indexOf(text);
+      if (at < 0) return [part];
+      return [
+        part.slice(0, at),
+        <a
+          key={url}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-tx transition-colors hover:text-sig"
+        >
+          {text}
+        </a>,
+        part.slice(at + text.length),
+      ];
+    });
+  });
+  return parts;
+};
+
+// `size` tracks the two layouts, which set body copy at different sizes.
+const ChapterBody = ({ c, size }: { c: Chapter; size: string }) => (
+  <span className={`font-sans ${size} leading-[1.65] text-tx2`}>
+    {deckProse(c)}
+  </span>
+);
 
 export const Chapters = () => (
   <section>

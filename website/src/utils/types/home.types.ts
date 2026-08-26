@@ -1,12 +1,8 @@
-/** One employer inside a chapter that covers more than one. */
-export interface ChapterRole {
-  org: string;
-  /** External link (opens in a new tab); omitted → plain text. */
-  url?: string;
-  /** title · dates */
-  meta: string;
-  /** one-line brief */
-  line: string;
+/** An org named in a chapter's deck, linked out where it is mentioned. */
+export interface DeckLink {
+  /** exact substring of `deck` to wrap — the first occurrence, once */
+  text: string;
+  url: string;
 }
 
 export interface Chapter {
@@ -15,11 +11,9 @@ export interface Chapter {
   role: string;
   /** External link (opens in a new tab); omitted → the org renders as plain text. */
   url?: string;
-  /** Prose for a chapter covering one employer. Pair with `roles` omitted. */
-  deck?: string;
-  /** Two or more employers, newest first, each with its own line. Takes the
-   *  deck's column when set. */
-  roles?: ChapterRole[];
+  deck: string;
+  /** Org mentions inside `deck` to turn into links. */
+  deckLinks?: DeckLink[];
   stats: [value: string, label: string][];
 }
 
