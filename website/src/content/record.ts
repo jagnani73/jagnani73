@@ -30,7 +30,7 @@ export const RECORD: RecordEntry[] = [
   {
     year: 2026,
     kind: "EXPERIENCE",
-    title: "Infinia Technologies - Blockchain Engineering Consultant",
+    title: "Infinia Technologies - Blockchain Software Consultant",
     meta: "Solana ML-DSA-44 fork · on-chain interactions for Global Citizen · Apr–Jul 2026",
     url: "https://infiniatechnologies.com/",
   },
@@ -100,7 +100,7 @@ export const RECORD: RecordEntry[] = [
   {
     year: 2025,
     kind: "EXPERIENCE",
-    title: "Covalent - Product Engineer",
+    title: "Covalent - Product & Engineering Consultant",
     meta: "GoldRush suite · AI Agent SDK · SpeedRun · OHLCV streaming @ ~250ms · 2023–2025",
     url: "https://www.covalenthq.com",
   },
