@@ -3,8 +3,8 @@ import { FigLenden } from "@/components/canvas/figs/fig-lenden";
 
 export const lendenCase: CaseDetail = {
   seoDescription:
-    "Lend on one chain, borrow on another: cross-chain credit with a reputation layer over Router cross-talk. Router prize, Unfold 2023.",
-  badge: "ROUTER PRIZE · UNFOLD 2023",
+    "Lend on one chain, borrow on another: cross-chain credit with a reputation layer over Router cross-talk. Router Protocol first place, Unfold 2023.",
+  badge: "ROUTER PROTOCOL, 1ST · UNFOLD 2023",
   deck: (
     <>
       lend on one chain, borrow on another:{" "}

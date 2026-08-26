@@ -3,8 +3,8 @@ import { FigDao } from "@/components/canvas/figs/fig-dao";
 
 export const daoscapeCase: CaseDetail = {
   seoDescription:
-    "DAO governance weighted by proven reputation, not token balance: influence earned, not bought. Blockscout prize, ETHGlobal Prague.",
-  badge: "BLOCKSCOUT PRIZE · ETHGLOBAL PRAGUE",
+    "DAO governance weighted by proven reputation, not token balance: influence earned, not bought. Big Blockscout Explorer prize, ETHGlobal Prague.",
+  badge: "BIG BLOCKSCOUT EXPLORER PRIZE · ETHGLOBAL PRAGUE",
   deck: (
     <>
       DAO governance weighted by{" "}
@@ -27,7 +27,7 @@ export const daoscapeCase: CaseDetail = {
           </span>
         </>
       ),
-      body: "DAOScape replaces capital-weighted voting with a reputation-based system that rewards real participation: verified social presence, email domain ownership, and open-source contributions. Influence is earned, not bought. It won the Blockscout pool prize at ETHGlobal Prague 2025.",
+      body: "DAOScape replaces capital-weighted voting with a reputation-based system that rewards real participation: verified social presence, email domain ownership, and open-source contributions. Influence is earned, not bought. It won the Big Blockscout Explorer Pool Prize at ETHGlobal Prague 2025.",
     },
     arch: {
       note: "vlayer web proofs · Base Sepolia",

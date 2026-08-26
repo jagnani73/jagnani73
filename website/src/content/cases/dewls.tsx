@@ -3,8 +3,8 @@ import { FigWager } from "@/components/canvas/figs/fig-wager";
 
 export const dewlsCase: CaseDetail = {
   seoDescription:
-    "On-chain arcade wagering: real stakes on 1v1 games, every win sealed as a Proof-of-Victory. Sign Protocol prize, ETHOnline 2024.",
-  badge: "SIGN PROTOCOL PRIZE · ETHONLINE 2024",
+    "On-chain arcade wagering: real stakes on 1v1 games, every win sealed as a Proof-of-Victory. Sign Everything prize, ETHOnline 2024.",
+  badge: "SIGN EVERYTHING PRIZE · ETHONLINE 2024",
   deck: (
     <>
       on-chain arcade wagering: real stakes on 1v1 games, every win sealed as a{" "}

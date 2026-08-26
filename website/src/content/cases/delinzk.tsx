@@ -3,7 +3,7 @@ import { FigZk } from "@/components/canvas/figs/fig-zk";
 
 export const delinzkCase: CaseDetail = {
   seoDescription:
-    "Prove you worked somewhere without revealing where: zero-knowledge proof-of-employment credentials. ETHForAll 2023.",
+    "Prove you worked somewhere without revealing where: zero-knowledge proof-of-employment credentials. ETHforAll 2023.",
   badge: "ETHFORALL · 2023",
   deck: (
     <>
@@ -28,7 +28,7 @@ export const delinzkCase: CaseDetail = {
           </span>
         </>
       ),
-      body: "deLinZK replaces trust-me credentials with mathematically unforgeable ones. Using Polygon ID and the Iden3 framework, a verified organization issues a Verifiable Credential encoding an employee's tenure. When the employee applies on the integrated job board, they generate a zero-knowledge proof of employment, revealing no underlying personal data. Built at ETHForAll Online VIII.",
+      body: "deLinZK replaces trust-me credentials with mathematically unforgeable ones. Using Polygon ID and the Iden3 framework, a verified organization issues a Verifiable Credential encoding an employee's tenure. When the employee applies on the integrated job board, they generate a zero-knowledge proof of employment, revealing no underlying personal data. Built at ETHforAll, ETHIndia Online VIII.",
     },
     arch: {
       note: "Polygon ID · Iden3 · zk-only auth",
@@ -104,7 +104,7 @@ export const delinzkCase: CaseDetail = {
       ],
     },
     plates: {
-      note: "ETHForAll",
+      note: "ETHforAll",
       plates: [
         {
           kind: "img",

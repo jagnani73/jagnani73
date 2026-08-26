@@ -4,7 +4,7 @@ import { FigFlux } from "@/components/canvas/figs/fig-flux";
 export const fluxCase: CaseDetail = {
   seoDescription:
     "Web3-native AI support: agents with on-chain awareness that read explorers, diagnose failed transactions, and answer from live state.",
-  badge: "FLUENCE PRIZE · ETHGLOBAL NEW DELHI",
+  badge: "FLUENCE PRIZE, 3RD · ETHGLOBAL NEW DELHI",
   deck: (
     <>
       Web3-native AI support: agents with{" "}
@@ -29,7 +29,7 @@ export const fluxCase: CaseDetail = {
           , exactly the questions crypto users actually have.
         </>
       ),
-      body: "Flux lets any crypto project deploy intelligent support agents with on-chain awareness: they read block explorers, diagnose failed transactions, and execute pre-authorized on-chain actions, all while keeping verifiable, immutable chat logs. Built at ETHGlobal New Delhi 2025, it won Best Use of Fluence Virtual Servers.",
+      body: "Flux lets any crypto project deploy intelligent support agents with on-chain awareness: they read block explorers, diagnose failed transactions, and execute pre-authorized on-chain actions, all while keeping verifiable, immutable chat logs. Built at ETHGlobal New Delhi 2025, it placed 3rd for Best Use of Fluence Virtual Servers.",
     },
     arch: {
       note: "three services · uAgents + ENS + Fluence",

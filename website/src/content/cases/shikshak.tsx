@@ -3,8 +3,8 @@ import { FigBoard } from "@/components/canvas/figs/fig-board";
 
 export const shikshakCase: CaseDetail = {
   seoDescription:
-    "The online classroom rebuilt without video: a blackboard streamed as pixels for ~85% less data. 1st place, Hack This Fall 2020.",
-  badge: "HACK THIS FALL 2020 · 1ST",
+    "The online classroom rebuilt without video: a blackboard streamed as pixels for ~85% less data. Winner, Hack This Fall 2020.",
+  badge: "HACK THIS FALL 2020 · WINNER",
   deck: (
     <>
       the online classroom, rebuilt without video: a blackboard streamed as
@@ -25,7 +25,7 @@ export const shikshakCase: CaseDetail = {
           putting class out of reach for rural and low-income students.
         </>
       ),
-      body: 'Shikshak ("teacher" in Hindi) rethinks the online classroom from scratch. Instead of streaming video, a teacher writes on a physical blackboard; a real-time ML pipeline detects the board, isolates its surface, and converts the content into a compact pixel array, about 85% less data than raw video. Won First Position at Hack This Fall 2020.',
+      body: 'Shikshak ("teacher" in Hindi) rethinks the online classroom from scratch. Instead of streaming video, a teacher writes on a physical blackboard; a real-time ML pipeline detects the board, isolates its surface, and converts the content into a compact pixel array, about 85% less data than raw video. Won Hack This Fall 2020.',
     },
     arch: {
       note: "OpenCV → pixel array → Socket.IO",
