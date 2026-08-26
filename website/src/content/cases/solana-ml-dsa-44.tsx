@@ -33,18 +33,18 @@ export const solanaMlDsa44Case: CaseDetail = {
           </span>
         </>
       ),
-      body: "And it isn't on paper. On a live validator, a SOL transfer signed with a post-quantum key confirms on-chain, and the validator's own consensus votes are signed with ML-DSA-44; the chain produces, confirms, and finalizes on them. Its payments, consensus votes, and on-chain verification are all quantum-secure. It runs on a self-hosted fork, not live-Solana-compatible by design, but the post-quantum signing it proves is real and end-to-end.",
+      body: "And it isn't on paper. On a live validator, a SOL transfer signed with a post-quantum key confirms on-chain, and the validator's own consensus votes are signed with ML-DSA-44; the chain produces, confirms, and finalizes on them. Every surface the node signs is quantum-secure: verification, payments, votes, gossip and shreds. It runs on a self-hosted fork, not live-Solana-compatible by design, but the post-quantum signing it proves is real and end-to-end.",
     },
     arch: {
       title: "WHAT'S QUANTUM-SECURE",
-      note: "verification, payments, and votes: all live",
+      note: "every surface a node signs",
       body: (
         <>
-          The validator signs several things through one shared engine. This
-          fork hardens the three that carry value and consensus (on-chain
-          verification, user payments, and the validator&apos;s own votes),{" "}
-          <strong className="font-semibold text-tx">all live</strong> on
-          ML-DSA-44 and verified end to end.
+          A Solana node signs five separate things, four of them through one
+          shared engine. This fork hardens{" "}
+          <strong className="font-semibold text-tx">all five</strong> on
+          ML-DSA-44: verification, payments, votes, gossip and shreds, each
+          delivered and verified end to end.
         </>
       ),
       flow: [
@@ -63,6 +63,16 @@ export const solanaMlDsa44Case: CaseDetail = {
           role: "the validator's consensus votes are post-quantum; the chain finalizes",
           tech: ["consensus", "✓ live"],
         },
+        {
+          stage: "GOSSIP",
+          role: "CRDS values carry an ML-DSA signature, bound by sha256(pubkey)==identity",
+          tech: ["CrdsSignature", "✓ verified"],
+        },
+        {
+          stage: "SHREDS",
+          role: "the block producer signs what it publishes, post-quantum",
+          tech: ["--ml-dsa-shred", "✓ verified"],
+        },
       ],
       stack:
         "Rust · forked solana-labs/solana v2.0.0 · fips204 0.4.6 (FIPS 204) · WSL2 · solana-test-validator",
@@ -72,7 +82,7 @@ export const solanaMlDsa44Case: CaseDetail = {
       note: "Ed25519 → ML-DSA-44",
       stats: [
         ["FIPS 204", "NIST post-quantum standard, implemented"],
-        ["3", "signing surfaces quantum-secured"],
+        ["5", "signing surfaces quantum-secured"],
         ["LIVE", "payments + votes confirm and finalize"],
         ["~40×", "larger signatures, absorbed end-to-end"],
       ],
@@ -82,7 +92,7 @@ export const solanaMlDsa44Case: CaseDetail = {
       note: "a signature built for a system that assumed tiny ones",
       intro: (
         <>
-          Putting a signature ~38× the size of Ed25519&apos;s through a
+          Putting a signature ~40× the size of Ed25519&apos;s through a
           validator built for tiny ones meant unwinding assumptions baked in
           deep, each solved so the post-quantum path runs beside the original:
         </>
