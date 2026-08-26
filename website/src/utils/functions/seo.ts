@@ -27,7 +27,10 @@ export const personLd = () => ({
   jobTitle: "Software Engineer",
   description: SITE_DESCRIPTION,
   email: EMAIL,
-  worksFor: { "@type": "Organization", name: "Infinia Technologies" },
+  affiliation: {
+    "@type": "CollegeOrUniversity",
+    name: "Nanyang Technological University, Singapore",
+  },
   alumniOf: [
     {
       "@type": "CollegeOrUniversity",
