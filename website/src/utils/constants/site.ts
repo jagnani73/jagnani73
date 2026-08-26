@@ -15,6 +15,21 @@ export const GITHUB_URL = "https://github.com/jagnani73";
 export const LINKEDIN_URL = "https://www.linkedin.com/in/yashvardhan-jagnani/";
 export const TWITTER_URL = "https://twitter.com/jagnani73";
 
+// ── Spotify — the playlists pinned in the music panel ─────────────────────────
+/**
+ * Hand-picked, in display order. Only the id is curated: name, cover and track
+ * count are read live from Spotify, so a rename or a new track can't drift.
+ * All three are public playlists, which the route's token reads without the
+ * `playlist-read-private` scope — keep it that way or the token needs a re-mint.
+ * Lives here rather than `content/home.ts` so the API route doesn't pull the
+ * case registry into its bundle.
+ */
+export const SPOTIFY_PLAYLIST_IDS = [
+  "60eooajlbtb0gXgLYDH0A9", // Jaggi got Crazy
+  "2vxAGCkRyH1Nw56BopHFwo", // Jagg se Back
+  "6Ij9WaqXyarfzxeO8N6k9L", // I'm Gamma
+];
+
 // ── Documents — redirect targets for /api/resume and /api/cover-letter ────────
 export const RESUME =
   "https://drive.google.com/file/d/1onbdfPCgcTndFta_NYXg5yq3pW95FaMj/view?usp=drive_link";

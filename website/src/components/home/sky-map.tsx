@@ -464,11 +464,14 @@ export const SkyMap = () => {
         style={{
           position: "relative",
           width: "100%",
-          minHeight: 0,
           cursor: "grab",
           touchAction: "none",
         }}
-        className="h-[188px] rail:h-[210px]"
+        // On the desktop two-up row the panel is as tall as the music panel beside
+        // it, so the map grows into that height instead of leaving dead panel below
+        // the controls. `drawAt` re-reads clientWidth/Height each frame, so the
+        // canvas follows with no ResizeObserver. 210px stays the floor.
+        className="h-[188px] rail:h-auto rail:min-h-[210px] rail:flex-1"
       >
         <canvas
           ref={canvasRef}

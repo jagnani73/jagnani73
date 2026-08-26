@@ -18,19 +18,35 @@ export interface TopTrack {
   url: string;
 }
 
+/** One hand-picked playlist (ids in `constants/site.ts`), hydrated from Spotify. */
+export interface Playlist {
+  name: string;
+  /** cover art; "" when Spotify has none, so the tile falls back to `--bg` */
+  img: string;
+  url: string;
+  tracks: number;
+}
+
 // Discriminated on `status`: only the "ok" variant carries a payload, so the empty
 // states (loading/nokey/error) can't accidentally hold a `now`/`top` — a read of
 // either forces a `status === "ok"` narrow first. `now` stays nullable when "ok"
 // (configured, but nothing playing and no recent track).
 export type MusicState =
   | { status: "loading" | "nokey" | "error" }
-  | { status: "ok"; now: NowPlaying | null; top: TopTrack[] };
+  | {
+      status: "ok";
+      now: NowPlaying | null;
+      top: TopTrack[];
+      playlists: Playlist[];
+    };
 
 /** Shape returned by GET /api/spotify. */
 export interface MusicPayload {
   configured: boolean;
   now: NowPlaying | null;
   top: TopTrack[];
+  /** the curated playlists that resolved; a failed lookup drops its entry */
+  playlists: Playlist[];
   error?: boolean;
 }
 
@@ -59,4 +75,10 @@ export interface SpotifyRecentResponse {
 }
 export interface SpotifyTopResponse {
   items?: SpotifyTrack[];
+}
+export interface SpotifyPlaylistResponse {
+  name?: string;
+  images?: SpotifyImage[] | null;
+  external_urls?: { spotify?: string };
+  tracks?: { total?: number };
 }

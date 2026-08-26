@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import type { MusicPayload, MusicState } from "@/utils/types/music.types";
 
-// "On rotation" — now-playing (→ last-played fallback) + the 4-week top tracks,
-// served by the /api/spotify route (the Spotify secret stays server-side). Polls
-// so now-playing stays roughly live; renders a neutral fallback until the Spotify
-// env vars are set (route reports `configured: false`).
+// "On rotation" — now-playing (→ last-played fallback), the 4-week top tracks,
+// and the hand-picked playlist strip, served by the /api/spotify route (the
+// Spotify secret stays server-side). Polls so now-playing stays roughly live;
+// renders a neutral fallback until the Spotify env vars are set (route reports
+// `configured: false`).
 
 const POLL_MS = 60_000;
 const PROFILE = "https://open.spotify.com";
@@ -53,7 +54,12 @@ export const MusicPanel = () => {
         } else if (data.error) {
           setSt({ status: "error" });
         } else {
-          setSt({ status: "ok", now: data.now, top: data.top });
+          setSt({
+            status: "ok",
+            now: data.now,
+            top: data.top,
+            playlists: data.playlists,
+          });
         }
       } catch {
         if (!cancelled) setSt({ status: "error" });
@@ -70,6 +76,7 @@ export const MusicPanel = () => {
   const now = st.status === "ok" ? st.now : null;
   const playing = !!now?.playing;
   const heroLink = now?.url || PROFILE;
+  const lists = st.status === "ok" ? st.playlists : [];
 
   return (
     <div
@@ -268,6 +275,103 @@ export const MusicPanel = () => {
               {t ? (
                 <a
                   href={t.url || PROFILE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "inherit", display: "block" }}
+                >
+                  {row}
+                </a>
+              ) : (
+                row
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* hand-picked playlists — ids in constants/site.ts, hydrated by the route */}
+      <div style={{ padding: "12px 13px", borderTop: "1px solid var(--rule)" }}>
+        <p
+          style={{
+            fontFamily: MONO,
+            fontSize: "9.5px",
+            letterSpacing: "0.1em",
+            color: "var(--tx3)",
+            margin: "0 0 9px",
+          }}
+        >
+          MY PLAYLISTS
+        </p>
+        {/* Full-width rows in the top-tracks rhythm (name left, meta right, hairline
+            between) rather than a 3-up grid: three columns across a ~936px panel
+            strand each item in dead space, and the cover has to shrink to fit. */}
+        {(lists.length ? lists : [null, null, null]).map((p, i) => {
+          const row = (
+            <span
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "10px",
+              }}
+            >
+              <span
+                style={{
+                  display: "flex",
+                  gap: "10px",
+                  alignItems: "center",
+                  minWidth: 0,
+                }}
+              >
+                <span
+                  style={{
+                    width: "32px",
+                    height: "32px",
+                    flexShrink: 0,
+                    borderRadius: "3px",
+                    border: "1px solid var(--rule)",
+                    background:
+                      p && p.img ? `center/cover url("${p.img}")` : "var(--bg)",
+                  }}
+                />
+                <span
+                  style={{
+                    fontFamily: SANS,
+                    fontSize: "13px",
+                    color: p ? "var(--tx)" : "var(--tx3)",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
+                >
+                  {p ? p.name : "—"}
+                </span>
+              </span>
+              {p ? (
+                <span
+                  style={{
+                    fontFamily: MONO,
+                    fontSize: "10px",
+                    color: "var(--tx3)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {p.tracks} tracks
+                </span>
+              ) : null}
+            </span>
+          );
+          return (
+            <div
+              key={p ? p.url : i}
+              style={{
+                padding: "5px 0",
+                borderBottom: i < 2 ? "1px solid var(--rule)" : "none",
+              }}
+            >
+              {p ? (
+                <a
+                  href={p.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ color: "inherit", display: "block" }}

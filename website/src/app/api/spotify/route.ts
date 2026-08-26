@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
+import { SPOTIFY_PLAYLIST_IDS } from "@/utils/constants/site";
 import type {
   MusicPayload,
   NowPlaying,
+  Playlist,
   SpotifyNowResponse,
+  SpotifyPlaylistResponse,
   SpotifyRecentResponse,
   SpotifyTopResponse,
   SpotifyTrack,
@@ -11,13 +14,21 @@ import type {
 
 // "On rotation" data for the home Person section. Spotify's secret stays here on
 // the server: we mint a short-lived access token from the owner's refresh token
-// (cached until ~expiry), then return now-playing (falling back to last-played)
-// plus the 4-week top tracks. The client panel polls this route.
+// (cached until ~expiry), then return now-playing (falling back to last-played),
+// the 4-week top tracks, and the hand-picked playlists. The client panel polls
+// this route.
 
 const TOKEN_URL = "https://accounts.spotify.com/api/token";
 const API = "https://api.spotify.com/v1";
+// only the fields the panel renders — the full playlist object carries every track
+const PLAYLIST_FIELDS = "name,images,external_urls,tracks.total";
 
-const EMPTY: MusicPayload = { configured: false, now: null, top: [] };
+const EMPTY: MusicPayload = {
+  configured: false,
+  now: null,
+  top: [],
+  playlists: [],
+};
 
 // Access token cached across requests in this server instance until just before
 // it expires — Spotify tokens last ~1h, so this avoids a refresh per request.
@@ -75,6 +86,12 @@ const toTop = (t: SpotifyTrack): TopTrack => ({
   img: imgOf(t),
   url: t.external_urls?.spotify ?? "",
 });
+const toPlaylist = (p: SpotifyPlaylistResponse, id: string): Playlist => ({
+  name: p.name ?? "",
+  img: p.images?.[0]?.url ?? "",
+  url: p.external_urls?.spotify ?? `https://open.spotify.com/playlist/${id}`,
+  tracks: p.tracks?.total ?? 0,
+});
 
 const json = (payload: MusicPayload) =>
   NextResponse.json(payload, { headers: { "Cache-Control": "no-store" } });
@@ -90,7 +107,8 @@ export const GET = async () => {
   try {
     const token = await getAccessToken(id, secret, refresh);
     const auth = { Authorization: "Bearer " + token };
-    const [nowRes, recentRes, topRes] = await Promise.all([
+    // one wave: the live pair, the top shelf, then a lookup per curated playlist
+    const [nowRes, recentRes, topRes, ...listRes] = await Promise.all([
       fetch(`${API}/me/player/currently-playing`, {
         headers: auth,
         cache: "no-store",
@@ -104,6 +122,13 @@ export const GET = async () => {
         headers: auth,
         next: { revalidate: 3600 },
       }),
+      // as do the playlists — a rename or an added track can wait an hour
+      ...SPOTIFY_PLAYLIST_IDS.map((pid) =>
+        fetch(`${API}/playlists/${pid}?fields=${PLAYLIST_FIELDS}`, {
+          headers: auth,
+          next: { revalidate: 3600 },
+        }),
+      ),
     ]);
 
     let now: NowPlaying | null = null;
@@ -136,9 +161,29 @@ export const GET = async () => {
       console.warn("[spotify] top-tracks →", topRes.status);
     }
 
-    return json({ configured: true, now, top });
+    // a playlist that 404s (deleted, or flipped to private) drops out rather than
+    // taking the strip down with it — the rest still render.
+    const playlists: Playlist[] = [];
+    for (const [i, res] of listRes.entries()) {
+      const pid = SPOTIFY_PLAYLIST_IDS[i];
+      if (!res.ok) {
+        console.warn(`[spotify] playlist ${pid} →`, res.status);
+        continue;
+      }
+      playlists.push(
+        toPlaylist((await res.json()) as SpotifyPlaylistResponse, pid),
+      );
+    }
+
+    return json({ configured: true, now, top, playlists });
   } catch (e) {
     console.warn("[spotify] route failed — returning offline payload", e);
-    return json({ configured: true, now: null, top: [], error: true });
+    return json({
+      configured: true,
+      now: null,
+      top: [],
+      playlists: [],
+      error: true,
+    });
   }
 };
