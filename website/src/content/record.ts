@@ -3,6 +3,7 @@
 
 import type { RecordEntry, FilterId } from "@/utils/types/record.types";
 import { FILTERS, isCase } from "./record-lib";
+import { gantryCase } from "./cases/gantry";
 import { claudeControllerCase } from "./cases/claude-controller";
 import { solanaMlDsa44Case } from "./cases/solana-ml-dsa-44";
 import { insidepolyCase } from "./cases/insidepoly";
@@ -36,12 +37,30 @@ export const RECORD: RecordEntry[] = [
   {
     year: 2026,
     kind: "PROJECT",
+    via: "hackathon",
+    title: "Gantry",
+    meta: "one payment rail, two doors · printed QR for humans, x402 for AI agents · live on Base Sepolia",
+    slug: "gantry",
+    case: gantryCase,
+    order: 2,
+  },
+  {
+    year: 2026,
+    kind: "HACKATHON",
+    win: true,
+    title: "NTU InnovateX 2026 - Third Position",
+    meta: "Gantry · payer-agnostic stablecoin rail · Payments & Financial Infrastructure",
+    url: "https://gantry-innovatex.vercel.app",
+  },
+  {
+    year: 2026,
+    kind: "PROJECT",
     via: "oss",
     title: "Claude Controller",
     meta: "drive the Claude Code CLI from your phone over a private Tailscale tunnel · PWA + PTY relay",
     slug: "claude-controller",
     case: claudeControllerCase,
-    order: 2,
+    order: 3,
   },
   {
     year: 2026,
