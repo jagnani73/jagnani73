@@ -34,14 +34,20 @@ const ChapterOrg = ({
 // Splits the deck around each `deckLinks` mention and links it in place, so the
 // orgs stay inside the prose at body size rather than heading it. Same
 // split-on-substring idiom as fig-flux's `highlight`.
+// Accumulates into a fresh array per link rather than flatMap: ReactNode itself
+// includes Iterable<ReactNode>, so flatMap can't tell "one node" from "nodes to
+// flatten" and won't typecheck here.
 const deckProse = (c: Chapter): ReactNode[] => {
   let parts: ReactNode[] = [c.deck];
   c.deckLinks?.forEach(({ text, url }) => {
-    parts = parts.flatMap((part) => {
-      if (typeof part !== "string") return [part];
-      const at = part.indexOf(text);
-      if (at < 0) return [part];
-      return [
+    const next: ReactNode[] = [];
+    parts.forEach((part) => {
+      const at = typeof part === "string" ? part.indexOf(text) : -1;
+      if (typeof part !== "string" || at < 0) {
+        next.push(part);
+        return;
+      }
+      next.push(
         part.slice(0, at),
         <a
           key={url}
@@ -53,8 +59,9 @@ const deckProse = (c: Chapter): ReactNode[] => {
           {text}
         </a>,
         part.slice(at + text.length),
-      ];
+      );
     });
+    parts = next;
   });
   return parts;
 };
