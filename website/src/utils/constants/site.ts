@@ -32,9 +32,9 @@ export const SPOTIFY_PLAYLIST_IDS = [
 
 // ── Documents — redirect targets for /api/resume and /api/cover-letter ────────
 export const RESUME =
-  "https://drive.google.com/file/d/1onbdfPCgcTndFta_NYXg5yq3pW95FaMj/view?usp=drive_link";
+  "https://drive.google.com/file/d/1sG2daM2g4ns7NHdh-vL4Uk-rvOYLMRby/view?usp=drive_link";
 export const COVER_LETTER =
-  "https://drive.google.com/file/d/1Feh-3W3H5yAkAAZYEgDth-TAJXoqGfqs/view?usp=drive_link";
+  "https://drive.google.com/file/d/1PsrGzE_QX-uiYeV-QNqQi_8YhUc23kvN/view?usp=drive_link";
 
 // ── Standing copy — single source for the masthead bar + footers + OG card ────
 /** Right-hand status shown after the `STATUS:` label across the mastheads and OG. */
