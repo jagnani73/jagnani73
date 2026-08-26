@@ -118,5 +118,5 @@ export const PERSON: Person = {
       external: false,
     },
   ],
-  resume: { label: "resume - dec 2025", href: "/api/resume" },
+  resume: { label: "resume - aug 2026", href: "/api/resume" },
 };
