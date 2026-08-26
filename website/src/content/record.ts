@@ -463,6 +463,13 @@ export const RECORD: RecordEntry[] = [
   {
     year: 2021,
     kind: "PROJECT",
+    via: "slash",
+    title: "Slash marketing site",
+    meta: "the public landing site · sole developer · parallax + Lottie motion",
+  },
+  {
+    year: 2021,
+    kind: "PROJECT",
     via: "wealth42",
     title: "wealth42 platform",
     meta: "class-based directed-graph onboarding flows",
