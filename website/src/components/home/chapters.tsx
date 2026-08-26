@@ -1,4 +1,5 @@
 import { CHAPTERS } from "@/content/home";
+import type { Chapter } from "@/utils/types/home.types";
 import { SectionHead } from "@/components/shared/section-head";
 import { CtaTerm } from "@/components/shared/cta-term";
 import { Rule } from "@/components/shared/rule";
@@ -29,6 +30,27 @@ const ChapterOrg = ({
   );
 };
 
+// A chapter spanning several employers lists each one with its own line; a
+// single-employer chapter just runs its deck as prose. `size` tracks the two
+// layouts, which set body copy at different sizes.
+const ChapterBody = ({ c, size }: { c: Chapter; size: string }) =>
+  c.roles ? (
+    <span className={`font-sans ${size} leading-[1.6] text-tx2`}>
+      {c.roles.map((r, i) => (
+        <span key={r.org} className={i > 0 ? "mt-3 block" : "block"}>
+          <ChapterOrg url={r.url} org={r.org} size="text-[15px]" />
+          <span className="font-mono text-[12px] text-tx3"> {r.meta}</span>
+          <br />
+          {r.line}
+        </span>
+      ))}
+    </span>
+  ) : (
+    <span className={`font-sans ${size} leading-[1.65] text-tx2`}>
+      {c.deck}
+    </span>
+  );
+
 export const Chapters = () => (
   <section>
     <SectionHead
@@ -40,7 +62,7 @@ export const Chapters = () => (
     />
     {CHAPTERS.map((c, i) => (
       <div key={c.n}>
-        <div className="px-4 pt-5 pb-[22px] rail:hidden">
+        <div className="px-4 pt-5 pb-5.5 rail:hidden">
           <div className="flex items-center gap-5">
             <span className="shrink-0 font-display text-[30px] text-transparent [-webkit-text-stroke:1px_var(--rule-strong)]">
               {c.n}
@@ -51,8 +73,8 @@ export const Chapters = () => (
               <span className="font-mono text-[12px] text-tx3">{c.role}</span>
             </span>
           </div>
-          <p className="mt-3 font-sans text-[15.5px] leading-[1.6] text-tx2">
-            {c.deck}
+          <p className="mt-3">
+            <ChapterBody c={c} size="text-[15.5px]" />
           </p>
           <div className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1 font-mono text-[12.5px]">
             {c.stats.map(([v, l]) => (
@@ -64,7 +86,7 @@ export const Chapters = () => (
           </div>
         </div>
 
-        <div className="hidden items-center gap-x-7 px-11 py-[30px] rail:grid rail:grid-cols-[160px_320px_1fr_290px]">
+        <div className="hidden items-center gap-x-7 px-11 py-7.5 rail:grid rail:grid-cols-[160px_320px_1fr_290px]">
           <span className="text-center font-display text-[46px] text-transparent [-webkit-text-stroke:1px_var(--rule-strong)]">
             {c.n}
           </span>
@@ -73,9 +95,7 @@ export const Chapters = () => (
             <br />
             <span className="font-mono text-[12.5px] text-tx2">{c.role}</span>
           </span>
-          <span className="font-sans text-[17.5px] leading-[1.65] text-tx2">
-            {c.deck}
-          </span>
+          <ChapterBody c={c} size="text-[17.5px]" />
           <span className="text-right font-mono text-[13px] leading-[2.1]">
             {c.stats.map(([v, l]) => (
               <span key={l}>

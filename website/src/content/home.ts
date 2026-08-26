@@ -7,14 +7,26 @@ export const CHAPTERS: Chapter[] = [
   {
     n: "I",
     org: "AFTER B.TECH",
-    role: "Covalent - Product Engineer · 2023–2025 · +2 entries coming",
-    url: "https://www.covalenthq.com",
-    deck: "owned the GoldRush suite at Covalent, built the AI Agent SDK, led SpeedRun, and streamed live OHLCV out of raw swap logs.",
+    role: "Infinia · Covalent · 2023–2026",
+    roles: [
+      {
+        org: "Infinia Technologies",
+        url: "https://infiniatechnologies.com/",
+        meta: "Blockchain Software Consultant · 2026",
+        line: "put post-quantum signatures on every surface a Solana node signs, and built the on-chain donation path for Global Citizen.",
+      },
+      {
+        org: "Covalent",
+        url: "https://www.covalenthq.com",
+        meta: "Product & Engineering Consultant · 2023–2025",
+        line: "owned the GoldRush suite, built the AI Agent SDK, led SpeedRun, and streamed live OHLCV out of raw swap logs.",
+      },
+    ],
     stats: [
       ["~250ms", "OHLCV streaming"],
       ["119★", "AI Agent SDK"],
       ["1k+", "SpeedRun users, month one"],
-      ["3", "GoldRush products owned"],
+      ["5+", "GoldRush products owned"],
     ],
   },
   {
