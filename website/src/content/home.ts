@@ -1,7 +1,13 @@
 import { EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/utils/constants/site";
 import type { Chapter, Person } from "@/utils/types/home.types";
+import { getHackathonStats } from "./record";
 
 export const DECK = "software, shipped at agent speed";
+
+// Read from RECORD rather than typed by hand, so the counts cannot drift.
+// Safe to import here: chapters.tsx is a server component, so no case bodies
+// reach the client bundle.
+const HACK = getHackathonStats();
 
 export const CHAPTERS: Chapter[] = [
   {
@@ -45,11 +51,11 @@ export const CHAPTERS: Chapter[] = [
     org: "THE WEEKENDS",
     role: "Hackathons · since 2020 · a parallel track through every era",
     url: "https://ethglobal.com",
-    deck: "fourteen weekends of building in public: prediction markets, zk governance, on-chain arcades.",
+    deck: "weekends of building in public: prediction markets, zk governance, on-chain arcades.",
     stats: [
-      ["14", "hackathons"],
-      ["9", "awards"],
-      ["3×", "ETHGlobal prizes"],
+      [`${HACK.total}`, "hackathons"],
+      [`${HACK.wins}`, "awards"],
+      [`${HACK.ethGlobal}×`, "ETHGlobal prizes"],
     ],
   },
   {

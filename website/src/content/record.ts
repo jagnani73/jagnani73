@@ -684,6 +684,23 @@ export const RECORD: RecordEntry[] = [
   },
 ];
 
+// Hackathon tallies for the homepage chapter stats, recomputed at build so they
+// cannot drift from RECORD. ETHGlobal counts ETHGlobal-run events only:
+// ETHOnline is theirs, ETHforAll is Devfolio's.
+export const getHackathonStats = (): {
+  total: number;
+  wins: number;
+  ethGlobal: number;
+} => {
+  const hackathons = RECORD.filter((r) => r.kind === "HACKATHON");
+  const wins = hackathons.filter((r) => r.win);
+  return {
+    total: hackathons.length,
+    wins: wins.length,
+    ethGlobal: wins.filter((r) => /^ETH(Global|Online)/.test(r.title)).length,
+  };
+};
+
 // Per-kind tallies, recomputed at build (never hardcoded).
 export const getRecordCounts = (): Record<FilterId, number> => {
   const counts = { ALL: RECORD.length } as Record<FilterId, number>;
