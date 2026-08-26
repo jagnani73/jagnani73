@@ -14,7 +14,7 @@ const tagFromBadge = (badge: string): string =>
 
 // Latest `n` cases, newest-first, derived from the record (never curated).
 // The thumbnail is the case's first img plate; image-less cases are skipped.
-export const getSelectedWork = (n = 6): SelectedWorkItem[] => {
+export const getSelectedWork = (n = 4): SelectedWorkItem[] => {
   const items: SelectedWorkItem[] = [];
   for (const r of RECORD) {
     if (items.length >= n) break;

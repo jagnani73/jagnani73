@@ -19,7 +19,7 @@ const rowClass =
 
 const Row = ({ item, tag }: { item: SelectedWorkItem; tag: string }) => (
   <>
-    <span className="relative block h-[60px] overflow-hidden rounded border border-rule bg-panel rail:h-[90px]">
+    <span className="relative block h-15 overflow-hidden rounded border border-rule bg-panel rail:h-22.5">
       <Image
         src={item.img}
         alt={item.title}
