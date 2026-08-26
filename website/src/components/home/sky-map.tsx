@@ -473,9 +473,15 @@ export const SkyMap = () => {
         // canvas follows with no ResizeObserver. 210px stays the floor.
         className="h-[188px] rail:h-auto rail:min-h-[210px] rail:flex-1"
       >
+        {/* Absolute, so it never contributes to the wrapper's intrinsic height.
+            `drawAt` writes a px height onto the canvas from the wrapper it just
+            measured; in flow, that measurement feeds back into the flex-1 wrapper
+            and the panel ratchets taller every pass. */}
         <canvas
           ref={canvasRef}
           style={{
+            position: "absolute",
+            inset: 0,
             display: "block",
             width: "100%",
             height: "100%",

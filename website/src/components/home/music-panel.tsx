@@ -198,8 +198,13 @@ export const MusicPanel = () => {
         </div>
       </a>
 
-      {/* top tracks · 4 weeks */}
-      <div style={{ padding: "12px 13px", flex: 1 }}>
+      {/* top tracks · 4 weeks. No `flex: 1` here: this was the last block once, so
+          growing it absorbed panel slack harmlessly at the foot. With the playlist
+          strip below it, that same growth opens a hole under the last row — which
+          carries no rule, so it reads as a void rather than as padding. SkyMap
+          flexes to this panel now, so there is no slack left to place. Tight
+          bottom padding for the same reason. */}
+      <div style={{ padding: "12px 13px 4px" }}>
         <p
           style={{
             fontFamily: MONO,
@@ -290,14 +295,19 @@ export const MusicPanel = () => {
       </div>
 
       {/* hand-picked playlists — ids in constants/site.ts, hydrated by the route */}
-      <div style={{ padding: "12px 13px", borderTop: "1px solid var(--rule)" }}>
+      {/* The label belongs to the rows under it, so it sits further from the rule
+          above than from the first cover below. Bottom padding matches the gap
+          between rows so the last one isn't left floating. */}
+      <div
+        style={{ padding: "14px 13px 6px", borderTop: "1px solid var(--rule)" }}
+      >
         <p
           style={{
             fontFamily: MONO,
             fontSize: "9.5px",
             letterSpacing: "0.1em",
             color: "var(--tx3)",
-            margin: "0 0 9px",
+            margin: "0 0 4px",
           }}
         >
           MY PLAYLISTS
@@ -325,10 +335,10 @@ export const MusicPanel = () => {
               >
                 <span
                   style={{
-                    width: "32px",
-                    height: "32px",
+                    width: "40px",
+                    height: "40px",
                     flexShrink: 0,
-                    borderRadius: "3px",
+                    borderRadius: "4px",
                     border: "1px solid var(--rule)",
                     background:
                       p && p.img ? `center/cover url("${p.img}")` : "var(--bg)",
