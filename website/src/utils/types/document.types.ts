@@ -7,7 +7,7 @@
  * **Only categories are registered. Variants are never listed** — not here and
  * not anywhere else in this public repo: a committed list of company slugs
  * would be a permanent, crawlable record of every company applied to. A variant
- * request is validated by *shape* (see `documentVariantRoute`) and the upstream
+ * request is validated by *shape* (see `documentRoute`) and the upstream
  * decides whether it exists; an absent one is a miss, not an error.
  */
 export interface DocumentCategory {
