@@ -1,4 +1,4 @@
-import type { SiteDocument } from "@/utils/types/document.types";
+import type { DocumentCategory } from "@/utils/types/document.types";
 
 // ── Layout ───────────────────────────────────────────────────────────────────
 /**
@@ -32,50 +32,56 @@ export const SPOTIFY_PLAYLIST_IDS = [
   "6Ij9WaqXyarfzxeO8N6k9L", // I'm Gamma
 ];
 
-// ── Documents — the three PDFs served by /resume, /cv and /cover-letter ───────
+// ── Documents — the PDFs served by /resume, /cv and /cover-letter ─────────────
 /**
- * Upstream sources. A sibling private repo (`cv-cl`) builds all three from
- * LaTeX and publishes them to these stable public_ids on every push, so the
- * URLs never change and always hold the current build. Delivery is
- * `resource_type: raw`, which is why `.pdf` is part of the path rather than a
- * format suffix.
+ * Where every document lives. A sibling private repo (`cv-cl`) builds each one
+ * from LaTeX and publishes it to `cv-cl/<slug>.pdf` on every push, so a path
+ * never changes and always holds the current build. Delivery is
+ * `resource_type: raw`, which is why `.pdf` is part of the public_id rather
+ * than a format suffix.
+ *
+ * **The trailing slash is load-bearing.** Every upstream URL is assembled by
+ * resolving a slug against this base and is then asserted to still start with
+ * it (`document-route.ts`); without the slash, a slug that escaped the folder
+ * into a sibling like `cv-cl-public` would pass that assertion.
  */
-export const RESUME =
-  "https://res.cloudinary.com/jagnani73/raw/upload/cv-cl/resume.pdf";
-export const CV =
-  "https://res.cloudinary.com/jagnani73/raw/upload/cv-cl/cv.pdf";
-export const COVER_LETTER =
-  "https://res.cloudinary.com/jagnani73/raw/upload/cv-cl/cover-letter.pdf";
+export const DOCUMENT_BASE =
+  "https://res.cloudinary.com/jagnani73/raw/upload/cv-cl/";
 
 /**
- * The one place that decides where a document lives: upstream URL, the path
- * this site serves it at, and the name it downloads under. Read by the three
+ * The name every document downloads under, before the bracketed label. Kept
+ * here rather than spelled into each filename so a document's identity lives
+ * in one place; it is the same string the sibling repo reads out of
+ * `shared/profile.tex`.
+ */
+export const DOCUMENT_OWNER = "Yashvardhan Jagnani";
+
+/**
+ * The one place that decides where a document lives: its upstream slug, the
+ * path this site serves it at, and the label it downloads under. Read by the
  * route handlers, by the legacy `/api/*` redirects and by the home résumé
  * link — so moving a document is a single edit here.
  *
- * The set is closed on purpose. Each route handler names one of these entries;
- * **no document URL is ever assembled from a request segment**. A catch-all
- * `/[doc]` is exploitable — `%2F`/`%5C` survive Next's decode, `new URL()` then
- * resolves `..`, and the result can be pivoted onto `/image/fetch/` or another
- * cloud. Do not add a slug, a variant or a query parameter.
+ * **Categories are closed; variants are open and deliberately unlisted.** A
+ * category resolves to `cv-cl/<slug>.pdf` and a variant of it to
+ * `cv-cl/<slug>-<variant>.pdf` (`/resume/blockchain`, `/cover-letter/circle`,
+ * `/cv/teaching`). Every category is served from the same optional catch-all,
+ * so none of them is a special case and a first variant of any of them is a
+ * publish upstream and no edit here. There is no allowlist of variants in this
+ * public repo — a committed list of company slugs is a permanent record of
+ * every company applied to. The variant segment is validated by shape and the
+ * upstream decides whether it exists; see `document-route.ts` for the three
+ * rules that make that safe.
  */
 export const DOCUMENTS = {
-  resume: {
-    url: RESUME,
-    path: "/resume",
-    filename: "Yashvardhan Jagnani [Resume].pdf",
-  },
-  cv: {
-    url: CV,
-    path: "/cv",
-    filename: "Yashvardhan Jagnani [CV].pdf",
-  },
+  resume: { slug: "resume", path: "/resume", label: "Resume" },
+  cv: { slug: "cv", path: "/cv", label: "CV" },
   coverLetter: {
-    url: COVER_LETTER,
+    slug: "cover-letter",
     path: "/cover-letter",
-    filename: "Yashvardhan Jagnani [Cover Letter].pdf",
+    label: "Cover Letter",
   },
-} as const satisfies Record<string, SiteDocument>;
+} as const satisfies Record<string, DocumentCategory>;
 
 // ── Standing copy — single source for the masthead bar + footers + OG card ────
 /** Right-hand status shown after the `STATUS:` label across the mastheads and OG. */
