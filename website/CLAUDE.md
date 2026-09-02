@@ -23,7 +23,8 @@ The site is an **editorial "newspaper-of-record"** redesign with three page type
 - `/` — Home: masthead (fig.1 band canvas), `01 The Chapters`, `02 Selected Work`, `03 The Person`.
 - `/record` — **The Record**: one filterable timeline of everything (73 entries), with the year-gutter constellation canvas + per-year "consensus" confirm animation. (Route lives at `src/app/record/`; the client lives at `components/record/record-client.tsx`.)
 - `/record/[slug]` — **Case study** template. `generateStaticParams()` prerenders the **authored** cases (the record rows that carry a `case` detail); per-case `generateMetadata()`. Non-case projects have **no** detail page — they live in the record as plain timeline rows with external links.
-- `/api/resume`, `/api/cover-letter` — redirect routes (unchanged).
+- `/resume`, `/cv`, `/cover-letter` — the three PDFs, **streamed** from Cloudinary (not 302'd). See "Documents" below.
+- `/api/resume`, `/api/cover-letter` — the legacy paths, now 308s to `/resume` and `/cover-letter`. **Never delete them**: DNS forwards and long-shared links still arrive there, several of them cached as permanent redirects.
 - `/linkedin-banner.png`, `/x-banner.png` — the profile banners, generated on demand. **Unlisted**: not linked, not in the sitemap (but deliberately *not* in `robots.txt` either — a `Disallow` would publish the path, same reasoning as `/arcade/stats`). See "Profile banners" below.
 - `next.config.ts` `redirects()`: `/projects`, `/projects/:slug`, `/experiences` → `/record` (301). The old projects/experiences pages were removed. (The route was renamed from `/work` → `/record`; a record entry's `slug` maps to `/record/[slug]`.)
 
@@ -39,7 +40,7 @@ The site is an **editorial "newspaper-of-record"** redesign with three page type
 
 - `record.ts` — the single source: the 73-entry record + `getRecordCounts()` (built, never hardcoded). Case rows carry a `case: CaseDetail` (imported from `cases/*.tsx`), so **this module pulls all case bodies** — keep it **server-only**.
 - `record-lib.ts` — **client-safe** record helpers/config (`FILTERS`, `kindColor`, `sequenceYear`, `yearHash`, `isCase`, `rowKey`), imports no case content. The interactive timeline imports from here; the heavy `RECORD` reaches the client only as case-stripped rows passed by `record/page.tsx`.
-- `home.ts` — chapters / `PERSON` / deck (Selected Work is **derived**, not stored here). `PERSON` (typed `Person`) carries the italic `quote` (`pre`/`emphasis`), the `bio` (paragraphs as `BioSegment[]` runs — `em` marks the `text-tx` highlight), `arcadeCaption`, the 4-cell `currently` strip, `links` (github/linkedin/email — **no twitter row**), and `resume` (`/api/resume`).
+- `home.ts` — chapters / `PERSON` / deck (Selected Work is **derived**, not stored here). `PERSON` (typed `Person`) carries the italic `quote` (`pre`/`emphasis`), the `bio` (paragraphs as `BioSegment[]` runs — `em` marks the `text-tx` highlight), `arcadeCaption`, the 4-cell `currently` strip, `links` (github/linkedin/email — **no twitter row**), and `resume` (`/resume` — label carries no date, see "Documents").
 - `cases/*.tsx` — each authored case's `CaseDetail` (the `/record/[slug]` content), imported into its `record.ts` row. `cases/index.ts` derives the registry (`getCase`/`getAllCaseSlugs`/`getCaseTitle`/`getNextSlug`/`getCaseImage`/`orderedSections`) from `RECORD` — there is **no `AUTHORED` map**.
 - `metrics.ts` — hardcoded metric fallbacks.
 
@@ -93,9 +94,29 @@ Both banners share the site's palette and geometry rather than reimplementing th
 
 The routes (`app/linkedin-banner.png/route.tsx` and `app/x-banner.png/route.tsx` — directory names containing a dot are valid route segments) are **dynamic on purpose** so `?variant=` and `?scale=` work, with `s-maxage=31536000` so each combination rasterises once and is then served from the CDN until the next deploy purges it. **`scale` is validated through the shared `parseScale()`** to whole numbers 1–`MAX_SCALE` (4) — it is caller-controlled and drives the raster size, so an unbounded value is an OOM; it lives in `banner.tsx` rather than in each route so the bound can't diverge. Unknown variants and out-of-range scales return 400 with a plain-text reason. Fonts come from jsdelivr with an `res.ok` check (same failure mode as the OG card) and are **module-cached**, with the cache cleared on failure so a warm function retries instead of serving a stuck rejection.
 
+### Documents (`/resume`, `/cv`, `/cover-letter`)
+
+The three PDFs are built from LaTeX by the sibling private repo **`cv-cl`**, which publishes them to fixed Cloudinary `raw` public_ids (`cv-cl/{resume,cv,cover-letter}.pdf`) on every push. Nothing in this repo builds or stores a PDF; the URLs are stable and always hold the current build.
+
+**`DOCUMENTS` in `utils/constants/site.ts` is the one place that decides where a document lives** — upstream URL, served path, download filename. The three route handlers, the legacy `/api/*` redirects and `PERSON.resume` all read it, so moving a document is one edit.
+
+**The set is closed, and that is the security property.** Each route file names one entry (`documentRoute(DOCUMENTS.cv)`); **no document URL is ever assembled from a request segment.** A catch-all `/[doc]` is exploitable — `%2F`/`%5C` survive Next's decode, `new URL()` then resolves `..`, and the result can be pivoted onto `/image/fetch/` or another cloud. Do not add a slug, a variant, or a query parameter.
+
+`utils/functions/document-route.ts` holds the shared handler. It **streams** rather than 302ing, so the URL stays on this origin, the download name is ours, and `Referrer-Policy` actually applies. Load-bearing details:
+
+- **Guard before streaming.** A missing Cloudinary *raw* public_id answers **404 with `Content-Type: image/gif`** and an `X-Cld-Error` header — a real GIF body. So the handler requires `res.ok` **and** an `application/pdf` upstream type, else 502 + `Cache-Control: no-store`. Never fabricate a 200.
+- `AbortSignal.timeout(10s)` on the fetch. undici's own is ~305s, past Vercel's 300s ceiling, so without it a dead origin burns the whole budget.
+- `Content-Disposition` carries **both** `filename=` (ASCII-folded, quoted) and `filename*=UTF-8''…` (RFC 6266 §4.3) — `curl -OJ` and several download managers ignore `filename*` and fall back to the URL basename. The `rfc5987` helper also escapes `' ( ) * !`, which `encodeURIComponent` leaves alone; an unescaped `'` truncates the name at the parser.
+- **The download names carry no date** (`Yashvardhan Jagnani [Resume].pdf`). The path always resolves to the current build, so a date would be a claim the URL cannot keep. Same reason `PERSON.resume.label` lost its "aug 2026".
+- `Cache-Control: public, max-age=0, must-revalidate, s-maxage=300` — **no `stale-while-revalidate`**: Vercel honours it and it would let a viewer receive a PDF up to a day old, contradicting the 5-minute bound.
+- Upstream `Content-Length` is forwarded only when there is no `content-encoding` — `fetch` decompresses transparently, so a forwarded compressed length would truncate the download.
+- **No `dynamic`/`revalidate` export.** Next's cacheable-route template buffers the body via `.blob()`, which defeats the streaming; the Next 15+ default (GET handlers dynamic) is what's wanted. `next build` must show these as `ƒ`. Never `runtime = "edge"` — removed in Next 16.3.
+
+**Not in `robots.txt`.** A `Disallow` is never crawled, so the `X-Robots-Tag: noindex, nofollow` on the response would never be read and the bare URL could still surface — same reasoning as `/arcade/stats`. Let the header do the work. (Note the standing `Disallow: /api/` does cover the *legacy* `/api/resume` path, so a crawler won't follow that 308.)
+
 ### Site constants & redirects
 
-Cross-cutting constants live in **`src/utils/constants/site.ts`** (types in `src/utils/types/`): `EMAIL`, `TWITTER_HANDLE`, `GITHUB_URL`/`LINKEDIN_URL`/`TWITTER_URL` (profile links — the single source for the person section + JSON-LD `sameAs` + the Twitter meta), `RESUME`/`COVER_LETTER` (the `/api/resume` & `/api/cover-letter` redirect targets), `STATUS`/`COPYRIGHT` (the masthead-bar status line + footer copyright — shared across home/record/case and the OG card), and `ASTRO_FACTS` (the footer fact line — `AstroLine` picks a per-path base index, SSR-stable, and advances on hover). There is **no `data.ts`** — the old derived-project machinery (`constants/data.ts` `projects`, `lib/project-to-case.ts`, `ProjectType`, `STACK_NAMES`/`LINKS_NAMES`, `stripMarkdown`) was deleted when projects stopped generating baseline case pages.
+Cross-cutting constants live in **`src/utils/constants/site.ts`** (types in `src/utils/types/`): `EMAIL`, `TWITTER_HANDLE`, `GITHUB_URL`/`LINKEDIN_URL`/`TWITTER_URL` (profile links — the single source for the person section + JSON-LD `sameAs` + the Twitter meta), `RESUME`/`CV`/`COVER_LETTER` + the `DOCUMENTS` registry (the single source for where each PDF lives — see "Documents"), `STATUS`/`COPYRIGHT` (the masthead-bar status line + footer copyright — shared across home/record/case and the OG card), and `ASTRO_FACTS` (the footer fact line — `AstroLine` picks a per-path base index, SSR-stable, and advances on hover). There is **no `data.ts`** — the old derived-project machinery (`constants/data.ts` `projects`, `lib/project-to-case.ts`, `ProjectType`, `STACK_NAMES`/`LINKS_NAMES`, `stripMarkdown`) was deleted when projects stopped generating baseline case pages.
 
 **Images:** Cloudinary (`res.cloudinary.com/jagnani73/**`) + GitHub via `next/image` (`next.config.ts` remotePatterns). **Path alias:** `@/*` → `./src/*`.
 

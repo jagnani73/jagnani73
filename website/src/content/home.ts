@@ -1,4 +1,9 @@
-import { EMAIL, GITHUB_URL, LINKEDIN_URL } from "@/utils/constants/site";
+import {
+  DOCUMENTS,
+  EMAIL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+} from "@/utils/constants/site";
 import type { Chapter, Person } from "@/utils/types/home.types";
 import { getHackathonStats } from "./record";
 
@@ -111,5 +116,7 @@ export const PERSON: Person = {
       external: false,
     },
   ],
-  resume: { label: "resume - aug 2026", href: "/api/resume" },
+  // No date in the label: the document rebuilds itself and the path always
+  // serves the current one, so a hand-maintained month could only go stale.
+  resume: { label: "resume", href: DOCUMENTS.resume.path },
 };

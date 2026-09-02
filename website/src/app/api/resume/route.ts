@@ -1,4 +1,5 @@
-import { RESUME } from "@/utils/constants/site";
+import { DOCUMENTS } from "@/utils/constants/site";
 import { redirectRoute } from "@/utils/functions/redirect-route";
 
-export const GET = redirectRoute(RESUME);
+// Legacy path — kept, never deleted. See `redirect-route.ts`.
+export const GET = redirectRoute(DOCUMENTS.resume.path);

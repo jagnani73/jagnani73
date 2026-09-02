@@ -1,3 +1,5 @@
+import type { SiteDocument } from "@/utils/types/document.types";
+
 // ── Layout ───────────────────────────────────────────────────────────────────
 /**
  * Height (px) of the mobile sticky SiteRail bar (logo 40 + `py-2.5` + border).
@@ -30,11 +32,50 @@ export const SPOTIFY_PLAYLIST_IDS = [
   "6Ij9WaqXyarfzxeO8N6k9L", // I'm Gamma
 ];
 
-// ── Documents — redirect targets for /api/resume and /api/cover-letter ────────
+// ── Documents — the three PDFs served by /resume, /cv and /cover-letter ───────
+/**
+ * Upstream sources. A sibling private repo (`cv-cl`) builds all three from
+ * LaTeX and publishes them to these stable public_ids on every push, so the
+ * URLs never change and always hold the current build. Delivery is
+ * `resource_type: raw`, which is why `.pdf` is part of the path rather than a
+ * format suffix.
+ */
 export const RESUME =
-  "https://drive.google.com/file/d/1sG2daM2g4ns7NHdh-vL4Uk-rvOYLMRby/view?usp=drive_link";
+  "https://res.cloudinary.com/jagnani73/raw/upload/cv-cl/resume.pdf";
+export const CV =
+  "https://res.cloudinary.com/jagnani73/raw/upload/cv-cl/cv.pdf";
 export const COVER_LETTER =
-  "https://drive.google.com/file/d/1PsrGzE_QX-uiYeV-QNqQi_8YhUc23kvN/view?usp=drive_link";
+  "https://res.cloudinary.com/jagnani73/raw/upload/cv-cl/cover-letter.pdf";
+
+/**
+ * The one place that decides where a document lives: upstream URL, the path
+ * this site serves it at, and the name it downloads under. Read by the three
+ * route handlers, by the legacy `/api/*` redirects and by the home résumé
+ * link — so moving a document is a single edit here.
+ *
+ * The set is closed on purpose. Each route handler names one of these entries;
+ * **no document URL is ever assembled from a request segment**. A catch-all
+ * `/[doc]` is exploitable — `%2F`/`%5C` survive Next's decode, `new URL()` then
+ * resolves `..`, and the result can be pivoted onto `/image/fetch/` or another
+ * cloud. Do not add a slug, a variant or a query parameter.
+ */
+export const DOCUMENTS = {
+  resume: {
+    url: RESUME,
+    path: "/resume",
+    filename: "Yashvardhan Jagnani [Resume].pdf",
+  },
+  cv: {
+    url: CV,
+    path: "/cv",
+    filename: "Yashvardhan Jagnani [CV].pdf",
+  },
+  coverLetter: {
+    url: COVER_LETTER,
+    path: "/cover-letter",
+    filename: "Yashvardhan Jagnani [Cover Letter].pdf",
+  },
+} as const satisfies Record<string, SiteDocument>;
 
 // ── Standing copy — single source for the masthead bar + footers + OG card ────
 /** Right-hand status shown after the `STATUS:` label across the mastheads and OG. */
