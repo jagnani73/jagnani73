@@ -5,3 +5,7 @@
 .env
 .env.*
 !.env.example
+
+# Claude Code agent worktrees — transient checkouts, never part of the repo.
+# One was committed as a gitlink once (648c8fa); this stops that recurring.
+.claude/worktrees/
