@@ -6,6 +6,7 @@ import { FILTERS, isCase } from "./record-lib";
 import { gantryCase } from "./cases/gantry";
 import { claudeControllerCase } from "./cases/claude-controller";
 import { solanaMlDsa44Case } from "./cases/solana-ml-dsa-44";
+import { tridentCase } from "./cases/trident";
 import { insidepolyCase } from "./cases/insidepoly";
 import { agentSdkCase } from "./cases/agent-sdk";
 import { dewlsCase } from "./cases/dewls";
@@ -78,6 +79,14 @@ export const RECORD: RecordEntry[] = [
     title: "Global Citizen on-chain",
     meta: "bringing on-chain interactions to Global Citizen",
     url: "https://www.globalcitizen.org/en/",
+  },
+  {
+    year: 2026,
+    kind: "PROJECT",
+    title: "Trident",
+    meta: "adaptive USDC yield vault on Solana · lending, spread and basis on a 30s tick · deployed, never funded",
+    slug: "trident",
+    case: tridentCase,
   },
   {
     year: 2026,
