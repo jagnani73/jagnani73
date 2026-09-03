@@ -15,6 +15,7 @@ An editorial, "newspaper-of-record" portfolio: Next.js 16 (App Router), React 19
 - `/record` - **The Record**: one filterable timeline of everything, with a year-gutter constellation canvas + per-year "consensus" animation.
 - `/record/[slug]` - **Case-study** template for the authored cases (`generateStaticParams` prerenders the roster). Other projects are plain timeline rows, not pages.
 - `/api/resume`, `/api/cover-letter` - redirect routes.
+- `/api/health` - liveness probe (JSON, uncached). Probes no dependency by design.
 - `/sitemap.xml`, `/robots.txt` - generated. Legacy `/projects`, `/experiences` 301 → `/record`.
 
 ## Structure (`src/`)
