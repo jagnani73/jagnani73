@@ -90,6 +90,13 @@ export const RECORD: RecordEntry[] = [
   {
     year: 2026,
     kind: "PROJECT",
+    title: "Predi-Book",
+    meta: "aggregated order book across Polymarket and Kalshi · venue-split fill and slippage simulation",
+    url: "https://github.com/jagnani73/predi-book",
+  },
+  {
+    year: 2026,
+    kind: "PROJECT",
     title: "InsidePoly",
     meta: "insider-trading surveillance for Polymarket · five-signal scoring engine · live",
     slug: "insidepoly",
