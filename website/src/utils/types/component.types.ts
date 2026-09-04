@@ -97,3 +97,10 @@ export interface DocumentViewerProps {
 export interface DocumentShellProps extends DocumentViewerProps {
   children: ReactNode;
 }
+
+export interface PdfViewProps {
+  /** Where the bytes are: `/f/resume`, `/f/resume/blockchain`. */
+  filePath: string;
+  /** Announced in place of the canvas layers, e.g. `Resume - Blockchain`. */
+  label: string;
+}
