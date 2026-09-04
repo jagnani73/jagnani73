@@ -12,6 +12,27 @@ export const SITE_NAME = "Yashvardhan Jagnani";
 export const SITE_DESCRIPTION =
   "Blockchain-first software engineer, AI-native builder, forward-deployed engineer. Infinia · Covalent · Claude Controller. MSc, NTU Singapore.";
 
+/**
+ * The same sentence, trimmed for social cards. Slack, LinkedIn and iMessage cut
+ * a description around 125 characters and the full one is 141, so the SEO copy
+ * would lose its tail mid-phrase in every unfurl. Search engines show ~155, so
+ * the long one stays where it earns its length: `<meta name="description">`.
+ * Only the third role is dropped, so the card still reads as the site's own
+ * sentence rather than a separate claim to keep in sync.
+ */
+export const SITE_OG_DESCRIPTION =
+  "Blockchain-first software engineer, AI-native builder. Infinia · Covalent · Claude Controller. MSc, NTU Singapore.";
+
+/**
+ * The home page's `<title>`, and only that. `SITE_NAME` on its own says nothing
+ * about the work to someone reading a results page, and home is the one
+ * document here that search actually indexes. It is not `SITE_NAME` itself
+ * because that also feeds the title template, `og:site_name`, the JSON-LD
+ * `name` and the author fields, none of which want a job description in them.
+ */
+export const HOME_TITLE =
+  "Yashvardhan Jagnani - Blockchain, AI & Full-Stack Engineer";
+
 const PERSON_ID = `${SITE_URL}/#person`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
 
