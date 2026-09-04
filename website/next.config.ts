@@ -2,7 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
-  allowedDevOrigins: ["*.ngrok-free.app", "*.ngrok.app"],
+  // Dev only. Without the origin listed here Next blocks `/_next/webpack-hmr`
+  // from it, and Turbopack's dev chunk registration stalls behind that — a
+  // dynamically imported module (the PDF viewer) then hangs on its loading
+  // state forever rather than erroring. Add the machine's LAN IP to open a
+  // document page on a phone; it changes with DHCP, so expect to edit it.
+  allowedDevOrigins: ["*.ngrok-free.app", "*.ngrok.app", "10.91.48.69"],
   images: {
     remotePatterns: [
       {
