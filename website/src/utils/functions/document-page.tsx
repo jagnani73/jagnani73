@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { DocumentShell } from "@/components/documents/document-shell";
 import { DocumentViewer } from "@/components/documents/document-viewer";
-import { DOCUMENT_OWNER } from "@/utils/constants/site";
+import { DOCUMENT_OWNER, TWITTER_HANDLE } from "@/utils/constants/site";
+import { SITE_NAME } from "@/utils/functions/seo";
 import {
   documentLabel,
   previewUrl,
@@ -85,17 +86,27 @@ export const documentMetadata =
       description,
       alternates: { canonical: path },
       robots: { index: false, follow: false },
+      // `siteName`, `locale`, `site` and `creator` are repeated from the root
+      // layout on purpose. Next **replaces** a parent `openGraph`/`twitter`
+      // object rather than merging into it, so a page that declares either one
+      // drops every field of the parent's it does not restate — which is how
+      // these four silently went missing from the document cards while the rest
+      // of the site kept them.
       openGraph: {
         type: "article",
         title,
         description,
         url: path,
+        siteName: SITE_NAME,
+        locale: "en_US",
         images: [{ url: image, width: 1200, height: 630, alt: title }],
       },
       twitter: {
         card: "summary_large_image",
         title,
         description,
+        site: TWITTER_HANDLE,
+        creator: TWITTER_HANDLE,
         images: [image],
       },
     } satisfies Metadata;
