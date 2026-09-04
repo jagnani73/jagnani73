@@ -46,7 +46,13 @@ export interface CtaTermProps {
   /** Render an external `<a target="_blank">` instead of a next/link. */
   external?: boolean;
   /** The trailing/leading arrow glyph (default "→"); "←" pairs with arrowSide "left". */
-  arrow?: "→" | "←";
+  arrow?: "→" | "←" | "↓" | "↗";
+  /**
+   * Same-origin download link: adds `download`, which forces the save dialog
+   * even though the target answers `Content-Disposition: inline` so it can also
+   * be framed. Ignored unless `href` is set.
+   */
+  download?: boolean;
   /** Which side the arrow sits on (default "right"); "left" flips the hover slide. */
   arrowSide?: "left" | "right";
   /** Extra classes (e.g. grid placement) merged onto the link. */
@@ -78,4 +84,16 @@ export interface TimeConstellationProps {
   bursts: RefObject<number[]>;
   mob: boolean;
   gut: number;
+}
+
+// ── documents/document-viewer + document-shell ──
+export interface DocumentViewerProps {
+  /** `Resume`, or `Resume - Blockchain` — heads the page and titles the frame. */
+  label: string;
+  /** Where the bytes are: `/f/resume`, `/f/resume/blockchain`. */
+  filePath: string;
+}
+
+export interface DocumentShellProps extends DocumentViewerProps {
+  children: ReactNode;
 }

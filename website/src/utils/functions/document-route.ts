@@ -1,12 +1,19 @@
-import { DOCUMENT_BASE, DOCUMENT_OWNER } from "@/utils/constants/site";
+import { DOCUMENT_BASE } from "@/utils/constants/site";
+import { resolve, validSlug } from "@/utils/functions/document-resolve";
 import type {
   DocumentCategory,
-  ResolvedDocument,
   VariantRouteContext,
 } from "@/utils/types/document.types";
 
-// The route handler behind every document path: /resume, /cv, /cover-letter and
-// /<any of those>/<variant>.
+// The route handler behind every document's *bytes*: /f/resume, /f/cv,
+// /f/cover-letter and /f/<any of those>/<variant>.
+//
+// It is not what a person is given any more. `/resume` is an HTML viewer page
+// (`document-page.tsx`) that frames this endpoint and links to it for the
+// download; this route is what that frame and that link point at. The split
+// exists because a PDF response carries no `<head>`, so nothing pasted into
+// Slack or LinkedIn could ever unfurl — and because several mobile in-app
+// browsers hand a top-level PDF to a download prompt no header can override.
 //
 // All three categories are optional catch-alls and behave identically — there
 // is no fixed-route special case for any of them, and adding one would be the
@@ -24,9 +31,8 @@ import type {
 //   1. Validate the DECODED segment before it touches any URL — `SLUG` below,
 //      capped at `MAX_SLUG_LENGTH`, and exactly zero or one segment.
 //   2. Assert the FINAL, normalised URL still sits under `DOCUMENT_BASE`.
-//      Checking the string before `new URL()` normalises it is the bug: a
-//      `.../cv-cl/../../image/fetch/...` starts with the base right up until
-//      the parser collapses the dot segments.
+//      Both rules 1 and 2 live in `document-resolve.ts`, shared with the viewer
+//      page so the two cannot disagree about what a valid slug is.
 //   3. Split the failure branch by cause — an absent document redirects to the
 //      category default, anything else is a 502. See `serve` below.
 //
@@ -40,26 +46,6 @@ import type {
 const TIMEOUT_MS = 10_000;
 
 const FAILED = "document temporarily unavailable";
-
-/**
- * The shape a variant segment must have: lowercase alphanumerics in
- * hyphen-separated runs, with no leading, trailing or doubled hyphen. It is the
- * same pattern the sibling repo mints its slugs with, so anything rejected here
- * could not have been published in the first place.
- *
- * It is also the whole path-traversal defence, by exclusion: `/`, `\`, `.`,
- * `%`, `:` and `,` are all outside the class, so `..` cannot form, a decoded
- * `%2F`/`%5C` cannot introduce a path segment, and no scheme or host can be
- * spelled. Rule 2 re-checks the assembled URL regardless.
- */
-const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-
-/**
- * Cloudinary's own public_id ceiling is far higher, but nothing this repo
- * publishes comes near 64 characters, and an unbounded segment is a free way to
- * push junk into the logs and into the upstream cache key.
- */
-const MAX_SLUG_LENGTH = 64;
 
 /**
  * RFC 5987 §3.2 `ext-value`. `encodeURIComponent` leaves `' ( ) * !` alone, and
@@ -92,54 +78,6 @@ const asciiFold = (value: string) =>
 const disposition = (filename: string) =>
   `inline; filename="${asciiFold(filename)}"; filename*=UTF-8''${rfc5987(filename)}`;
 
-/**
- * `blockchain` → `Blockchain`, `open-source` → `Open Source`.
- *
- * **This naming rule now lives in two repositories and they have to agree.**
- * The scheme originates in the sibling `cv-cl` repo's
- * `scripts/Publish-Release.ps1`, which title-cases the same slug into the same
- * bracketed label for the PDF it writes to disk (`... [Resume - Blockchain]`).
- * The one deliberate difference is the date: the sibling's on-disk name carries
- * one, this download name does not — the path always resolves to the current
- * build, so a date here would be a claim the URL cannot keep. Change the casing
- * in one repo and the same document reaches a recipient under two different
- * names depending on where they got it from.
- */
-const titleCase = (slug: string) =>
-  slug
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-
-/**
- * Rule 2. Resolve the slug against the base, then check the *result*, after
- * `new URL()` has normalised away any dot segments. `DOCUMENT_BASE` ends in a
- * slash, so the check cannot be satisfied by a sibling folder either. Returns
- * `null` rather than throwing: a caller that cannot build a URL has a miss on
- * its hands, not a crash.
- */
-const resolve = (
-  category: DocumentCategory,
-  variant: string | null,
-): ResolvedDocument | null => {
-  const slug = variant ? `${category.slug}-${variant}` : category.slug;
-  const path = variant ? `${category.path}/${variant}` : category.path;
-
-  let url: string;
-  try {
-    url = new URL(`${slug}.pdf`, DOCUMENT_BASE).href;
-  } catch {
-    return null;
-  }
-  if (!url.startsWith(DOCUMENT_BASE)) return null;
-
-  const label = variant
-    ? `${category.label} - ${titleCase(variant)}`
-    : category.label;
-
-  return { url, path, filename: `${DOCUMENT_OWNER} [${label}].pdf` };
-};
-
 /** Upstream is broken, not empty: never cache it, never fabricate a 200. */
 const failed = () =>
   new Response(FAILED, {
@@ -166,12 +104,18 @@ const failed = () =>
  *
  * 302, not 308: the variant may be published tomorrow. `no-store` for the same
  * reason — a transient miss must not be cached against that path.
+ *
+ * The target is `filePath`, not `path`: this route serves bytes, and `path` is
+ * now the HTML viewer. Redirecting there would hand an `<iframe>` expecting a
+ * PDF a full page instead, and would turn a `curl` for a retired variant into
+ * a download of markup. A viewer that wants the page-level miss handles it
+ * itself, before it ever points a frame here — see `document-page.tsx`.
  */
 const missed = (category: DocumentCategory) =>
   new Response(null, {
     status: 302,
     headers: {
-      Location: category.path,
+      Location: category.filePath,
       "Cache-Control": "no-store",
       "X-Robots-Tag": "noindex, nofollow",
     },
@@ -191,10 +135,15 @@ const missed = (category: DocumentCategory) =>
  * reporting an error.
  */
 const serve = async (category: DocumentCategory, variant: string | null) => {
+  // Log path only — the URL this endpoint was reached at, not the viewer's.
+  const path = variant
+    ? `${category.filePath}/${variant}`
+    : category.filePath;
+
   const doc = resolve(category, variant);
   if (!doc) {
     console.error(
-      `[document] ${category.path} — refused a URL outside ${DOCUMENT_BASE}`,
+      `[document] ${path} — refused a URL outside ${DOCUMENT_BASE}`,
     );
     return variant ? missed(category) : failed();
   }
@@ -208,7 +157,7 @@ const serve = async (category: DocumentCategory, variant: string | null) => {
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
   } catch (err) {
-    console.error(`[document] ${doc.path} — upstream fetch failed`, err);
+    console.error(`[document] ${path} — upstream fetch failed`, err);
     return failed();
   }
 
@@ -218,7 +167,7 @@ const serve = async (category: DocumentCategory, variant: string | null) => {
   // it is logged at warn rather than error.
   if (variant && upstream.status === 404) {
     await upstream.body?.cancel().catch(() => {});
-    console.warn(`[document] ${doc.path} — no such variant upstream`);
+    console.warn(`[document] ${path} — no such variant upstream`);
     return missed(category);
   }
 
@@ -228,7 +177,7 @@ const serve = async (category: DocumentCategory, variant: string | null) => {
   // below would serve a GIF as `application/pdf` under a 200.
   if (!upstream.ok || !type.toLowerCase().startsWith("application/pdf")) {
     console.error(
-      `[document] ${doc.path} — upstream ${upstream.status} ${type || "(no type)"}` +
+      `[document] ${path} — upstream ${upstream.status} ${type || "(no type)"}` +
         (upstream.headers.get("x-cld-error")
           ? ` · ${upstream.headers.get("x-cld-error")}`
           : ""),
@@ -292,9 +241,7 @@ export const documentRoute =
     // exactly as received; decoding it again here is how a `%252F` turns into a
     // real path separator one layer later.
     const slug = segments[0];
-    if (slug.length > MAX_SLUG_LENGTH || !SLUG.test(slug)) {
-      return missed(category);
-    }
+    if (!validSlug(slug)) return missed(category);
 
     return serve(category, slug);
   };

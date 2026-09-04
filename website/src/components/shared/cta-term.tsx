@@ -12,6 +12,7 @@ export const CtaTerm = ({
   arrow = "→",
   arrowSide = "right",
   className,
+  download,
 }: CtaTermProps) => {
   const cls = [
     "cta-term",
@@ -34,6 +35,15 @@ export const CtaTerm = ({
 
   if (!href) {
     return <span className={cls}>{inner}</span>;
+  }
+  // A download is a plain `<a>`: next/link would prefetch the target, which for
+  // the document endpoints means pulling ~250KB of PDF on hover.
+  if (download) {
+    return (
+      <a href={href} download className={cls}>
+        {inner}
+      </a>
+    );
   }
   return external ? (
     <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>

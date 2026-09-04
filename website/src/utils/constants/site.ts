@@ -74,14 +74,54 @@ export const DOCUMENT_OWNER = "Yashvardhan Jagnani";
  * rules that make that safe.
  */
 export const DOCUMENTS = {
-  resume: { slug: "resume", path: "/resume", label: "Resume" },
-  cv: { slug: "cv", path: "/cv", label: "CV" },
+  resume: {
+    slug: "resume",
+    path: "/resume",
+    filePath: "/f/resume",
+    label: "Resume",
+  },
+  cv: { slug: "cv", path: "/cv", filePath: "/f/cv", label: "CV" },
   coverLetter: {
     slug: "cover-letter",
     path: "/cover-letter",
+    filePath: "/f/cover-letter",
     label: "Cover Letter",
   },
 } as const satisfies Record<string, DocumentCategory>;
+
+/**
+ * The paths the document viewer owns, derived rather than typed out. Read by
+ * the splash, which does not play over a document: the overlay holds the screen
+ * for ~2.7s before it collapses onto the rail logo, and the viewer has no rail
+ * for it to collapse onto. Someone who followed a résumé link came for the
+ * document, not for a logo animation.
+ */
+export const DOCUMENT_PATHS = Object.values(DOCUMENTS).map((d) => d.path);
+
+/**
+ * Cloudinary delivery prefix for the OG card: the first page of a document,
+ * rasterised to a social-card image. `pg_1` is a *transformation*, and raw
+ * assets take none — so this goes through `image/fetch`, pointing Cloudinary
+ * back at its own `raw` URL, which is the only way to transform an asset that
+ * was uploaded as `raw` without publishing it a second time.
+ *
+ * **Two Cloudinary console settings gate this** (Settings → Security), and the
+ * card renders as nothing until both are set:
+ *
+ *   1. *Restricted media types* → untick **Fetched URL**. Cloudinary disables
+ *      fetch automatically when it goes unused for 7 days after account
+ *      creation, which is why it is off here despite never having been touched.
+ *   2. *Allowed fetch domains* → add `res.cloudinary.com`. Without it, fetch is
+ *      an open image proxy: anyone who reads the cloud name out of this page's
+ *      source can transform arbitrary remote images on our quota. With it,
+ *      every host but ours 404s.
+ *
+ * `f_jpg` rather than `f_auto` on purpose — several unfurlers still refuse
+ * WebP, and an OG image that silently fails on one network is worse than a
+ * slightly larger JPEG.
+ */
+export const DOCUMENT_PREVIEW_BASE =
+  "https://res.cloudinary.com/jagnani73/image/fetch/pg_1,f_jpg,q_auto:good,w_1200,h_630,c_pad,b_rgb:081012/";
 
 // ── Standing copy — single source for the masthead bar + footers + OG card ────
 /** Right-hand status shown after the `STATUS:` label across the mastheads and OG. */

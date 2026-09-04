@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { DOCUMENT_PATHS } from "@/utils/constants/site";
 import { Mark } from "./mark";
 
 const ASSEMBLE_MS = 2700; // assemble (~2.5s) + a short hold
@@ -14,12 +16,21 @@ let played = false;
 // page under it), assembles the YJ once, then collapses onto the live rail logo
 // via a measured FLIP. Quick fade under reduced motion.
 export const Splash = () => {
-  const [done, setDone] = useState(played);
+  // Skipped entirely on the document viewer — see DOCUMENT_PATHS. Seeded into
+  // the initial state rather than early-returned so the hook order is stable,
+  // and so a client-side hop from a document into the site doesn't play the
+  // splash late, which is the same rule `played` already enforces everywhere.
+  const pathname = usePathname();
+  const bare = DOCUMENT_PATHS.some(
+    (p) => pathname === p || pathname.startsWith(`${p}/`),
+  );
+
+  const [done, setDone] = useState(played || bare);
   const overlayRef = useRef<HTMLDivElement>(null);
   const markRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (played) return;
+    if (played || bare) return;
 
     const finish = () => {
       played = true;
@@ -82,7 +93,7 @@ export const Splash = () => {
     }, ASSEMBLE_MS);
 
     return () => window.clearTimeout(timer);
-  }, []);
+  }, [bare]);
 
   if (done) return null;
 

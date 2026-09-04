@@ -26,6 +26,17 @@ export interface DocumentCategory {
    */
   path: string;
   /**
+   * Where the PDF bytes themselves are served (`/f/resume`), and the prefix a
+   * variant extends (`/f/resume/blockchain`). Separate from `path` because
+   * `path` is now an HTML viewer page and the two cannot share a URL: a Next
+   * `page.tsx` and a `route.ts` that both resolve `/resume` is a build error.
+   *
+   * This is what the viewer's `<iframe>` and its download link point at, and
+   * where a missed *variant* of the raw route redirects to — never `path`,
+   * which would drop an HTML page inside the PDF frame.
+   */
+  filePath: string;
+  /**
    * The bracketed label in the download name: `… [Resume].pdf`, or
    * `… [Resume - Blockchain].pdf` once a variant is appended. Must agree with
    * the sibling `cv-cl` repo's label for the same category — see `titleCase`
@@ -45,8 +56,8 @@ export interface ResolvedDocument {
   url: string;
   /** `Content-Disposition` download name. */
   filename: string;
-  /** The requested path (`/resume`, `/resume/blockchain`) — for logs only. */
-  path: string;
+  /** Human label — `Resume`, or `Resume - Blockchain`. Titles the viewer. */
+  label: string;
 }
 
 /**
@@ -60,4 +71,14 @@ export interface ResolvedDocument {
  */
 export interface VariantRouteContext {
   params: Promise<{ variant?: string[] }>;
+}
+
+/**
+ * What Next passes the viewer pages. Unlike the raw route's optional
+ * catch-all, the viewer is two files — `<category>/page.tsx` (no params) and
+ * `<category>/[variant]/page.tsx` (exactly one) — so a two-segment path like
+ * `/resume/a/b` 404s on the router rather than needing a length check.
+ */
+export interface VariantPageContext {
+  params: Promise<{ variant: string }>;
 }
