@@ -36,17 +36,18 @@ import type { DocumentCategory } from "@/utils/types/document.types";
  * silently rather than loudly.
  */
 const DESCRIPTIONS: Record<string, string> = {
-  Resume: `The current résumé of ${DOCUMENT_OWNER} — blockchain, AI and full-stack engineering. Read it here or download the PDF.`,
-  CV: `The full academic CV of ${DOCUMENT_OWNER} — research, education, publications and teaching. Read it here or download the PDF.`,
+  Resume: `The current résumé of ${DOCUMENT_OWNER}: blockchain, AI and full-stack engineering. Read it here or download the PDF.`,
+  CV: `The full academic CV of ${DOCUMENT_OWNER}: research, education, publications and teaching. Read it or download the PDF.`,
   "Cover Letter": `A cover letter from ${DOCUMENT_OWNER}. Read it here or download the PDF.`,
 };
 
 const describe = (category: DocumentCategory, variant: string | null) => {
   const base = DESCRIPTIONS[category.label] ?? "";
   if (!variant) return base;
-  // The variant is named in the title already; the description says what kind
-  // of thing it is without pretending to know what is in it.
-  return `${documentLabel(category, variant)} — ${base}`;
+  // A variant names itself and stops. Prefixing the category blurb instead runs
+  // past the ~125 characters a card will show, and the blurb describes the
+  // general document, not this cut of it — nothing here knows what is in it.
+  return `${documentLabel(category, variant)}. ${DOCUMENT_OWNER}. Read it here or download the PDF.`;
 };
 
 /**
