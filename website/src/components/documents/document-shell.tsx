@@ -30,11 +30,16 @@ export const DocumentShell = ({
   // it. The `supports` guard rather than a bare `dvh` so an older engine still
   // gets a full-height page instead of a collapsed one.
   <div className="flex h-screen flex-col bg-bg supports-[height:100dvh]:h-[100dvh]">
-    <header className="flex h-12 shrink-0 items-center justify-between gap-4 border-b border-rule px-3 rail:px-5">
+    {/* Grid, not flex. `justify-between` centres the label in the space *left
+        over* by the two side items, so an asymmetric bar (a 26px mark on the
+        left, two CTAs on the right) pushes it off true centre — visibly so on a
+        phone. Equal `1fr` tracks either side of an `auto` middle pin it to the
+        real centre of the bar no matter what the sides weigh. */}
+    <header className="grid h-12 shrink-0 grid-cols-[1fr_auto_1fr] items-center gap-3 border-b border-rule px-3 rail:px-5">
       <Link
         href="/"
-        className="flex items-center gap-2.5 text-tx3 transition-colors hover:text-tx2"
-        aria-label="jagnani73 — home"
+        className="flex items-center gap-2.5 justify-self-start text-tx3 transition-colors hover:text-tx2"
+        aria-label="jagnani73, home"
       >
         <Mark size={26} className="block" />
         <span className="hidden font-mono text-[13px] tracking-[0.04em] min-[420px]:inline">
@@ -43,11 +48,11 @@ export const DocumentShell = ({
       </Link>
 
       {/* The document's own name, not a page title — this is a viewer. */}
-      <span className="truncate font-mono text-[13px] tracking-[0.06em] text-tx2">
+      <span className="min-w-0 truncate justify-self-center font-mono text-[13px] tracking-[0.06em] text-tx2">
         {label.toUpperCase()}
       </span>
 
-      <div className="flex shrink-0 items-center gap-x-4">
+      <div className="flex shrink-0 items-center gap-x-4 justify-self-end">
         {/* Both labels key off the SAME `min-[560px]` predicate, so exactly one
             is ever showing. Pairing `max-[560px]` with `min-[561px]` instead
             leaves a gap: a viewport is not always a whole number of CSS pixels
