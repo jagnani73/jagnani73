@@ -133,6 +133,10 @@ export const fluxCase: CaseDetail = {
         },
       ],
       cta: { label: "visit flux", href: "https://flux-support.vercel.app/" },
+      source: {
+        label: "view the source",
+        href: "https://github.com/jagnani73/flux",
+      },
     },
   },
 };

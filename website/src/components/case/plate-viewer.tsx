@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { CtaTerm } from "@/components/shared/cta-term";
-import type { Plate } from "@/utils/types/case.types";
+import type { CaseLink, Plate } from "@/utils/types/case.types";
 
 // Two-digit plate label, e.g. "03".
 const plateNo = (n: number): string => String(n + 1).padStart(2, "0");
@@ -11,10 +11,12 @@ const plateNo = (n: number): string => String(n + 1).padStart(2, "0");
 export const PlateViewer = ({
   plates,
   cta,
+  source,
   next,
 }: {
   plates: Plate[];
-  cta?: { label: string; href: string };
+  cta?: CaseLink;
+  source?: CaseLink;
   next: { slug: string; title: string };
 }) => {
   const [i, setI] = useState(0);
@@ -119,10 +121,21 @@ export const PlateViewer = ({
           <CtaTerm href={`/record/${next.slug}`}>
             next study: <span className="uppercase">{next.title}</span>
           </CtaTerm>
-          {cta ? (
-            <CtaTerm href={cta.href} external>
-              {cta.label}
-            </CtaTerm>
+          {/* The external pair sits as one group on a tighter gap, so `source`
+              reads as subordinate to `cta` rather than as a third peer. */}
+          {cta || source ? (
+            <div className="flex flex-col items-start gap-2">
+              {cta ? (
+                <CtaTerm href={cta.href} external>
+                  {cta.label}
+                </CtaTerm>
+              ) : null}
+              {source ? (
+                <CtaTerm href={source.href} external className="cta-term--sm">
+                  {source.label}
+                </CtaTerm>
+              ) : null}
+            </div>
           ) : null}
         </div>
       </div>

@@ -155,7 +155,12 @@ export const CaseSection = ({
           </>
         }
       />
-      <PlateViewer plates={s.plates} cta={s.cta} next={next} />
+      <PlateViewer
+        plates={s.plates}
+        cta={s.cta}
+        source={s.source}
+        next={next}
+      />
     </section>
   );
 };

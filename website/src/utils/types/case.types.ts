@@ -44,9 +44,21 @@ export interface CardsSection extends SectionMeta {
 export interface StatsSection extends SectionMeta {
   stats: [value: string, label: string][];
 }
+/** An external link the plates section renders as a `CtaTerm`. */
+export interface CaseLink {
+  label: string;
+  href: string;
+}
+
 export interface PlatesSection extends SectionMeta {
   plates: Plate[];
-  cta?: { label: string; href: string };
+  /** The primary external link — whatever proves the most: a live deployment,
+   *  an on-chain account, a showcase, or the repository itself. */
+  cta?: CaseLink;
+  /** Optional second link, sat under `cta` and rendered in the compact
+   *  `.cta-term--sm` variant so the primary keeps the weight. For a case whose
+   *  `cta` is not its repository but whose source is still worth reaching. */
+  source?: CaseLink;
 }
 
 // Authored as an object keyed by section type — insertion order is render order.

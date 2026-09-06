@@ -140,6 +140,10 @@ export const daoscapeCase: CaseDetail = {
         label: "view the showcase",
         href: "https://ethglobal.com/showcase/daoscape-g8f8m",
       },
+      source: {
+        label: "view the source",
+        href: "https://github.com/jagnani73/daoscape",
+      },
     },
   },
 };

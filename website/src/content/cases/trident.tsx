@@ -156,6 +156,10 @@ Module._resolveFilename = function (request, parent, isMain, options) {
         label: "view the vault on-chain",
         href: "https://solscan.io/account/6w7SPiB9agGh5ctB1LWMAR9ZpnguDxYm5zGgQS71B7sw",
       },
+      source: {
+        label: "view the source",
+        href: "https://github.com/jagnani73/trident",
+      },
     },
   },
 };
