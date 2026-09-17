@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { FigCaption } from "./fig-caption";
+import { FIG_SPEED, figH, figPanel, figType } from "./fig-style";
 
 const easeOut = (x: number) => 1 - Math.pow(1 - x, 3);
 const pct = (n: number) => `${n}%`;
@@ -39,7 +40,7 @@ export const FigLattice = ({
     if (reduced || !active) return;
     let raf = 0;
     const loop = (time: number) => {
-      setP((time * 0.00022) % 1);
+      setP((time * FIG_SPEED.base) % 1);
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -53,9 +54,9 @@ export const FigLattice = ({
   const probe = GRID[Math.floor(phase * GRID.length) % GRID.length];
   const tpulse = 0.55 + 0.45 * Math.sin(phase * Math.PI * 6);
 
-  const H = mob ? 152 : 170;
-  const title = mob ? 10.5 : 12;
-  const sub = mob ? 9 : 10.5;
+  const H = figH("sm", mob);
+  const title = figType("body", mob);
+  const sub = figType("sub", mob);
 
   return (
     <div>
@@ -64,12 +65,8 @@ export const FigLattice = ({
         right="Ed25519: solved · ML-DSA-44: hard"
       />
       <div
-        className="relative grid grid-cols-2 overflow-hidden rounded-md"
-        style={{
-          height: H,
-          border: `1px solid ${t.rule}`,
-          background: t.panel,
-        }}
+        className="relative grid grid-cols-2 overflow-hidden"
+        style={{ ...figPanel(t), height: H }}
       >
         {/* ── Ed25519 — broken ── */}
         <div
@@ -118,7 +115,7 @@ export const FigLattice = ({
           </span>
           <span
             className="absolute left-2.5 font-mono"
-            style={{ top: mob ? 19 : 22, fontSize: sub, color: t.tx3 }}
+            style={{ top: mob ? 20 : 23, fontSize: sub, color: t.tx3 }}
           >
             discrete log
           </span>
@@ -176,7 +173,7 @@ export const FigLattice = ({
           </span>
           <span
             className="absolute left-2.5 font-mono"
-            style={{ top: mob ? 19 : 22, fontSize: sub, color: t.tx3 }}
+            style={{ top: mob ? 20 : 23, fontSize: sub, color: t.tx3 }}
           >
             module lattice
           </span>

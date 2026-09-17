@@ -3,7 +3,18 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { MONO as M } from "./fig-style";
+import {
+  FIG_BEAT,
+  FIG_DIM,
+  FIG_EASE,
+  FIG_HOLD,
+  FIG_TRACK,
+  MONO as M,
+  figBox,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
 import type { FigAccent as C } from "@/utils/types/fig.types";
 
 const LEDGER_ENTRIES: { act: string; who: string; note: string; c: C }[] = [
@@ -28,17 +39,13 @@ export const FigLedger = ({
 }) => {
   const t = useThemeTokens();
   const n = useTick(
-    820,
-    LEDGER_ENTRIES.length + 4,
+    FIG_BEAT.base,
+    LEDGER_ENTRIES.length + FIG_HOLD,
     active,
-    LEDGER_ENTRIES.length + 3,
+    LEDGER_ENTRIES.length,
   );
   const shown = Math.min(n, LEDGER_ENTRIES.length);
-  const panel = {
-    border: `1px solid ${t.rule}`,
-    borderRadius: 6,
-    background: t.bg,
-  };
+  const sub = figType("sub", mob);
 
   return (
     <div>
@@ -46,48 +53,60 @@ export const FigLedger = ({
         left="fig. 1: every edit appended to an immutable, on-chain audit log"
         right="Hedera · tamper-proof"
       />
-      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+      <div
+        style={{
+          ...figPanel(t),
+          height: figH("lg", mob),
+          overflow: "hidden",
+          padding: mob ? 10 : "12px 14px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          gap: 6,
+        }}
+      >
         {LEDGER_ENTRIES.map((e, i) => {
           const vis = i < shown;
           return (
             <div
               key={i}
               style={{
-                ...panel,
+                ...figBox(t),
                 display: "grid",
                 gridTemplateColumns: mob
                   ? "auto 1fr auto"
                   : "78px 90px 1fr auto",
                 alignItems: "center",
                 gap: mob ? 10 : 14,
-                padding: mob ? "9px 11px" : "11px 14px",
-                opacity: vis ? 1 : 0.18,
+                padding: mob ? "7px 10px" : "8px 14px",
+                flexShrink: 0,
+                opacity: vis ? 1 : FIG_DIM,
                 transform: vis ? "translateX(0)" : "translateX(-8px)",
-                transition: "all 0.4s",
+                transition: FIG_EASE,
               }}
             >
               <span
                 style={{
                   fontFamily: M,
-                  fontSize: mob ? 10 : 11.5,
+                  fontSize: sub,
                   color: t[e.c],
                   border: `1px solid ${t[e.c]}`,
                   borderRadius: 99,
-                  padding: "2px 9px",
+                  padding: "1px 9px",
                   textAlign: "center",
                 }}
               >
                 {e.act}
               </span>
               {!mob ? (
-                <span style={{ fontFamily: M, fontSize: 11.5, color: t.tx2 }}>
+                <span style={{ fontFamily: M, fontSize: sub, color: t.tx2 }}>
                   {e.who}
                 </span>
               ) : null}
               <span
                 style={{
                   fontFamily: M,
-                  fontSize: mob ? 11 : 12.5,
+                  fontSize: figType("body", mob),
                   color: t.tx,
                   minWidth: 0,
                   overflow: "hidden",
@@ -97,17 +116,22 @@ export const FigLedger = ({
               >
                 {e.note}
               </span>
-              <span style={{ fontFamily: M, fontSize: 10, color: t.tx3 }}>
+              <span
+                style={{
+                  fontFamily: M,
+                  fontSize: figType("label", mob),
+                  letterSpacing: FIG_TRACK,
+                  color: t.tx3,
+                }}
+              >
                 #{1041 + i}
               </span>
             </div>
           );
         })}
-        <div
-          style={{ fontFamily: M, fontSize: 10.5, color: t.tx3, marginTop: 2 }}
-        >
-          ↳ each entry hash-chained to the last, no silent edits
-        </div>
+      </div>
+      <div style={{ fontFamily: M, fontSize: sub, color: t.tx3, marginTop: 8 }}>
+        ↳ each entry hash-chained to the last, no silent edits
       </div>
     </div>
   );

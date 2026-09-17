@@ -4,7 +4,14 @@ import { Fragment, type ReactNode } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { MONO as M } from "./fig-style";
+import {
+  FIG_BEAT,
+  FIG_HOLD,
+  MONO as M,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
 
 const S = "var(--font-sans)";
 
@@ -40,8 +47,16 @@ export const FigFlux = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const n = useTick(1000, FLUX_STEPS.length + 3, active, FLUX_STEPS.length + 2);
+  const n = useTick(
+    FIG_BEAT.slow,
+    FLUX_STEPS.length + FIG_HOLD,
+    active,
+    FLUX_STEPS.length,
+  );
   const shown = Math.min(n, FLUX_STEPS.length);
+  // The fixed-height panel keeps the latest turns, the way a chat scrolls.
+  const first = Math.max(0, shown - (mob ? 4 : 5));
+  const chat = figType("title", mob);
 
   const highlight = (txt: string, facts?: string[]): ReactNode => {
     let parts: ReactNode[] = [txt];
@@ -78,33 +93,32 @@ export const FigFlux = ({
       />
       <div
         style={{
-          border: `1px solid ${t.rule}`,
-          borderRadius: 6,
-          background: t.panel,
-          boxSizing: "border-box",
-          padding: mob ? 12 : "16px 18px",
-          height: mob ? 298 : 248,
+          ...figPanel(t),
+          padding: mob ? 12 : "12px 16px",
+          height: figH("lg", mob),
           display: "flex",
           flexDirection: "column",
           justifyContent: "flex-end",
-          gap: 9,
+          gap: 7,
           overflow: "hidden",
         }}
       >
-        {FLUX_STEPS.slice(0, shown).map((s, i) => {
+        {FLUX_STEPS.slice(first, shown).map((s, j) => {
+          const i = first + j;
           if (s.kind === "user")
             return (
               <div
                 key={i}
                 style={{
                   alignSelf: "flex-end",
+                  flexShrink: 0,
                   maxWidth: "80%",
                   background: `${t.sig}1A`,
                   border: `1px solid ${t.sig}55`,
                   borderRadius: "11px 11px 3px 11px",
                   padding: "8px 13px",
                   fontFamily: S,
-                  fontSize: mob ? 12.5 : 13.5,
+                  fontSize: chat,
                   color: t.tx,
                 }}
               >
@@ -117,11 +131,12 @@ export const FigFlux = ({
                 key={i}
                 style={{
                   alignSelf: "flex-start",
+                  flexShrink: 0,
                   display: "flex",
                   alignItems: "center",
                   gap: 8,
                   fontFamily: M,
-                  fontSize: mob ? 10 : 11.5,
+                  fontSize: figType("body", mob),
                   color: t.tx3,
                 }}
               >
@@ -143,13 +158,14 @@ export const FigFlux = ({
               key={i}
               style={{
                 alignSelf: "flex-start",
+                flexShrink: 0,
                 maxWidth: "88%",
                 background: t.bg,
                 border: `1px solid ${t.rule}`,
                 borderRadius: "11px 11px 11px 3px",
                 padding: "10px 14px",
                 fontFamily: S,
-                fontSize: mob ? 12.5 : 13.5,
+                fontSize: chat,
                 color: t.tx2,
                 lineHeight: 1.55,
               }}

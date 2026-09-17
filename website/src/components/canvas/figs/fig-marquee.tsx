@@ -1,9 +1,10 @@
 "use client";
 
-import { useId, useState, type ReactNode } from "react";
+import { useId, useState, type CSSProperties, type ReactNode } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { FigCaption } from "./fig-caption";
+import { figH, figPanel, figType } from "./fig-style";
 
 // Vendored verbatim from react-easy-marquee v1.2.4. Two tweaks: `animation` shorthand
 // expanded to longhand (avoids React's shorthand/longhand warning on pauseOnHover re-render); id from useId().
@@ -152,7 +153,7 @@ export const FigMarquee = ({
             borderRadius: 99,
             border: `1px solid ${c === "tx2" ? t.rule : col}`,
             background: t.bg,
-            fontSize: 13,
+            fontSize: figType("title", mob),
             color: col,
             whiteSpace: "nowrap",
           }}
@@ -162,12 +163,16 @@ export const FigMarquee = ({
       );
     });
 
-  const rowStyle = {
-    border: `1px solid ${t.rule}`,
-    borderRadius: 6,
-    background: t.panel,
+  // Both strips run inside one panel; the pills are the boxes within it.
+  const panel: CSSProperties = {
+    ...figPanel(t),
+    height: figH("sm", mob),
     overflow: "hidden",
-  } as const;
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    gap: 10,
+  };
   const h = mob ? 46 : 52;
 
   // Static fallback: reduced motion or paused offscreen.
@@ -178,12 +183,12 @@ export const FigMarquee = ({
           left="fig. 1: react-easy-marquee, rendering itself"
           right="v1.2.4"
         />
-        <div className="flex flex-col gap-2.5">
+        <div style={panel}>
           {[ROW_A, ROW_B].map((row, i) => (
             <div
               key={i}
-              className="flex items-center"
-              style={{ ...rowStyle, height: h, padding: "0 8px" }}
+              className="flex items-center overflow-hidden"
+              style={{ height: h, flexShrink: 0, padding: "0 8px" }}
             >
               {pills(row)}
             </div>
@@ -199,34 +204,30 @@ export const FigMarquee = ({
         left="fig. 1: this strip is react-easy-marquee, rendering itself"
         right="v1.2.4 · hover to pause"
       />
-      <div className="flex flex-col gap-2.5">
-        <div style={rowStyle}>
-          <Marquee
-            axis="X"
-            duration={mob ? 13000 : 18000}
-            pauseOnHover
-            height={`${h}px`}
-            align="center"
-          >
-            {pills(ROW_A)}
-          </Marquee>
-        </div>
-        <div style={rowStyle}>
-          <Marquee
-            axis="X"
-            reverse
-            duration={mob ? 16000 : 24000}
-            pauseOnHover
-            height={`${h}px`}
-            align="center"
-          >
-            {pills(ROW_B)}
-          </Marquee>
-        </div>
+      <div style={panel}>
+        <Marquee
+          axis="X"
+          duration={mob ? 13000 : 18000}
+          pauseOnHover
+          height={`${h}px`}
+          align="center"
+        >
+          {pills(ROW_A)}
+        </Marquee>
+        <Marquee
+          axis="X"
+          reverse
+          duration={mob ? 16000 : 24000}
+          pauseOnHover
+          height={`${h}px`}
+          align="center"
+        >
+          {pills(ROW_B)}
+        </Marquee>
       </div>
       <p
-        className="m-0 mt-2.5 font-mono text-[10.5px]"
-        style={{ color: t.tx3 }}
+        className="m-0 mt-2.5 font-mono"
+        style={{ color: t.tx3, fontSize: figType("sub", mob) }}
       >
         ↳ no requestAnimationFrame, no scroll listeners: three offset copies and
         one CSS @keyframes translate

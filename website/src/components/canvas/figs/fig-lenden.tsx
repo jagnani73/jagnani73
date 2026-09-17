@@ -1,9 +1,25 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel, MONO as M } from "./fig-style";
+import {
+  FIG_BEAT,
+  FIG_DIM,
+  FIG_EASE,
+  FIG_HOLD,
+  FIG_TRACK,
+  MONO as M,
+  figBox,
+  figH,
+  figPanel,
+  figTone,
+  figType,
+} from "./fig-style";
+
+// The repayment lands by beat 13; the settled pair holds after it.
+const BEATS = 13 + FIG_HOLD;
 
 // LenDen — collateral locked on one chain, loan released on another.
 export const FigLenden = ({
@@ -14,7 +30,7 @@ export const FigLenden = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const n = useTick(470, 16, active, 9);
+  const n = useTick(FIG_BEAT.quick, BEATS, active, 9);
   const deposited = n >= 1;
   const sending = n >= 3 && n <= 6;
   const loaned = n >= 7;
@@ -27,7 +43,27 @@ export const FigLenden = ({
         ? 100
         : 0;
   const moving = sending || repaying;
-  const panel = figPanel(t);
+  const idle = figTone(t, "idle");
+  const title = figType("title", mob);
+  const sub = figType("sub", mob);
+
+  // The three columns never stack, so the chains share one height at every width.
+  const card: CSSProperties = {
+    ...figPanel(t),
+    padding: mob ? 12 : "16px 18px",
+    height: figH("sm", mob),
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+  };
+  const label: CSSProperties = {
+    fontFamily: M,
+    fontSize: figType("label", mob),
+    letterSpacing: FIG_TRACK,
+    color: t.tx3,
+    margin: 0,
+  };
 
   return (
     <div>
@@ -43,31 +79,21 @@ export const FigLenden = ({
           alignItems: "stretch",
         }}
       >
-        <div style={{ ...panel, padding: mob ? 12 : "16px 18px" }}>
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10,
-              color: t.tx3,
-              margin: "0 0 12px",
-              letterSpacing: "0.1em",
-            }}
-          >
-            CHAIN A · Polygon
-          </p>
+        <div style={card}>
+          <p style={label}>CHAIN A · Polygon</p>
           <div
             style={{
+              ...figBox(t, deposited ? t.acc : idle),
+              borderStyle: "dashed",
               padding: mob ? 9 : "11px 13px",
-              border: `1px dashed ${deposited ? t.acc : t.tx3}`,
-              borderRadius: 5,
-              opacity: deposited ? 1 : 0.35,
-              transition: "all 0.4s",
+              opacity: deposited ? 1 : FIG_DIM,
+              transition: FIG_EASE,
             }}
           >
             <p
               style={{
                 fontFamily: M,
-                fontSize: mob ? 11.5 : 13,
+                fontSize: title,
                 color: deposited ? t.acc : t.tx3,
                 margin: 0,
               }}
@@ -77,7 +103,7 @@ export const FigLenden = ({
             <p
               style={{
                 fontFamily: M,
-                fontSize: 10,
+                fontSize: sub,
                 color: t.tx3,
                 margin: "4px 0 0",
               }}
@@ -100,7 +126,7 @@ export const FigLenden = ({
               left: 4,
               right: 4,
               height: 1,
-              background: t.ruleStrong,
+              background: idle,
             }}
           />
           {moving ? (
@@ -110,14 +136,14 @@ export const FigLenden = ({
                 left: `${pkgX}%`,
                 transform: "translateX(-50%)",
                 fontFamily: M,
-                fontSize: 8.5,
+                fontSize: sub,
                 color: repaying ? t.ok : t.sig,
                 background: t.bg,
                 border: `1px solid ${repaying ? t.ok : t.sig}`,
                 borderRadius: 3,
                 padding: "2px 5px",
                 whiteSpace: "nowrap",
-                transition: "left 0.45s linear",
+                transition: `left ${FIG_BEAT.quick}ms linear`,
               }}
             >
               {repaying ? "repay →" : "← msg"}
@@ -129,7 +155,7 @@ export const FigLenden = ({
                 left: "50%",
                 transform: "translateX(-50%)",
                 fontFamily: M,
-                fontSize: 8.5,
+                fontSize: sub,
                 color: t.tx3,
                 background: t.bg,
                 padding: "2px 5px",
@@ -139,31 +165,20 @@ export const FigLenden = ({
             </span>
           )}
         </div>
-        <div style={{ ...panel, padding: mob ? 12 : "16px 18px" }}>
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10,
-              color: t.tx3,
-              margin: "0 0 12px",
-              letterSpacing: "0.1em",
-            }}
-          >
-            CHAIN B · Ethereum
-          </p>
+        <div style={card}>
+          <p style={label}>CHAIN B · Ethereum</p>
           <div
             style={{
+              ...figBox(t, loaned ? t.ok : idle),
               padding: mob ? 9 : "11px 13px",
-              border: `1px solid ${loaned ? t.ok : t.tx3}`,
-              borderRadius: 5,
-              opacity: loaned ? 1 : 0.35,
-              transition: "all 0.4s",
+              opacity: loaned ? 1 : FIG_DIM,
+              transition: FIG_EASE,
             }}
           >
             <p
               style={{
                 fontFamily: M,
-                fontSize: mob ? 11.5 : 13,
+                fontSize: title,
                 color: loaned ? t.ok : t.tx3,
                 margin: 0,
               }}
@@ -173,7 +188,7 @@ export const FigLenden = ({
             <p
               style={{
                 fontFamily: M,
-                fontSize: 10,
+                fontSize: sub,
                 color: t.tx3,
                 margin: "4px 0 0",
               }}

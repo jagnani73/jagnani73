@@ -1,9 +1,19 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel, MONO as M } from "./fig-style";
+import {
+  FIG_BEAT,
+  FIG_EASE,
+  FIG_HOLD,
+  FIG_TRACK,
+  MONO as M,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
 
 const S = "var(--font-sans)";
 
@@ -19,6 +29,9 @@ const STORY_MSGS: { who: "seeker" | "supporter"; txt: string; ok: boolean }[] =
     { who: "supporter", txt: "████████████", ok: false },
   ];
 
+// Matching takes two beats, then one message per beat, then the hold.
+const DONE = 2 + STORY_MSGS.length;
+
 // Stories — peers matched on shared tags, messages gated for toxicity.
 export const FigMatch = ({
   mob,
@@ -28,10 +41,17 @@ export const FigMatch = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const n = useTick(900, STORY_MSGS.length + 5, active, STORY_MSGS.length + 4);
+  const n = useTick(FIG_BEAT.base, DONE + FIG_HOLD, active, DONE);
   const matched = n >= 2;
   const msgsShown = Math.max(0, Math.min(n - 2, STORY_MSGS.length));
-  const panel = figPanel(t);
+  const height = figH("md", mob);
+  const sub = figType("sub", mob);
+  const label: CSSProperties = {
+    fontFamily: M,
+    fontSize: figType("label", mob),
+    letterSpacing: FIG_TRACK,
+    color: t.tx3,
+  };
 
   return (
     <div>
@@ -44,19 +64,18 @@ export const FigMatch = ({
           display: "grid",
           gridTemplateColumns: mob ? "1fr" : "1fr 1fr",
           gap: mob ? 10 : 16,
-          alignItems: "start",
+          alignItems: "stretch",
         }}
       >
-        <div style={{ ...panel, padding: mob ? 11 : 13 }}>
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10,
-              color: t.tx3,
-              margin: "0 0 9px",
-              letterSpacing: "0.08em",
-            }}
-          >
+        {/* The tags never change size, so stacked on mobile this card fits them. */}
+        <div
+          style={{
+            ...figPanel(t),
+            padding: mob ? 11 : 13,
+            height: mob ? undefined : height,
+          }}
+        >
+          <p style={{ ...label, margin: "0 0 9px" }}>
             MATCH · {matched ? "3 shared tags" : "scoring…"}
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
@@ -67,13 +86,13 @@ export const FigMatch = ({
                   key={tag}
                   style={{
                     fontFamily: M,
-                    fontSize: 10.5,
+                    fontSize: sub,
                     color: on ? t.bg : t.tx3,
                     background: on ? t.sig : "transparent",
                     border: `1px solid ${on ? t.sig : t.rule}`,
                     borderRadius: 99,
                     padding: "2px 9px",
-                    transition: "all 0.3s",
+                    transition: FIG_EASE,
                   }}
                 >
                   {tag}
@@ -87,7 +106,7 @@ export const FigMatch = ({
               justifyContent: "space-between",
               marginTop: 12,
               fontFamily: M,
-              fontSize: 11,
+              fontSize: sub,
               color: t.tx2,
             }}
           >
@@ -98,33 +117,25 @@ export const FigMatch = ({
         </div>
         <div
           style={{
-            ...panel,
+            ...figPanel(t),
             padding: mob ? 11 : 13,
             display: "flex",
             flexDirection: "column",
             gap: 7,
-            minHeight: mob ? 0 : 118,
+            height,
+            overflow: "hidden",
           }}
         >
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10,
-              color: t.tx3,
-              margin: "0 0 2px",
-              letterSpacing: "0.08em",
-            }}
-          >
-            ANONYMOUS CHAT
-          </p>
+          <p style={{ ...label, margin: "0 0 2px" }}>ANONYMOUS CHAT</p>
           {STORY_MSGS.slice(0, msgsShown).map((m, i) => (
             <div
               key={i}
               style={{
                 alignSelf: m.who === "seeker" ? "flex-start" : "flex-end",
+                flexShrink: 0,
                 maxWidth: "90%",
                 fontFamily: S,
-                fontSize: mob ? 11.5 : 12.5,
+                fontSize: figType("title", mob),
                 padding: "6px 10px",
                 borderRadius:
                   m.who === "seeker" ? "9px 9px 9px 2px" : "9px 9px 2px 9px",
@@ -142,7 +153,7 @@ export const FigMatch = ({
               ) : (
                 <span>
                   {m.txt}{" "}
-                  <span style={{ fontFamily: M, fontSize: 9.5 }}>
+                  <span style={{ fontFamily: M, fontSize: sub }}>
                     · censored
                   </span>
                 </span>

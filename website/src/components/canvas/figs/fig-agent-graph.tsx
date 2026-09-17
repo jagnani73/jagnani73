@@ -1,9 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import {
+  FIG_BEAT,
+  FIG_EASE,
+  FIG_HOLD,
+  figBox,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
 import type { AgNode } from "@/utils/types/fig.types";
 
 const AG_NODES: Record<string, AgNode> = {
@@ -98,28 +106,20 @@ export const FigAgentGraph = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const reduced = useReducedMotion();
-  const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    if (reduced || !active) return;
-    const id = setInterval(
-      () => setStep((s) => (s + 1) % (AG_SEQ.length + 2)),
-      800,
-    );
-    return () => clearInterval(id);
-  }, [reduced, active]);
-
-  const shownStep = reduced ? AG_SEQ.length - 1 : step;
-  const idx = Math.min(shownStep, AG_SEQ.length - 1);
+  // One hop per beat; the finished trace holds for FIG_HOLD beats.
+  const step = useTick(
+    FIG_BEAT.base,
+    AG_SEQ.length + FIG_HOLD,
+    active,
+    AG_SEQ.length - 1,
+  );
+  const idx = Math.min(step, AG_SEQ.length - 1);
   const activeNode = AG_SEQ[idx];
-  const prev = shownStep > 0 ? AG_SEQ[idx - 1] : null;
+  const prev = step > 0 ? AG_SEQ[idx - 1] : null;
   const isActiveEdge = (a: string, b: string) =>
     !!prev &&
     ((a === prev && b === activeNode) || (a === activeNode && b === prev));
-  const visited = new Set(
-    AG_SEQ.slice(0, Math.min(shownStep + 1, AG_SEQ.length)),
-  );
+  const visited = new Set(AG_SEQ.slice(0, Math.min(step + 1, AG_SEQ.length)));
   const nx = (n: AgNode) => (mob ? n.mx : n.x);
 
   return (
@@ -129,12 +129,8 @@ export const FigAgentGraph = ({
         right="live trace"
       />
       <div
-        className="relative overflow-hidden rounded-md"
-        style={{
-          height: mob ? 190 : 220,
-          border: `1px solid ${t.rule}`,
-          background: t.panel,
-        }}
+        className="relative overflow-hidden"
+        style={{ ...figPanel(t), height: figH("lg", mob) }}
       >
         <svg width="100%" height="100%" className="absolute inset-0">
           {AG_EDGES.map(([a, b]) => {
@@ -166,18 +162,18 @@ export const FigAgentGraph = ({
           return (
             <span
               key={id}
-              className="absolute rounded font-mono whitespace-nowrap"
+              className="absolute font-mono whitespace-nowrap"
               style={{
+                ...figBox(t, on ? col : seen ? col + "66" : t.ruleStrong),
                 left: nx(n) + "%",
                 top: n.y + "%",
                 transform: "translate(-50%, -50%)",
-                fontSize: mob ? 8.5 : 12,
+                // Mobile nodes sit about 53px apart, so they take `sub` there.
+                fontSize: figType(mob ? "sub" : "body", mob),
                 padding: mob ? "3px 5px" : "7px 12px",
-                background: t.bg,
-                border: `1px solid ${on ? col : seen ? col + "66" : t.ruleStrong}`,
                 color: on ? t.tx : seen ? col : t.tx3,
                 boxShadow: on ? `0 0 14px ${col}55` : "none",
-                transition: "all 0.25s",
+                transition: FIG_EASE,
               }}
             >
               {mob ? n.short : n.label}

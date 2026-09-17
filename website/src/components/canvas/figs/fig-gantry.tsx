@@ -4,7 +4,15 @@ import { useEffect, useState } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { FigCaption } from "./fig-caption";
-import { MONO as M } from "./fig-style";
+import {
+  FIG_EASE,
+  FIG_SPEED,
+  MONO as M,
+  figBox,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
 
 // Gantry — two doors crossed against two currencies, settling to one payout.
 //
@@ -136,7 +144,7 @@ export const FigGantry = ({
     if (reduced || !active) return;
     let raf = 0;
     const loop = (time: number) => {
-      setP((time * 0.00016) % 2); // two cycles; the doors swap currencies
+      setP((time * FIG_SPEED.slow) % 2); // two cycles; the doors swap currencies
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -159,9 +167,9 @@ export const FigGantry = ({
   // is what stops a reader deciding that the QR is the dollar door.
   const via = (i: number) => (i + cycle) % CURRENCIES.length;
 
-  const H = mob ? 172 : 192;
-  const title = mob ? 10.5 : 12.5;
-  const sub = mob ? 8.5 : 10;
+  const H = figH("md", mob);
+  const title = figType("body", mob);
+  const sub = figType("sub", mob);
   const glyph = mob ? 22 : 28;
   // The glyph names the door, so the caption under it carries only what the
   // drawing cannot: who is paying, and over which protocol.
@@ -208,12 +216,8 @@ export const FigGantry = ({
         right="USDC or EURC in · XSGD out"
       />
       <div
-        className="relative overflow-hidden rounded-md"
-        style={{
-          height: H,
-          border: `1px solid ${t.rule}`,
-          background: t.panel,
-        }}
+        className="relative overflow-hidden"
+        style={{ ...figPanel(t), height: H }}
       >
         <div
           className="relative h-full"
@@ -301,16 +305,17 @@ export const FigGantry = ({
           {CURRENCIES.map((cur, j) => (
             <div
               key={cur.name}
-              className="absolute flex flex-col items-center rounded-md border"
+              className="absolute flex flex-col items-center"
               style={{
+                ...figBox(
+                  t,
+                  leg < 2 ? doors[via(0) === j ? 0 : 1].c : t.ruleStrong,
+                ),
                 left: `${CUR_X}%`,
                 top: `${CUR_Y[j]}%`,
                 transform: "translate(-50%, -50%)",
-                borderColor:
-                  leg < 2 ? doors[via(0) === j ? 0 : 1].c : t.ruleStrong,
-                background: t.bg,
                 padding: mob ? "5px 8px" : "7px 12px",
-                transition: "border-color 0.3s",
+                transition: FIG_EASE,
               }}
             >
               <span
@@ -331,13 +336,12 @@ export const FigGantry = ({
           ))}
 
           <div
-            className="absolute flex flex-col items-center rounded-md border"
+            className="absolute flex flex-col items-center"
             style={{
+              ...figBox(t, t.pri),
               left: `${CORE_X}%`,
               top: `${MID}%`,
               transform: "translate(-50%, -50%)",
-              borderColor: t.pri,
-              background: t.bg,
               padding: mob ? "6px 8px" : "9px 13px",
             }}
           >
@@ -358,15 +362,14 @@ export const FigGantry = ({
           </div>
 
           <div
-            className="absolute flex flex-col items-center rounded-md border"
+            className="absolute flex flex-col items-center"
             style={{
+              ...figBox(t, leg === 2 ? t.ok : t.ruleStrong),
               left: `${OUT_X}%`,
               top: `${MID}%`,
               transform: "translate(-50%, -50%)",
-              borderColor: leg === 2 ? t.ok : t.ruleStrong,
-              background: t.bg,
               padding: mob ? "5px 8px" : "7px 12px",
-              transition: "border-color 0.3s",
+              transition: FIG_EASE,
             }}
           >
             <span

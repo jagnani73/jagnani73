@@ -3,7 +3,15 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel, MONO as M } from "./fig-style";
+import {
+  FIG_BEAT,
+  FIG_EASE,
+  FIG_HOLD,
+  MONO as M,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
 
 const S = "var(--font-sans)";
 
@@ -26,6 +34,9 @@ const NUDGE_SET = [
 ];
 const NUDGE_NAV = ["Search", "Dashboard", "Analytics", "Publish"];
 
+// A blank beat, the nudge lands, then it holds.
+const PER = 2 + FIG_HOLD;
+
 // NudgeLab — no-code nudge pushed into a live product.
 export const FigNudge = ({
   mob,
@@ -35,11 +46,10 @@ export const FigNudge = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const PER = 5;
-  const tick = useTick(880, NUDGE_SET.length * PER, active, 2);
+  const tick = useTick(FIG_BEAT.base, NUDGE_SET.length * PER, active, 2);
   const n = NUDGE_SET[Math.floor(tick / PER) % NUDGE_SET.length];
   const show = tick % PER >= 1;
-  const panel = figPanel(t);
+  const sub = figType("sub", mob);
 
   return (
     <div>
@@ -49,8 +59,8 @@ export const FigNudge = ({
       />
       <div
         style={{
-          ...panel,
-          height: mob ? 210 : 216,
+          ...figPanel(t),
+          height: figH("lg", mob),
           position: "relative",
           overflow: "hidden",
         }}
@@ -76,7 +86,12 @@ export const FigNudge = ({
             />
           ))}
           <span
-            style={{ marginLeft: 8, fontFamily: M, fontSize: 11, color: t.tx3 }}
+            style={{
+              marginLeft: 8,
+              fontFamily: M,
+              fontSize: sub,
+              color: t.tx3,
+            }}
           >
             app.yourproduct.xyz
           </span>
@@ -98,13 +113,13 @@ export const FigNudge = ({
                   style={{
                     position: "relative",
                     fontFamily: M,
-                    fontSize: mob ? 10.5 : 12,
+                    fontSize: figType("body", mob),
                     color: on ? t.bg : t.tx2,
                     background: on ? t.sig : "transparent",
                     border: `1px solid ${on ? t.sig : t.rule}`,
-                    borderRadius: 5,
+                    borderRadius: 6,
                     padding: "6px 9px",
-                    transition: "all 0.3s",
+                    transition: FIG_EASE,
                   }}
                 >
                   {item}
@@ -140,7 +155,7 @@ export const FigNudge = ({
                 maxWidth: "92%",
                 opacity: show ? 1 : 0,
                 transform: show ? "translateY(0)" : "translateY(6px)",
-                transition: "all 0.35s",
+                transition: FIG_EASE,
               }}
             >
               <div
@@ -160,10 +175,10 @@ export const FigNudge = ({
                   background: t.acc,
                   color: t.bg,
                   fontFamily: S,
-                  fontSize: mob ? 11.5 : 13,
+                  fontSize: figType("title", mob),
                   fontWeight: 600,
                   padding: "9px 13px",
-                  borderRadius: 7,
+                  borderRadius: 6,
                   lineHeight: 1.4,
                 }}
               >
@@ -178,7 +193,7 @@ export const FigNudge = ({
             bottom: 10,
             right: 13,
             fontFamily: M,
-            fontSize: 10,
+            fontSize: sub,
             color: t.tx3,
           }}
         >

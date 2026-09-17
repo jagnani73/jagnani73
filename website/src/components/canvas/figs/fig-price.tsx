@@ -3,7 +3,19 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { MONO as M } from "./fig-style";
+import {
+  FIG_BEAT,
+  FIG_DIM,
+  FIG_EASE,
+  FIG_HOLD,
+  FIG_TRACK,
+  MONO as M,
+  figBox,
+  figH,
+  figPanel,
+  figTone,
+  figType,
+} from "./fig-style";
 
 const PRICE_ROWS = [
   {
@@ -26,9 +38,16 @@ export const FigPrice = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const n = useTick(760, PRICE_ROWS.length + 4, active, PRICE_ROWS.length + 3);
+  const n = useTick(
+    FIG_BEAT.base,
+    PRICE_ROWS.length + FIG_HOLD,
+    active,
+    PRICE_ROWS.length,
+  );
   const shown = Math.min(n, PRICE_ROWS.length);
   const cols = mob ? "1fr 84px 84px" : "1fr 120px 120px 90px";
+  const body = figType("body", mob);
+  const refused = figTone(t, "refused");
 
   return (
     <div>
@@ -36,18 +55,28 @@ export const FigPrice = ({
         left="fig. 1: proposed rates checked against the government benchmark, anomalies flagged"
         right="Zilliqa · ML price model"
       />
-      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+      <div
+        style={{
+          ...figPanel(t),
+          height: figH("lg", mob),
+          overflow: "hidden",
+          padding: mob ? 10 : "12px 14px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          gap: 6,
+        }}
+      >
         <div
           style={{
             display: "grid",
             gridTemplateColumns: cols,
             gap: mob ? 10 : 14,
-            padding: mob ? "0 11px" : "0 14px",
-            border: "1px solid transparent",
+            padding: mob ? "0 11px" : "0 15px",
             fontFamily: M,
-            fontSize: 10,
+            fontSize: figType("label", mob),
+            letterSpacing: FIG_TRACK,
             color: t.tx3,
-            letterSpacing: "0.08em",
           }}
         >
           <span>COMMODITY</span>
@@ -62,24 +91,23 @@ export const FigPrice = ({
           const flagged = vis && r.flag;
           return (
             <div
-              key={i}
+              key={r.item}
               style={{
+                ...figBox(t, flagged ? refused : undefined),
                 display: "grid",
                 gridTemplateColumns: cols,
                 alignItems: "center",
                 gap: mob ? 10 : 14,
-                padding: mob ? "9px 11px" : "11px 14px",
-                border: `1px solid ${flagged ? t.flag : t.rule}`,
-                borderRadius: 6,
-                background: t.bg,
-                opacity: vis ? 1 : 0.18,
-                transition: "all 0.4s",
+                padding: mob ? "7px 10px" : "8px 14px",
+                flexShrink: 0,
+                opacity: vis ? 1 : FIG_DIM,
+                transition: FIG_EASE,
               }}
             >
               <span
                 style={{
                   fontFamily: M,
-                  fontSize: mob ? 11 : 12.5,
+                  fontSize: body,
                   color: t.tx,
                   minWidth: 0,
                   overflow: "hidden",
@@ -92,8 +120,8 @@ export const FigPrice = ({
               <span
                 style={{
                   fontFamily: M,
-                  fontSize: mob ? 11 : 12.5,
-                  color: flagged ? t.flag : t.tx2,
+                  fontSize: body,
+                  color: flagged ? refused : t.tx2,
                   textAlign: "right",
                 }}
               >
@@ -102,7 +130,7 @@ export const FigPrice = ({
               <span
                 style={{
                   fontFamily: M,
-                  fontSize: mob ? 11 : 12.5,
+                  fontSize: body,
                   color: t.tx3,
                   textAlign: "right",
                 }}
@@ -113,8 +141,8 @@ export const FigPrice = ({
                 <span
                   style={{
                     fontFamily: M,
-                    fontSize: 10,
-                    color: flagged ? t.flag : t.ok,
+                    fontSize: figType("sub", mob),
+                    color: flagged ? refused : figTone(t, "ok"),
                     textAlign: "right",
                     whiteSpace: "nowrap",
                   }}

@@ -1,9 +1,18 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
-import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
+import {
+  FIG_BEAT,
+  FIG_EASE,
+  FIG_HOLD,
+  FIG_TRACK,
+  MONO as M,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
 
 const DW_MOVES: [number, "B" | "G"][] = [
   [3, "B"],
@@ -27,6 +36,9 @@ const DW_PHASES: [string, string][] = [
   ["ATTEST", "Proof-of-Victory · Sign Protocol"],
 ];
 
+// Two beats to stake, seven moves, one to settle; the attestation then holds.
+const ATTEST_AT = 10;
+
 // Dewls — a self-playing Connect-4 wager: stake → play → settle → attest.
 export const FigWager = ({
   mob,
@@ -36,18 +48,9 @@ export const FigWager = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const reduced = useReducedMotion();
-  const [step, setStep] = useState(0);
-
-  useEffect(() => {
-    if (reduced || !active) return;
-    const id = setInterval(() => setStep((s) => (s + 1) % 15), 620);
-    return () => clearInterval(id);
-  }, [reduced, active]);
-
-  const shownStep = reduced ? 13 : step;
-  const applied = Math.max(0, Math.min(shownStep - 1, DW_MOVES.length));
-  const phase = shownStep < 2 ? 0 : shownStep < 9 ? 1 : shownStep < 10 ? 2 : 3;
+  const step = useTick(FIG_BEAT.quick, ATTEST_AT + FIG_HOLD, active, ATTEST_AT);
+  const applied = Math.max(0, Math.min(step - 1, DW_MOVES.length));
+  const phase = step < 2 ? 0 : step < 9 ? 1 : step < ATTEST_AT ? 2 : 3;
 
   const board: Record<string, "B" | "G"> = {};
   const heights = [0, 0, 0, 0, 0, 0, 0];
@@ -60,6 +63,7 @@ export const FigWager = ({
     phase >= 2 && DW_WIN.some(([wc, wr]) => wc === c && wr === r);
   const cell = mob ? 20 : 26;
   const gap = 5;
+  const body = figType("body", mob);
 
   return (
     <div>
@@ -75,48 +79,53 @@ export const FigWager = ({
         }}
       >
         <div
-          className="inline-grid rounded-md"
           style={{
-            border: `1px solid ${t.rule}`,
-            background: t.panel,
+            ...figPanel(t),
+            height: figH(mob ? "md" : "lg", mob),
             padding: mob ? 12 : 16,
-            gridTemplateColumns: `repeat(7, ${cell}px)`,
-            gap,
-            alignSelf: mob ? "center" : "auto",
-            justifySelf: mob ? "center" : "auto",
+            display: "grid",
+            placeContent: "center",
           }}
         >
-          {Array.from({ length: 6 }, (_, ri) => 5 - ri).map((r) =>
-            Array.from({ length: 7 }, (_, c) => {
-              const who = board[c + "," + r];
-              const win = isWin(c, r) && who;
-              const col =
-                who === "B" ? t.sig : who === "G" ? t.acc : "transparent";
-              return (
-                <span
-                  key={c + "," + r}
-                  style={{
-                    width: cell,
-                    height: cell,
-                    borderRadius: "50%",
-                    background: col,
-                    border: who ? "none" : `1px solid ${t.ruleStrong}`,
-                    boxSizing: "border-box",
-                    transform: who ? "scale(1)" : "scale(0.92)",
-                    boxShadow: win ? `0 0 12px ${t.sig}cc` : "none",
-                    outline: win ? `2px solid ${t.tx}` : "none",
-                    outlineOffset: 1,
-                    transition: "background 0.25s, box-shadow 0.3s",
-                  }}
-                />
-              );
-            }),
-          )}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: `repeat(7, ${cell}px)`,
+              gap,
+            }}
+          >
+            {Array.from({ length: 6 }, (_, ri) => 5 - ri).map((r) =>
+              Array.from({ length: 7 }, (_, c) => {
+                const who = board[c + "," + r];
+                const win = isWin(c, r) && who;
+                const col =
+                  who === "B" ? t.sig : who === "G" ? t.acc : "transparent";
+                return (
+                  <span
+                    key={c + "," + r}
+                    style={{
+                      width: cell,
+                      height: cell,
+                      borderRadius: "50%",
+                      background: col,
+                      border: who ? "none" : `1px solid ${t.ruleStrong}`,
+                      boxSizing: "border-box",
+                      transform: who ? "scale(1)" : "scale(0.92)",
+                      boxShadow: win ? `0 0 12px ${t.sig}cc` : "none",
+                      outline: win ? `2px solid ${t.tx}` : "none",
+                      outlineOffset: 1,
+                      transition: FIG_EASE,
+                    }}
+                  />
+                );
+              }),
+            )}
+          </div>
         </div>
         <div className="flex min-w-0 flex-col justify-center gap-2">
           <div
             className="overflow-hidden font-mono text-ellipsis whitespace-nowrap"
-            style={{ fontSize: mob ? 10.5 : 12, color: t.tx2 }}
+            style={{ fontSize: body, color: t.tx2 }}
           >
             <span style={{ color: t.sig }}>0x4f2…a91</span> · 25
             USDC&nbsp;&nbsp;⇄ &nbsp;&nbsp;
@@ -130,26 +139,33 @@ export const FigWager = ({
               return (
                 <div
                   key={name}
-                  className="min-w-0 rounded-[5px]"
+                  className="min-w-0"
                   style={{
-                    border: `1px solid ${on ? col : t.rule}`,
-                    background: t.panel,
+                    ...figPanel(t),
+                    borderColor: on ? col : t.rule,
                     padding: "9px 10px",
-                    transition: "border-color 0.3s",
+                    transition: FIG_EASE,
                   }}
                 >
                   <p
-                    className="m-0 font-mono text-[11.5px] tracking-[0.08em]"
-                    style={{ color: on ? col : t.tx3 }}
+                    className="m-0"
+                    style={{
+                      fontFamily: M,
+                      fontSize: figType("label", mob),
+                      letterSpacing: FIG_TRACK,
+                      color: on ? col : t.tx3,
+                    }}
                   >
                     {name}
                   </p>
                   {!mob ? (
                     <p
-                      className="m-0 mt-[5px] font-mono text-[10.5px] leading-[1.5]"
+                      className="m-0 mt-[5px] leading-[1.5]"
                       style={{
+                        fontFamily: M,
+                        fontSize: figType("sub", mob),
                         color: on ? t.tx2 : t.tx3,
-                        transition: "color 0.3s",
+                        transition: FIG_EASE,
                       }}
                     >
                       {desc}
@@ -160,13 +176,14 @@ export const FigWager = ({
             })}
           </div>
           <div
-            className="overflow-hidden rounded-[5px] font-mono text-ellipsis whitespace-nowrap"
+            className="overflow-hidden font-mono text-ellipsis whitespace-nowrap"
             style={{
-              border: `1px solid ${phase === 3 ? t.acc : t.rule}`,
+              ...figPanel(t),
+              borderColor: phase === 3 ? t.acc : t.rule,
               padding: "9px 12px",
-              fontSize: mob ? 10.5 : 12,
+              fontSize: body,
               color: phase === 3 ? t.acc : t.tx3,
-              transition: "all 0.4s",
+              transition: FIG_EASE,
             }}
           >
             {phase === 3

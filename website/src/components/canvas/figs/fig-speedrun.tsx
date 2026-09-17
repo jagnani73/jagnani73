@@ -1,10 +1,21 @@
 "use client";
 
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { MONO as M, figPanel } from "./fig-style";
+import {
+  FIG_BEAT,
+  FIG_DIM,
+  FIG_EASE,
+  FIG_HOLD,
+  FIG_TRACK,
+  MONO as M,
+  figBox,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
 import type { ThemeTokens } from "@/utils/types/theme.types";
 
 // Each: a plain prompt → the files SpeedRun scaffolds → the app, running in-browser.
@@ -35,7 +46,9 @@ const EXAMPLES = [
   },
 ] as const;
 
-const PER = 7; // 0 prompt · 1-3 files · 4 dev-ready · 5-6 preview (hold)
+// 0 prompt · 1-3 files · 4 dev server ready · 5 preview, then the hold.
+const PREVIEW_AT = 5;
+const PER = PREVIEW_AT + FIG_HOLD;
 
 const Preview = ({
   k,
@@ -46,20 +59,22 @@ const Preview = ({
   t: ThemeTokens;
   mob: boolean;
 }): ReactNode => {
-  const sz = mob ? 11 : 12;
-  const head = { margin: 0, fontFamily: M, fontSize: sz, color: t.tx } as const;
-  const muted = {
+  const body = figType("body", mob);
+  const sub = figType("sub", mob);
+  const head = {
+    margin: 0,
     fontFamily: M,
-    fontSize: mob ? 10 : 11,
-    color: t.tx3,
+    fontSize: body,
+    color: t.tx,
   } as const;
+  const muted = { fontFamily: M, fontSize: sub, color: t.tx3 } as const;
   const pill = {
     alignSelf: "flex-start",
     fontFamily: M,
-    fontSize: mob ? 10 : 11,
+    fontSize: sub,
     color: t.bg,
     background: t.sig,
-    borderRadius: 5,
+    borderRadius: 6,
     padding: "4px 10px",
   } as const;
 
@@ -68,7 +83,13 @@ const Preview = ({
       <>
         <p style={head}>ETH Gas Calculator</p>
         <span style={muted}>transfer · 21,000 gas</span>
-        <span style={{ fontFamily: M, fontSize: mob ? 19 : 22, color: t.acc }}>
+        <span
+          style={{
+            fontFamily: M,
+            fontSize: figType("display", mob),
+            color: t.acc,
+          }}
+        >
           ≈ $0.42
         </span>
         <span style={muted}>live base fee · GoldRush</span>
@@ -93,7 +114,7 @@ const Preview = ({
               alignItems: "center",
               gap: 9,
               fontFamily: M,
-              fontSize: sz,
+              fontSize: body,
             }}
           >
             <span style={{ color: t.tx3, width: 10 }}>{r}</span>
@@ -128,13 +149,13 @@ const Preview = ({
         {rows.map(([a, b]) => (
           <div
             key={a}
-            style={{ display: "flex", gap: 9, fontFamily: M, fontSize: sz }}
+            style={{ display: "flex", gap: 9, fontFamily: M, fontSize: body }}
           >
             <span style={{ color: t.tx3, width: mob ? 46 : 56 }}>{a}</span>
             <span style={{ color: t.tx2 }}>{b}</span>
           </div>
         ))}
-        <span style={{ fontFamily: M, fontSize: mob ? 10 : 11, color: t.ok }}>
+        <span style={{ fontFamily: M, fontSize: sub, color: t.ok }}>
           ✓ deployed · 0x9c4…f0b
         </span>
       </>
@@ -148,7 +169,7 @@ const Preview = ({
       <span
         style={{
           fontFamily: M,
-          fontSize: sz,
+          fontSize: body,
           color: t.tx2,
           lineHeight: 1.5,
           borderLeft: `2px solid ${t.sig}`,
@@ -171,17 +192,35 @@ export const FigSpeedRun = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const tick = useTick(620, EXAMPLES.length * PER, active, 5);
+  const tick = useTick(
+    FIG_BEAT.quick,
+    EXAMPLES.length * PER,
+    active,
+    PREVIEW_AT,
+  );
   const ex = EXAMPLES[Math.floor(tick / PER) % EXAMPLES.length];
   const step = tick % PER;
 
   const filesShown = Math.min(step, ex.files.length);
   const devReady = step >= ex.files.length + 1;
-  const previewOn = step >= PER - 2;
+  const previewOn = step >= PREVIEW_AT;
+  const body = figType("body", mob);
+  const sub = figType("sub", mob);
 
-  const panel = figPanel(t);
-  const label = mob ? 10 : 10.5;
-  const code = mob ? 11 : 12;
+  // Both cards change every beat, so they keep a fixed height at every width.
+  const card: CSSProperties = {
+    ...figPanel(t),
+    height: figH(mob ? "md" : "lg", mob),
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+  };
+  const label: CSSProperties = {
+    margin: 0,
+    fontFamily: M,
+    fontSize: figType("label", mob),
+    letterSpacing: FIG_TRACK,
+  };
 
   return (
     <div>
@@ -200,31 +239,17 @@ export const FigSpeedRun = ({
         {/* the build */}
         <div
           style={{
-            ...panel,
+            ...card,
             padding: mob ? "12px 14px" : "15px 17px",
-            height: mob ? 158 : 196,
-            overflow: "hidden",
-            display: "flex",
-            flexDirection: "column",
             gap: 9,
           }}
         >
-          <p
-            style={{
-              margin: 0,
-              fontFamily: M,
-              fontSize: label,
-              color: t.tx3,
-              letterSpacing: "0.1em",
-            }}
-          >
-            SPEEDRUN · build
-          </p>
+          <p style={{ ...label, color: t.tx3 }}>SPEEDRUN · build</p>
           <div style={{ display: "flex", alignItems: "baseline", gap: 7 }}>
             <span
               style={{
                 fontFamily: M,
-                fontSize: code,
+                fontSize: body,
                 color: t.sig,
                 flexShrink: 0,
               }}
@@ -234,7 +259,7 @@ export const FigSpeedRun = ({
             <span
               style={{
                 fontFamily: M,
-                fontSize: code,
+                fontSize: body,
                 color: t.tx,
                 lineHeight: 1.45,
               }}
@@ -260,9 +285,9 @@ export const FigSpeedRun = ({
                     alignItems: "center",
                     gap: 8,
                     fontFamily: M,
-                    fontSize: mob ? 10.5 : 11.5,
-                    opacity: vis ? 1 : 0.15,
-                    transition: "opacity 0.3s",
+                    fontSize: sub,
+                    opacity: vis ? 1 : FIG_DIM,
+                    transition: FIG_EASE,
                   }}
                 >
                   <span style={{ color: t.ok }}>{vis ? "✓" : "·"}</span>
@@ -278,7 +303,7 @@ export const FigSpeedRun = ({
               gap: 7,
               marginTop: "auto",
               fontFamily: M,
-              fontSize: mob ? 10 : 11,
+              fontSize: sub,
             }}
           >
             <span
@@ -288,7 +313,7 @@ export const FigSpeedRun = ({
                 borderRadius: "50%",
                 background: devReady ? t.ok : t.tx3,
                 boxShadow: devReady ? `0 0 7px ${t.ok}` : "none",
-                transition: "background 0.3s",
+                transition: FIG_EASE,
               }}
             />
             <span style={{ color: t.tx3 }}>
@@ -300,38 +325,18 @@ export const FigSpeedRun = ({
         </div>
 
         {/* the running app */}
-        <div
-          style={{
-            ...panel,
-            padding: mob ? 12 : 14,
-            height: mob ? 158 : 196,
-            overflow: "hidden",
-            display: "flex",
-            flexDirection: "column",
-            gap: 8,
-          }}
-        >
-          <p
-            style={{
-              margin: 0,
-              fontFamily: M,
-              fontSize: label,
-              color: t.sig,
-              letterSpacing: "0.1em",
-            }}
-          >
-            PREVIEW · live in-browser
-          </p>
+        <div style={{ ...card, padding: mob ? 12 : 14, gap: 8 }}>
+          <p style={{ ...label, color: t.sig }}>PREVIEW · live in-browser</p>
           <div
             style={{
+              ...figBox(t),
               flex: 1,
-              border: `1px solid ${t.rule}`,
-              borderRadius: 5,
-              background: t.bg,
-              padding: mob ? 12 : 14,
+              minHeight: 0,
+              overflow: "hidden",
+              padding: mob ? 10 : 12,
               display: "flex",
               flexDirection: "column",
-              gap: mob ? 7 : 9,
+              gap: mob ? 5 : 9,
               justifyContent: "center",
             }}
           >
@@ -340,9 +345,7 @@ export const FigSpeedRun = ({
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  gap: mob ? 7 : 9,
-                  opacity: 1,
-                  transition: "opacity 0.35s",
+                  gap: mob ? 5 : 9,
                 }}
               >
                 <Preview k={ex.key} t={t} mob={mob} />
@@ -352,7 +355,7 @@ export const FigSpeedRun = ({
                 style={{
                   alignSelf: "center",
                   fontFamily: M,
-                  fontSize: mob ? 10.5 : 11.5,
+                  fontSize: sub,
                   color: t.tx3,
                 }}
               >

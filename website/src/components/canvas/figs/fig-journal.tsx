@@ -1,9 +1,19 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel, MONO as M } from "./fig-style";
+import {
+  FIG_BEAT,
+  FIG_EASE,
+  FIG_HOLD,
+  FIG_TRACK,
+  MONO as M,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
 import type { JournalColor as C } from "@/utils/types/fig.types";
 
 const FREN_KEYS: [string, C][] = [
@@ -12,6 +22,9 @@ const FREN_KEYS: [string, C][] = [
   ["sleep", "acc"],
   ["hopeful", "ok"],
 ];
+
+// Beats 0-1 idle, 2-4 analysing, then the finished analysis holds.
+const DONE = 5;
 
 // Fren — therapist sees the analysis, never the raw entry.
 export const FigJournal = ({
@@ -22,12 +35,27 @@ export const FigJournal = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const n = useTick(560, 11, active, 8);
-  const analyzing = n >= 2 && n <= 4;
-  const done = n >= 5;
+  const n = useTick(FIG_BEAT.quick, DONE + FIG_HOLD, active, DONE);
+  const analyzing = n >= 2 && n < DONE;
+  const done = n >= DONE;
   const keysShown = done ? FREN_KEYS.length : 0;
   const mood = done ? 34 : 0;
-  const panel = figPanel(t);
+  const sub = figType("sub", mob);
+
+  // The analysis card fills in over the cycle, so both cards keep a fixed
+  // height at every width.
+  const card: CSSProperties = {
+    ...figPanel(t),
+    padding: mob ? 12 : 14,
+    height: figH("sm", mob),
+    overflow: "hidden",
+  };
+  const label: CSSProperties = {
+    fontFamily: M,
+    fontSize: figType("label", mob),
+    letterSpacing: FIG_TRACK,
+    margin: "0 0 9px",
+  };
 
   return (
     <div>
@@ -40,21 +68,11 @@ export const FigJournal = ({
           display: "grid",
           gridTemplateColumns: mob ? "1fr" : "1fr 40px 1fr",
           gap: mob ? 10 : 6,
-          alignItems: "stretch",
+          alignItems: "center",
         }}
       >
-        <div style={{ ...panel, padding: mob ? 12 : 14, borderColor: t.acc }}>
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10,
-              color: t.tx3,
-              margin: "0 0 9px",
-              letterSpacing: "0.08em",
-            }}
-          >
-            JOURNAL · private
-          </p>
+        <div style={{ ...card, borderColor: t.acc }}>
+          <p style={{ ...label, color: t.tx3 }}>JOURNAL · private</p>
           {[96, 88, 92, 70].map((w, i) => (
             <span
               key={i}
@@ -70,7 +88,7 @@ export const FigJournal = ({
               }}
             />
           ))}
-          <span style={{ fontFamily: M, fontSize: 10, color: t.acc }}>
+          <span style={{ fontFamily: M, fontSize: sub, color: t.acc }}>
             🔒 encrypted to the client
           </span>
         </div>
@@ -78,36 +96,25 @@ export const FigJournal = ({
           style={{
             textAlign: "center",
             fontFamily: M,
-            fontSize: 12,
+            fontSize: figType("body", mob),
             color: analyzing ? t.sig : t.tx3,
-            transition: "color 0.3s",
+            transition: FIG_EASE,
           }}
         >
           {analyzing ? (mob ? "↓ NLP" : "NLP →") : mob ? "↓" : "→"}
         </div>
         <div
           style={{
-            ...panel,
-            padding: mob ? 12 : 14,
+            ...card,
             borderColor: done ? t.sig : t.rule,
-            transition: "border-color 0.3s",
+            transition: FIG_EASE,
           }}
         >
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10,
-              color: t.sig,
-              margin: "0 0 9px",
-              letterSpacing: "0.08em",
-            }}
-          >
-            THERAPIST · analysis
-          </p>
+          <p style={{ ...label, color: t.sig }}>THERAPIST · analysis</p>
           <div
             style={{
               fontFamily: M,
-              fontSize: 10.5,
+              fontSize: sub,
               color: t.tx3,
               margin: "0 0 5px",
             }}
@@ -118,7 +125,7 @@ export const FigJournal = ({
             style={{
               height: 9,
               borderRadius: 99,
-              background: t.panel,
+              background: t.bg,
               overflow: "hidden",
               marginBottom: 12,
             }}
@@ -128,7 +135,7 @@ export const FigJournal = ({
                 height: "100%",
                 width: `${mood}%`,
                 background: t.flag,
-                transition: "width 0.6s",
+                transition: FIG_EASE,
               }}
             />
           </div>
@@ -138,7 +145,7 @@ export const FigJournal = ({
                 key={k}
                 style={{
                   fontFamily: M,
-                  fontSize: 10.5,
+                  fontSize: sub,
                   color: t[c],
                   border: `1px solid ${t[c]}`,
                   borderRadius: 99,

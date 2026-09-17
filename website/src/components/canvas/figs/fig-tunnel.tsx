@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { FigCaption } from "./fig-caption";
+import { FIG_SPEED, figBox, figH, figPanel, figType } from "./fig-style";
 
 // Claude Controller — phone drives the laptop's Claude Code CLI over an encrypted Tailscale tunnel; a packet ping-pongs the link.
 const X1 = 28;
@@ -24,7 +25,7 @@ export const FigTunnel = ({
     if (reduced || !active) return;
     let raf = 0;
     const loop = (time: number) => {
-      setP((time * 0.0004) % 1);
+      setP((time * FIG_SPEED.quick) % 1);
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -34,9 +35,9 @@ export const FigTunnel = ({
   const tri = reduced ? 0.5 : p < 0.5 ? p * 2 : 2 - p * 2; // 0..1..0 ping-pong
   const dotX = X1 + (X2 - X1) * tri;
 
-  const H = mob ? 160 : 178;
-  const title = mob ? 11 : 13;
-  const sub = mob ? 9 : 10.5;
+  const H = figH("sm", mob);
+  const title = figType("title", mob);
+  const sub = figType("sub", mob);
   const laptopRows = [
     { label: "Caddy · TLS", c: t.tx3 },
     { label: "backend · 127.0.0.1", c: t.tx3 },
@@ -50,12 +51,8 @@ export const FigTunnel = ({
         right="WSS · Tailscale · WireGuard"
       />
       <div
-        className="relative overflow-hidden rounded-md"
-        style={{
-          height: H,
-          border: `1px solid ${t.rule}`,
-          background: t.panel,
-        }}
+        className="relative overflow-hidden"
+        style={{ ...figPanel(t), height: H }}
       >
         <svg width="100%" height="100%" className="absolute inset-0">
           <line
@@ -72,13 +69,12 @@ export const FigTunnel = ({
         </svg>
 
         <div
-          className="absolute flex flex-col items-center rounded-md border font-mono"
+          className="absolute flex flex-col items-center font-mono"
           style={{
+            ...figBox(t, t.sig),
             left: "15%",
             top: "50%",
             transform: "translate(-50%, -50%)",
-            borderColor: t.sig,
-            background: t.bg,
             padding: mob ? "8px 12px" : "12px 18px",
           }}
         >
@@ -91,13 +87,12 @@ export const FigTunnel = ({
         </div>
 
         <div
-          className="absolute rounded-md border font-mono"
+          className="absolute font-mono"
           style={{
+            ...figBox(t, t.ruleStrong),
             left: "81%",
             top: "50%",
             transform: "translate(-50%, -50%)",
-            borderColor: t.ruleStrong,
-            background: t.bg,
             padding: mob ? "7px 10px" : "10px 14px",
           }}
         >

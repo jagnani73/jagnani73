@@ -3,7 +3,16 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { MONO as M } from "./fig-style";
+import {
+  FIG_BEAT,
+  FIG_EASE,
+  FIG_HOLD,
+  FIG_TRACK,
+  MONO as M,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
 
 const BEACON_PINS = [
   { x: 30, y: 28 },
@@ -23,11 +32,12 @@ export const FigBeacon = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
+  // One signal per beat; the full map holds for FIG_HOLD beats.
   const n = useTick(
-    720,
-    BEACON_PINS.length + 5,
+    FIG_BEAT.base,
+    BEACON_PINS.length + FIG_HOLD,
     active,
-    BEACON_PINS.length + 4,
+    BEACON_PINS.length,
   );
   const shown = Math.min(n, BEACON_PINS.length);
 
@@ -39,10 +49,8 @@ export const FigBeacon = ({
       />
       <div
         style={{
-          border: `1px solid ${t.rule}`,
-          borderRadius: 6,
-          background: t.panel,
-          height: mob ? 200 : 216,
+          ...figPanel(t),
+          height: figH("lg", mob),
           position: "relative",
           overflow: "hidden",
           backgroundImage: `linear-gradient(${t.rule} 1px, transparent 1px), linear-gradient(90deg, ${t.rule} 1px, transparent 1px)`,
@@ -55,7 +63,8 @@ export const FigBeacon = ({
             top: 10,
             left: 13,
             fontFamily: M,
-            fontSize: 11,
+            fontSize: figType("label", mob),
+            letterSpacing: FIG_TRACK,
             color: t.tx3,
           }}
         >
@@ -72,7 +81,7 @@ export const FigBeacon = ({
                 top: `${p.y}%`,
                 transform: "translate(-50%,-50%)",
                 opacity: vis ? 1 : 0,
-                transition: "opacity 0.3s",
+                transition: FIG_EASE,
               }}
             >
               {vis ? (
@@ -110,7 +119,7 @@ export const FigBeacon = ({
             bottom: 10,
             right: 13,
             fontFamily: M,
-            fontSize: 11,
+            fontSize: figType("body", mob),
             color: t.ok,
           }}
         >

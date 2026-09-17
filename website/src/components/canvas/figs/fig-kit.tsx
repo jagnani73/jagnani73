@@ -1,9 +1,20 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel, MONO as M } from "./fig-style";
+import {
+  FIG_BEAT,
+  FIG_EASE,
+  FIG_HOLD,
+  FIG_TRACK,
+  MONO as M,
+  figBox,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
 import type { FigAccent } from "@/utils/types/fig.types";
 
 const KIT_SETS: {
@@ -57,6 +68,9 @@ const KIT_SETS: {
   },
 ];
 
+// One blank beat, three rows, then the hold.
+const PER = 4 + FIG_HOLD;
+
 // GoldRush Kit — raw API response → rendered component.
 export const FigKit = ({
   mob,
@@ -66,11 +80,24 @@ export const FigKit = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const PER = 7;
-  const tick = useTick(640, KIT_SETS.length * PER, active, 6);
+  const tick = useTick(FIG_BEAT.quick, KIT_SETS.length * PER, active, PER - 1);
   const set = KIT_SETS[Math.floor(tick / PER) % KIT_SETS.length];
   const shown = Math.min(tick % PER, set.rows.length);
-  const panel = figPanel(t);
+  const sub = figType("sub", mob);
+  const body = figType("body", mob);
+
+  // The response changes every cycle, so both cards keep a fixed height at
+  // every width.
+  const card: CSSProperties = {
+    ...figPanel(t),
+    height: figH("lg", mob),
+    overflow: "hidden",
+  };
+  const label: CSSProperties = {
+    fontFamily: M,
+    fontSize: figType("label", mob),
+    letterSpacing: FIG_TRACK,
+  };
 
   return (
     <div>
@@ -86,29 +113,15 @@ export const FigKit = ({
           alignItems: "stretch",
         }}
       >
-        <div
-          style={{
-            ...panel,
-            padding: mob ? "12px 14px" : "16px 18px",
-            minHeight: mob ? 0 : 204,
-          }}
-        >
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10.5,
-              color: t.tx3,
-              margin: "0 0 8px",
-              letterSpacing: "0.1em",
-            }}
-          >
+        <div style={{ ...card, padding: mob ? "12px 14px" : "16px 18px" }}>
+          <p style={{ ...label, color: t.tx3, margin: "0 0 8px" }}>
             RAW · GoldRush SDK
           </p>
           <pre
             style={{
               margin: 0,
               fontFamily: M,
-              fontSize: mob ? 10 : 11.5,
+              fontSize: body,
               lineHeight: 1.75,
               color: t.tx2,
               whiteSpace: "pre-wrap",
@@ -119,23 +132,14 @@ export const FigKit = ({
         </div>
         <div
           style={{
-            ...panel,
+            ...card,
             padding: mob ? 12 : 14,
-            minHeight: mob ? 0 : 204,
             display: "flex",
             flexDirection: "column",
-            gap: 8,
+            gap: 6,
           }}
         >
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10.5,
-              color: t.sig,
-              margin: "0 0 2px",
-              letterSpacing: "0.1em",
-            }}
-          >
+          <p style={{ ...label, color: t.sig, margin: "0 0 2px" }}>
             RENDERED · drop-in component
           </p>
           {set.rows.map((r, i) => {
@@ -144,16 +148,15 @@ export const FigKit = ({
               <div
                 key={set.type + r.s}
                 style={{
+                  ...figBox(t),
                   display: "flex",
                   alignItems: "center",
                   gap: 10,
-                  padding: mob ? "7px 8px" : "9px 11px",
-                  border: `1px solid ${t.rule}`,
-                  borderRadius: 5,
-                  background: t.bg,
+                  padding: mob ? "6px 8px" : "7px 10px",
+                  flexShrink: 0,
                   opacity: vis ? 1 : 0,
                   transform: vis ? "translateY(0)" : "translateY(6px)",
-                  transition: "all 0.35s",
+                  transition: FIG_EASE,
                 }}
               >
                 <span
@@ -168,7 +171,7 @@ export const FigKit = ({
                     alignItems: "center",
                     justifyContent: "center",
                     fontFamily: M,
-                    fontSize: 8.5,
+                    fontSize: sub,
                     color: t[r.c],
                   }}
                 >
@@ -179,7 +182,7 @@ export const FigKit = ({
                     style={{
                       margin: 0,
                       fontFamily: M,
-                      fontSize: mob ? 11 : 12.5,
+                      fontSize: body,
                       color: t.tx,
                     }}
                   >
@@ -189,20 +192,14 @@ export const FigKit = ({
                     style={{
                       margin: 0,
                       fontFamily: M,
-                      fontSize: 10.5,
+                      fontSize: sub,
                       color: t.tx3,
                     }}
                   >
                     {r.n}
                   </p>
                 </div>
-                <span
-                  style={{
-                    fontFamily: M,
-                    fontSize: mob ? 10.5 : 12,
-                    color: t[r.c],
-                  }}
-                >
+                <span style={{ fontFamily: M, fontSize: body, color: t[r.c] }}>
                   {r.v}
                 </span>
               </div>

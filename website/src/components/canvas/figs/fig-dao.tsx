@@ -3,9 +3,18 @@
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { MONO as M } from "./fig-style";
-
-const A = "var(--font-display)";
+import {
+  FIG_BEAT,
+  FIG_DIM,
+  FIG_EASE,
+  FIG_HOLD,
+  MONO as M,
+  figBox,
+  figH,
+  figPanel,
+  figTone,
+  figType,
+} from "./fig-style";
 
 const DAO_VOTERS: {
   id: string;
@@ -53,7 +62,12 @@ export const FigDao = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const n = useTick(820, DAO_VOTERS.length + 4, active, DAO_VOTERS.length + 3);
+  const n = useTick(
+    FIG_BEAT.base,
+    DAO_VOTERS.length + FIG_HOLD,
+    active,
+    DAO_VOTERS.length,
+  );
   const shown = Math.min(n, DAO_VOTERS.length);
   let yes = 0;
   let no = 0;
@@ -62,7 +76,9 @@ export const FigDao = ({
     else no += v.w;
   });
   const total = yes + no || 1;
-  const panel = { border: `1px solid ${t.rule}`, borderRadius: 6 };
+  const sub = figType("sub", mob);
+  const ok = figTone(t, "ok");
+  const refused = figTone(t, "refused");
 
   return (
     <div>
@@ -70,40 +86,62 @@ export const FigDao = ({
         left="fig. 1: a vote weighted by reputation proven off-chain, not tokens held"
         right="proposal #07 · weighted tally"
       />
-      <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
+      <div
+        style={{
+          ...figPanel(t),
+          height: figH("lg", mob),
+          overflow: "hidden",
+          padding: mob ? 10 : "12px 14px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          gap: 6,
+        }}
+      >
         {DAO_VOTERS.map((v, i) => {
           const vis = i < shown;
           const proven = vis && v.proofs !== "token only";
+          const tone = v.vote === "YES" ? ok : refused;
           return (
             <div
               key={v.id}
               style={{
-                ...panel,
+                ...figBox(t),
                 display: "grid",
                 gridTemplateColumns: mob
                   ? "auto 1fr auto auto"
                   : "104px 1fr auto auto",
                 alignItems: "center",
                 gap: mob ? 8 : 14,
-                padding: mob ? "8px 10px" : "10px 14px",
-                background: t.bg,
-                opacity: vis ? 1 : 0.2,
-                transition: "opacity 0.4s",
+                padding: mob ? "7px 10px" : "8px 14px",
+                flexShrink: 0,
+                opacity: vis ? 1 : FIG_DIM,
+                transition: FIG_EASE,
               }}
             >
               <span
                 style={{
                   fontFamily: M,
-                  fontSize: mob ? 10.5 : 12.5,
+                  fontSize: figType("body", mob),
                   color: t.tx,
                 }}
               >
                 {v.id}
               </span>
               {!mob ? (
-                <span style={{ fontFamily: M, fontSize: 11, color: t.tx3 }}>
+                <span
+                  style={{
+                    fontFamily: M,
+                    fontSize: sub,
+                    color: t.tx3,
+                    minWidth: 0,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap",
+                  }}
+                >
                   {v.rep}{" "}
-                  <span style={{ color: proven ? t.ok : t.tx3 }}>
+                  <span style={{ color: proven ? ok : t.tx3 }}>
                     · {v.proofs}
                     {proven ? " ✓" : ""}
                   </span>
@@ -113,25 +151,24 @@ export const FigDao = ({
               )}
               <span
                 style={{
-                  fontFamily: A,
-                  fontSize: mob ? 16 : 20,
+                  fontFamily: M,
+                  fontSize: figType("title", mob),
                   color: v.w >= 5 ? t.sig : t.tx3,
-                  letterSpacing: "0.02em",
                 }}
               >
                 {v.w.toFixed(1)}
-                <span style={{ fontSize: 10, color: t.tx3, fontFamily: M }}>
+                <span style={{ fontSize: figType("label", mob), color: t.tx3 }}>
                   ×
                 </span>
               </span>
               <span
                 style={{
                   fontFamily: M,
-                  fontSize: mob ? 9.5 : 11,
-                  color: v.vote === "YES" ? t.ok : t.flag,
-                  border: `1px solid ${v.vote === "YES" ? t.ok : t.flag}`,
+                  fontSize: sub,
+                  color: tone,
+                  border: `1px solid ${tone}`,
                   borderRadius: 99,
-                  padding: "2px 9px",
+                  padding: "1px 9px",
                 }}
               >
                 {v.vote}
@@ -142,42 +179,52 @@ export const FigDao = ({
         <div
           style={{
             display: "flex",
-            height: 12,
+            height: 10,
+            flexShrink: 0,
             borderRadius: 99,
             overflow: "hidden",
-            marginTop: 5,
-            background: t.panel,
+            background: t.bg,
           }}
         >
           <div
             style={{
               width: `${(yes / total) * 100}%`,
-              background: t.ok,
-              transition: "width 0.5s",
+              background: ok,
+              transition: FIG_EASE,
             }}
           />
           <div
             style={{
               width: `${(no / total) * 100}%`,
-              background: t.flag,
-              transition: "width 0.5s",
+              background: refused,
+              transition: FIG_EASE,
             }}
           />
         </div>
-        <div
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: 8,
+          marginTop: 8,
+          fontFamily: M,
+          fontSize: sub,
+          whiteSpace: "nowrap",
+        }}
+      >
+        <span style={{ color: ok }}>YES {yes.toFixed(1)}</span>
+        <span
           style={{
-            display: "flex",
-            justifyContent: "space-between",
-            fontFamily: M,
-            fontSize: 11,
+            color: t.tx3,
+            minWidth: 0,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           }}
         >
-          <span style={{ color: t.ok }}>YES {yes.toFixed(1)}</span>
-          <span style={{ color: t.tx3 }}>
-            vlayer web proofs · reputation-weighted
-          </span>
-          <span style={{ color: t.flag }}>NO {no.toFixed(1)}</span>
-        </div>
+          vlayer web proofs · reputation-weighted
+        </span>
+        <span style={{ color: refused }}>NO {no.toFixed(1)}</span>
       </div>
     </div>
   );

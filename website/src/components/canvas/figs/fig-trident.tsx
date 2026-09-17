@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { FigCaption } from "./fig-caption";
+import { FIG_SPEED, figH, figPanel, figType } from "./fig-style";
 
 const W = 400;
 const H = 116;
-const FIG_H = 160;
 const N = 120;
 const Z_MAX = 2.8;
 const STEP = 0.2;
@@ -41,7 +41,7 @@ export const FigTrident = ({
     if (reduced || !active) return;
     let raf = 0;
     const loop = (time: number) => {
-      setPhase(time * 0.00042);
+      setPhase(time * FIG_SPEED.quick);
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -75,12 +75,8 @@ export const FigTrident = ({
       />
 
       <div
-        className="relative overflow-hidden rounded-md"
-        style={{
-          height: FIG_H,
-          border: `1px solid ${t.rule}`,
-          background: t.panel,
-        }}
+        className="relative overflow-hidden"
+        style={{ ...figPanel(t), height: figH("sm", mob) }}
       >
         <svg
           viewBox={`0 0 ${W} ${H}`}
@@ -146,8 +142,8 @@ export const FigTrident = ({
       </div>
 
       <div
-        className="mt-2 flex justify-between font-mono text-[11.5px]"
-        style={{ color: t.tx3 }}
+        className="mt-2 flex justify-between font-mono"
+        style={{ color: t.tx3, fontSize: figType("sub", mob) }}
       >
         <span>{mob ? "±2σ enter" : "±2σ · open the pairs trade"}</span>
         <span>{mob ? "±0.5σ exit" : "±0.5σ · close it back out"}</span>

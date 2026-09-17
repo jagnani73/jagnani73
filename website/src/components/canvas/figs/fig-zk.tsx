@@ -1,9 +1,23 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel, MONO as M } from "./fig-style";
+import {
+  FIG_BEAT,
+  FIG_DIM,
+  FIG_EASE,
+  FIG_HOLD,
+  FIG_TRACK,
+  MONO as M,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
+
+// Beats 3-6 run the circuit; from beat 7 the verified claim holds.
+const VERIFIED_AT = 7;
 
 // deLinZK — proof-of-employment, employer kept private.
 export const FigZk = ({
@@ -14,10 +28,37 @@ export const FigZk = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const n = useTick(440, 12, active, 9);
-  const inCircuit = n >= 3 && n <= 6;
-  const verified = n >= 7;
-  const panel = figPanel(t);
+  const n = useTick(
+    FIG_BEAT.quick,
+    VERIFIED_AT + FIG_HOLD,
+    active,
+    VERIFIED_AT,
+  );
+  const inCircuit = n >= 3 && n < VERIFIED_AT;
+  const verified = n >= VERIFIED_AT;
+  const title = figType("title", mob);
+
+  // The cards stack on mobile and never change size, so they fit their content there.
+  const card: CSSProperties = {
+    ...figPanel(t),
+    height: mob ? undefined : figH("sm", mob),
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+  };
+  const label: CSSProperties = {
+    fontFamily: M,
+    fontSize: figType("label", mob),
+    letterSpacing: FIG_TRACK,
+    color: t.tx3,
+    margin: "0 0 8px",
+  };
+  const value: CSSProperties = {
+    fontFamily: M,
+    fontSize: title,
+    color: t.tx,
+    margin: 0,
+  };
 
   return (
     <div>
@@ -35,40 +76,16 @@ export const FigZk = ({
       >
         <div
           style={{
-            ...panel,
+            ...card,
             padding: mob ? "12px 14px" : 16,
             borderColor: t.acc,
           }}
         >
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10,
-              color: t.tx3,
-              margin: "0 0 8px",
-              letterSpacing: "0.1em",
-            }}
-          >
-            CREDENTIAL · private
-          </p>
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: mob ? 12 : 13,
-              color: t.tx,
-              margin: 0,
-            }}
-          >
+          <p style={label}>CREDENTIAL · private</p>
+          <p style={value}>
             employer: <span style={{ color: t.acc }}>Covalent</span>
           </p>
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: mob ? 12 : 13,
-              color: t.tx,
-              margin: "5px 0 0",
-            }}
-          >
+          <p style={{ ...value, margin: "5px 0 0" }}>
             tenure: <span style={{ color: t.acc }}>2y 4m</span>
           </p>
         </div>
@@ -76,33 +93,23 @@ export const FigZk = ({
           style={{
             textAlign: "center",
             fontFamily: M,
-            fontSize: 14,
+            fontSize: title,
             color: inCircuit ? t.sig : t.tx3,
-            transition: "color 0.3s",
+            transition: FIG_EASE,
           }}
         >
           {mob ? "↓" : "→"}
         </div>
         <div
           style={{
-            ...panel,
+            ...card,
             padding: mob ? 12 : "16px 10px",
             borderColor: inCircuit ? t.sig : t.rule,
             textAlign: "center",
-            transition: "border-color 0.3s",
+            transition: FIG_EASE,
           }}
         >
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10,
-              color: t.tx3,
-              margin: "0 0 8px",
-              letterSpacing: "0.1em",
-            }}
-          >
-            ZK CIRCUIT
-          </p>
+          <p style={label}>ZK CIRCUIT</p>
           <div
             style={{
               display: "flex",
@@ -123,7 +130,7 @@ export const FigZk = ({
                   opacity: inCircuit
                     ? 0.35 + 0.65 * Math.abs(Math.sin((n + i) * 1.5))
                     : 0.3,
-                  transition: "all 0.18s",
+                  transition: FIG_EASE,
                 }}
               />
             ))}
@@ -133,52 +140,28 @@ export const FigZk = ({
           style={{
             textAlign: "center",
             fontFamily: M,
-            fontSize: 14,
+            fontSize: title,
             color: verified ? t.ok : t.tx3,
-            transition: "color 0.3s",
+            transition: FIG_EASE,
           }}
         >
           {mob ? "↓" : "→"}
         </div>
         <div
           style={{
-            ...panel,
+            ...card,
             padding: mob ? "12px 14px" : 16,
             borderColor: verified ? t.ok : t.rule,
-            transition: "all 0.3s",
-            opacity: verified ? 1 : 0.4,
+            opacity: verified ? 1 : FIG_DIM,
+            transition: FIG_EASE,
           }}
         >
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10,
-              color: t.tx3,
-              margin: "0 0 8px",
-              letterSpacing: "0.1em",
-            }}
-          >
-            VERIFIED · public
-          </p>
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: mob ? 12 : 13,
-              color: t.tx,
-              margin: 0,
-            }}
-          >
+          <p style={label}>VERIFIED · public</p>
+          <p style={value}>
             employed:{" "}
             <span style={{ color: t.ok }}>{verified ? "true ✓" : "…"}</span>
           </p>
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: mob ? 12 : 13,
-              color: t.tx,
-              margin: "5px 0 0",
-            }}
-          >
+          <p style={{ ...value, margin: "5px 0 0" }}>
             employer:{" "}
             <span style={{ color: t.tx3, letterSpacing: "2px" }}>█████</span>
           </p>

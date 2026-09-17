@@ -1,9 +1,20 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
 import { useTick } from "@/hooks/use-tick";
 import { FigCaption } from "./fig-caption";
-import { figPanel, MONO as M } from "./fig-style";
+import {
+  FIG_BEAT,
+  FIG_DIM,
+  FIG_EASE,
+  FIG_HOLD,
+  FIG_TRACK,
+  MONO as M,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
 
 const DEC_EVENTS: {
   name: string;
@@ -55,6 +66,9 @@ const DEC_EVENTS: {
   },
 ];
 
+// One blank beat, up to four fields, then the hold.
+const PER = 5 + FIG_HOLD;
+
 // GoldRush Decoder — raw event log → named, enriched event.
 export const FigDecoder = ({
   mob,
@@ -64,11 +78,28 @@ export const FigDecoder = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const PER = 8;
-  const tick = useTick(620, DEC_EVENTS.length * PER, active, 7);
+  const tick = useTick(
+    FIG_BEAT.quick,
+    DEC_EVENTS.length * PER,
+    active,
+    PER - 1,
+  );
   const ev = DEC_EVENTS[Math.floor(tick / PER) % DEC_EVENTS.length];
   const shown = Math.min(tick % PER, ev.fields.length);
-  const panel = figPanel(t);
+  const title = figType("title", mob);
+
+  // The event changes every cycle, so both cards keep a fixed height at every width.
+  const card: CSSProperties = {
+    ...figPanel(t),
+    padding: mob ? "12px 14px" : "16px 18px",
+    height: figH("lg", mob),
+    overflow: "hidden",
+  };
+  const label: CSSProperties = {
+    fontFamily: M,
+    fontSize: figType("label", mob),
+    letterSpacing: FIG_TRACK,
+  };
 
   return (
     <div>
@@ -84,23 +115,8 @@ export const FigDecoder = ({
           alignItems: "center",
         }}
       >
-        <div
-          style={{
-            ...panel,
-            padding: mob ? "12px 14px" : "16px 18px",
-            height: mob ? 160 : 188,
-            overflow: "hidden",
-          }}
-        >
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10.5,
-              color: t.tx3,
-              margin: "0 0 10px",
-              letterSpacing: "0.1em",
-            }}
-          >
+        <div style={card}>
+          <p style={{ ...label, color: t.tx3, margin: "0 0 10px" }}>
             RAW LOG · hex
           </p>
           {ev.raw.map((l, i) => (
@@ -109,7 +125,7 @@ export const FigDecoder = ({
               style={{
                 margin: "0 0 7px",
                 fontFamily: M,
-                fontSize: mob ? 9.5 : 11,
+                fontSize: figType("sub", mob),
                 color: t.tx2,
                 whiteSpace: "nowrap",
                 overflow: "hidden",
@@ -124,36 +140,20 @@ export const FigDecoder = ({
           style={{
             textAlign: "center",
             fontFamily: M,
-            fontSize: 13,
+            fontSize: title,
             color: t.sig,
           }}
         >
           {mob ? "↓" : "→"}
         </div>
-        <div
-          style={{
-            ...panel,
-            padding: mob ? "12px 14px" : "16px 18px",
-            height: mob ? 160 : 188,
-            overflow: "hidden",
-            borderColor: t.sig,
-          }}
-        >
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10.5,
-              color: t.sig,
-              margin: "0 0 8px",
-              letterSpacing: "0.1em",
-            }}
-          >
+        <div style={{ ...card, borderColor: t.sig }}>
+          <p style={{ ...label, color: t.sig, margin: "0 0 8px" }}>
             DECODED · structured
           </p>
           <p
             style={{
               fontFamily: M,
-              fontSize: mob ? 12.5 : 14,
+              fontSize: title,
               color: t.tx,
               margin: "0 0 8px",
             }}
@@ -168,9 +168,9 @@ export const FigDecoder = ({
                 style={{
                   margin: "0 0 6px 14px",
                   fontFamily: M,
-                  fontSize: mob ? 11 : 12.5,
-                  opacity: vis ? 1 : 0.16,
-                  transition: "opacity 0.4s",
+                  fontSize: figType("body", mob),
+                  opacity: vis ? 1 : FIG_DIM,
+                  transition: FIG_EASE,
                   whiteSpace: "nowrap",
                 }}
               >
@@ -188,7 +188,7 @@ export const FigDecoder = ({
           <p
             style={{
               fontFamily: M,
-              fontSize: mob ? 12.5 : 14,
+              fontSize: title,
               color: t.tx3,
               margin: "2px 0 0",
             }}

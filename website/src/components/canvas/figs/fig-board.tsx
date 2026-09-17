@@ -1,14 +1,24 @@
 "use client";
 
-import type { CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 import { useThemeTokens } from "@/hooks/use-theme-tokens";
-import { useTick } from "@/hooks/use-tick";
+import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { THEME_TOKENS } from "@/utils/constants/theme-tokens";
 import { FigCaption } from "./fig-caption";
-import { figPanel, MONO as M } from "./fig-style";
+import {
+  FIG_SPEED,
+  FIG_TRACK,
+  MONO as M,
+  figH,
+  figPanel,
+  figType,
+} from "./fig-style";
 
 const PTS = "8,46 22,20 34,52 48,18 60,50 74,22 86,48 92,30";
 const DASH = 260;
+
+// Share of each cycle spent drawing; the rest holds the finished stroke.
+const DRAW_SHARE = 0.54;
 
 // Viewfinder L-corner offsets, sat low so the frame clears the label and centres on the drawing.
 const CORNER_TOP = 36;
@@ -35,10 +45,44 @@ export const FigBoard = ({
   active?: boolean;
 }) => {
   const t = useThemeTokens();
-  const n = useTick(110, 130, active, 100);
-  const draw = Math.min(n / 70, 1);
+  const reduced = useReducedMotion();
+  const [p, setP] = useState(0);
+
+  useEffect(() => {
+    if (reduced || !active) return;
+    let raf = 0;
+    const loop = (time: number) => {
+      setP((time * FIG_SPEED.slow) % 1);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
+  }, [reduced, active]);
+
+  // The static frame is the finished drawing.
+  const draw = reduced ? 1 : Math.min(p / DRAW_SHARE, 1);
   const reduction = Math.round(draw * 85);
-  const panel = figPanel(t);
+  const sub = figType("sub", mob);
+
+  // Side by side on desktop the two surfaces share a height; stacked on mobile
+  // they fit the drawing.
+  const surface: CSSProperties = {
+    ...figPanel(t),
+    padding: 10,
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    height: mob ? undefined : figH("sm", mob),
+  };
+  const label: CSSProperties = {
+    fontFamily: M,
+    fontSize: figType("label", mob),
+    letterSpacing: FIG_TRACK,
+    margin: "0 0 8px",
+  };
+  const drawing: CSSProperties = mob
+    ? { width: "100%", height: 64 }
+    : { width: "100%", flex: 1, minHeight: 0 };
 
   return (
     <div>
@@ -56,24 +100,12 @@ export const FigBoard = ({
       >
         <div
           style={{
-            ...panel,
-            padding: 10,
-            position: "relative",
+            ...surface,
             background: BOARD_BG,
             borderColor: BOARD_EDGE,
           }}
         >
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10,
-              color: BOARD_LABEL,
-              margin: "0 0 8px",
-              letterSpacing: "0.08em",
-            }}
-          >
-            CAMERA · blackboard
-          </p>
+          <p style={{ ...label, color: BOARD_LABEL }}>CAMERA · blackboard</p>
           {(
             [
               [4, 4],
@@ -96,10 +128,7 @@ export const FigBoard = ({
             };
             return <span key={i} style={st} />;
           })}
-          <svg
-            viewBox="0 0 100 64"
-            style={{ width: "100%", height: mob ? 64 : 78 }}
-          >
+          <svg viewBox="0 0 100 64" style={drawing}>
             <polyline
               points={PTS}
               fill="none"
@@ -116,7 +145,7 @@ export const FigBoard = ({
           style={{
             textAlign: "center",
             fontFamily: M,
-            fontSize: 13,
+            fontSize: figType("title", mob),
             color: t.sig,
           }}
         >
@@ -124,27 +153,13 @@ export const FigBoard = ({
         </div>
         <div
           style={{
-            ...panel,
-            padding: 10,
+            ...surface,
             background: PAPER_BG,
             borderColor: PAPER_EDGE,
           }}
         >
-          <p
-            style={{
-              fontFamily: M,
-              fontSize: 10,
-              color: PAPER_LABEL,
-              margin: "0 0 8px",
-              letterSpacing: "0.08em",
-            }}
-          >
-            STUDENT · canvas
-          </p>
-          <svg
-            viewBox="0 0 100 64"
-            style={{ width: "100%", height: mob ? 64 : 78 }}
-          >
+          <p style={{ ...label, color: PAPER_LABEL }}>STUDENT · canvas</p>
+          <svg viewBox="0 0 100 64" style={drawing}>
             <polyline
               points={PTS}
               fill="none"
@@ -169,7 +184,7 @@ export const FigBoard = ({
         <span
           style={{
             fontFamily: M,
-            fontSize: 10.5,
+            fontSize: sub,
             color: t.tx3,
             whiteSpace: "nowrap",
           }}
@@ -194,14 +209,13 @@ export const FigBoard = ({
               bottom: 0,
               width: `${100 - reduction}%`,
               background: t.ok,
-              transition: "width 0.15s linear",
             }}
           />
         </div>
         <span
           style={{
             fontFamily: M,
-            fontSize: 10.5,
+            fontSize: sub,
             color: t.ok,
             whiteSpace: "nowrap",
           }}
