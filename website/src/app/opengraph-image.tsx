@@ -4,10 +4,10 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { THEME_TOKENS } from "@/utils/constants/theme-tokens";
 import { contourSegments } from "@/utils/functions/contours";
-import { STATUS } from "@/utils/constants/site";
+import { SITE_CARD_ALT, STATUS } from "@/utils/constants/site";
 
 export const runtime = "nodejs";
-export const alt = "Yashvardhan Jagnani - software, shipped at agent speed";
+export const alt = SITE_CARD_ALT;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

@@ -1,7 +1,9 @@
 import {
+  CASE_CARD_TRANSFORM,
   EMAIL,
   GITHUB_URL,
   LINKEDIN_URL,
+  SITE_CARD_ALT,
   TWITTER_URL,
 } from "@/utils/constants/site";
 import type { ResolvedCase } from "@/utils/types/case.types";
@@ -32,6 +34,45 @@ export const SITE_OG_DESCRIPTION =
  */
 export const HOME_TITLE =
   "Yashvardhan Jagnani - Blockchain, AI & Full-Stack Engineer";
+
+/**
+ * The site-wide card, drawn by `app/opengraph-image.tsx`.
+ *
+ * Named here because a page that declares its own `openGraph` needs to hand it
+ * back by hand: Next **replaces** a parent `openGraph`/`twitter` object rather
+ * than merging into it, and the file-based image is a field of the root
+ * layout's, so it leaves with everything else the page does not restate.
+ *
+ * Relative on purpose — `metadataBase` in the root layout makes it absolute,
+ * and hard-coding the origin would pin staging cards to production.
+ */
+export const SITE_CARD = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: SITE_CARD_ALT,
+} as const;
+
+const CLOUDINARY_UPLOAD = "/image/upload/";
+
+/**
+ * A case study's card: its first image plate at card size, or the site card
+ * when it has none (`solana-ml-dsa-44` is the one such case today) or when the
+ * plate is not a Cloudinary upload we can transform. A generic card unfurls;
+ * a URL we guessed a transform for does not.
+ */
+export const caseCard = (src: string | undefined, alt: string) =>
+  src?.includes(CLOUDINARY_UPLOAD)
+    ? {
+        url: src.replace(
+          CLOUDINARY_UPLOAD,
+          `${CLOUDINARY_UPLOAD}${CASE_CARD_TRANSFORM}/`,
+        ),
+        width: 1200,
+        height: 630,
+        alt,
+      }
+    : SITE_CARD;
 
 const PERSON_ID = `${SITE_URL}/#person`;
 const WEBSITE_ID = `${SITE_URL}/#website`;

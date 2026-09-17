@@ -123,6 +123,32 @@ export const DOCUMENT_PATHS = Object.values(DOCUMENTS).map((d) => d.path);
 export const DOCUMENT_PREVIEW_BASE =
   "https://res.cloudinary.com/jagnani73/image/fetch/pg_1,f_jpg,q_auto:good,w_1200,h_630,c_pad,b_rgb:081012/";
 
+/**
+ * Cloudinary transform for a case study's card: the case's first image plate,
+ * delivered at card size.
+ *
+ * Injected into the plate's own `image/upload/` URL rather than routed through
+ * `image/fetch` like `DOCUMENT_PREVIEW_BASE` — the plates are already
+ * Cloudinary images, so they take transformations directly and none of the
+ * console settings that gate fetch apply here.
+ *
+ * `c_pad` rather than `c_fill`: the plates are UI screenshots at whatever
+ * aspect the window happened to be, and cropping one to 1.91:1 cuts away the
+ * part that makes it readable. Padding on `b_rgb:081012` puts the leftover
+ * space on the same background the OG route draws its card on.
+ */
+export const CASE_CARD_TRANSFORM =
+  "w_1200,h_630,c_pad,b_rgb:081012,f_jpg,q_auto:good";
+
+/**
+ * Alt text for the site-wide card. Stated here rather than in
+ * `app/opengraph-image.tsx` because three places need it: that route, its
+ * `twitter-image` twin, and every page that restates `openGraph.images` to hold
+ * on to the card (see `SITE_CARD`).
+ */
+export const SITE_CARD_ALT =
+  "Yashvardhan Jagnani - software, shipped at agent speed";
+
 // ── Standing copy — single source for the masthead bar + footers + OG card ────
 /** Right-hand status shown after the `STATUS:` label across the mastheads and OG. */
 export const STATUS = "NTU SINGAPORE - MSC BLOCKCHAIN";

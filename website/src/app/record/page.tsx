@@ -4,21 +4,45 @@ import { RECORD, getRecordCounts } from "@/content/record";
 import { FILTERS } from "@/content/record-lib";
 import { RecordClient } from "@/components/record/record-client";
 import { JsonLd } from "@/components/shared/json-ld";
-import { collectionPageLd, breadcrumbLd } from "@/utils/functions/seo";
+import {
+  collectionPageLd,
+  breadcrumbLd,
+  SITE_CARD,
+  SITE_NAME,
+} from "@/utils/functions/seo";
+import { TWITTER_HANDLE } from "@/utils/constants/site";
 import type { FilterId } from "@/utils/types/record.types";
 
 const RECORD_DESCRIPTION =
   "Everything, in one timeline: experience, projects, hackathons, community, research, education and certifications, 2019 → now.";
 
+const RECORD_OG_TITLE = "The Record - Yashvardhan Jagnani";
+
 export const metadata: Metadata = {
   title: "The Record",
   description: RECORD_DESCRIPTION,
   alternates: { canonical: "/record" },
+  // Restated from the root layout, as on `/record/[slug]` — declaring
+  // `openGraph` replaces the parent's rather than merging into it, and the
+  // file-based card is one of the fields that leaves with it.
   openGraph: {
     type: "website",
-    title: "The Record - Yashvardhan Jagnani",
+    title: RECORD_OG_TITLE,
     description: RECORD_DESCRIPTION,
     url: "/record",
+    siteName: SITE_NAME,
+    locale: "en_US",
+    images: [SITE_CARD],
+  },
+  // Without this the page inherits the root's Twitter card wholesale and
+  // unfurls on X under the home page's title and blurb.
+  twitter: {
+    card: "summary_large_image",
+    title: RECORD_OG_TITLE,
+    description: RECORD_DESCRIPTION,
+    site: TWITTER_HANDLE,
+    creator: TWITTER_HANDLE,
+    images: [SITE_CARD],
   },
 };
 
