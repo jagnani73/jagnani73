@@ -16,3 +16,6 @@ export interface AgNode {
 // Token color keys, imported `as C` by the figs that use them.
 export type FigAccent = "sig" | "acc" | "ok"; // fig-kit, fig-ledger
 export type JournalColor = "flag" | "tx2" | "acc" | "ok"; // fig-journal
+
+// A fig element's state, mapped to its colour by figTone (figs/fig-style.ts).
+export type FigState = "idle" | "active" | "ok" | "refused" | "muted";
