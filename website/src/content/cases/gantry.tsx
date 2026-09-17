@@ -107,11 +107,19 @@ export const gantryCase: CaseDetail = {
     },
     stats: {
       note: "running on Base Sepolia",
+      // Gas read from Base Sepolia receipts, 17-19 Aug 2026; see
+      // docs/measurements.md in the gantry repo.
       stats: [
         ["0", "ETH the payer needs; the relayer submits every settlement"],
         ["0.5%", "protocol fee, against ~2.8% on cards"],
-        ["581", "tests: 201 Foundry, 189 backend, 187 shared, 4 agent"],
-        ["4", "contracts deployed and verified on Basescan"],
+        [
+          "1%",
+          "gas spread across all three doors, 181,582 to 183,676: one _settle under each",
+        ],
+        [
+          "47%",
+          "more gas for the custodial x402 hop, 267,416 against the direct 181,582",
+        ],
       ],
     },
     plates: {
