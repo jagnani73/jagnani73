@@ -117,14 +117,15 @@ export const PlateViewer = ({
             plate {plateNo(j)}: {pl.cap}
           </button>
         ))}
-        <div className="mt-auto flex flex-col items-start gap-3.5 px-3 pt-4 pb-1">
+        <div className="mt-auto flex flex-wrap items-center gap-x-7 gap-y-3 px-3 pt-5 pb-1">
           <CtaTerm href={`/record/${next.slug}`}>
             next study: <span className="uppercase">{next.title}</span>
           </CtaTerm>
-          {/* The external pair sits as one group on a tighter gap, so `source`
-              reads as subordinate to `cta` rather than as a third peer. */}
+          {/* One row: the next study, then the external pair on a tighter gap of
+              its own, so `source` reads as subordinate to `cta` rather than as
+              a third peer. All of it wraps on a narrow column. */}
           {cta || source ? (
-            <div className="flex flex-col items-start gap-2">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
               {cta ? (
                 <CtaTerm href={cta.href} external>
                   {cta.label}
