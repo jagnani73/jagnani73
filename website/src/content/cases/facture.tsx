@@ -16,7 +16,7 @@ export const factureCase: CaseDetail = {
   ),
   fig: {
     component: FigFacture,
-    alt: "MF-2080, sold on testnet, read against seven standing bids: two refused it on rating, two on debtor concentration, two priced it wider, and Harrow Point bought it at 8.50% for $19,813.69",
+    alt: "two standing bids drawn flat across the tenors they will take; MF-2080, a 40-day B-rated invoice, meets the tighter one at 8.50% and prices at $19,813.69",
   },
   sections: {
     split: {
