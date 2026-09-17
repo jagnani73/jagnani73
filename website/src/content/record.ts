@@ -3,6 +3,7 @@
 
 import type { RecordEntry, FilterId } from "@/utils/types/record.types";
 import { FILTERS, isCase } from "./record-lib";
+import { factureCase } from "./cases/facture";
 import { gantryCase } from "./cases/gantry";
 import { claudeControllerCase } from "./cases/claude-controller";
 import { solanaMlDsa44Case } from "./cases/solana-ml-dsa-44";
@@ -39,11 +40,29 @@ export const RECORD: RecordEntry[] = [
     year: 2026,
     kind: "PROJECT",
     via: "hackathon",
+    title: "Facture",
+    meta: "a market for invoice paper · standing bids price every receivable · bonds on Hedera, cash on Arc",
+    slug: "facture",
+    case: factureCase,
+    order: 2,
+  },
+  {
+    year: 2026,
+    kind: "HACKATHON",
+    win: true,
+    title: "ETHOnline 2026 - Hedera Tokenization of Anything",
+    meta: "Facture · invoices as zero-coupon bonds on Hedera, cash on Arc",
+    url: "https://ethglobal.com/showcase/facture-jy21t",
+  },
+  {
+    year: 2026,
+    kind: "PROJECT",
+    via: "hackathon",
     title: "Gantry",
     meta: "one payment rail, two doors · printed QR for humans, x402 for AI agents · live on Base Sepolia",
     slug: "gantry",
     case: gantryCase,
-    order: 2,
+    order: 3,
   },
   {
     year: 2026,
@@ -61,7 +80,7 @@ export const RECORD: RecordEntry[] = [
     meta: "drive the Claude Code CLI from your phone over a private Tailscale tunnel · PWA + PTY relay",
     slug: "claude-controller",
     case: claudeControllerCase,
-    order: 3,
+    order: 4,
   },
   {
     year: 2026,
