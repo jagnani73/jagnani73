@@ -65,8 +65,13 @@ export const PdfView = ({ filePath, label }: PdfViewProps) => {
     observer.current = ro;
   }, []);
 
+  // Not a scroll container. The page scrolls on the document root, because
+  // that is the scroller a pinch-zoom pans: an inner `overflow-y-auto` box
+  // splits one drag between two scrollers, and neither mobile engine hands a
+  // gesture across mid-drag (iOS locks it to one axis; Android, with
+  // `overscroll-contain`, wouldn't pan the zoomed page at all).
   return (
-    <div ref={measure} className="h-full overflow-y-auto overscroll-contain">
+    <div ref={measure}>
       <Document
         file={filePath}
         onLoadSuccess={({ numPages }) => setPages(numPages)}

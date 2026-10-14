@@ -24,18 +24,23 @@ export const DocumentShell = ({
   filePath,
   children,
 }: DocumentShellProps) => (
-  // `h-screen` (100vh) is the floor; `100dvh` wins wherever it is supported.
-  // Mobile browsers shrink the visual viewport as their chrome slides away, and
-  // a `vh`-sized frame leaves the bottom strip of the document stranded under
-  // it. The `supports` guard rather than a bare `dvh` so an older engine still
-  // gets a full-height page instead of a collapsed one.
-  <div className="flex h-screen flex-col bg-bg supports-[height:100dvh]:h-[100dvh]">
+  // A floor, not a fixed height: the document scrolls on the root, never inside
+  // a box. A pinch-zoom pans the root scroller, and a nested `overflow-y-auto`
+  // container splits each drag between the two — iOS locks the gesture to
+  // whichever claimed it first (vertical *or* horizontal, never diagonal) and
+  // Android wouldn't pan the zoomed page at all. One scroller avoids both.
+  //
+  // `svh` rather than `dvh` so the floor doesn't move as the mobile chrome
+  // slides away mid-scroll; the `supports` guard keeps a full-height page on an
+  // engine without it.
+  <div className="flex min-h-screen flex-col bg-bg supports-[height:100svh]:min-h-svh">
     {/* Grid, not flex. `justify-between` centres the label in the space *left
         over* by the two side items, so an asymmetric bar (a 26px mark on the
         left, two CTAs on the right) pushes it off true centre — visibly so on a
         phone. Equal `1fr` tracks either side of an `auto` middle pin it to the
         real centre of the bar no matter what the sides weigh. */}
-    <header className="grid h-12 shrink-0 grid-cols-[1fr_auto_1fr] items-center gap-3 border-b border-rule px-3 rail:px-5">
+    {/* Sticky, so the download stays one tap away while the root scrolls. */}
+    <header className="sticky top-0 z-10 grid h-12 shrink-0 grid-cols-[1fr_auto_1fr] items-center gap-3 border-b border-rule bg-bg px-3 rail:px-5">
       <Link
         href="/"
         className="flex items-center gap-2.5 justify-self-start text-tx3 transition-colors hover:text-tx2"
@@ -70,11 +75,8 @@ export const DocumentShell = ({
       </div>
     </header>
 
-    {/* The frame is a flex child, never `h-full`. A percentage height resolves
-        against the containing block's *specified* height, and this one's is
-        `auto` — so `h-full` on the iframe silently collapsed it to the 150px
-        CSS default while `<main>` itself measured the full 1097px. `min-h-0`
-        lets it shrink below its content instead of overflowing the bar. */}
-    <main className="flex min-h-0 flex-1 flex-col">{children}</main>
+    {/* `flex-1` so the panel behind the pages reaches the bottom of the
+        screen when the document is shorter than it. */}
+    <main className="flex flex-1 flex-col">{children}</main>
   </div>
 );

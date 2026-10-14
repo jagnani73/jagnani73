@@ -32,7 +32,7 @@ const PdfView = dynamic(
 );
 
 export const DocumentViewer = ({ label, filePath }: DocumentViewerProps) => (
-  <div className="min-h-0 flex-1 bg-panel">
+  <div className="flex-1 bg-panel">
     <PdfView filePath={filePath} label={label} />
   </div>
 );
