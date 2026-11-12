@@ -455,7 +455,7 @@ export const RECORD: RecordEntry[] = [
   {
     year: 2021,
     kind: "EXPERIENCE",
-    title: "wealth42 - SDE Intern",
+    title: "wealth42 - Software Development Engineering Intern",
     meta: "directed-graph form architecture · custom user tracking · 2021",
     url: "https://wealth42.com",
   },
