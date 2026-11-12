@@ -32,7 +32,7 @@ export const RECORD: RecordEntry[] = [
   {
     year: 2026,
     kind: "EXPERIENCE",
-    title: "Infinia Technologies - Blockchain Software Consultant",
+    title: "Infinia Technologies - Blockchain & Protocol Engineer",
     meta: "Solana ML-DSA-44 fork · on-chain interactions for Global Citizen · Apr–Jul 2026",
     url: "https://infiniatechnologies.com/",
   },
@@ -135,7 +135,7 @@ export const RECORD: RecordEntry[] = [
   {
     year: 2025,
     kind: "EXPERIENCE",
-    title: "Covalent - Product & Engineering Consultant",
+    title: "Covalent - Product & Software Engineer",
     meta: "GoldRush suite · AI Agent SDK · SpeedRun · OHLCV streaming @ ~250ms · 2023–2025",
     url: "https://www.covalenthq.com",
   },
@@ -353,7 +353,7 @@ export const RECORD: RecordEntry[] = [
   {
     year: 2022,
     kind: "EXPERIENCE",
-    title: "Quinence - SDE Consultant",
+    title: "Quinence - Software Engineer",
     meta: "NFT marketplace + metaverse client builds · Jan–Apr 2022",
     url: "https://quinence.com/",
   },
@@ -462,7 +462,7 @@ export const RECORD: RecordEntry[] = [
   {
     year: 2021,
     kind: "EXPERIENCE",
-    title: "Slash - Web Development Consultant",
+    title: "Slash - Web Developer",
     meta: "merchant dashboard · analytics · static page generation · 2021",
     url: "https://www.slashpay.app/",
   },
