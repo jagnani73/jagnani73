@@ -38,6 +38,13 @@ export const RECORD: RecordEntry[] = [
   },
   {
     year: 2026,
+    kind: "EXPERIENCE",
+    title: "Mercor - Software Engineer, RL Environments",
+    meta: "browser-use RL environments · MCP tool servers · LLM-judged verifiers · freelance · Apr–Jul 2026",
+    url: "https://mercor.com/",
+  },
+  {
+    year: 2026,
     kind: "PROJECT",
     via: "hackathon",
     title: "Facture",
