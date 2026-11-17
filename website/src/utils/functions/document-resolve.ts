@@ -43,7 +43,15 @@ export const validSlug = (slug: string) =>
   slug.length <= MAX_SLUG_LENGTH && SLUG.test(slug);
 
 /**
- * `blockchain` → `Blockchain`, `open-source` → `Open Source`.
+ * Words spelt in capitals rather than title-cased, matched as a whole word so
+ * `aiquris` stays `Aiquris`. The sibling's `Publish-Release.ps1` carries the
+ * same list, under the same two-repo rule as the casing below.
+ */
+const ACRONYMS = new Set(["ai"]);
+
+/**
+ * `blockchain` → `Blockchain`, `open-source` → `Open Source`, `ai-singapore`
+ * → `AI Singapore`.
  *
  * **This naming rule now lives in two repositories and they have to agree.**
  * The scheme originates in the sibling `cv-cl` repo's
@@ -58,7 +66,11 @@ export const validSlug = (slug: string) =>
 export const titleCase = (slug: string) =>
   slug
     .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) =>
+      ACRONYMS.has(word)
+        ? word.toUpperCase()
+        : word.charAt(0).toUpperCase() + word.slice(1),
+    )
     .join(" ");
 
 /** `Resume`, or `Resume - Blockchain` once a variant is appended. */
